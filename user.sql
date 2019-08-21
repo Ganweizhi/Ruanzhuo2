@@ -1,7 +1,6 @@
-
 DROP TABLE IF EXISTS `staff`;
 CREATE TABLE `staff`  (
-  `wid` varchar(12)  PRIMARY KEY, --工号
+  `wid` int identity(2019500,1)  PRIMARY KEY, --工号
   `name` varchar(255) DEFAULT NULL, --姓名
   `sex` varchar(2) DEFAULT NULL, --性别
   `nation` varchar(20) DEFAULT NULL, --民族
@@ -31,7 +30,7 @@ CREATE TABLE `staff`  (
 
 DROP TABLE IF EXISTS `file`;
 CREATE  table file(
-                    wid VARCHAR(12) references "staff"("wid"), --外键关联职工编号
+                    wid int references "staff"("wid"), --外键关联职工编号
                     fileId VARCHAR(20) primary key , --文件id
                     fileName varchar(255) default null, --文件名
                     fileSize   varchar(255)  default null,   --文件大小
