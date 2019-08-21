@@ -27,10 +27,22 @@ CREATE TABLE `staff`  (
   `useTime` Date DEFAULT NULL, --合同有效期
   `departureTime` Date DEFAULT NULL, --离职时间
 );
+INSERT INTO STAFF(name) VALUES ('ming');
+INSERT INTO STAFF(name) VALUES ('ming');
+INSERT INTO STAFF(name) VALUES ('ming');
+INSERT INTO STAFF(name) VALUES ('ming');
+INSERT INTO STAFF(name) VALUES ('ming');
+INSERT INTO STAFF(name) VALUES ('ming');
+INSERT INTO STAFF(name) VALUES ('ming');
+INSERT INTO STAFF(name) VALUES ('ming');
+INSERT INTO STAFF(name) VALUES ('ming');
+INSERT INTO STAFF(name) VALUES ('ming');
+INSERT INTO STAFF(name) VALUES ('ming');
+INSERT INTO STAFF(name) VALUES ('ming');
 
 DROP TABLE IF EXISTS `file`;
 CREATE  table file(
-                    wid int references "staff"("wid"), --外键关联职工编号
+                    wid int references staff("wid"), --外键关联职工编号
                     fileId VARCHAR(20) primary key , --文件id
                     fileName varchar(255) default null, --文件名
                     fileSize   varchar(255)  default null,   --文件大小
