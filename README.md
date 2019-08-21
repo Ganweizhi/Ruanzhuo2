@@ -1,8 +1,9 @@
-# api_v1.1 (更新中)
-
+# api_v1.2 (更新中)     
+params:前端传给后端
+response:后端返回数据
 ## 1. 人员管理
-**/list --人员列表**
-*根据传参查询数据并分页返回*
+**/list --人员列表**              
+*根据传参查询数据并分页返回(一页7条)*
 ```javascript
 params:{
          department, //部门
@@ -13,7 +14,7 @@ params:{
          currentPage //当前页数
 }
 response:{
-	data[
+	data:[
 		wid,
 		name,
 		sex,
@@ -67,7 +68,24 @@ response:{
 *详细数据见网页，用javabeen接收？*
 ```javascript
 params:{
-	msgForm,        //表单数据
+	msgForm:{
+		wid: "2019500", //工号
+		name: "张三", //姓名
+		sex: "0", //性别
+		nation: "汉族", //民族
+		nationality: "中国", //国籍
+		origin: "广东省东莞市", //籍贯
+		idType: "0", //证件类型
+		idNumber: "432503197505028819", //证件号
+		education: "3", //学历
+		degree: "0", //学位
+		department: "0", //部门
+		job: "清洁工", //岗位
+		title: "工人", //职称
+		lPhone: "12547896321", //手机号码
+		sPhone: "12345", //短号
+		email: "124452@qq.com", //邮箱
+	},        //表单数据
 }
 response:{
 	success,   //1成功，0失败
@@ -79,20 +97,9 @@ response:{
 	success,   //1成功，0失败
 }
 ```
-**/sfzz --上传身份证正面**     
-```javascript
-response:{
-	success,   //1成功，0失败
-}
-```
-**/sfzf --上传身份证反面**     
-```javascript
-response:{
-	success,   //1成功，0失败
-}
-```
 ##  2.薪酬管理
-**/xclist --薪酬列表**
+**/xclist --薪酬列表**            
+*根据传参查询数据并分页返回(一页7条)*
 ```javascript
 params:{
          department, //部门
@@ -126,26 +133,19 @@ response:{
 *详细数据见网页，用javabeen接收？*
 ```javascript
 params:{
-	xcForm,        //表单数据
+	xcForm:{
+		baseWage: "12345", //基本工资
+		bankName: "0", //银行名称
+		bankId: "6222020903001483077" //银行账号
+	},        //表单数据
 }
-response:{
-	success,   //1成功，0失败
-}
-```
-**/yhkz --上传银行卡正面**     
-```javascript
-response:{
-	success,   //1成功，0失败
-}
-```
-**/yhkf --上传银行卡反面**     
-```javascript
 response:{
 	success,   //1成功，0失败
 }
 ```
 ##  3.合同管理
-**/htlist --合同列表**
+**/htlist --合同列表**          
+*根据传参查询数据并分页返回(一页7条)*
 ```javascript
 params:{
          department, //部门
@@ -180,14 +180,17 @@ response:{
 ```javascript
 params:{
 	file,          //合同文件  
-	htForm,        //表单数据
+	htForm:{
+		htName,  //合同名称
+		useTime  //合同有效期
+	},        //表单数据
 }
 response:{
 	success,   //1成功，0失败
 }
 ```
 ##  4.数据导入
-**/detail --合同列表**
+**/detail --所有数据**
 ```javascript
 params:{
          wid,        //工号
@@ -249,6 +252,16 @@ response:{
 	fileListF = {}, //身份证反面
 	fileListyhkz = {}, //银行卡正面
 	fileListyhkf = {} //银行卡证反面
+}
+```
+**/zj --上传证件**     
+```javascript
+params:{
+	data,        //参数：sfzz、zfzf、yhkz、yhkf
+	file,       //文件
+}
+response:{
+	success,   //1成功，0失败
 }
 ```
 
