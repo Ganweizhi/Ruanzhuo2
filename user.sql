@@ -23,22 +23,13 @@ CREATE TABLE `staff`  (
   `bankName` varchar(20) DEFAULT NULL, --银行名称
   `bankId` varchar(20) DEFAULT NULL, --银行账号
   `htName` varchar(255) DEFAULT NULL, --合同名称
-  `signingTime` Date DEFAULT NULL, --签约时间
-  `useTime` Date DEFAULT NULL, --合同有效期
-  `departureTime` Date DEFAULT NULL, --离职时间
+  `signingTime` varchar(255) DEFAULT NULL, --签约时间
+  `useTime` varchar(255) DEFAULT NULL, --合同有效期
+  `departureTime` varchar(255) DEFAULT NULL, --离职时间
 );
-INSERT INTO STAFF(name) VALUES ('ming');
-INSERT INTO STAFF(name) VALUES ('ming');
-INSERT INTO STAFF(name) VALUES ('ming');
-INSERT INTO STAFF(name) VALUES ('ming');
-INSERT INTO STAFF(name) VALUES ('ming');
-INSERT INTO STAFF(name) VALUES ('ming');
-INSERT INTO STAFF(name) VALUES ('ming');
-INSERT INTO STAFF(name) VALUES ('ming');
-INSERT INTO STAFF(name) VALUES ('ming');
-INSERT INTO STAFF(name) VALUES ('ming');
-INSERT INTO STAFF(name) VALUES ('ming');
-INSERT INTO STAFF(name) VALUES ('ming');
+INSERT INTO STAFF VALUES (NULL,"张三", "0", "汉族", "中国","广东省东莞市", "0", "432503197505028819", "3", "0", "0", "清洁工"
+                            , "工人", "12547896321", "12345", NULL,"124452@qq.com", "https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg"
+                            , "1", "12345", "0", "6222020903001483077", "合同1", "2019-06-20", "24", "2021-06-20");
 
 DROP TABLE IF EXISTS `file`;
 CREATE  table file(
