@@ -20,7 +20,7 @@ response:{
 		sex,
 		degree,
 		department,
-		phone,
+		lphone,
 		state,
 		signingTime,
 		departureTime
