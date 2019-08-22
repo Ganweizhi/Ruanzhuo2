@@ -7,8 +7,8 @@ response:后端返回数据
 ```javascript
 params:{
          department, //部门
-         degree:,    //学历
-         search:,    //姓名
+         degree,    //学历
+         search,    //姓名
          time,       //签约时间
          etime,      //离职时间
          currentPage //当前页数
@@ -262,6 +262,37 @@ params:{
 }
 response:{
 	success,   //1成功，0失败
+}
+```
+## 5. 日志管理   
+**/loglist --合同列表**          
+*根据传参查询数据并分页返回(一页7条)*
+```javascript
+params:{
+    time:时间
+    id:账号
+    ip: ip
+    name: 姓名
+    currentPage: 当前页数
+}
+response:{
+	[
+        {
+            date: "2019-01-01 12:46:25",
+            id: "215869874",
+            name: "admin",
+            ip: "127.0.0.1",
+            action: "修改员工资料"
+        },
+        {
+            date: "2019-02-02 13:25:55",
+            id: "236541555",
+            name: "tset",
+            ip: "127.123.202.111",
+            action: "删除员工"
+        },
+	],
+	totalPage   //数据总条数
 }
 ```
 

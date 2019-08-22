@@ -90,4 +90,4 @@ CREATE  table file(
                     fileName varchar(255) default null, --文件名
                     fileSize   varchar(255)  default null,   --文件大小
                     fileClass varchar(20) default null, --文件类型
-)
+);
