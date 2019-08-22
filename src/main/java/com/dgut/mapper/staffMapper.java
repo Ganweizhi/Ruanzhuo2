@@ -27,7 +27,7 @@ public interface staffMapper {
             + "     and etime = #{etime}"
             + " </if>"
             + "  <if test='search != null' > "
-            + "     and search = #{search}"
+            + "     and name = #{search}"
             + " </if>"
             + "</where>"
             + "</script>")

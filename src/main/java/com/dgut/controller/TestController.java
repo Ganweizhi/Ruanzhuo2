@@ -17,15 +17,6 @@ public class TestController {
     @Autowired
     private listService listservice;
 
-//    @RequestMapping(value = "/list")
-//    @ResponseBody
-//    public listBeanPage getList(String department, String degree, String stime, String etime, String search) {
-//        System.out.println(department+"+"+degree+"+"+stime+"+"+etime+"+"+search);
-//        List<staff> data = listservice.findAll();
-//        System.out.printf(data.toString()+" "+data.size()+"------");
-//        return null;
-//    }
-
     @RequestMapping(value = "/list")
     @ResponseBody
     public listBeanPage getList(String department, String degree, String stime, String etime, String search ,String currentPage) {
@@ -48,9 +39,11 @@ public class TestController {
             currentPage = null;
         }
 
-        System.out.println(department+"+"+degree+"+"+stime+"+"+etime+"+"+search);
         List<listBean> data = listservice.findList(department,degree,stime,etime,search,currentPage);
-        listBeanPage listBeanPage = new listBeanPage(data,data.size());
+        int start = (Integer.parseInt(currentPage)-1)*7;
+        int end = start+7>data.size()?data.size():start+7;
+        List<listBean> datas = data.subList(start,end);
+        listBeanPage listBeanPage = new listBeanPage(datas,data.size());
         System.out.println(listBeanPage.toString());
         return listBeanPage;
     }
