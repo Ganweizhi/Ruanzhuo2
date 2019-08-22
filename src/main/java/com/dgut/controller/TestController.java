@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -39,7 +41,17 @@ public class TestController {
             currentPage = null;
         }
 
-        List<listBean> data = listservice.findList(department,degree,stime,etime,search,currentPage);
+        String[] split = stime.split(",");
+        List<listBean> data = listservice.findList(department, degree, stime, etime, search, currentPage);
+        if(stime != null) {
+            List<listBean> listBeanStream = data.stream().filter(new Predicate<listBean>() {
+                @Override
+                public boolean test(listBean listBean) {
+                    return listBean.getSigningTime()>split[0] && listBean.getSigningTime()<split[1];
+                }
+            });
+        }
+
         int start = (Integer.parseInt(currentPage)-1)*7;
         int end = start+7>data.size()?data.size():start+7;
         List<listBean> datas = data.subList(start,end);

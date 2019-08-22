@@ -1,7 +1,6 @@
 package com.dgut.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 
 public class staff implements Serializable {
     private String wid; //工号
@@ -27,9 +26,9 @@ public class staff implements Serializable {
     private String bankName; //银行名称
     private String bankId; //银行账号
     private String htName; //合同名称
-    private Date signingTime; //签约时间
-    private Date useTime; //合同有效期
-    private Date departureTime; //离职时间
+    private String signingTime; //签约时间
+    private String useTime; //合同有效期
+    private String departureTime; //离职时间
 
     public staff() {
     }
@@ -218,27 +217,27 @@ public class staff implements Serializable {
         this.htName = htName;
     }
 
-    public Date getSigningTime() {
+    public String getSigningTime() {
         return signingTime;
     }
 
-    public void setSigningTime(Date signingTime) {
+    public void setSigningTime(String signingTime) {
         this.signingTime = signingTime;
     }
 
-    public Date getUseTime() {
+    public String getUseTime() {
         return useTime;
     }
 
-    public void setUseTime(Date useTime) {
+    public void setUseTime(String useTime) {
         this.useTime = useTime;
     }
 
-    public Date getDepartureTime() {
+    public String getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Date departureTime) {
+    public void setDepartureTime(String departureTime) {
         this.departureTime = departureTime;
     }
 
