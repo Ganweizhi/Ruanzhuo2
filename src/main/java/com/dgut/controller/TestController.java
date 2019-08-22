@@ -1,4 +1,7 @@
 package com.dgut.controller;
+import com.dgut.mapper.UserMapper;
+import com.dgut.model.staff;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,9 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 public class TestController {
 
+
+    @Autowired
+    private staff staffMapper;
     @RequestMapping(value = "/list")
     public String getList(String department,String degree,String stime,String etime,String search) {
         System.out.println(department + " " + degree + " " + stime + " " + etime + " " + search);
-        return "{\"data\":[{\"wid\":\"20136587\",\"name\":\"李贵超\",\"sex\":\"0\",\"degree\":\"2\"}]}";
+        return null;
     }
 }
