@@ -22,9 +22,9 @@ public class UserFileService {
     }
     public int result(String wid,String htName)
     {
-      UserFileModel um =  userFileMapper.findHt(wid,htName);
+       UserFileModel um =  userFileMapper.findHt(wid,htName); //调用查询方法，判断有无该合同
        if(um==null) return 0;
-       else userFileMapper.deleteHt(wid,htName);
+       else userFileMapper.deleteHt(wid,htName); //有该合同调用此方法删除该合同
        return  1;
     }
 }
