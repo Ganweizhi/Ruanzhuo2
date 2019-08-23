@@ -12,13 +12,13 @@ public class listBean implements Serializable {
     private String department;
     private String lphone;
     private String state;
-    private Date signingTime;
-    private Date departureTime;
+    private String signingTime;
+    private String departureTime;
 
     public listBean() {
     }
 
-    public listBean(String wid, String name, String sex, String degree, String department, String lphone, String state, Date signingTime, Date departureTime) {
+    public listBean(String wid, String name, String sex, String degree, String department, String lphone, String state, String signingTime, String departureTime) {
         this.wid = wid;
         this.name = name;
         this.sex = sex;
@@ -86,19 +86,19 @@ public class listBean implements Serializable {
         this.state = state;
     }
 
-    public Date getSigningTime() {
+    public String getSigningTime() {
         return signingTime;
     }
 
-    public void setSigningTime(Date signingTime) {
+    public void setSigningTime(String signingTime) {
         this.signingTime = signingTime;
     }
 
-    public Date getDepartureTime() {
+    public String getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Date departureTime) {
+    public void setDepartureTime(String departureTime) {
         this.departureTime = departureTime;
     }
 
