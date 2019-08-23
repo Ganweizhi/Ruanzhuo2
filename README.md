@@ -2,7 +2,7 @@
 params:前端传给后端
 response:后端返回数据
 ## 1. 人员管理
-**/list --人员列表**              
+**/list --人员列表**  #finsh by superlgc
 *根据传参查询数据并分页返回(一页7条)*
 ```javascript
 params:{
@@ -28,7 +28,7 @@ response:{
 	totalPage,   //数据总条数
 }
 ```
-**/outlist --导出人员数据**
+**/outlist --导出人员数据** #finsh by superlgc
 ```javascript
 params:{
          department, //部门

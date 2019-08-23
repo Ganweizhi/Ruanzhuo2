@@ -13,8 +13,8 @@ public class listService {
     @Autowired
     private staffMapper staffmapper;
 
-    public List<staff> findAll(){
-        return staffmapper.findAll();
+    public List<staff> findOutlist(String department, String degree, String stime, String etime, String search){
+        return staffmapper.findOutlist(department,  degree,  stime,  etime,  search);
     }
 
     public List<listBean> findList(String department, String degree, String stime, String etime, String search, String currentPage) {

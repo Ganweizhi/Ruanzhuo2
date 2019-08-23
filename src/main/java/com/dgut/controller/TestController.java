@@ -9,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -19,6 +17,34 @@ public class TestController {
 
     @Autowired
     private listService listservice;
+
+    @RequestMapping(value = "/outlist")
+    @ResponseBody
+    public List<staff> getOutlist(String department, String degree, String stime, String etime, String search) {
+        if(department.equals("")) {
+            department = null;
+        }
+        if(degree.equals("")) {
+            degree = null;
+        }
+        if(search.equals("")) {
+            search = null;
+        }
+
+        List<staff> data = listservice.findOutlist(department, degree, stime, etime, search);
+        if(!stime.equals("")) {
+            String[] split = stime.split(",");
+            data = data.stream().filter(bean -> bean.getSigningTime().compareTo(split[0]) >= 0 && bean.getSigningTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
+        }
+
+        if(!etime.equals("")) {
+            String[] split = etime.split(",");
+            data = data.stream().filter(bean -> bean.getDepartureTime().compareTo(split[0]) >= 0 && bean.getDepartureTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
+        }
+        System.out.println(data.toString());
+        System.out.println(data.size());
+        return data;
+    }
 
     @RequestMapping(value = "/list")
     @ResponseBody
