@@ -18,9 +18,9 @@ public class ListController {
     private listService listservice;
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(addBean bean){
-        int state = listservice.add(bean);
-        System.out.println(bean.toString());
+    public String add(@RequestBody addBean msgForm){
+        int state = listservice.add(msgForm);
+        System.out.println(msgForm.toString());
         if(state==1)
             return "{\"success\":1}";
         else
