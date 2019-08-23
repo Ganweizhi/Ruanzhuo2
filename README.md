@@ -98,7 +98,7 @@ response:{
 }
 ```
 ##  2.薪酬管理
-**/xclist --薪酬列表**            
+**/xclist --薪酬列表**            #finsh by superlgc
 *根据传参查询数据并分页返回(一页7条)*
 ```javascript
 params:{
