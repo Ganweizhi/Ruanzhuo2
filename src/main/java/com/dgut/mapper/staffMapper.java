@@ -20,12 +20,6 @@ public interface staffMapper {
             + "  <if test='degree != null' > "
             + "     and degree = #{degree}"
             + " </if>"
-            + "  <if test='stime != null' > "
-            + "     and stime = #{stime}"
-            + " </if>"
-            + "  <if test='etime != null' > "
-            + "     and etime = #{etime}"
-            + " </if>"
             + "  <if test='search != null' > "
             + "     and name = #{search}"
             + " </if>"
@@ -34,5 +28,5 @@ public interface staffMapper {
     List<listBean> findList(@Param("department")String department, @Param("degree")String degree, @Param("stime")String stime, @Param("etime")String etime, @Param("search")String search, @Param("currentPage")String currentPage);
 
     @Select("select * from staff")
-    List<staff> findAll();
+    List<staff> findOutlist(@Param("department")String department, @Param("degree")String degree, @Param("stime")String stime, @Param("etime")String etime, @Param("search")String search);
 }

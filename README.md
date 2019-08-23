@@ -1,14 +1,14 @@
-# api_v1.2 (更新中)     
+# api_v1.3 (更新中)     
 params:前端传给后端
 response:后端返回数据
 ## 1. 人员管理
-**/list --人员列表**              
+**/list --人员列表**  #finsh by superlgc
 *根据传参查询数据并分页返回(一页7条)*
 ```javascript
 params:{
          department, //部门
-         degree:,    //学历
-         search:,    //姓名
+         degree,    //学历
+         search,    //姓名
          time,       //签约时间
          etime,      //离职时间
          currentPage //当前页数
@@ -28,7 +28,7 @@ response:{
 	totalPage,   //数据总条数
 }
 ```
-**/outlist --导出人员数据**
+**/outlist --导出人员数据** #finsh by superlgc
 ```javascript
 params:{
          department, //部门
@@ -264,6 +264,132 @@ response:{
 	success,   //1成功，0失败
 }
 ```
-
-
-
+## 5. 日志管理   
+**/loglist --日志列表**          
+*根据传参查询数据并分页返回(一页7条)*
+```javascript
+params:{
+    time:时间
+    id:账号
+    ip: ip
+    name: 姓名
+    currentPage: 当前页数
+}
+response:{
+	data:[
+		{
+            date: "2019-01-01 12:46:25",
+            id: "215869874",
+            name: "admin",
+            ip: "127.0.0.1",
+            action: "修改员工资料"
+        },
+        {
+            date: "2019-02-02 13:25:55",
+            id: "236541555",
+            name: "tset",
+            ip: "127.123.202.111",
+            action: "删除员工"
+        },
+	],
+	totalPage   //数据总条数
+}
+```
+## 6. 管理员列表
+**/gllist --管理员列表**          
+*根据传参查询数据并分页返回(一页7条)*
+```javascript
+params:{
+    gid:账号
+    name: 姓名
+    currentPage: 当前页数
+}
+response:{
+	data:[
+        {
+			gid: "12345",
+			name: "admin",
+  			role: ["超级管理员"],
+ 			state: 1,
+		},
+		{
+			gid: "233333",
+			name: "kkk",
+			role: ["部门1管理员",",","部门2管理员"],
+			state: 1,
+		},
+	],
+	totalPage   //数据总条数
+}
+```
+**/roleLists --角色列表**          
+```javascript
+params:{
+}
+response:{
+	[
+        {
+			rid: "12345",
+			name: "sfg",
+			pagePower: "fffff0f0",
+  			depPower: "01010101",
+		},
+		{
+			rid: "12345",
+			name: "sfg",
+			pagePower: "fffff0a0",
+  			depPower: "1010101",
+		},
+	],
+}
+```
+**/gledit --管理员编辑**      
+```javascript
+params:{
+    from:{
+		gid
+		name
+		roleLists:["name1","name2","name3"]
+		state
+	}
+}
+response:{
+	success,   //1成功，0失败
+}
+```
+## 7. 角色管理
+**/rolelist --角色列表**          
+*根据传参查询数据并分页返回(一页7条)*
+```javascript
+params:{
+    rid:账号
+    name: 姓名
+    currentPage: 当前页数
+}
+response:{
+	data:[
+        {
+			rid: "6",
+			name: "日志管理员",
+			pagePower: "00f0",
+			depPower: "000"
+		},
+ 		{
+			rid: "7",
+			name: "角色管理员",
+			pagePower: "f000",
+			depPower: "000"
+		}
+	],
+	totalPage   //数据总条数
+}
+```
+**/roledelete --删除角色**     
+```javascript
+params:{
+	rid,        //角色编号
+}
+response:{
+	success,   //1成功，0失败
+}
+```
