@@ -33,8 +33,8 @@ public interface UserFileMapper {
     @Delete(
             "delete from file where wid=#{wid} and fileName =#{htName}"
     )
-   public int deleteHt(@Param("wid")String wid,@Param("htname")String htname);
+   public int deleteHt(@Param("wid")String wid,@Param("htname")String htname);  //先查询，根据返回值判断有无改合同文件
 
     @Select("select wid,filename from file where wid =#{wid} and fileName = #{htName}")
-    UserFileModel findHt(@Param("wid") String wid,@Param("htName") String htName);
+    UserFileModel findHt(@Param("wid") String wid,@Param("htName") String htName); //当查询到有该合同时再删除该合同
 }
