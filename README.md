@@ -254,6 +254,13 @@ response:{
 	fileListyhkf = {} //银行卡证反面
 }
 ```
+**/init --新wid**
+```javascript
+response:{
+//返回最新wid
+	wid
+}
+```
 **/zj --上传证件**     
 ```javascript
 params:{
