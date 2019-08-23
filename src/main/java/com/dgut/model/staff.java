@@ -273,5 +273,4 @@ public class staff implements Serializable {
                 ", departureTime=" + departureTime +
                 '}';
     }
-
 }
