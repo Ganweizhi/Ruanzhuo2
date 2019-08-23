@@ -91,3 +91,66 @@ CREATE  table file(
                     fileSize   varchar(255)  default null,   --文件大小
                     fileClass varchar(20) default null, --文件类型
 );
+
+--权限部分
+--@Author Wujiewei
+--两个实体表，一个映射表，多对多关系
+--要区分职工和本系统的管理员的id
+DROP TABLE IF EXISTS `managers`;
+CREATE  table managers(
+                    id int identity(2019500,1)  PRIMARY KEY, --工号
+                    name VARCHAR(255),  --姓名
+                    state tinyint(1) default 0, --登录状态，取值{0,1}，默认值0
+                    CONSTRAINT chk_state CHECK (state = 1 OR state = 0)
+);
+insert into managers(name, state) values('王宝强', 0);
+insert into managers(name, state) values('周润发', 0);
+insert into managers(name, state) values('刘德华', 1);
+insert into managers(name, state) values('郭富城', 0);
+insert into managers(name, state) values('王祖贤', 1);
+
+
+DROP TABLE IF EXISTS `roles`;
+CREATE  table roles(
+                    id int identity(0,1)  PRIMARY KEY, --角色主键
+                    name VARCHAR(255),  --角色名称
+                    page_power VARCHAR(255), --页面权限，一串二进制数，长度固定
+                    department_power VARCHAR(255),  -- 部门权限，一串二进制数，随着部门的增加，长度增长
+);
+insert into roles(name, page_power, department_power) values('超级管理员', 'FFFFFF', '111');
+insert into roles(name, page_power, department_power) values('国交局人员', 'FFF000', '010');
+insert into roles(name, page_power, department_power) values('后勤人员', 'FFF000', '001');
+-- ---
+--      a. 人员列表页面
+-- 　　　b. 薪酬管理页面
+-- 　　　c. 合同管理页面
+-- 　　　d. 日志管理页面
+-- 　　　e. 管理员列表页面
+-- 　　　f. 角色管理页面
+--         对应page_power的 'abcdef' 'FFF000' 十六进制 ’1111 1111 1111 0000 0000 0000‘ 每四位都代表每个页面的增删改查
+-- ---
+-- ---
+--      a. 超级管理员
+-- 　　　b. 国交局
+-- 　　　c. 学校后勤
+-- 　       对应department_power的 'abc' '111' '010' '001'
+-- ---
+
+DROP TABLE IF EXISTS `roles_mangers`;
+CREATE  table roles_mangers(
+                    id int identity(0,1)  PRIMARY KEY, --角色和管理的组合，每当更改权限，就增加一条记录
+                    managers_id int,  --管理员主键
+                    roles_id int, --角色主键
+                    FOREIGN KEY(managers_id) REFERENCES managers(id),
+                    FOREIGN KEY(roles_id) REFERENCES roles(id)
+);
+insert into roles_mangers(managers_id, roles_id) values(2019502, 2);
+insert into roles_mangers(managers_id, roles_id) values(2019502, 0);
+insert into roles_mangers(managers_id, roles_id) values(2019501, 1);
+insert into roles_mangers(managers_id, roles_id) values(2019501, 2);
+insert into roles_mangers(managers_id, roles_id) values(2019502, 1);
+insert into roles_mangers(managers_id, roles_id) values(2019503, 2);
+insert into roles_mangers(managers_id, roles_id) values(2019504, 1);
+insert into roles_mangers(managers_id, roles_id) values(2019505, 2);
+
+
