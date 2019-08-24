@@ -93,7 +93,7 @@ CREATE  table file(
 );
 
 --权限部分
---@Author Wujiewei
+--@author Wujiewei
 --两个实体表，一个映射表，多对多关系
 --要区分职工和本系统的管理员的id
 DROP TABLE IF EXISTS `managers`;
@@ -136,21 +136,21 @@ insert into roles(name, page_power, department_power) values('后勤人员', 'FF
 -- 　       对应department_power的 'abc' '111' '010' '001'
 -- ---
 
-DROP TABLE IF EXISTS `roles_mangers`;
-CREATE  table roles_mangers(
+DROP TABLE IF EXISTS `roles_managers`;
+CREATE  table roles_managers(
                     id int identity(0,1)  PRIMARY KEY, --角色和管理的组合，每当更改权限，就增加一条记录
                     managers_id int,  --管理员主键
                     roles_id int, --角色主键
                     FOREIGN KEY(managers_id) REFERENCES managers(id),
                     FOREIGN KEY(roles_id) REFERENCES roles(id)
 );
-insert into roles_mangers(managers_id, roles_id) values(2019502, 2);
-insert into roles_mangers(managers_id, roles_id) values(2019502, 0);
-insert into roles_mangers(managers_id, roles_id) values(2019501, 1);
-insert into roles_mangers(managers_id, roles_id) values(2019501, 2);
-insert into roles_mangers(managers_id, roles_id) values(2019502, 1);
-insert into roles_mangers(managers_id, roles_id) values(2019503, 2);
-insert into roles_mangers(managers_id, roles_id) values(2019504, 1);
-insert into roles_mangers(managers_id, roles_id) values(2019505, 2);
-
+insert into roles_managers(managers_id, roles_id) values(2019502, 2);
+insert into roles_managers(managers_id, roles_id) values(2019502, 0);
+insert into roles_managers(managers_id, roles_id) values(2019501, 1);
+insert into roles_managers(managers_id, roles_id) values(2019501, 2);
+insert into roles_managers(managers_id, roles_id) values(2019502, 1);
+insert into roles_managers(managers_id, roles_id) values(2019503, 2);
+insert into roles_managers(managers_id, roles_id) values(2019504, 1);
+insert into roles_managers(managers_id, roles_id) values(2019505, 2);
+a
 
