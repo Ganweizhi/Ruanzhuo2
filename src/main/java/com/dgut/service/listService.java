@@ -23,8 +23,8 @@ public class listService {
         return staffmapper.findList( department,  degree,  stime,  etime,  search,  currentPage);
     }
 
-    public void deleteByWid(String wid) {
-        staffmapper.deleteByWid(wid);
+    public void deleteByWid(String wid, String time) {
+        staffmapper.deleteByWid(wid,time);
     }
 
     public int add(addBean bean) {

@@ -30,8 +30,8 @@ public interface staffMapper {
     @Select("select * from staff")
     List<staff> findOutlist(@Param("department")String department, @Param("degree")String degree, @Param("stime")String stime, @Param("etime")String etime, @Param("search")String search);
 
-    @Update("update staff set state='0' where wid=#{wid}")
-    void deleteByWid(String wid);
+    @Update("update staff set state='0',departureTime=#{time} where wid=#{wid}")
+    void deleteByWid(@Param("wid")String wid,@Param("time")String time);
 
     @Insert("insert into staff(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,email) VALUES(#{bean.name},#{bean.sex},#{bean.nation},#{bean.nationality},#{bean.origin},#{bean.idType},#{bean.idNumber},#{bean.education},#{bean.degree},#{bean.department},#{bean.job},#{bean.title},#{bean.lPhone},#{bean.sPhone},#{bean.email})")
     int add(@Param("bean")addBean bean);

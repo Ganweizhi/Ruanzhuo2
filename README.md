@@ -45,7 +45,7 @@ response:{
 ```javascript
 	//下载文件
 ```
-**/delete --离职人员**     
+**/delete --离职人员**     #finsh by superlgc
 *修改在职状态，添加离职时间*
 ```javascript
 params:{
@@ -64,7 +64,7 @@ response:{
 	success,   //1成功，0失败
 }
 ```
-**/add --添加人员**     
+**/add --添加人员**     #finsh by superlgc
 *详细数据见网页，用javabeen接收？*
 ```javascript
 params:{
@@ -119,16 +119,7 @@ response:{
 	totalPage,   //数据总条数
 }
 ```
-**/xcdelete --删除薪资信息**      
-*删除薪酬相关数据*
-```javascript
-params:{
-	wid,        //工号
-}
-response:{
-	success,   //1成功，0失败
-}
-```
+
 **/xcedit --添加/修改薪酬信息**     
 *详细数据见网页，用javabeen接收？*
 ```javascript
