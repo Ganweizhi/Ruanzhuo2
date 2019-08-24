@@ -1,4 +1,4 @@
-# api_v1.3 (更新中)     
+# api_v1.4              
 params:前端传给后端
 response:后端返回数据
 ## 1. 人员管理
@@ -354,7 +354,7 @@ response:{
 	totalPage   //数据总条数
 }
 ```
-**/roleLists --角色列表**          
+**/roleLists --角色列表(无需分页)**          
 ```javascript
 params:{
 }
@@ -425,3 +425,62 @@ response:{
 	success,   //1成功，0失败
 }
 ```
+**/roleadd --添加角色**     
+```javascript
+params:{
+	qxForm: {
+        name: "",
+        pagePower: "",
+        depPower: ""
+                }
+}
+response:{
+	success,   //1成功，0失败
+}
+```
+## 8. 角色-权限
+**/qxedit --角色权限修改**     
+```javascript
+params:{
+	qxForm: {
+        rid: "",
+        name: "",
+        pagePower: "",
+        depPower: ""
+                }
+}
+response:{
+	success,   //1成功，0失败
+}
+```
+**/gladd --给某管理员添加某角色**     
+```javascript
+params:{
+	rid,
+	gid
+}
+response:{
+	success,   //1成功，0失败
+}
+```
+**/gllists --给某管理员移除某角色**     
+```javascript
+params:{
+	rid,
+	gid
+}
+response:{
+	success,   //1成功，0失败
+}
+```
+**/gldel --获取某角色下的管理员列表**     
+```javascript
+params:{
+   	rid
+}
+response:{
+    //具有改角色的管理员列表
+   	[]
+}
+```
+
