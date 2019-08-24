@@ -1,31 +1,40 @@
+DROP TABLE IF EXISTS `department`;
+create  table department(
+   department varchar(12) primary key ,
+   name   varchar(255) default null
+);
+insert  into department values (0,'后勤部');
+insert  into department values (1,'卫生部');
+
+
 DROP TABLE IF EXISTS `staff`;
 CREATE TABLE `staff`  (
-  `wid` int identity(2019500,1)  PRIMARY KEY, --工号
-  `name` varchar(255) DEFAULT NULL, --姓名
-  `sex` varchar(2) DEFAULT NULL, --性别
-  `nation` varchar(20) DEFAULT NULL, --民族
-  `nationality` varchar(20) DEFAULT NULL, --国籍
-  `origin` varchar(255) DEFAULT NULL, --籍贯
-  `idType` varchar(255) DEFAULT NULL, --证件类型
-  `idNumber` varchar(18) DEFAULT NULL, --证件号
-  `education` varchar(255) DEFAULT NULL, --学历
-  `degree` varchar(255) DEFAULT NULL, --学位
-  `department` varchar(255) DEFAULT NULL, --部门
-  `job` varchar(255) DEFAULT NULL, --岗位
-  `title` varchar(255) DEFAULT NULL, --职称
-  `lPhone` varchar(12) DEFAULT NULL, --手机长号
-  `sPhone` varchar(12) DEFAULT NULL, --短号
-  `gPhone` varchar(12) DEFAULT NULL, --固定电话
-  `email` varchar(20) DEFAULT NULL, --邮箱
-  `img` varchar(255) DEFAULT NULL, --头像
-  `state` varchar(20) DEFAULT NULL, --状态
-  `baseWage` varchar(20) DEFAULT NULL, --基本工资
-  `bankName` varchar(20) DEFAULT NULL, --银行名称
-  `bankId` varchar(20) DEFAULT NULL, --银行账号
-  `htName` varchar(255) DEFAULT NULL, --合同名称
-  `signingTime` varchar(255) DEFAULT NULL, --签约时间
-  `useTime` varchar(255) DEFAULT NULL, --合同有效期
-  `departureTime` varchar(255) DEFAULT NULL, --离职时间
+  wid int identity(2019500,1)  PRIMARY KEY, --工号
+  name varchar(255) DEFAULT NULL, --姓名
+  sex varchar(2) DEFAULT NULL, --性别
+  nation varchar(20) DEFAULT NULL, --民族
+  nationality varchar(20) DEFAULT NULL, --国籍
+  origin varchar(255) DEFAULT NULL, --籍贯
+  idType varchar(255) DEFAULT NULL, --证件类型
+  idNumber varchar(18) DEFAULT NULL, --证件号
+  education varchar(255) DEFAULT NULL, --学历
+  degree varchar(255) DEFAULT NULL, --学位
+  department varchar(12) references department(department), --部门
+  job varchar(255) DEFAULT NULL, --岗位
+  title varchar(255) DEFAULT NULL, --职称
+  lPhone varchar(12) DEFAULT NULL, --手机长号
+  sPhone varchar(12) DEFAULT NULL, --短号
+  gPhone varchar(12) DEFAULT NULL, --固定电话
+  email varchar(20) DEFAULT NULL, --邮箱
+  img varchar(255) DEFAULT NULL, --头像
+  state varchar(20) DEFAULT NULL, --状态
+  baseWage varchar(20) DEFAULT NULL, --基本工资
+  bankName varchar(20) DEFAULT NULL, --银行名称
+  bankId varchar(20) DEFAULT NULL, --银行账号
+  htName varchar(255) DEFAULT NULL, --合同名称
+  signingTime varchar(255) DEFAULT NULL, --签约时间
+  useTime varchar(255) DEFAULT NULL, --合同有效期
+  departureTime varchar(255) DEFAULT NULL, --离职时间
 );
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,gPhone,
                    email,img,state,baseWage,bankName,bankId,htName,signingTime,useTime,departureTime)
@@ -85,11 +94,11 @@ INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,d
 
 DROP TABLE IF EXISTS `file`;
 CREATE  table file(
-                    wid int references staff(wid), --外键关联职工编号
-                    fileId VARCHAR(20) primary key , --文件id
-                    fileName varchar(255) default null, --文件名
-                    fileSize   varchar(255)  default null,   --文件大小
-                    fileClass varchar(20) default null, --文件类型
+     wid int references staff(wid), --外键关联职工编号
+     fileId VARCHAR(20) primary key , --文件id
+     fileName varchar(255) default null, --文件名
+     fileSize   varchar(255)  default null,   --文件大小
+     fileClass varchar(20) default null, --文件类型
 );
 
 --权限部分
@@ -151,6 +160,6 @@ insert into roles_managers(managers_id, roles_id) values(2019501, 2);
 insert into roles_managers(managers_id, roles_id) values(2019502, 1);
 insert into roles_managers(managers_id, roles_id) values(2019503, 2);
 insert into roles_managers(managers_id, roles_id) values(2019504, 1);
-insert into roles_managers(managers_id, roles_id) values(2019505, 2);
-a
+-- insert into roles_managers(managers_id, roles_id) values(2019505, 2);
+
 

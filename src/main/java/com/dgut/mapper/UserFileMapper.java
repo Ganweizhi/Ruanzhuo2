@@ -2,10 +2,7 @@ package com.dgut.mapper;
 
 import com.dgut.jsonBean.htlistBean;
 import com.dgut.model.UserFileModel;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import javax.net.ssl.SSLContext;
 import java.util.List;
@@ -33,8 +30,11 @@ public interface UserFileMapper {
     @Delete(
             "delete from file where wid=#{wid} and fileName =#{htName}"
     )
-   public int deleteHt(@Param("wid")String wid,@Param("htname")String htname);  //先查询，根据返回值判断有无改合同文件
+   public int deleteHt(@Param("wid")String wid,@Param("htname")String htname);  //当查询到有该合同时再删除该合同
 
     @Select("select wid,filename from file where wid =#{wid} and fileName = #{htName}")
-    UserFileModel findHt(@Param("wid") String wid,@Param("htName") String htName); //当查询到有该合同时再删除该合同
+    UserFileModel findHt(@Param("wid") String wid,@Param("htName") String htName);//先查询，根据返回值判断有无改合同文件
+
+   @Insert("insert into file values()")
+    public int insertfile(@Param("wid") String wid,String fileId,@Param("htName") String fileName,String fileSize,String fileClass);
 }
