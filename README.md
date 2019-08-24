@@ -93,6 +93,9 @@ response:{
 ```
 **/headimg --上传头像**     
 ```javascript
+params:{
+         wid
+}
 response:{
 	success,   //1成功，0失败
 }
@@ -172,6 +175,7 @@ response:{
 params:{
 	file,          //合同文件  
 	htForm:{
+	    wid,      //工号
 		htName,  //合同名称
 		useTime  //合同有效期
 	},        //表单数据
@@ -252,10 +256,40 @@ response:{
 	wid
 }
 ```
-**/zj --上传证件**     
+**/sfzz --上传身份证正面**     
 ```javascript
 params:{
-	data,        //参数：sfzz、zfzf、yhkz、yhkf
+	wid
+	file,       //文件
+}
+response:{
+	success,   //1成功，0失败
+}
+```
+**/sfzf --上传身份证反面**     
+```javascript
+params:{
+	wid
+	file,       //文件
+}
+response:{
+	success,   //1成功，0失败
+}
+```
+**/yhkz --上传银行卡正面**     
+```javascript
+params:{
+	wid
+	file,       //文件
+}
+response:{
+	success,   //1成功，0失败
+}
+```
+**/yhkf --上传银行卡反面**     
+```javascript
+params:{
+	wid
 	file,       //文件
 }
 response:{
