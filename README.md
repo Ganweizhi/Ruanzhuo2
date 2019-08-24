@@ -483,4 +483,20 @@ response:{
    	[]
 }
 ```
+## 9. 其他
+**/department --获取部门列表**     
+```javascript
+response:{
+    [
+        {
+        label: "部门1",
+        value: "0"
+        },
+        {
+        label: "部门2",
+        value: "1"
+        },
+    ]
+}
+```
 
