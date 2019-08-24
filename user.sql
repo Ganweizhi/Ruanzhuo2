@@ -38,57 +38,57 @@ CREATE TABLE `staff`  (
 );
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,gPhone,
                    email,img,state,baseWage,bankName,bankId,htName,signingTime,useTime,departureTime)
-                   VALUES('张三', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '3', '0', '0', '清洁工'
+                   VALUES('张三', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '博士研究生', '学士', '0', '清洁工'
                             , '工人', '12547896321', '12345', '111','124452@qq.com', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg'
                             , '1', '12345', '0', '6222020903001483077', '合同1', '2019-06-20', '24', '2021-06-20');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,gPhone,
                   email,img,state,baseWage,bankName,bankId,htName,signingTime,useTime,departureTime)
-    VALUES('张三', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '3', '0', '0', '清洁工'
+    VALUES('张三', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '博士研究生', '学士', '0', '清洁工'
     , '工人', '12547896321', '12345', '111','124452@qq.com', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg'
     , '1', '12345', '0', '6222020903001483077', '合同1', '2019-06-20', '24', '2021-06-20');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,gPhone,
                   email,img,state,baseWage,bankName,bankId,htName,signingTime,useTime,departureTime)
-    VALUES('张三', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '3', '0', '0', '清洁工'
+    VALUES('张三', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '本科毕业生', '学士', '0', '清洁工'
     , '工人', '12547896321', '12345', '111','124452@qq.com', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg'
     , '1', '12345', '0', '6222020903001483077', '合同1', '2019-06-20', '24', '2021-06-20');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,gPhone,
                   email,img,state,baseWage,bankName,bankId,htName,signingTime,useTime,departureTime)
-    VALUES('张三', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '3', '0', '0', '清洁工'
+    VALUES('张三', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '本科毕业生', '硕士', '0', '清洁工'
     , '工人', '12547896321', '12345', '111','124452@qq.com', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg'
     , '1', '12345', '0', '6222020903001483077', '合同1', '2019-06-20', '24', '2021-06-20');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,gPhone,
                   email,img,state,baseWage,bankName,bankId,htName,signingTime,useTime,departureTime)
-    VALUES('ming', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '4', '0', '1', '清洁工'
+    VALUES('ming', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '硕士研究生', '硕士', '1', '清洁工'
     , '工人', '12547896321', '12345', '111','124452@qq.com', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg'
     , '1', '12345', '0', '6222020903001483077', '合同1', '2020-06-20', '24', '2022-06-20');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,gPhone,
                   email,img,state,baseWage,bankName,bankId,htName,signingTime,useTime,departureTime)
-    VALUES('ming', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '4', '0', '1', '清洁工'
+    VALUES('ming', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '硕士研究生', '硕士', '1', '清洁工'
     , '工人', '12547896321', '12345', '111','124452@qq.com', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg'
     , '1', '12345', '0', '6222020903001483077', '合同1', '2020-06-20', '24', '2022-06-20');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,gPhone,
                   email,img,state,baseWage,bankName,bankId,htName,signingTime,useTime,departureTime)
-    VALUES('ming', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '4', '0', '1', '清洁工'
+    VALUES('ming', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '专科毕业生', '硕士', '1', '清洁工'
     , '工人', '12547896321', '12345', '111','124452@qq.com', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg'
     , '1', '12345', '0', '6222020903001483077', '合同1', '2020-06-20', '24', '2022-06-20');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,gPhone,
                   email,img,state,baseWage,bankName,bankId,htName,signingTime,useTime,departureTime)
-    VALUES('ming', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '4', '0', '1', '清洁工'
+    VALUES('ming', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '专科毕业生', '博士', '1', '清洁工'
     , '工人', '12547896321', '12345', '111','124452@qq.com', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg'
     , '1', '12345', '0', '6222020903001483077', '合同1', '2020-06-20', '24', '2022-06-20');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,gPhone,
                   email,img,state,baseWage,bankName,bankId,htName,signingTime,useTime,departureTime)
-    VALUES('ming', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '4', '0', '1', '清洁工'
+    VALUES('ming', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '其他', '博士', '1', '清洁工'
     , '工人', '12547896321', '12345', '111','124452@qq.com', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg'
     , '1', '12345', '0', '6222020903001483077', '合同1', '2020-06-20', '24', '2022-06-20');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,gPhone,
                   email,img,state,baseWage,bankName,bankId,htName,signingTime,useTime,departureTime)
-    VALUES('ming', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '4', '0', '1', '清洁工'
+    VALUES('ming', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '其他', '博士', '1', '清洁工'
     , '工人', '12547896321', '12345', '111','124452@qq.com', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg'
     , '1', '12345', '0', '6222020903001483077', '合同1', '2020-06-20', '24', '2022-06-20');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,gPhone,
                   email,img,state,baseWage,bankName,bankId,htName,signingTime,useTime,departureTime)
-    VALUES('ming', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '4', '0', '1', '清洁工'
+    VALUES('ming', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '其他', '博士', '1', '清洁工'
     , '工人', '12547896321', '12345', '111','124452@qq.com', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg'
     , '1', '12345', '0', '6222020903001483077', '合同1', '2020-06-20', '24', '2022-06-20');
 

@@ -38,18 +38,18 @@ public class ListController {
 
     @RequestMapping(value = "/outlist")
     @ResponseBody
-    public List<staff> getOutlist(String department, String degree, String stime, String etime, String search) {
+    public List<staff> getOutlist(String department, String education, String stime, String etime, String search) {
         if(department.equals("")) {
             department = null;
         }
-        if(degree.equals("")) {
-            degree = null;
+        if(education.equals("")) {
+            education = null;
         }
         if(search.equals("")) {
             search = null;
         }
 
-        List<staff> data = listservice.findOutlist(department, degree, stime, etime, search);
+        List<staff> data = listservice.findOutlist(department, education, stime, etime, search);
         if(!stime.equals("")) {
             String[] split = stime.split(",");
             data = data.stream().filter(bean -> bean.getSigningTime().compareTo(split[0]) >= 0 && bean.getSigningTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
@@ -59,24 +59,26 @@ public class ListController {
             String[] split = etime.split(",");
             data = data.stream().filter(bean -> bean.getDepartureTime().compareTo(split[0]) >= 0 && bean.getDepartureTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
         }
-
+        for (staff datum : data) {
+            datum.setDepartment(listservice.getDepartmentNameByID(datum.getDepartment()));
+        }
         return data;
     }
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public listBeanPage getList(String department, String degree, String stime, String etime, String search ,String currentPage) {
+    public listBeanPage getList(String department, String education, String stime, String etime, String search ,String currentPage) {
         if(department.equals("")) {
             department = null;
         }
-        if(degree.equals("")) {
-            degree = null;
+        if(education.equals("")) {
+            education = null;
         }
         if(search.equals("")) {
             search = null;
         }
 
-        List<listBean> data = listservice.findList(department, degree, stime, etime, search, currentPage);
+        List<listBean> data = listservice.findList(department, education, stime, etime, search, currentPage);
         if(!stime.equals("")) {
             String[] split = stime.split(",");
             data = data.stream().filter(bean -> bean.getSigningTime().compareTo(split[0]) >= 0 && bean.getSigningTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
@@ -86,7 +88,9 @@ public class ListController {
             String[] split = etime.split(",");
             data = data.stream().filter(bean -> bean.getDepartureTime().compareTo(split[0]) >= 0 && bean.getDepartureTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
         }
-
+        for (listBean datum : data) {
+            datum.setDepartment(listservice.getDepartmentNameByID(datum.getDepartment()));
+        }
         int start = (Integer.parseInt(currentPage)-1)*7;
         int end = start+7>data.size()?data.size():start+7;
         List<listBean> datas = data.subList(start,end);

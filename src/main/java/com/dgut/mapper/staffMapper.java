@@ -12,23 +12,36 @@ import java.util.List;
 public interface staffMapper {
 
     @Select("<script>"
-            + "select wid,name,sex,degree,department,lphone,state,signingTime,departureTime from staff"
+            + "select wid,name,sex,education,department,lphone,state,signingTime,departureTime from staff"
             + " <where>"
             + "  <if test='department != null' > "
             + "     and department = #{department}"
             + " </if>"
-            + "  <if test='degree != null' > "
-            + "     and degree = #{degree}"
+            + "  <if test='education != null' > "
+            + "     and education = #{education}"
             + " </if>"
             + "  <if test='search != null' > "
             + "     and name = #{search}"
             + " </if>"
             + "</where>"
             + "</script>")
-    List<listBean> findList(@Param("department")String department, @Param("degree")String degree, @Param("stime")String stime, @Param("etime")String etime, @Param("search")String search, @Param("currentPage")String currentPage);
+    List<listBean> findList(@Param("department")String department, @Param("education")String education, @Param("stime")String stime, @Param("etime")String etime, @Param("search")String search, @Param("currentPage")String currentPage);
 
-    @Select("select * from staff")
-    List<staff> findOutlist(@Param("department")String department, @Param("degree")String degree, @Param("stime")String stime, @Param("etime")String etime, @Param("search")String search);
+    @Select("<script>"
+            + "select * from staff"
+            + " <where>"
+            + "  <if test='department != null' > "
+            + "     and department = #{department}"
+            + " </if>"
+            + "  <if test='education != null' > "
+            + "     and education = #{education}"
+            + " </if>"
+            + "  <if test='search != null' > "
+            + "     and name = #{search}"
+            + " </if>"
+            + "</where>"
+            + "</script>")
+    List<staff> findOutlist(@Param("department")String department, @Param("education")String education, @Param("stime")String stime, @Param("etime")String etime, @Param("search")String search);
 
     @Update("update staff set state='0',departureTime=#{time} where wid=#{wid}")
     void deleteByWid(@Param("wid")String wid,@Param("time")String time);
@@ -37,18 +50,21 @@ public interface staffMapper {
     int add(@Param("bean") addBean bean, @Param("time")String time);
 
     @Select("<script>"
-            + "select wid,name,sex,degree,department,baseWage from staff"
+            + "select wid,name,sex,education,department,baseWage from staff"
             + " <where>"
             + "  <if test='department != null' > "
             + "     and department = #{department}"
             + " </if>"
-            + "  <if test='degree != null' > "
-            + "     and degree = #{degree}"
+            + "  <if test='education != null' > "
+            + "     and education = #{education}"
             + " </if>"
             + "  <if test='search != null' > "
             + "     and name = #{search}"
             + " </if>"
             + "</where>"
             + "</script>")
-    List<wageBean> findXclist(@Param("department")String department, @Param("degree")String degree, @Param("search")String search);
+    List<wageBean> findXclist(@Param("department")String department, @Param("education")String education, @Param("search")String search);
+
+    @Select("select name from department where department=#{department}")
+    String getDepartmentNameByID(@Param("department")String department);
 }

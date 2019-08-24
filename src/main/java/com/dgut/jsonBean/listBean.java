@@ -8,7 +8,7 @@ public class listBean implements Serializable {
     private String wid;
     private String name;
     private String sex;
-    private String degree;
+    private String education;
     private String department;
     private String lphone;
     private String state;
@@ -18,11 +18,11 @@ public class listBean implements Serializable {
     public listBean() {
     }
 
-    public listBean(String wid, String name, String sex, String degree, String department, String lphone, String state, String signingTime, String departureTime) {
+    public listBean(String wid, String name, String sex, String education, String department, String lphone, String state, String signingTime, String departureTime) {
         this.wid = wid;
         this.name = name;
         this.sex = sex;
-        this.degree = degree;
+        this.education = education;
         this.department = department;
         this.lphone = lphone;
         this.state = state;
@@ -54,13 +54,7 @@ public class listBean implements Serializable {
         this.sex = sex;
     }
 
-    public String getDegree() {
-        return degree;
-    }
 
-    public void setDegree(String degree) {
-        this.degree = degree;
-    }
 
     public String getDepartment() {
         return department;
@@ -102,18 +96,26 @@ public class listBean implements Serializable {
         this.departureTime = departureTime;
     }
 
+    public String getEducation() {
+        return education;
+    }
+
+    public void setEducation(String education) {
+        this.education = education;
+    }
+
     @Override
     public String toString() {
         return "listBean{" +
                 "wid='" + wid + '\'' +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
-                ", degree='" + degree + '\'' +
+                ", education='" + education + '\'' +
                 ", department='" + department + '\'' +
                 ", lphone='" + lphone + '\'' +
                 ", state='" + state + '\'' +
-                ", signingTime=" + signingTime +
-                ", departureTime=" + departureTime +
+                ", signingTime='" + signingTime + '\'' +
+                ", departureTime='" + departureTime + '\'' +
                 '}';
     }
 }

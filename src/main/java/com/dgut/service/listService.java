@@ -17,12 +17,16 @@ public class listService {
     @Autowired
     private staffMapper staffmapper;
 
-    public List<staff> findOutlist(String department, String degree, String stime, String etime, String search){
-        return staffmapper.findOutlist(department,  degree,  stime,  etime,  search);
+    public String getDepartmentNameByID(String department){
+        return staffmapper.getDepartmentNameByID(department);
     }
 
-    public List<listBean> findList(String department, String degree, String stime, String etime, String search, String currentPage) {
-        return staffmapper.findList( department,  degree,  stime,  etime,  search,  currentPage);
+    public List<staff> findOutlist(String department, String education, String stime, String etime, String search){
+        return staffmapper.findOutlist(department,  education,  stime,  etime,  search);
+    }
+
+    public List<listBean> findList(String department, String education, String stime, String etime, String search, String currentPage) {
+        return staffmapper.findList( department,  education,  stime,  etime,  search,  currentPage);
     }
 
     public void deleteByWid(String wid, String time) {
@@ -35,7 +39,7 @@ public class listService {
         return staffmapper.add(bean,time);
     }
 
-    public List<wageBean> findXclist(String department, String degree, String search) {
-        return staffmapper.findXclist( department,  degree,  search);
+    public List<wageBean> findXclist(String department, String education, String search) {
+        return staffmapper.findXclist( department,  education,  search);
     }
 }

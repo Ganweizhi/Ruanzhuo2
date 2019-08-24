@@ -6,18 +6,18 @@ public class wageBean implements Serializable {
     private String wid;
     private String name;
     private String sex;
-    private String degree;
+    private String education;
     private String department;
     private String baseWage;
 
     public wageBean() {
     }
 
-    public wageBean(String wid, String name, String sex, String degree, String department, String baseWage) {
+    public wageBean(String wid, String name, String sex, String education, String department, String baseWage) {
         this.wid = wid;
         this.name = name;
         this.sex = sex;
-        this.degree = degree;
+        this.education = education;
         this.department = department;
         this.baseWage = baseWage;
     }
@@ -46,12 +46,13 @@ public class wageBean implements Serializable {
         this.sex = sex;
     }
 
-    public String getDegree() {
-        return degree;
+
+    public String getEducation() {
+        return education;
     }
 
-    public void setDegree(String degree) {
-        this.degree = degree;
+    public void setEducation(String education) {
+        this.education = education;
     }
 
     public String getDepartment() {
@@ -76,7 +77,7 @@ public class wageBean implements Serializable {
                 "wid='" + wid + '\'' +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
-                ", degree='" + degree + '\'' +
+                ", education='" + education + '\'' +
                 ", department='" + department + '\'' +
                 ", baseWage='" + baseWage + '\'' +
                 '}';

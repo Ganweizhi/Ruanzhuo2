@@ -23,19 +23,21 @@ public class wageController {
 
     @RequestMapping(value = "/xclist")
     @ResponseBody
-    public wageBeanPage getList(String department, String degree, String search ,String currentPage) {
+    public wageBeanPage getList(String department, String education, String search ,String currentPage) {
         if(department.equals("")) {
             department = null;
         }
-        if(degree.equals("")) {
-            degree = null;
+        if(education.equals("")) {
+            education = null;
         }
         if(search.equals("")) {
             search = null;
         }
 
-        List<wageBean> data = listservice.findXclist(department, degree, search);
-
+        List<wageBean> data = listservice.findXclist(department, education, search);
+        for (wageBean datum : data) {
+            datum.setDepartment(listservice.getDepartmentNameByID(datum.getDepartment()));
+        }
         int start = (Integer.parseInt(currentPage)-1)*7;
         int end = start+7>data.size()?data.size():start+7;
         List<wageBean> datas = data.subList(start,end);
