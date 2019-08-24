@@ -8,6 +8,8 @@ import com.dgut.model.staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,7 +30,9 @@ public class listService {
     }
 
     public int add(addBean bean) {
-        return staffmapper.add(bean);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+        String time = df.format(new Date());
+        return staffmapper.add(bean,time);
     }
 
     public List<wageBean> findXclist(String department, String degree, String search) {
