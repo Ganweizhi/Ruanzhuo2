@@ -7,6 +7,8 @@ import com.dgut.service.listService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +31,8 @@ public class ListController {
 
     @RequestMapping(value = "/delete")
     public String deleteByWid(String wid){
-        listservice.deleteByWid(wid);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+        listservice.deleteByWid(wid,df.format(new Date()));
         return "{\"success\":1}";
     }
 
