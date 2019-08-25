@@ -12,7 +12,7 @@ params:{
          department:"部门",
          education:"学历",
          search:"姓名",
-         time:"签约时间",
+         stime:"签约时间",
          etime:"离职时间",
          currentPage:'当前页数"
 }
@@ -59,7 +59,7 @@ params:{
          department:"部门",
          education:"学历",
          search:"姓名",
-         time:"签约时间",
+         stime:"签约时间",
          etime:"离职时间"
 }
 response:{
@@ -207,22 +207,15 @@ response:{
 	success:"状态"   //1成功，0失败
 }
 ```
-**/htdelete --下载合同**      
-```javascript
-params:{
-	wid:"工号"
-	hid:"合同id"
-}
-```
 **/htfile--上传合同**     
 ```javascript
 file          //合同文件  
 params:{
 	htForm:{
 		wid:"工号",
-		htName:"合同名称"
-		signingTime:"签约时间"
-		useTime:"合同有效期"
+		htName: "合同名称",
+		signingTime: "签约时间",
+		useTime: "合同有效期"
 	}        //表单数据
 }
 response:{
