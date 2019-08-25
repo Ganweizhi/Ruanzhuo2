@@ -123,7 +123,7 @@ response:{
 }
 ```
 
-**/xcedit --添加/修改薪酬信息**     
+**/xcedit --添加/修改薪酬信息**     #finsh by superlgc
 *详细数据见网页，用javabeen接收？*
 ```javascript
 params:{
