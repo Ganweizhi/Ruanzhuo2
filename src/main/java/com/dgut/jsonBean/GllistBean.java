@@ -11,7 +11,7 @@ import java.util.List;
 public class GllistBean implements Serializable {
     private Integer gid;  // 管理员莞工账号
     private String name;  // 管理员名称
-    private List<String> role;  // 管理员的角色名称列表
+    private String role;  // 管理员的角色名称
     private Integer state;  // 账号是否停用，0 或 1
 
     public Integer getGid() {
@@ -30,11 +30,11 @@ public class GllistBean implements Serializable {
         this.name = name;
     }
 
-    public List<String> getRole() {
+    public String getRole() {
         return role;
     }
 
-    public void setRole(List<String> role) {
+    public void setRole(String role) {
         this.role = role;
     }
 
@@ -51,7 +51,7 @@ public class GllistBean implements Serializable {
         return "GllistBean{" +
                 "gid=" + gid +
                 ", name='" + name + '\'' +
-                ", role=" + role +
+                ", role='" + role + '\'' +
                 ", state=" + state +
                 '}';
     }
