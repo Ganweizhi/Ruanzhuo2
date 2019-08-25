@@ -98,4 +98,16 @@ public class ListController {
         listBeanPage listBeanPage = new listBeanPage(datas,data.size());
         return listBeanPage;
     }
+
+    @RequestMapping(value = "/edit")
+    public String add(String index){
+        return "{\"success\":1}";
+
+    }
+
+    @RequestMapping(value = "/ryadd")
+    public String add(){
+        return "{\"success\":1}";
+
+    }
 }
