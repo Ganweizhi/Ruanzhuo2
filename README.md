@@ -1,29 +1,54 @@
-# api_v1.4              
+# 数据库（ER图）       
+https://www.processon.com/view/link/5d0228bae4b0a65d809943d6
+https://www.processon.com/view/link/5cb9c14ce4b09a3e45a36d42
+# api_v2.0              
 params:前端传给后端
 response:后端返回数据
 ## 1. 人员管理
-**/list --人员列表**  #finsh by superlgc
+**/list --数据列表**  
 *根据传参查询数据并分页返回(一页7条)*
 ```javascript
 params:{
          department, //部门
-         degree,    //学历
-         search,    //姓名
+         degree,     //学历
+         search,     //姓名
          time,       //签约时间
          etime,      //离职时间
          currentPage //当前页数
 }
 response:{
 	data:[
-		wid,
-		name,
-		sex,
-		degree,
-		department,
-		lphone,
-		state,
-		signingTime,
-		departureTime
+		{
+			wid:"工号",
+  			name: "姓名",
+  			sex: "性别",
+  			nation: "民族",
+  			nationality: "国籍",
+  			origin: "籍贯",
+  			idType: "证件类型",
+  			idNumber: "证件号",
+  			education: "学历",
+  			degree: "学位",
+  			department: "部门",
+  			job: "岗位",
+  			title: "职称",
+  			lPhone: "手机长号",
+  			sPhone: "短号",
+  			email: "邮箱",
+  			baseWage: "基本工资",
+  			bankName: "银行名称",
+  			bankId: "银行账号",
+  			hid: "合同id",
+			htSum: "合同数量",
+  			signingTime:"签约时间"
+  			departureTime:"离职时间",
+			state: "状态",
+			img: "头像",
+			sfzz:"身份证正面",
+			sfzf:"身份证反面",
+			yhkz:"银行卡正面",
+			yhkf:"身份证正面",
+		}
 	],
 	totalPage,   //数据总条数
 }
@@ -38,13 +63,36 @@ params:{
          etime,      //离职时间
 }
 response:{
-	[],          //所有人员数据
+        //所有人员数据
+	[
+		{
+			wid:"工号",
+  			name: "姓名",
+  			sex: "性别",
+  			nation: "民族",
+  			nationality: "国籍",
+  			origin: "籍贯",
+  			idType: "证件类型",
+  			idNumber: "证件号",
+  			education: "学历",
+  			degree: "学位",
+  			department: "部门",
+  			job: "岗位",
+  			title: "职称",
+  			lPhone: "手机长号",
+  			sPhone: "短号",
+  			email: "邮箱",
+  			baseWage: "基本工资",
+  			bankName: "银行名称",
+  			bankId: "银行账号",
+			htSum: "合同数量",
+  			signingTime:"签约时间"
+  			departureTime:"离职时间"
+		}
+	] 
 }
 ```
 **/download --下载导入模板**
-```javascript
-	//下载文件
-```
 **/delete --离职人员**     #finsh by superlgc
 *修改在职状态，添加离职时间*
 ```javascript
@@ -57,15 +105,20 @@ response:{
 ```
 **/inlist --数据导入**
 ```javascript
-params:{
-	???
-}
 response:{
 	success,   //1成功，0失败
 }
 ```
+## 2. tabs
+**/init --新wid**
+```javascript
+response:{
+	//返回最新wid
+	wid
+}
+```
 **/add --添加人员**     #finsh by superlgc
-*详细数据见网页，用javabeen接收？*
+*详细数据见网页，用javabeen接收*
 ```javascript
 params:{
 	msgForm:{
@@ -100,63 +153,18 @@ response:{
 	success,   //1成功，0失败
 }
 ```
-##  2.薪酬管理
-**/xclist --薪酬列表**            #finsh by superlgc
-*根据传参查询数据并分页返回(一页7条)*
-```javascript
-params:{
-         department, //部门
-         degree:,    //学历
-         search:,    //姓名
-         currentPage //当前页数
-}
-response:{
-	data[
-		wid,
-		name,
-		sex,
-		degree,
-		department,
-		baseWage
-	],
-	totalPage,   //数据总条数
-}
-```
-
 **/xcedit --添加/修改薪酬信息**     #finsh by superlgc
 *详细数据见网页，用javabeen接收？*
 ```javascript
 params:{
 	xcForm:{
-		baseWage: "12345", //基本工资
-		bankName: "0", //银行名称
-		bankId: "6222020903001483077" //银行账号
+		baseWage: "12345",             //基本工资
+		bankName: "0",                 //银行名称
+		bankId: "6222020903001483077"  //银行账号
 	},        //表单数据
 }
 response:{
 	success,   //1成功，0失败
-}
-```
-##  3.合同管理
-**/htlist --合同列表**          
-*根据传参查询数据并分页返回(一页7条)*
-```javascript
-params:{
-         department, //部门
-         degree:,    //学历
-         search:,    //姓名
-         currentPage //当前页数
-}
-response:{
-	data[
-		wid,
-		name,
-		sex,
-		degree,
-		department,
-		htSum   //合同数量
-	],
-	totalPage,   //数据总条数
 }
 ```
 **/htdelete --删除合同**      
@@ -164,10 +172,17 @@ response:{
 ```javascript
 params:{
 	wid,        //工号
-	htName      //合同名称
+	hid         //合同id
 }
 response:{
 	success,   //1成功，0失败
+}
+```
+**/htdelete --下载合同**      
+```javascript
+params:{
+	wid,        //工号
+	hid         //合同id
 }
 ```
 **/htfile--上传合同**     
@@ -175,48 +190,23 @@ response:{
 params:{
 	file,          //合同文件  
 	htForm:{
-	    wid,      //工号
-		htName,  //合同名称
-		useTime  //合同有效期
+		wid,         //工号
+		htName,      //合同名称
+		signingTime  //签约时间
+		useTime      //合同有效期
 	},        //表单数据
 }
 response:{
 	success,   //1成功，0失败
 }
 ```
-##  4.数据导入
-**/detail --所有数据**
+**/xctable--显示工资发放table**     
 ```javascript
 params:{
-         wid,        //工号
+	wid
 }
 response:{
-	msgForm = {
-		wid: "2019500", //工号
-		name: "张三", //姓名
-		sex: "0", //性别
-		nation: "汉族", //民族
-		nationality: "中国", //国籍
-		origin: "广东省东莞市", //籍贯
-		idType: "0", //证件类型
-		idNumber: "432503197505028819", //证件号
-		education: "3", //学历
-		degree: "0", //学位
-		department: "0", //部门
-		job: "清洁工", //岗位
-		title: "工人", //职称
-		lPhone: "12547896321", //手机号码
-		sPhone: "12345", //短号
-		email: "124452@qq.com", //邮箱
-		img: "https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg", //头像
-		state: 1 //状态
-	},
-	xcForm = {
-		baseWage: "12345", //基本工资
-		bankName: "0", //银行名称
-		bankId: "6222020903001483077" //银行账号
-	},
-	xcTable = [
+	[
 		{
 			time: "2019-09-09",
 			baseWage: "6000元"
@@ -226,34 +216,42 @@ response:{
 			baseWage: "6000元"
 		}
 	],
-	htTable = [
+}
+```
+**/httable --显示合同table**     
+```javascript
+params:{
+	wid
+}
+response:{
+	[
 		{
-			name: "合同1", //合同名称
+			hid: "", //id
+			htName: "合同1", //合同名称
   			signingTime: "2019-06-20", //签约时间
 			useTime: 24, //合同有效期
+			htUrl:""， //文件下地址(点了能直接下载)
 			state: 1 //状态
 		},
 		{
- 			name: "合同2",
+			hid: "", //id
+ 			htName: "合同2",
 			signingTime: "2019-07-20",
 			useTime: 12,
+			htUrl:""， //文件下地址(点了能直接下载)
 			state: 1
 		}
 	],
-	fileListZ = {
-		name: "201945412224zjz.jpg",
-		url: "https://demo/201945412224zjz.jpg"
-	}, //身份证正面，下同
-	fileListF = {}, //身份证反面
-	fileListyhkz = {}, //银行卡正面
-	fileListyhkf = {} //银行卡证反面
 }
 ```
-**/init --新wid**
+**/sfzzlist --显示身份证正面**     
 ```javascript
-response:{
-//返回最新wid
+params:{
 	wid
+}
+response:{
+	name: "2019500_sfz_zm.jpg", //命名wid+"_sfz_zm"
+	url: "" //文件下地址(点了能直接下载)
 }
 ```
 **/sfzz --上传身份证正面**     
@@ -266,6 +264,16 @@ response:{
 	success,   //1成功，0失败
 }
 ```
+**/sfzflist --显示身份证反面**     
+```javascript
+params:{
+	wid
+}
+response:{
+	name: "2019500_sfz_fm.jpg", //命名wid+"_sfz_fm"
+	url: "" //文件下地址(点了能直接下载)
+}
+```
 **/sfzf --上传身份证反面**     
 ```javascript
 params:{
@@ -274,6 +282,16 @@ params:{
 }
 response:{
 	success,   //1成功，0失败
+}
+```
+**/yhkzlist --显示银行卡正面**     
+```javascript
+params:{
+	wid
+}
+response:{
+	name: "2019500_yhk_zm.jpg", //命名wid+"_yhk_zm"
+	url: "" //文件下地址(点了能直接下载)
 }
 ```
 **/yhkz --上传银行卡正面**     
@@ -286,6 +304,16 @@ response:{
 	success,   //1成功，0失败
 }
 ```
+**/yhkflist --显示银行卡反面**     
+```javascript
+params:{
+	wid
+}
+response:{
+	name: "2019500_yhk_fm.jpg", //命名wid+"_yhk_fm"
+	url: "" //文件下地址(点了能直接下载)
+}
+```
 **/yhkf --上传银行卡反面**     
 ```javascript
 params:{
@@ -296,7 +324,7 @@ response:{
 	success,   //1成功，0失败
 }
 ```
-## 5. 日志管理   
+## 3. 日志管理   
 **/loglist --日志列表**          
 *根据传参查询数据并分页返回(一页7条)*
 ```javascript
@@ -327,7 +355,7 @@ response:{
 	totalPage   //数据总条数
 }
 ```
-## 6. 管理员列表
+## 4. 管理员列表
 **/gllist --管理员列表**          
 *根据传参查询数据并分页返回(一页7条)*
 ```javascript
@@ -389,7 +417,7 @@ response:{
 	success,   //1成功，0失败
 }
 ```
-## 7. 角色管理
+## 5. 角色管理
 **/rolelist --角色列表**          
 *根据传参查询数据并分页返回(一页7条)*
 ```javascript
@@ -429,25 +457,25 @@ response:{
 ```javascript
 params:{
 	qxForm: {
-        name: "",
-        pagePower: "",
-        depPower: ""
-                }
+        	name: "",
+        	pagePower: "",
+        	depPower: ""
+	}
 }
 response:{
 	success,   //1成功，0失败
 }
 ```
-## 8. 角色-权限
+## 6. 角色-权限
 **/qxedit --角色权限修改**     
 ```javascript
 params:{
 	qxForm: {
-        rid: "",
-        name: "",
-        pagePower: "",
-        depPower: ""
-                }
+        	rid: "",
+        	name: "",
+        	pagePower: "",
+        	depPower: ""
+	}
 }
 response:{
 	success,   //1成功，0失败
@@ -479,11 +507,11 @@ params:{
    	rid
 }
 response:{
-    //具有改角色的管理员列表
+    //所有具有该角色的管理员
    	[]
 }
 ```
-## 9. 其他
+## 7. 其他
 **/department --获取部门列表**     
 ```javascript
 response:{
@@ -499,4 +527,13 @@ response:{
     ]
 }
 ```
-
+**/edit --查(用于权限控制)**
+检测当前登录账号是否有编辑的权限
+```javascript
+params:{
+   	index //0或12，对应人员和角色的编辑
+}
+response:{
+	success //0或1
+}
+```

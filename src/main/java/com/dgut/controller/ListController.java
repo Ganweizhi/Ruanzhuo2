@@ -68,6 +68,7 @@ public class ListController {
     @RequestMapping(value = "/list")
     @ResponseBody
     public listBeanPage getList(String department, String education, String stime, String etime, String search ,String currentPage) {
+        //System.out.println(stime + " " + etime);
         if(department.equals("")) {
             department = null;
         }
