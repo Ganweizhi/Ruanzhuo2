@@ -91,7 +91,7 @@ CREATE  table wages(
     wid int references staff(wid), --外键关联职工编号
     wageId int primary key , -- id
     bageWage varchar(255) default null, --基本工资
-    time   varchar(255)  default null,   --
+    time   varchar(255)  default null,   --签约时间
 );
 
 --权限部分
