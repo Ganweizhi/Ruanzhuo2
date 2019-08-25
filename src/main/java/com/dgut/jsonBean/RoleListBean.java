@@ -6,17 +6,17 @@ package com.dgut.jsonBean;
  */
 public class RoleListBean {
 
-    private Integer rid;
+    private Integer id;
     private String name;
     private String pagePower;
     private String depPower;
 
     public Integer getRid() {
-        return rid;
+        return id;
     }
 
-    public void setRid(Integer rid) {
-        this.rid = rid;
+    public void setRid(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -46,7 +46,7 @@ public class RoleListBean {
     @Override
     public String toString() {
         return "RoleListBean{" +
-                "rid=" + rid +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", pagePower='" + pagePower + '\'' +
                 ", depPower='" + depPower + '\'' +

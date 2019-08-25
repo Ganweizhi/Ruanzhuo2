@@ -6,6 +6,7 @@ import com.dgut.model.staff;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -14,9 +15,8 @@ import java.util.List;
  *
  */
 @Mapper
+@Service
 public interface ManagersMapper {
-    // @TODO
-
     /**
      * 1. 查询managers的所有字段和roles的name字段
      * @return
