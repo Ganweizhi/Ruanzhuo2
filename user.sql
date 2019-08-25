@@ -55,24 +55,38 @@ INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,d
 VALUES('ming', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '本科毕业生', '硕士', '0', '清洁工'
       , '工人', '12547896321', '12345','124452@qq.com'
       , '12345', '0', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');
+INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,
+                  email,baseWage,bankName,bankId,img)
 VALUES('ming', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '本科毕业生', '硕士', '0', '清洁工'
       , '工人', '12547896321', '12345','124452@qq.com'
       , '12345', '0', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');
+INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,
+                  email,baseWage,bankName,bankId,img)
 VALUES('ming', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '本科毕业生', '硕士', '0', '清洁工'
       , '工人', '12547896321', '12345','124452@qq.com'
       , '12345', '0', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');
+INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,
+                  email,baseWage,bankName,bankId,img)
 VALUES('ming', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '本科毕业生', '硕士', '0', '清洁工'
       , '工人', '12547896321', '12345','124452@qq.com'
       , '12345', '0', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');
+INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,
+                  email,baseWage,bankName,bankId,img)
 VALUES('ccc', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '硕士研究生', '学位', '1', '清洁工'
       , '工人', '12547896321', '12345','124452@qq.com'
       , '12345', '0', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');
+INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,
+                  email,baseWage,bankName,bankId,img)
 VALUES('ccc', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '硕士研究生', '学位', '1', '清洁工'
       , '工人', '12547896321', '12345','124452@qq.com'
       , '12345', '0', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');
+INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,
+                  email,baseWage,bankName,bankId,img)
 VALUES('ccc', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '硕士研究生', '学位', '1', '清洁工'
       , '工人', '12547896321', '12345','124452@qq.com'
       , '12345', '0', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');
+INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,
+                  email,baseWage,bankName,bankId,img)
 VALUES('ccc', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '硕士研究生', '学位', '1', '清洁工'
       , '工人', '12547896321', '12345','124452@qq.com'
       , '12345', '0', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');

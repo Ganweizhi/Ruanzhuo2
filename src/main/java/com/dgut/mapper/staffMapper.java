@@ -13,7 +13,7 @@ import java.util.List;
 public interface staffMapper {
 
     @Select("<script>"
-            + "select wid,name,sex,education,department,lphone,state,signingTime,departureTime from staff"
+            + "select * from staff"
             + " <where>"
             + "  <if test='department != null' > "
             + "     and department = #{department}"
