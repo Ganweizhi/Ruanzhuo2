@@ -10,7 +10,7 @@ response:后端返回数据
 ```javascript
 params:{
          department:"部门",
-         degree:"学历",
+         education:"学历",
          search:"姓名",
          time:"签约时间",
          etime:"离职时间",
@@ -57,7 +57,7 @@ response:{
 ```javascript
 params:{
          department:"部门",
-         degree:"学历",
+         education:"学历",
          search:"姓名",
          time:"签约时间",
          etime:"离职时间"
