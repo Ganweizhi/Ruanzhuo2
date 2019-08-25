@@ -537,3 +537,10 @@ response:{
 	success //0或1
 }
 ```
+**/ryadd--增(用于权限控制)**
+检测当前登录账号是否有添加人员的权限
+```javascript
+response:{
+	success //0或1
+}
+```
