@@ -1,6 +1,7 @@
 package com.dgut.mapper;
 
 import com.dgut.jsonBean.addBean;
+import com.dgut.jsonBean.addWageBean;
 import com.dgut.jsonBean.listBean;
 import com.dgut.jsonBean.wageBean;
 import com.dgut.model.staff;
@@ -67,4 +68,7 @@ public interface staffMapper {
 
     @Select("select name from department where department=#{department}")
     String getDepartmentNameByID(@Param("department")String department);
+
+    @Update("update staff set baseWage=#{xcForm.baseWage},bankName=#{xcForm.bankName},bankId=#{xcForm.bankId} where wid=#{xcForm.wid}")
+    void Xcedit(@Param("xcForm") addWageBean xcForm);
 }

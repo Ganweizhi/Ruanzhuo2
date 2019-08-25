@@ -4,10 +4,7 @@ import com.dgut.jsonBean.*;
 import com.dgut.model.staff;
 import com.dgut.service.listService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -19,7 +16,12 @@ public class wageController {
     @Autowired
     private listService listservice;
 
-
+    @RequestMapping(value = "/xcedit")
+    public String Xcedit(@RequestBody addWageBean xcForm ) {
+        listservice.Xcedit(xcForm);
+        System.out.println(xcForm.toString());
+        return "{\"success\":1}";
+    }
 
     @RequestMapping(value = "/xclist")
     @ResponseBody
