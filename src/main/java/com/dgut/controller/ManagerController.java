@@ -1,6 +1,6 @@
 package com.dgut.controller;
 
-import com.dgut.jsonBean.GllistAndNumBean;
+import com.dgut.jsonBean.GllistBeanPage;
 import com.dgut.jsonBean.GllistBean;
 import com.dgut.service.ManagersService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class ManagerController {
 
     @RequestMapping("/gllist")
     @ResponseBody
-    public GllistAndNumBean findAll() {
+    public GllistBeanPage findAll() {
         GllistBean gllistBean = null;
         List<GllistBean> data = managersService.findAll();
         Map<Integer, GllistBean> map = new HashMap<Integer, GllistBean>();  // 合并后的GllistBean保存在map中
@@ -39,8 +39,8 @@ public class ManagerController {
             }
         }
 
-        GllistAndNumBean gllistAndNumBean = new GllistAndNumBean(map, map.size());
-        System.out.println(gllistAndNumBean);
+        GllistBeanPage gllistAndNumBean = new GllistBeanPage(map, map.size());
+//        System.out.println(gllistAndNumBean);
         return gllistAndNumBean;
     }
 }
