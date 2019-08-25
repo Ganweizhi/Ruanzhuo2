@@ -67,8 +67,7 @@ public class ListController {
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public listBeanPage getList(String department, String education, String stime, String etime, String search ,String currentPage) {
-        //System.out.println(stime + " " + etime);
+    public listBeanPage getList(String department,String education,String search , String stime,String etime,String currentPage) {
         if(department.equals("")) {
             department = null;
         }
@@ -79,7 +78,7 @@ public class ListController {
             search = null;
         }
 
-        List<listBean> data = listservice.findList(department, education, stime, etime, search, currentPage);
+        List<listBean> data = listservice.findList(department, education, search);
         if(!stime.equals("")) {
             String[] split = stime.split(",");
             data = data.stream().filter(bean -> bean.getSigningTime().compareTo(split[0]) >= 0 && bean.getSigningTime().compareTo(split[1]) <= 0).collect(Collectors.toList());

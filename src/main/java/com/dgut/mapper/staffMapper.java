@@ -26,7 +26,7 @@ public interface staffMapper {
             + " </if>"
             + "</where>"
             + "</script>")
-    List<listBean> findList(@Param("department")String department, @Param("education")String education, @Param("stime")String stime, @Param("etime")String etime, @Param("search")String search, @Param("currentPage")String currentPage);
+    List<listBean> findList(@Param("department") String department, @Param("education") String education, @Param("search") String search);
 
     @Select("<script>"
             + "select * from staff"

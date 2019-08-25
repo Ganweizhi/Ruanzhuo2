@@ -39,7 +39,7 @@ response:{
   			bankName: "银行名称",
   			bankId: "银行账号",
 			htSum: "合同数量",
-  			signingTime:"签约时间"
+  			signingTime:"签约时间",
   			departureTime:"离职时间",
 			state: "状态",
 			img: "头像",

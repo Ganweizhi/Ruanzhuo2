@@ -28,6 +28,7 @@ CREATE TABLE `staff`  (
   baseWage varchar(20) DEFAULT NULL, --基本工资
   bankName varchar(20) DEFAULT NULL, --银行名称
   bankId varchar(20) DEFAULT NULL, --银行账号
+  departureTime varchar(20) DEFAULT NULL, //离职时间
   img varchar(255) DEFAULT NULL, --头像
   sfzz varchar(255) DEFAULT NULL, --身份证正面
   sfzf varchar(255) DEFAULT NULL, --身份证反面

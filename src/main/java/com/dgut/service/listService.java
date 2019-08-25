@@ -26,8 +26,8 @@ public class listService {
         return staffmapper.findOutlist(department,  education,  stime,  etime,  search);
     }
 
-    public List<listBean> findList(String department, String education, String stime, String etime, String search, String currentPage) {
-        return staffmapper.findList( department,  education,  stime,  etime,  search,  currentPage);
+    public List<listBean> findList(String department, String education, String search) {
+        return staffmapper.findList( department,  education,  search);
     }
 
     public void deleteByWid(String wid, String time) {
