@@ -259,7 +259,7 @@ response:{
 			htName: "合同1", //合同名称
   			signingTime: "2019-06-20", //签约时间
 			useTime: 24, //合同有效期
-			htUrl:""， //文件下地址(点了能直接下载)
+			htUrl:"", //文件下地址(点了能直接下载)
 			state: 1 //状态
 		},
 		{
@@ -267,7 +267,7 @@ response:{
  			htName: "合同2",
 			signingTime: "2019-07-20",
 			useTime: 12,
-			htUrl:""， //文件下地址(点了能直接下载)
+			htUrl:"", //文件下地址(点了能直接下载)
 			state: 1
 		}
 	],
@@ -377,27 +377,6 @@ response:{
 		},
 	],
 	totalPage:"数据总条数"
-}
-```
-**/roleLists --角色列表(无需分页)**          
-```javascript
-params:{
-}
-response:{
-	[
-		{
-			rid: "12345",
-			name: "sfg",
-			pagePower: "f000f",
-  			depPower: "01010101",
-		},
-		{
-			rid: "12345",
-			name: "sfg",
-			pagePower: "f001f",
-  			depPower: "1010101",
-		},
-	]
 }
 ```
 **/gledit --管理员编辑**      
