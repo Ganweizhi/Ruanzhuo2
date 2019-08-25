@@ -71,4 +71,7 @@ public interface staffMapper {
 
     @Update("update staff set baseWage=#{xcForm.baseWage},bankName=#{xcForm.bankName},bankId=#{xcForm.bankId} where wid=#{xcForm.wid}")
     void Xcedit(@Param("xcForm") addWageBean xcForm);
+
+    @Select("select signingTime from ht where wid=#{wid}")
+    String findSigningTimeByWid(@Param("wid")String wid);
 }

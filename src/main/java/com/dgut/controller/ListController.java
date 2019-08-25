@@ -79,6 +79,9 @@ public class ListController {
         }
 
         List<listBean> data = listservice.findList(department, education, search);
+        for (listBean datum : data) {
+            datum.setSigningTime(listservice.findSigningTimeByWid(datum.getWid()));
+        }
         if(!stime.equals("")) {
             String[] split = stime.split(",");
             data = data.stream().filter(bean -> bean.getSigningTime().compareTo(split[0]) >= 0 && bean.getSigningTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
