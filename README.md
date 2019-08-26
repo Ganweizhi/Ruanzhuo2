@@ -104,11 +104,12 @@ response:{
 	success:"状态"   //1成功，0失败
 }
 ```
-**/inlist --数据导入** #finsh by lgc
+**/inlist --数据导入**
 ```javascript
 params:{
 	[
 		{
+			wid:"工号",
   			name: "姓名",
   			sex: "性别",
   			nation: "民族",
@@ -139,13 +140,13 @@ response:{
 }
 ```
 ## 2. tabs
-**/init --新wid** #finsh by lgc
+**/init --新wid**
 ```javascript
 response:{
 	wid:"工号" //返回最新wid
 }
 ```
-**/add --添加人员**     #finsh by lgc
+**/add --添加人员**     #finsh by superlgc
 *详细数据见网页，用javabeen接收*
 ```javascript
 params:{
@@ -173,7 +174,6 @@ response:{
 }
 ```
 **/headimg --上传头像**     
-file //文件
 ```javascript
 params:{
          wid:"工号"
@@ -182,7 +182,7 @@ response:{
 	success:"状态"   //1成功，0失败
 }
 ```
-**/xcedit --添加/修改薪酬信息**     #finsh by lgc
+**/xcedit --添加/修改薪酬信息**     #finsh by superlgc
 *详细数据见网页，用javabeen接收？*
 ```javascript
 params:{
@@ -384,26 +384,6 @@ params:{
 }
 response:{
 	success:"状态"   //1成功，0失败
-}
-```
-**/rolelists --角色列表(需要写！！！！！！)**          
-```javascript
-response:{
-	data:[
-		{
-			rid: "6",
-			name: "日志管理员",
-			pagePower: "00f0",
-			depPower: "000"
-		},
- 		{
-			rid: "7",
-			name: "角色管理员",
-			pagePower: "f000",
-			depPower: "000"
-		}
-	],
-	totalPage:"数据总条数"
 }
 ```
 ## 5. 角色管理

@@ -1,27 +1,16 @@
 package com.dgut.controller;
 
-        import com.dgut.jsonBean.htaddBean;
-        import com.dgut.jsonBean.htlistBean;
-        import com.dgut.jsonBean.htlistBeanpage;
-        import com.dgut.model.UserFileModel;
+        import com.dgut.jsonBean.IdReturnBean;
+        import com.dgut.jsonBean.Inithtlist;
         import com.dgut.service.UserFileService;
-        import com.dgut.service.listService;
-        import org.apache.ibatis.annotations.Param;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.web.bind.annotation.*;
-        import org.springframework.web.context.request.RequestContextHolder;
-        import org.springframework.web.context.request.ServletRequestAttributes;
         import org.springframework.web.multipart.MultipartFile;
 
         import javax.servlet.http.HttpServletRequest;
-        import javax.servlet.http.HttpServletResponse;
         import java.io.File;
         import java.io.IOException;
-        import java.io.InputStream;
-        import java.util.ArrayList;
         import java.util.List;
-        import java.util.Objects;
-        import java.util.UUID;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -32,28 +21,10 @@ public class fileTestController {
     private com.dgut.service.listService listService;
     @Autowired
     private HttpServletRequest request;
-
-    @RequestMapping(value = "/htfile")
-    public String addht(MultipartFile file,@RequestBody htaddBean hb)throws IOException {
-        HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
-       String realPath = request.getServletContext().getRealPath("D:\\Personnel_Management_System2\\fileStatic");
-       File foler = new File(realPath);
-       if(!foler.exists())
-       {
-           foler.mkdir();
-       }
-       String fileSize = ""+file.getSize();
-       String oldName = file.getOriginalFilename();
-       String  newName = UUID.randomUUID().toString()+oldName.substring(oldName.lastIndexOf("."));
-       file.transferTo(new File(foler,newName));
-       int i = userFileService.saveImage(hb.getWid(),newName,newName,fileSize,"合同");
-      if(i==0) return "{\"success\":0}";
-      else  return "{\"success\":1}";
-    }
     @RequestMapping(value = "/headimg")
     public String saveHeadimg(String wid,MultipartFile file) throws Exception
     {
-        String realPath = request.getServletContext().getRealPath("/img");
+        String realPath = request.getServletContext().getRealPath("/img/headimg");
         File folder = new File(realPath);
         if (!folder.exists()) {
             folder.mkdirs();
@@ -61,8 +32,96 @@ public class fileTestController {
         String oldName = file.getOriginalFilename();
         String newName = wid+ oldName.substring(oldName.lastIndexOf("."));
         file.transferTo(new File(folder,newName));
-        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/" + newName;
+//        String url = "img/headimg/" + newName;
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/headimg/" + newName;
         System.out.println(url);
+        userFileService.SetImg(wid,url); //更新staff表的头像
         return "{\"success\":1}";
+    }
+    @RequestMapping(value = "/htfile" ,method = RequestMethod.POST)
+    public String saveHtFile(MultipartFile file,@RequestBody Inithtlist iht) throws IOException
+   // public String saveHtFile(@RequestBody Inithtlist iht, MultipartFile file) throws IOException
+    {
+        String realPath = request.getServletContext().getRealPath("/img/HT");
+        File folder = new File(realPath);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+        int i = userFileService.htSum(iht.getWid())+1;
+        String HID = iht.getWid()+"_"+i;
+        String oldName = file.getOriginalFilename();
+        String newName = HID+ oldName.substring(oldName.lastIndexOf("."));
+        file.transferTo(new File(folder,newName));
+        String HURL = realPath+"/"+newName;
+        userFileService.htInsert(iht.getWid(),HID,iht.getHtname(),HURL,iht.getUseTime(),iht.getSigningTime());
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/HT/" + newName;
+        System.out.println(url);
+       return "{\"success\":1}";
+    }
+    @RequestMapping(value = "/sfzz",method = RequestMethod.POST)
+    public IdReturnBean SaveSfzz(String wid ,MultipartFile file) throws IOException
+    {
+        String realPath = request.getServletContext().getRealPath("/img/SFZZ");
+        File folder = new File(realPath);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+        String oldName = file.getOriginalFilename();
+        String newName = wid+"_sfz_zm"+ oldName.substring(oldName.lastIndexOf("."));
+        file.transferTo(new File(folder,newName));
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/SFZZ/" + newName;
+        System.out.println(url);
+        userFileService.SetSfzz(wid,url);
+        IdReturnBean IB = new IdReturnBean("sfzz",newName,url);
+        return IB;
+    }
+    @RequestMapping(value = "/sfzf",method = RequestMethod.POST)
+    public IdReturnBean SaveSfzf(String wid,MultipartFile file)throws IOException
+    {
+        String realPath = request.getServletContext().getRealPath("/img/SFZF");
+        File folder = new File(realPath);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+        String oldName = file.getOriginalFilename();
+        String newName = wid+"_sfz_fm"+ oldName.substring(oldName.lastIndexOf("."));
+        file.transferTo(new File(folder,newName));
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/SFZF/" + newName;
+        System.out.println(url);
+        userFileService.SetSfzf(wid,url);
+        IdReturnBean IB = new IdReturnBean("sfzf",newName,url);
+        return IB;
+    }
+    @RequestMapping(value="/yhkz",method = RequestMethod.POST)
+    public IdReturnBean SaveBankZm(String wid,MultipartFile file)throws  IOException{
+        String realPath = request.getServletContext().getRealPath("/img/BankId/Z");
+        File folder = new File(realPath);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+        String oldName = file.getOriginalFilename();
+        String newName = wid+"_yhk_zm"+ oldName.substring(oldName.lastIndexOf("."));
+        file.transferTo(new File(folder,newName));
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/BankId/Z/" + newName;
+        System.out.println(url);
+        userFileService.SetSfzf(wid,url);
+        IdReturnBean IB = new IdReturnBean("yhkz",newName,url);
+        return IB;
+    }
+    @RequestMapping(value="/yhkf",method = RequestMethod.POST)
+    public IdReturnBean SaveBankFm(String wid,MultipartFile file)throws  IOException{
+        String realPath = request.getServletContext().getRealPath("/img/BankId/F");
+        File folder = new File(realPath);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+        String oldName = file.getOriginalFilename();
+        String newName = wid+"_yhk_fm"+ oldName.substring(oldName.lastIndexOf("."));
+        file.transferTo(new File(folder,newName));
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/BankId/F/" + newName;
+        System.out.println(url);
+        userFileService.SetSfzf(wid,url);
+        IdReturnBean IB = new IdReturnBean("yhkf",newName,url);
+        return IB;
     }
 }
