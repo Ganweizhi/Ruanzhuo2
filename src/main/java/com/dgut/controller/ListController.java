@@ -28,9 +28,9 @@ public class ListController {
 
     @RequestMapping(value = "/inlist", method = RequestMethod.POST)
     public String add(@RequestBody List<outlistBean> msgForm){
-        System.out.println(1);
         System.out.println(msgForm);
         for (outlistBean bean : msgForm) {
+            bean.setDepartment(listservice.getDepartmentIDByName(bean.getDepartment()));
             listservice.addInList(bean);
         }
         return "{\"success\":1}";

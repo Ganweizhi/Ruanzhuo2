@@ -49,11 +49,15 @@ public class listService {
         return staffmapper.findSigningTimeByWid(wid);
     }
 
-    public void addInList(outlistBean msgForm) {
-        staffmapper.addInList(msgForm);
+    public void addInList(outlistBean bean) {
+        staffmapper.addInList(bean);
     }
 
     public int getNewWid() {
         return staffmapper.getNewWid();
+    }
+
+    public String getDepartmentIDByName(String name) {
+        return staffmapper.getDepartmentIDByName(name);
     }
 }

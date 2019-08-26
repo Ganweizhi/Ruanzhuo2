@@ -73,8 +73,11 @@ public interface staffMapper {
     String findSigningTimeByWid(@Param("wid")String wid);
 
     @Insert("insert into staff(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,email,baseWage,bankName,bankId,departureTime) VALUES(#{bean.name},#{bean.sex},#{bean.nation},#{bean.nationality},#{bean.origin},#{bean.idType},#{bean.idNumber},#{bean.education},#{bean.degree},#{bean.department},#{bean.job},#{bean.title},#{bean.lPhone},#{bean.sPhone},#{bean.email},#{bean.baseWage},#{bean.bankName},#{bean.bankId},#{bean.departureTime})")
-    void addInList(outlistBean msgForm);
+    void addInList(@Param("bean")outlistBean bean);
 
     @Select("select count(*) from staff")
     int getNewWid();
+
+    @Select("select department from department where name=#{name}")
+    String getDepartmentIDByName(@Param("name")String name);
 }
