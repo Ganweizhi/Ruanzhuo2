@@ -26,8 +26,9 @@ public class ListController {
         return "{\"wid\":"+wid+"}";
     }
 
-    @RequestMapping(value = "/inlist")
+    @RequestMapping(value = "/inlist", method = RequestMethod.POST)
     public String add(@RequestBody List<outlistBean> msgForm){
+        System.out.println(1);
         System.out.println(msgForm);
         for (outlistBean bean : msgForm) {
             listservice.addInList(bean);
