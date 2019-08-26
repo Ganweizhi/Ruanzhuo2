@@ -6,7 +6,6 @@ package com.dgut.controller;
         import com.dgut.model.UserFileModel;
         import com.dgut.service.UserFileService;
         import com.dgut.service.listService;
-        import jdk.nashorn.internal.ir.RuntimeNode;
         import org.apache.ibatis.annotations.Param;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.web.bind.annotation.*;
@@ -24,8 +23,6 @@ package com.dgut.controller;
         import java.util.Objects;
         import java.util.UUID;
 
-        import static jdk.nashorn.internal.ir.RuntimeNode.*;
-
 @RestController
 @CrossOrigin(origins = "*")
 public class fileTestController {
@@ -33,6 +30,8 @@ public class fileTestController {
     private UserFileService userFileService;
     @Autowired
     private com.dgut.service.listService listService;
+    @Autowired
+    private HttpServletRequest request;
 
     @RequestMapping(value = "/htfile")
     public String addht(MultipartFile file,@RequestBody htaddBean hb)throws IOException {
@@ -52,14 +51,18 @@ public class fileTestController {
       else  return "{\"success\":1}";
     }
     @RequestMapping(value = "/headimg")
-    public String saveHeadimg(MultipartFile file, String wid) throws Exception
+    public String saveHeadimg(String wid,MultipartFile file) throws Exception
     {
-       HttpServletRequest request = ((ServletRequestAttributes) Objects.requireNonNull(RequestContextHolder.getRequestAttributes())).getRequest();
-        String realPath = request.getServletContext().getRealPath("D:\\Personnel_Management_System2\\fileStatic\\headimg");
-        File img = new File(realPath);
-        String oldName = img.getName();
-        String newName = wid+oldName.substring(oldName.lastIndexOf("."));
-        file.transferTo(new File(img,newName));
+        String realPath = request.getServletContext().getRealPath("/img");
+        File folder = new File(realPath);
+        if (!folder.exists()) {
+            folder.mkdirs();
+        }
+        String oldName = file.getOriginalFilename();
+        String newName = wid+ oldName.substring(oldName.lastIndexOf("."));
+        file.transferTo(new File(folder,newName));
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/" + newName;
+        System.out.println(url);
         return "{\"success\":1}";
     }
 }
