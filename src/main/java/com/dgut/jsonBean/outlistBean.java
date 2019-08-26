@@ -2,8 +2,7 @@ package com.dgut.jsonBean;
 
 import java.io.Serializable;
 
-public class listBean implements Serializable {
-
+public class outlistBean  implements Serializable {
     private String wid;
     private String name;
     private String sex;
@@ -26,45 +25,36 @@ public class listBean implements Serializable {
     private String htSum;
     private String signingTime;
     private String departureTime;
-    private String state;
-    private String img;
-    private String sfzz;
-    private String sfzf;
-    private String yhkz;
-    private String yhkf;
 
-    public listBean() {
+    public outlistBean() {
     }
 
-    public listBean(String wid, String name, String sex, String nation, String nationality, String origin, String idType, String idNumber, String education, String degree, String department, String job, String title, String lPhone, String sPhone, String email, String baseWage, String bankName, String bankId, String htSum, String signingTime, String departureTime, String state, String img, String sfzz, String sfzf, String yhkz, String yhkf) {
-        this.wid = wid;
-        this.name = name;
-        this.sex = sex;
-        this.nation = nation;
-        this.nationality = nationality;
-        this.origin = origin;
-        this.idType = idType;
-        this.idNumber = idNumber;
-        this.education = education;
-        this.degree = degree;
-        this.department = department;
-        this.job = job;
-        this.title = title;
-        this.lPhone = lPhone;
-        this.sPhone = sPhone;
-        this.email = email;
-        this.baseWage = baseWage;
-        this.bankName = bankName;
-        this.bankId = bankId;
-        this.htSum = htSum;
-        this.signingTime = signingTime;
-        this.departureTime = departureTime;
-        this.state = state;
-        this.img = img;
-        this.sfzz = sfzz;
-        this.sfzf = sfzf;
-        this.yhkz = yhkz;
-        this.yhkf = yhkf;
+    @Override
+    public String toString() {
+        return "outlistBean{" +
+                "wid='" + wid + '\'' +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", nation='" + nation + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", origin='" + origin + '\'' +
+                ", idType='" + idType + '\'' +
+                ", idNumber='" + idNumber + '\'' +
+                ", education='" + education + '\'' +
+                ", degree='" + degree + '\'' +
+                ", department='" + department + '\'' +
+                ", job='" + job + '\'' +
+                ", title='" + title + '\'' +
+                ", lPhone='" + lPhone + '\'' +
+                ", sPhone='" + sPhone + '\'' +
+                ", email='" + email + '\'' +
+                ", baseWage='" + baseWage + '\'' +
+                ", bankName='" + bankName + '\'' +
+                ", bankId='" + bankId + '\'' +
+                ", htSum='" + htSum + '\'' +
+                ", signingTime='" + signingTime + '\'' +
+                ", departureTime='" + departureTime + '\'' +
+                '}';
     }
 
     public String getWid() {
@@ -243,85 +233,28 @@ public class listBean implements Serializable {
         this.departureTime = departureTime;
     }
 
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
-
-    public String getSfzz() {
-        return sfzz;
-    }
-
-    public void setSfzz(String sfzz) {
-        this.sfzz = sfzz;
-    }
-
-    public String getSfzf() {
-        return sfzf;
-    }
-
-    public void setSfzf(String sfzf) {
-        this.sfzf = sfzf;
-    }
-
-    public String getYhkz() {
-        return yhkz;
-    }
-
-    public void setYhkz(String yhkz) {
-        this.yhkz = yhkz;
-    }
-
-    public String getYhkf() {
-        return yhkf;
-    }
-
-    public void setYhkf(String yhkf) {
-        this.yhkf = yhkf;
-    }
-
-    @Override
-    public String toString() {
-        return "listBean{" +
-                "wid='" + wid + '\'' +
-                ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
-                ", nation='" + nation + '\'' +
-                ", nationality='" + nationality + '\'' +
-                ", origin='" + origin + '\'' +
-                ", idType='" + idType + '\'' +
-                ", idNumber='" + idNumber + '\'' +
-                ", education='" + education + '\'' +
-                ", degree='" + degree + '\'' +
-                ", department='" + department + '\'' +
-                ", job='" + job + '\'' +
-                ", title='" + title + '\'' +
-                ", lPhone='" + lPhone + '\'' +
-                ", sPhone='" + sPhone + '\'' +
-                ", email='" + email + '\'' +
-                ", baseWage='" + baseWage + '\'' +
-                ", bankName='" + bankName + '\'' +
-                ", bankId='" + bankId + '\'' +
-                ", htSum='" + htSum + '\'' +
-                ", signingTime='" + signingTime + '\'' +
-                ", departureTime='" + departureTime + '\'' +
-                ", state='" + state + '\'' +
-                ", img='" + img + '\'' +
-                ", sfzz='" + sfzz + '\'' +
-                ", sfzf='" + sfzf + '\'' +
-                ", yhkz='" + yhkz + '\'' +
-                ", yhkf='" + yhkf + '\'' +
-                '}';
+    public outlistBean(String wid, String name, String sex, String nation, String nationality, String origin, String idType, String idNumber, String education, String degree, String department, String job, String title, String lPhone, String sPhone, String email, String baseWage, String bankName, String bankId, String htSum, String signingTime, String departureTime) {
+        this.wid = wid;
+        this.name = name;
+        this.sex = sex;
+        this.nation = nation;
+        this.nationality = nationality;
+        this.origin = origin;
+        this.idType = idType;
+        this.idNumber = idNumber;
+        this.education = education;
+        this.degree = degree;
+        this.department = department;
+        this.job = job;
+        this.title = title;
+        this.lPhone = lPhone;
+        this.sPhone = sPhone;
+        this.email = email;
+        this.baseWage = baseWage;
+        this.bankName = bankName;
+        this.bankId = bankId;
+        this.htSum = htSum;
+        this.signingTime = signingTime;
+        this.departureTime = departureTime;
     }
 }

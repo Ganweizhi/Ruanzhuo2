@@ -1,9 +1,6 @@
 package com.dgut.service;
 
-import com.dgut.jsonBean.addBean;
-import com.dgut.jsonBean.addWageBean;
-import com.dgut.jsonBean.listBean;
-import com.dgut.jsonBean.wageBean;
+import com.dgut.jsonBean.*;
 import com.dgut.mapper.staffMapper;
 import com.dgut.model.staff;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +19,8 @@ public class listService {
         return staffmapper.getDepartmentNameByID(department);
     }
 
-    public List<staff> findOutlist(String department, String education, String stime, String etime, String search){
-        return staffmapper.findOutlist(department,  education,  stime,  etime,  search);
+    public List<outlistBean> findOutlist(String department, String education, String search){
+        return staffmapper.findOutlist(department,  education,search);
     }
 
     public List<listBean> findList(String department, String education, String search) {
