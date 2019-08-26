@@ -173,6 +173,7 @@ response:{
 }
 ```
 **/headimg --上传头像**     
+file //文件
 ```javascript
 params:{
          wid:"工号"

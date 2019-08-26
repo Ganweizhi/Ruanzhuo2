@@ -45,7 +45,7 @@ public class RoleListBean {
 
     @Override
     public String toString() {
-        return "RoleListBean{" +
+        return "{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", pagePower='" + pagePower + '\'' +

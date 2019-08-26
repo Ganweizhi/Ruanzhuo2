@@ -18,11 +18,11 @@ public class RoleListBeanPage {
         this.totalPage = totalPage;
     }
 
-    public List<RoleListBean> getRoleListBeanList() {
+    public List<RoleListBean> getData() {
         return data;
     }
 
-    public void setRoleListBeanList(List<RoleListBean> data) {
+    public void setData(List<RoleListBean> data) {
         this.data = data;
     }
 
