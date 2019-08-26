@@ -104,7 +104,7 @@ public class fileTestController {
         file.transferTo(new File(folder,newName));
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/BankId/Z/" + newName;
         System.out.println(url);
-        userFileService.SetSfzf(wid,url);
+        userFileService.SetYhkz(wid,url);
         IdReturnBean IB = new IdReturnBean("yhkz",newName,url);
         return IB;
     }
@@ -120,7 +120,7 @@ public class fileTestController {
         file.transferTo(new File(folder,newName));
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/BankId/F/" + newName;
         System.out.println(url);
-        userFileService.SetSfzf(wid,url);
+        userFileService.SetYhkf(wid,url);
         IdReturnBean IB = new IdReturnBean("yhkf",newName,url);
         return IB;
     }

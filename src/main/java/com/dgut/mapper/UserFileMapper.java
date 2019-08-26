@@ -24,4 +24,10 @@ public interface UserFileMapper {
 
     @Update("update staff set img =#{img} where wid =#{wid}")
     void ImgUpdate(@Param("wid") String wid,@Param("img") String img);
+
+    @Update("update staff set yhkz =#{yhkz} where wid =#{wid}")
+    void YhkzUpdate(@Param("wid") String wid,@Param("yhkz") String yhkz);
+
+    @Update("update staff set yhkf =#{yhkf} where wid =#{wid}")
+    void YhkfUpdate(@Param("wid") String wid,@Param("yhkf") String yhkz);
 }

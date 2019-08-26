@@ -209,6 +209,7 @@ response:{
 ```
 **/htfile--上传合同**     
 ```javascript
+已做，合同ID命名格式如：2019500_1.jpg
 file          //合同文件  
 params:{
 	htForm:{
@@ -266,7 +267,8 @@ response:{
 	],
 }
 ```
-**/sfzz --上传身份证正面**     
+**/sfzz --上传身份证正面**   
+#已做  
 ```javascript  
 file       //文件
 params:{
@@ -280,6 +282,7 @@ response:{
 ```
 **/sfzf --上传身份证反面**     
 ```javascript
+#已做
 file       //文件
 params:{
 	wid:"工号"
@@ -292,6 +295,7 @@ response:{
 ```
 **/yhkz --上传银行卡正面**     
 ```javascript
+#已做
 file       //文件
 params:{
 	wid:"工号"
@@ -304,6 +308,7 @@ response:{
 ```
 **/yhkf --上传银行卡反面**     
 ```javascript
+#已做
 file       //文件
 params:{
 	wid:"工号"

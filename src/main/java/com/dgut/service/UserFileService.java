@@ -1,6 +1,7 @@
 package com.dgut.service;
 
 import com.dgut.mapper.UserFileMapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +29,13 @@ public class UserFileService {
     public void SetSfzf(String wid,String url)
     {
         userFileMapper.SfzfUpdate(wid,url);
+    }
+    public void SetYhkz(String wid,String url)
+    {
+        userFileMapper.YhkzUpdate(wid,url);
+    }
+    public void SetYhkf(String wid,String url)
+    {
+        userFileMapper.YhkfUpdate(wid,url);
     }
 }
