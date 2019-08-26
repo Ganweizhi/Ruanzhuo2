@@ -16,6 +16,6 @@ import java.util.List;
 @Service
 public interface RolesMapper {
 
-    @Select("select id, name, page_power as pagePower, department_power as depPower  from roles")
+    @Select("select id as rid, name, page_power as pagePower, department_power as depPower  from roles")
     List<RoleListBean> findAll();
 }
