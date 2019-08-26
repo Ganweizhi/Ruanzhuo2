@@ -20,6 +20,20 @@ public class ListController {
     @Autowired
     private listService listservice;
 
+    @RequestMapping(value = "/init")
+    public String getNewWid(){
+        int wid = listservice.getNewWid()+2019500;
+        return "{\"wid\":"+wid+"}";
+    }
+
+    @RequestMapping(value = "/inlist", method = RequestMethod.POST)
+    public String add(@RequestBody List<outlistBean> msgForm){
+        for (outlistBean bean : msgForm) {
+            listservice.addInList(bean);
+        }
+        return "{\"success\":1}";
+    }
+
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(@RequestBody addBean msgForm){
         int state = listservice.add(msgForm);
