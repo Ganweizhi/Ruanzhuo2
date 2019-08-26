@@ -36,12 +36,15 @@ public class fileTestController {
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/headimg/" + newName;
         System.out.println(url);
         userFileService.SetImg(wid,url); //更新staff表的头像
-        return "{\"success\":1}";
+        return "{\"success\":1,\"url\":\""+ url + "\"}";
     }
     @RequestMapping(value = "/htfile" ,method = RequestMethod.POST)
-    public String saveHtFile(MultipartFile file,@RequestBody Inithtlist iht) throws IOException
+    public String saveHtFile(MultipartFile file,@ModelAttribute  Inithtlist iht) throws IOException
    // public String saveHtFile(@RequestBody Inithtlist iht, MultipartFile file) throws IOException
     {
+
+        System.out.println(iht);
+        System.out.println(file.getOriginalFilename());
         String realPath = request.getServletContext().getRealPath("/img/HT");
         File folder = new File(realPath);
         if (!folder.exists()) {
@@ -53,7 +56,7 @@ public class fileTestController {
         String newName = HID+ oldName.substring(oldName.lastIndexOf("."));
         file.transferTo(new File(folder,newName));
         String HURL = realPath+"/"+newName;
-        userFileService.htInsert(iht.getWid(),HID,iht.getHtname(),HURL,iht.getUseTime(),iht.getSigningTime());
+        userFileService.htInsert(iht.getWid(),HID,iht.getHtName(),HURL,iht.getUseTime(),iht.getSigningTime());
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/HT/" + newName;
         System.out.println(url);
        return "{\"success\":1}";

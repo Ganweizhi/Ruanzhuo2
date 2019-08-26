@@ -5,20 +5,9 @@ import java.util.List;
 
 public class Inithtlist implements Serializable {
   private String wid;
-  private  String Htname;
+  private  String htName;
   private  String signingTime;
   private  String useTime;
-
-  public Inithtlist(){
-
-  }
-
-    public Inithtlist(String wid, String htname, String signingTime, String useTime) {
-        this.wid = wid;
-        Htname = htname;
-        this.signingTime = signingTime;
-        this.useTime = useTime;
-    }
 
     public String getWid() {
         return wid;
@@ -28,12 +17,12 @@ public class Inithtlist implements Serializable {
         this.wid = wid;
     }
 
-    public String getHtname() {
-        return Htname;
+    public String getHtName() {
+        return htName;
     }
 
-    public void setHtname(String htname) {
-        Htname = htname;
+    public void setHtName(String htName) {
+        this.htName = htName;
     }
 
     public String getSigningTime() {
@@ -50,5 +39,25 @@ public class Inithtlist implements Serializable {
 
     public void setUseTime(String useTime) {
         this.useTime = useTime;
+    }
+
+    public Inithtlist(String wid, String htName, String signingTime, String useTime) {
+        this.wid = wid;
+        this.htName = htName;
+        this.signingTime = signingTime;
+        this.useTime = useTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Inithtlist{" +
+                "wid='" + wid + '\'' +
+                ", htName='" + htName + '\'' +
+                ", signingTime='" + signingTime + '\'' +
+                ", useTime='" + useTime + '\'' +
+                '}';
+    }
+
+    public Inithtlist() {
     }
 }
