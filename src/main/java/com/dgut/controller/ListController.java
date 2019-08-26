@@ -26,8 +26,9 @@ public class ListController {
         return "{\"wid\":"+wid+"}";
     }
 
-    @RequestMapping(value = "/inlist", method = RequestMethod.POST)
+    @RequestMapping(value = "/inlist")
     public String add(@RequestBody List<outlistBean> msgForm){
+        System.out.println(msgForm);
         for (outlistBean bean : msgForm) {
             listservice.addInList(bean);
         }
@@ -37,7 +38,6 @@ public class ListController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(@RequestBody addBean msgForm){
         int state = listservice.add(msgForm);
-        System.out.println(msgForm.toString());
         if(state==1)
             return "{\"success\":1}";
         else

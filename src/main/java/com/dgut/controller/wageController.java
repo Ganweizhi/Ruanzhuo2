@@ -19,7 +19,6 @@ public class wageController {
     @RequestMapping(value = "/xcedit")
     public String Xcedit(@RequestBody addWageBean xcForm ) {
         listservice.Xcedit(xcForm);
-        System.out.println(xcForm.toString());
         return "{\"success\":1}";
     }
 
