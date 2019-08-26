@@ -6,24 +6,24 @@ import java.util.List;
  * @author Wujiewei
  */
 public class RoleListBeanPage {
-    List<RoleListBean> roleListBeanList;
+    List<RoleListBean> data;
     Integer totalPage;
 
     public RoleListBeanPage() {
 
     }
 
-    public RoleListBeanPage(List<RoleListBean> roleListBeans, Integer totalPage) {
-        this.roleListBeanList = roleListBeans;
+    public RoleListBeanPage(List<RoleListBean> data, Integer totalPage) {
+        this.data = data;
         this.totalPage = totalPage;
     }
 
     public List<RoleListBean> getRoleListBeanList() {
-        return roleListBeanList;
+        return data;
     }
 
-    public void setRoleListBeanList(List<RoleListBean> roleListBeanList) {
-        this.roleListBeanList = roleListBeanList;
+    public void setRoleListBeanList(List<RoleListBean> data) {
+        this.data = data;
     }
 
     public Integer getTotalPage() {
@@ -37,7 +37,7 @@ public class RoleListBeanPage {
     @Override
     public String toString() {
         return "RoleListBeanPage{" +
-                "data" + roleListBeanList +
+                "data=" + data +
                 ", totalPage=" + totalPage +
                 '}';
     }

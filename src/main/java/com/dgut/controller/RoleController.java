@@ -24,8 +24,8 @@ public class RoleController {
     @RequestMapping("/rolelist")
     @ResponseBody
     public RoleListBeanPage findAll() {
-        List<RoleListBean> roleListBeans = rolesService.findAll();
-        RoleListBeanPage roleListBeanPage = new RoleListBeanPage(roleListBeans, roleListBeans.size());
+        List<RoleListBean> data = rolesService.findAll();
+        RoleListBeanPage roleListBeanPage = new RoleListBeanPage(data, data.size());
         System.out.println(roleListBeanPage);
         return roleListBeanPage;
     }

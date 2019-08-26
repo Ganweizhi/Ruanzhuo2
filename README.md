@@ -109,7 +109,6 @@ response:{
 params:{
 	[
 		{
-			wid:"工号",
   			name: "姓名",
   			sex: "性别",
   			nation: "民族",
@@ -384,6 +383,26 @@ params:{
 }
 response:{
 	success:"状态"   //1成功，0失败
+}
+```
+**/rolelists --角色列表(需要写！！！！！！)**          
+```javascript
+response:{
+	data:[
+		{
+			rid: "6",
+			name: "日志管理员",
+			pagePower: "00f0",
+			depPower: "000"
+		},
+ 		{
+			rid: "7",
+			name: "角色管理员",
+			pagePower: "f000",
+			depPower: "000"
+		}
+	],
+	totalPage:"数据总条数"
 }
 ```
 ## 5. 角色管理
