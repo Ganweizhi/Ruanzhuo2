@@ -1,30 +1,41 @@
 package com.dgut.service;
 
-import com.dgut.jsonBean.htlistBean;
 import com.dgut.mapper.UserFileMapper;
-import com.dgut.model.UserFileModel;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserFileService {
     @Autowired
     private UserFileMapper userFileMapper;
-//    public List<UserFileModel> selectAll()
-//    {
-//        return userFileMapper.selectAll();
-//    }
-    public List<htlistBean> findAll(String department,String degree,String search,String currentPage)
+    public int htInsert(String wid,String hid,String hname,String hurl,String usetime,String signingtime)
     {
-        return userFileMapper.findList(department,degree,search,currentPage);
+        userFileMapper.htInsert(wid, hid, hname, hurl, usetime, signingtime);
+        return 1;
     }
-    public int result(String wid,String htName)
+    public int htSum(String wid)
     {
-       UserFileModel um =  userFileMapper.findHt(wid,htName); //调用查询方法，判断有无该合同
-       if(um==null) return 0;
-       else userFileMapper.deleteHt(wid,htName); //有该合同调用此方法删除该合同
-       return  1;
+        return userFileMapper.htSum(wid);
+    }
+    public void SetImg(String wid,String imgUrl)
+    {
+        userFileMapper.ImgUpdate(wid, imgUrl);
+    }
+    public void SetSfzz(String wid ,String url)
+    {
+        userFileMapper.SfzzUpdate(wid, url);
+    }
+    public void SetSfzf(String wid,String url)
+    {
+        userFileMapper.SfzfUpdate(wid,url);
+    }
+    public void SetYhkz(String wid,String url)
+    {
+        userFileMapper.YhkzUpdate(wid,url);
+    }
+    public void SetYhkf(String wid,String url)
+    {
+        userFileMapper.YhkfUpdate(wid,url);
     }
 }

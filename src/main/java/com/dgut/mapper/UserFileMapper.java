@@ -9,32 +9,25 @@ import java.util.List;
 
 @Mapper
 public interface UserFileMapper {
+    @Insert("insert into HT values(" +
+            "#{wid},#{hid},#{hname},#{hurl},#{usetime},#{signingtime}")
+    void htInsert(@Param("wid")String wid,@Param("wid") String hid,@Param("hname") String hname, @Param("hurl") String hurl,@Param("usetime") String usetime,@Param("signingtime") String signingtime);
 
+    @Select("select count(*) as htSum from HT where wid =#{wid}")
+    int htSum(@Param("wid") String wid);
 
-    @Select(
-         "<script>"
-         +"select file.wid,name,sex,degree,department,count(*)as htSum from staff,file"
-            +  "<where>"
-            +"<if test='department!=null'>"
-            +" and department= #{department}"
-            + "</if>"
-            +"<if test = 'degree != null'>"
-            +"and degree = #{degree}"
-            +"</if>"
-            +"<if test = 'search !=null'>"
-            +" and name = #{search}"
-            +"</if>"
-            +"</where>"
-          +"</script>")
-   List<htlistBean> findList(@Param("department")String department,@Param("degree")String degree,@Param("search")String search,@Param("currentPage") String currentPage);
-    @Delete(
-            "delete from file where wid=#{wid} and fileName =#{htName}"
-    )
-   public int deleteHt(@Param("wid")String wid,@Param("htname")String htname);  //当查询到有该合同时再删除该合同
+    @Update("update staff set sfzz =#{sfzz} where wid =#{wid}")
+    void SfzzUpdate(@Param("wid") String wid, @Param("sfzz") String sfzz);
 
-    @Select("select wid,filename from file where wid =#{wid} and fileName = #{htName}")
-    UserFileModel findHt(@Param("wid") String wid,@Param("htName") String htName);//先查询，根据返回值判断有无改合同文件
+    @Update("update staff set sfzf =#{sfzf} where wid =#{wid}")
+    void SfzfUpdate(@Param("wid") String wid, @Param("sfzf") String sfzf);
 
-   @Insert("insert into file values()")
-    public int insertfile(@Param("wid") String wid,String fileId,@Param("htName") String fileName,String fileSize,String fileClass);
+    @Update("update staff set img =#{img} where wid =#{wid}")
+    void ImgUpdate(@Param("wid") String wid,@Param("img") String img);
+
+    @Update("update staff set yhkz =#{yhkz} where wid =#{wid}")
+    void YhkzUpdate(@Param("wid") String wid,@Param("yhkz") String yhkz);
+
+    @Update("update staff set yhkf =#{yhkf} where wid =#{wid}")
+    void YhkfUpdate(@Param("wid") String wid,@Param("yhkf") String yhkz);
 }

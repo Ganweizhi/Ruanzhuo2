@@ -3,14 +3,28 @@ package com.dgut.jsonBean;
 import java.io.Serializable;
 
 public class htlistBean implements Serializable {
-  private String wid;
-  private String name;
-  private String sex;
-  private String degree;
-  private String department;
-  private int htSum;
+    private String wid;
+    private String hid;
+    private String hname;
+    private String hurl;
+    private String usetime;  //有效期
+    private String signingtime; //签约日期
 
-  public String getWid() {
+    public htlistBean()
+    {
+
+    }
+
+    public htlistBean(String wid, String hid, String hname, String hurl, String usetime, String signingtime) {
+        this.wid = wid;
+        this.hid = hid;
+        this.hname = hname;
+        this.hurl = hurl;
+        this.usetime = usetime;
+        this.signingtime = signingtime;
+    }
+
+    public String getWid() {
         return wid;
     }
 
@@ -18,72 +32,44 @@ public class htlistBean implements Serializable {
         this.wid = wid;
     }
 
-    public String getName() {
-        return name;
+    public String getHid() {
+        return hid;
     }
 
-    @Override
-    public String toString() {
-        return "htlistBean{" +
-                "wid='" + wid + '\'' +
-                ", name='" + name + '\'' +
-                ", sex='" + sex + '\'' +
-                ", degree='" + degree + '\'' +
-                ", department='" + department + '\'' +
-                ", htSum=" + htSum +
-                '}';
+    public void setHid(String hid) {
+        this.hid = hid;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getHname() {
+        return hname;
     }
 
-    public String getSex() {
-        return sex;
+    public void setHname(String hname) {
+        this.hname = hname;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public String getHurl() {
+        return hurl;
     }
 
-    public String getDegree() {
-        return degree;
+    public void setHurl(String hurl) {
+        this.hurl = hurl;
     }
 
-    public void setDegree(String degree) {
-        this.degree = degree;
+    public String getUsetime() {
+        return usetime;
     }
 
-    public String getDepartment() {
-        return department;
+    public void setUsetime(String usetime) {
+        this.usetime = usetime;
     }
 
-    public void setDepartment(String department) {
-        this.department = department;
+    public String getSigningtime() {
+        return signingtime;
     }
 
-    public int getHtSum() {
-        return htSum;
+    public void setSigningtime(String signingtime) {
+        this.signingtime = signingtime;
     }
-
-    public void setHtSum(int htSum) {
-        this.htSum = htSum;
-    }
-
-
-    public htlistBean()
-    {
-
-    }
-
-    public htlistBean(String wid, String name, String sex, String degree, String department, int htSum) {
-        this.wid = wid;
-        this.name = name;
-        this.sex = sex;
-        this.degree = degree;
-        this.department = department;
-        this.htSum = htSum;
-    }
-
-
 }
+
