@@ -1,9 +1,6 @@
 package com.dgut.mapper;
 
-import com.dgut.jsonBean.addBean;
-import com.dgut.jsonBean.addWageBean;
-import com.dgut.jsonBean.listBean;
-import com.dgut.jsonBean.wageBean;
+import com.dgut.jsonBean.*;
 import com.dgut.model.staff;
 import org.apache.ibatis.annotations.*;
 
@@ -42,9 +39,9 @@ public interface staffMapper {
             + " </if>"
             + "</where>"
             + "</script>")
-    List<staff> findOutlist(@Param("department")String department, @Param("education")String education, @Param("stime")String stime, @Param("etime")String etime, @Param("search")String search);
+    List<outlistBean> findOutlist(@Param("department") String department, @Param("education") String education, @Param("search") String search);
 
-    @Update("update staff set state='0',departureTime=#{time} where wid=#{wid}")
+    @Update("update staff set departureTime=#{time} where wid=#{wid}")
     void deleteByWid(@Param("wid")String wid,@Param("time")String time);
 
     @Insert("insert into staff(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,email,state,signingTime) VALUES(#{bean.name},#{bean.sex},#{bean.nation},#{bean.nationality},#{bean.origin},#{bean.idType},#{bean.idNumber},#{bean.education},#{bean.degree},#{bean.department},#{bean.job},#{bean.title},#{bean.lPhone},#{bean.sPhone},#{bean.email},'1',#{time})")

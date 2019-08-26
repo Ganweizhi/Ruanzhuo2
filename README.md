@@ -5,7 +5,7 @@ https://www.processon.com/view/link/5cb9c14ce4b09a3e45a36d42
 params:前端传给后端
 response:后端返回数据
 ## 1. 人员管理
-**/list --数据列表**  
+**/list --数据列表**  #finshed by lgc
 *根据传参查询数据并分页返回(一页7条)*
 ```javascript
 params:{
@@ -53,7 +53,7 @@ response:{
 	totalPage:"数据总条数"
 }
 ```
-**/outlist --导出人员数据** #finsh by superlgc
+**/outlist --导出人员数据** #finsh by lgc
 ```javascript
 params:{
          department:"部门",
@@ -94,7 +94,7 @@ response:{
 }
 ```
 **/download --下载导入模板**
-**/delete --离职人员**     #finsh by superlgc
+**/delete --离职人员**     #finsh by lgc
 *修改在职状态，添加离职时间*
 ```javascript
 params:{

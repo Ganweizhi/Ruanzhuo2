@@ -2,6 +2,7 @@ package com.dgut.controller;
 import com.dgut.jsonBean.addBean;
 import com.dgut.jsonBean.listBean;
 import com.dgut.jsonBean.listBeanPage;
+import com.dgut.jsonBean.outlistBean;
 import com.dgut.model.staff;
 import com.dgut.service.listService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class ListController {
 
     @RequestMapping(value = "/outlist")
     @ResponseBody
-    public List<staff> getOutlist(String department, String education, String stime, String etime, String search) {
+    public List<outlistBean> getOutlist(String department, String education, String search, String stime, String etime) {
         if(department.equals("")) {
             department = null;
         }
@@ -49,7 +50,11 @@ public class ListController {
             search = null;
         }
 
-        List<staff> data = listservice.findOutlist(department, education, stime, etime, search);
+        List<outlistBean> data = listservice.findOutlist(department, education,search);
+        for (outlistBean datum : data) {
+            datum.setSigningTime(listservice.findSigningTimeByWid(datum.getWid()));
+            datum.setDepartment(listservice.getDepartmentNameByID(datum.getDepartment()));
+        }
         if(!stime.equals("")) {
             String[] split = stime.split(",");
             data = data.stream().filter(bean -> bean.getSigningTime().compareTo(split[0]) >= 0 && bean.getSigningTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
@@ -58,9 +63,6 @@ public class ListController {
         if(!etime.equals("")) {
             String[] split = etime.split(",");
             data = data.stream().filter(bean -> bean.getDepartureTime().compareTo(split[0]) >= 0 && bean.getDepartureTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
-        }
-        for (staff datum : data) {
-            datum.setDepartment(listservice.getDepartmentNameByID(datum.getDepartment()));
         }
         return data;
     }
@@ -81,6 +83,8 @@ public class ListController {
         List<listBean> data = listservice.findList(department, education, search);
         for (listBean datum : data) {
             datum.setSigningTime(listservice.findSigningTimeByWid(datum.getWid()));
+            datum.setDepartment(listservice.getDepartmentNameByID(datum.getDepartment()));
+            datum.setState(datum.getDepartureTime()==null?"1":"0");
         }
         if(!stime.equals("")) {
             String[] split = stime.split(",");
@@ -91,9 +95,7 @@ public class ListController {
             String[] split = etime.split(",");
             data = data.stream().filter(bean -> bean.getDepartureTime().compareTo(split[0]) >= 0 && bean.getDepartureTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
         }
-        for (listBean datum : data) {
-            datum.setDepartment(listservice.getDepartmentNameByID(datum.getDepartment()));
-        }
+
         int start = (Integer.parseInt(currentPage)-1)*7;
         int end = start+7>data.size()?data.size():start+7;
         List<listBean> datas = data.subList(start,end);
