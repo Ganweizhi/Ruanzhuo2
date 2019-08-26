@@ -26,7 +26,6 @@ public class RoleController {
     public RoleListBeanPage findAll() {
         List<RoleListBean> data = rolesService.findAll();
         RoleListBeanPage roleListBeanPage = new RoleListBeanPage(data, data.size());
-        System.out.println(roleListBeanPage);
         return roleListBeanPage;
     }
 }

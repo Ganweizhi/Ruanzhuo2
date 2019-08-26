@@ -2,6 +2,7 @@ package com.dgut.controller;
 
 import com.dgut.jsonBean.GllistBeanPage;
 import com.dgut.jsonBean.GllistBean;
+import com.dgut.jsonBean.GllistChangeBean;
 import com.dgut.service.ManagersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,24 +24,38 @@ public class ManagerController {
     @Autowired
     private ManagersService managersService;
 
+    /**
+     * 展示所有的管理员，还要展示对应的角色
+     * @return
+     */
     @RequestMapping("/gllist")
     @ResponseBody
     public GllistBeanPage findAll() {
-        GllistBean gllistBean = null;
+        GllistChangeBean gllistChangeBean = new GllistChangeBean(0, "hi", new ArrayList<>(), 0);
+        GllistChangeBean gllistChangeBean1 = new GllistChangeBean(0, "hi", new ArrayList<>(), 0);
         List<GllistBean> data = managersService.findAll();
-        Map<Integer, GllistBean> map = new HashMap<Integer, GllistBean>();  // 合并后的GllistBean保存在map中
+        Map<Integer, GllistChangeBean> map = new HashMap<Integer, GllistChangeBean>();  // 合并后的GllistBean保存在map中
         for(GllistBean getById : data) {
-            gllistBean = map.get(getById.getGid());  // 通过id判断是否存在对应的管理员
-            if(gllistBean != null){  // 存在则合并role字段，并保存到map
-                gllistBean.setRole(gllistBean.getRole() + "," + getById.getRole());
-                map.put(gllistBean.getGid(), gllistBean);
+            gllistChangeBean = map.get(getById.getGid());  // 通过id判断是否存在对应的管理员
+            if(gllistChangeBean != null){  // 存在则合并role字段，并保存到map
+                System.out.println(gllistChangeBean);
+                gllistChangeBean.getRoles().add(getById.getRole());
+                map.put(getById.getGid(), gllistChangeBean);
             } else {  // 不存在，则将新的保存到map
-                map.put(getById.getGid(), getById);
+//                gllistChangeBean = gllistChangeBean1;  这句有拷贝错误，比较隐蔽
+                gllistChangeBean = new GllistChangeBean(0, "hi", new ArrayList<>(), 0);
+                gllistChangeBean.setGid(getById.getGid());
+                gllistChangeBean.setName(getById.getName());
+                gllistChangeBean.getRoles().add(getById.getRole());  // 将GllistBean的Role字段添加到GllistChangeBean的Roles列表
+                gllistChangeBean.setState(getById.getState());
+                map.put(getById.getGid(), gllistChangeBean);
             }
         }
 
         GllistBeanPage gllistAndNumBean = new GllistBeanPage(map, map.size());
-//        System.out.println(gllistAndNumBean);
+        System.out.println(gllistAndNumBean);
         return gllistAndNumBean;
     }
+
+
 }

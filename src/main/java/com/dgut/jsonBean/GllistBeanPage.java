@@ -12,27 +12,26 @@ import java.util.Map;
  * 组合了GllistBean和总数目，是返回的json的封装
  */
 public class GllistBeanPage implements Serializable {
-    List<GllistBean> data;  // 数据域
+    List<GllistChangeBean> data;  // 数据域
     Integer totalPage;  // 数据总条数
 
     public GllistBeanPage()
     {
 
     }
-    public GllistBeanPage(Map<Integer,GllistBean> data, int totalPage)
+    public GllistBeanPage(Map<Integer,GllistChangeBean> datas, int totalPage)
     {
-        List<GllistBean> gllistBeans = new ArrayList<GllistBean>(data.values());  // Collection转List， 比较容易犯错
+        List<GllistChangeBean> data = new ArrayList<GllistChangeBean>(datas.values());  // Collection转List， 比较容易犯错
 
-        this.data = gllistBeans;
-//        System.out.println(data.values());  // 调试用
+        this.data = data;
         this.totalPage = totalPage;
     }
 
-    public List<GllistBean> getData() {
+    public List<GllistChangeBean> getData() {
         return data;
     }
 
-    public void setData(List<GllistBean> data) {
+    public void setData(List<GllistChangeBean> data) {
         this.data = data;
     }
 
@@ -46,7 +45,7 @@ public class GllistBeanPage implements Serializable {
 
     @Override
     public String toString() {
-        return "GllistAndNumBean{" +
+        return "GllistBeanPage{" +
                 "data=" + data +
                 ", totalPage=" + totalPage +
                 '}';
