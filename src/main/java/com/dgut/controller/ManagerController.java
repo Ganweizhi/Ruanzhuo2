@@ -43,7 +43,7 @@ public class ManagerController {
                 map.put(getById.getGid(), gllistChangeBean);
             } else {  // 不存在，则将新的保存到map
 //                gllistChangeBean = gllistChangeBean1;  这句有拷贝错误，比较隐蔽
-                gllistChangeBean = new GllistChangeBean(0, "hi", new ArrayList<>(), 0);
+                gllistChangeBean = new GllistChangeBean(0, "hi", new ArrayList<>(), 0);  // 只是初始化一哈
                 gllistChangeBean.setGid(getById.getGid());
                 gllistChangeBean.setName(getById.getName());
                 gllistChangeBean.getRoles().add(getById.getRole());  // 将GllistBean的Role字段添加到GllistChangeBean的Roles列表
