@@ -104,7 +104,7 @@ response:{
 	success:"状态"   //1成功，0失败
 }
 ```
-**/inlist --数据导入**
+**/inlist --数据导入** #finsh by lgc
 ```javascript
 params:{
 	[
@@ -139,7 +139,7 @@ response:{
 }
 ```
 ## 2. tabs
-**/init --新wid**
+**/init --新wid** #finsh by lgc
 ```javascript
 response:{
 	wid:"工号" //返回最新wid

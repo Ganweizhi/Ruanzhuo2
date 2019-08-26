@@ -48,4 +48,12 @@ public class listService {
     public String findSigningTimeByWid(String wid) {
         return staffmapper.findSigningTimeByWid(wid);
     }
+
+    public void addInList(outlistBean msgForm) {
+        staffmapper.addInList(msgForm);
+    }
+
+    public int getNewWid() {
+        return staffmapper.getNewWid();
+    }
 }

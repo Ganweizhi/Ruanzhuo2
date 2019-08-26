@@ -168,6 +168,7 @@ insert into roles_managers(managers_id, roles_id) values(2019501, 2);
 insert into roles_managers(managers_id, roles_id) values(2019502, 1);
 insert into roles_managers(managers_id, roles_id) values(2019503, 2);
 insert into roles_managers(managers_id, roles_id) values(2019504, 1);
+insert into roles_managers(managers_id, roles_id) values(2019500, 0);
 -- insert into roles_managers(managers_id, roles_id) values(2019505, 2);
 
 
