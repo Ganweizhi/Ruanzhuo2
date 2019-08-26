@@ -38,22 +38,23 @@ public class ManagerController {
         for(GllistBean getById : data) {
             gllistChangeBean = map.get(getById.getGid());  // 通过id判断是否存在对应的管理员
             if(gllistChangeBean != null){  // 存在则合并role字段，并保存到map
-                System.out.println(gllistChangeBean);
-                gllistChangeBean.getRoles().add(getById.getRole());
+//                System.out.println(gllistChangeBean);
+                gllistChangeBean.getRole().add(",");
+                gllistChangeBean.getRole().add(getById.getRole());
                 map.put(getById.getGid(), gllistChangeBean);
             } else {  // 不存在，则将新的保存到map
 //                gllistChangeBean = gllistChangeBean1;  这句有拷贝错误，比较隐蔽
                 gllistChangeBean = new GllistChangeBean(0, "hi", new ArrayList<>(), 0);  // 只是初始化一哈
                 gllistChangeBean.setGid(getById.getGid());
                 gllistChangeBean.setName(getById.getName());
-                gllistChangeBean.getRoles().add(getById.getRole());  // 将GllistBean的Role字段添加到GllistChangeBean的Roles列表
+                gllistChangeBean.getRole().add(getById.getRole());  // 将GllistBean的Role字段添加到GllistChangeBean的Roles列表
                 gllistChangeBean.setState(getById.getState());
                 map.put(getById.getGid(), gllistChangeBean);
             }
         }
 
         GllistBeanPage gllistAndNumBean = new GllistBeanPage(map, map.size());
-        System.out.println(gllistAndNumBean);
+//        System.out.println(gllistAndNumBean);
         return gllistAndNumBean;
     }
 

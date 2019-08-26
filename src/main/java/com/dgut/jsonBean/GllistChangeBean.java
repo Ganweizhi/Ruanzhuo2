@@ -13,13 +13,13 @@ public class GllistChangeBean implements Serializable {
 
     private Integer gid;  // 管理员莞工账号
     private String name;  // 管理员名称
-    private List<String> roles;  // 管理员的角色名称列表
+    private List<String> role;  // 管理员的角色名称列表
     private Integer state;  // 账号是否停用，0 或 1
 
-    public GllistChangeBean (Integer gid, String name, List<String> roles, Integer state) {
+    public GllistChangeBean (Integer gid, String name, List<String> role, Integer state) {
         this.gid = gid;
         this.name = name;
-        this.roles = roles;
+        this.role = role;
         this.state = state;
     }
 
@@ -39,12 +39,13 @@ public class GllistChangeBean implements Serializable {
         this.name = name;
     }
 
-    public List<String> getRoles() {
-        return roles;
+
+    public List<String> getRole() {
+        return role;
     }
 
-    public void setRoles(List<String> roles) {
-        this.roles = roles;
+    public void setRole(List<String> role) {
+        this.role = role;
     }
 
     public Integer getState() {
@@ -60,7 +61,7 @@ public class GllistChangeBean implements Serializable {
         return "GllistChangeBean{" +
                 "gid=" + gid +
                 ", name='" + name + '\'' +
-                ", roles=" + roles +
+                ", role=" + role +
                 ", state=" + state +
                 '}';
     }
