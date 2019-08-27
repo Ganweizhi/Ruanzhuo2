@@ -25,17 +25,17 @@ public interface ManagersMapper {
 
     /**
      * 2. 根据参数gid更改managers表的state
-     * 要在业务层判断是否更改了state
+     * 不需要在业务层判断是否更改了state，应为没修改也会将原本的值传过来
      */
     @Update("update managers set state = #{state where id = #{gid}")
-    void editManagesState(@Param("gid")String gid, @Param("state")String state);
+    void editManagesState(@Param("gid")Integer gid, @Param("state")Integer state);
 
     /**
      * 3. 根据管理员id删除roles_managers中原有的记录
-     * 要在业务层判断是否更改了角色
+     * 不需要在业务层判断是否更改了角色，应为没修改也会将原本的值传过来
      */
     @Delete("delete roles_managers where managers_id = #{gid}")
-    void deleteByManagersId(@Param("gid")String gid);
+    void deleteByManagersId(@Param("gid")Integer gid);
 
     /**
      * 4. 在roles_managers表中插入新的角色权限
