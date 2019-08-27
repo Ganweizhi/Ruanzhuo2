@@ -48,7 +48,7 @@ public class listService {
         staffmapper.Xcedit(xcForm);
     }
 
-    public String findSigningTimeByWid(String wid) {
+    public List<String> findSigningTimeByWid(String wid) {
         return staffmapper.findSigningTimeByWid(wid);
     }
 

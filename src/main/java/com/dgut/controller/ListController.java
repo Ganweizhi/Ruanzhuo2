@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -98,7 +100,9 @@ public class ListController {
 
         List<listBean> data = listservice.findList(department, education, search);
         for (listBean datum : data) {
-            datum.setSigningTime(listservice.findSigningTimeByWid(datum.getWid()));
+            List<String> list = listservice.findSigningTimeByWid(datum.getWid());
+            Collections.sort(list);
+            datum.setSigningTime(list.get(list.size()-1));
             datum.setDepartment(listservice.getDepartmentNameByID(datum.getDepartment()));
             datum.setState(listservice.getStateByWid(datum.getWid()));
         }
