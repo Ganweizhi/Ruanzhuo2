@@ -71,8 +71,10 @@ public class ListController {
         List<outlistBean> data = listservice.findOutlist(department, education,search);
         for (outlistBean datum : data) {
             List<String> list = listservice.findSigningTimeByWid(datum.getWid());
-            Collections.sort(list);
-            datum.setSigningTime(list.get(list.size()-1));
+            if(list.size()!=0) {
+                Collections.sort(list);
+                datum.setSigningTime(list.get(list.size() - 1));
+            }
             datum.setDepartment(listservice.getDepartmentNameByID(datum.getDepartment()));
         }
         if(!stime.equals("")) {
@@ -103,8 +105,10 @@ public class ListController {
         List<listBean> data = listservice.findList(department, education, search);
         for (listBean datum : data) {
             List<String> list = listservice.findSigningTimeByWid(datum.getWid());
-            Collections.sort(list);
-            datum.setSigningTime(list.get(list.size()-1));
+            if(list.size()!=0) {
+                Collections.sort(list);
+                datum.setSigningTime(list.get(list.size() - 1));
+            }
             datum.setDepartment(listservice.getDepartmentNameByID(datum.getDepartment()));
             datum.setState(listservice.getStateByWid(datum.getWid()));
         }
