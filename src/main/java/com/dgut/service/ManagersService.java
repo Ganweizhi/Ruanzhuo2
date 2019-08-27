@@ -72,7 +72,7 @@ public class ManagersService {
             this.deleteByManagersId(gllistFromGleditBean.getGid());
             System.out.println("-----------deleteByManagersId");
             System.out.println(gllistFromGleditBean);
-            for (String str : gllistFromGleditBean.getRoleLists()) {
+            for (String str : gllistFromGleditBean.getRole()) {
                 System.out.println(str);
                 String rid = rolesService.findRoleIdsByRoleName("%" + str + "%");
                 System.out.println("--------------findRoleid");
