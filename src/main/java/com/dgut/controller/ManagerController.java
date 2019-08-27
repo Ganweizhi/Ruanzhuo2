@@ -67,4 +67,14 @@ public class ManagerController {
         return gllistAndNumBean;
     }
 
+    /**
+     * 修改管理员的角色和状态
+     * @param gllistChangeBean
+     * @return
+     */
+    @RequestMapping("/gledit")
+    @ResponseBody
+    public Integer editRolesOfManager(GllistChangeBean gllistChangeBean) {
+        return managersService.editRolesOfManager(gllistChangeBean);
+    }
 }

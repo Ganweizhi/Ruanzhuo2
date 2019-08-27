@@ -44,7 +44,7 @@ public interface ManagersMapper {
      * @param rid
      */
     @Insert("insert into roles_managers(managers_id, roles_id) values(#{gid}, #{rid})")
-    void insertRolesManagers(@Param("gid")String gid, @Param("rid")String rid);
+    void insertRolesManagers(@Param("gid")Integer gid, @Param("rid")Integer rid);
 
 
 
