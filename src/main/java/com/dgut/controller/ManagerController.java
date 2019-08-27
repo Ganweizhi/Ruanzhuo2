@@ -1,16 +1,17 @@
 package com.dgut.controller;
 
-import com.dgut.jsonBean.GllistBeanPage;
 import com.dgut.jsonBean.GllistBean;
+import com.dgut.jsonBean.GllistBeanPage;
 import com.dgut.jsonBean.GllistChangeBean;
+import com.dgut.jsonBean.GllistFromGleditBean;
 import com.dgut.service.ManagersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author WuJiewei
@@ -67,4 +68,17 @@ public class ManagerController {
         return gllistAndNumBean;
     }
 
+    /**
+     * 修改管理员的角色和状态
+     * @param gllistFromGleditBean
+     * @return
+     */
+    @RequestMapping("/gledit")
+    @ResponseBody
+    public Integer editRolesOfManager(@ModelAttribute GllistFromGleditBean gllistFromGleditBean) {
+//        GllistFromGleditBean gllistFromGleditBean = new GllistFromGleditBean(0, "hi", new ArrayList<>(), 0);
+//        gllistFromGleditBean.setGid(request.getParameter("gid"));
+        System.out.println(gllistFromGleditBean);
+        return managersService.editRolesOfManager(gllistFromGleditBean);
+    }
 }

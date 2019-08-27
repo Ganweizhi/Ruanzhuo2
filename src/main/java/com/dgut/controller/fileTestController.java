@@ -1,20 +1,22 @@
 package com.dgut.controller;
 
-        import com.dgut.jsonBean.IdReturnBean;
-        import com.dgut.jsonBean.Inithtlist;
-        import com.dgut.jsonBean.htTable;
-        import com.dgut.jsonBean.htTable1;
-        import com.dgut.service.UserFileService;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.web.bind.annotation.*;
-        import org.springframework.web.multipart.MultipartFile;
-        import sun.nio.cs.US_ASCII;
+import com.dgut.jsonBean.IdReturnBean;
+import com.dgut.jsonBean.Inithtlist;
+import com.dgut.jsonBean.htTable;
+import com.dgut.jsonBean.htTable1;
+import com.dgut.service.UserFileService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-        import javax.servlet.http.HttpServletRequest;
-        import java.io.File;
-        import java.io.IOException;
-        import java.text.SimpleDateFormat;
-        import java.util.*;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
