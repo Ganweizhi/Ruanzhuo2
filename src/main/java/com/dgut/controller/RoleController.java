@@ -3,12 +3,10 @@ package com.dgut.controller;
 import com.dgut.jsonBean.GllistChangeBean;
 import com.dgut.jsonBean.RoleListBean;
 import com.dgut.jsonBean.RoleListBeanPage;
+import com.dgut.jsonBean.outlistBean;
 import com.dgut.service.RolesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,5 +35,24 @@ public class RoleController {
     public List<RoleListBean> returnRoleLists() {
         List<RoleListBean> roleListBeans = rolesService.findAll();
         return roleListBeans;
+    }
+
+
+    /**
+     * 根据rid删除角色，要注意的是，在删除角色之前，要先删除映射表中相关的记录
+     * @param rid
+     * @return
+     */
+    @RequestMapping(value = "/roledelete")
+    @ResponseBody
+    public Integer deleteRoleById(Integer rid){
+        try{
+            rolesService.deleteRolesManagersById(rid);
+            rolesService.deleteRoleById(rid);
+        }catch (Exception e){
+            return 0;
+        }
+
+        return 1;
     }
 }

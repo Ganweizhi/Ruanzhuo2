@@ -31,12 +31,19 @@ public interface RolesMapper {
      * @return
      */
     @Select("select id form roles where name = #{name}")
-    String findRoleIdsByRoleName(@Param("name")String name);
+    Integer findRoleIdsByRoleName(@Param("name")String name);
 
     /**
-     *
-     * @param id
+     * 根据id删除角色
+     * @param rid
      */
     @Delete("delete roles where id = #{rid}")
-    void deleteRoleById(@Param("rid")String id);
+    void deleteRoleById(@Param("rid")Integer rid);
+
+    /**
+     * 根据角色id删除roles_managers中的记录
+     * @param rid
+     */
+    @Delete("delete roles_managers where roles_id = #{rid}")
+    void deleteRolesManagersById(@Param("rid")Integer rid);
 }

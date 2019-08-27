@@ -28,15 +28,19 @@ public class ManagersService {
         return managersMapper.findAll();
     }
 
-    public Integer updateRoles(String state, List<String> rolesNames, String gid) {
-        if (state != null){   // 判断是否更改了状态
-            managersMapper.editManagesState(gid, state);
-        }
+    /**
+     * 2. 修改管理员的状态
+     */
+    public void editState(Integer gid, Integer state) {
+        managersMapper.editManagesState(gid, state);
+    }
 
-        if (!rolesNames.isEmpty()) {  // 判断是否更改了角色
-
-        }
-        return 0;
+    /**
+     * 3. 根据管理员id删除roles_managers表中的所有记录
+     * @param gid
+     */
+    public void deleteByManagersId(Integer gid) {
+        managersMapper.deleteByManagersId(gid);
     }
 
 }

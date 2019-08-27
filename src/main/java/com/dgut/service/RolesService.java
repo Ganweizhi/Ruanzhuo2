@@ -20,4 +20,12 @@ public class RolesService {
     public List<RoleListBean> findAll() {
         return rolesMapper.findAll();
     }
+
+    public void deleteRoleById(Integer rid) {
+        rolesMapper.deleteRoleById(rid);
+    }
+
+    public void deleteRolesManagersById(Integer rid) {
+        rolesMapper.deleteRolesManagersById(rid);
+    }
 }
