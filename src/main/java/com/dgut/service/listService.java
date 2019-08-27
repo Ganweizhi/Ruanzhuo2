@@ -83,4 +83,11 @@ public class listService {
         return "0";
     }
 
+    public String getNameByWid(String wid) {
+        return staffmapper.getNameByWid(wid);
+    }
+
+    public int updateMessage(addBean msgForm) {
+        return staffmapper.updateMessage(msgForm);
+    }
 }
