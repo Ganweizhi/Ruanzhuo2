@@ -44,8 +44,8 @@ public interface staffMapper {
     @Update("update staff set departureTime=#{time} where wid=#{wid}")
     void deleteByWid(@Param("wid")String wid,@Param("time")String time);
 
-    @Insert("insert into staff(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,email,state,signingTime) VALUES(#{bean.name},#{bean.sex},#{bean.nation},#{bean.nationality},#{bean.origin},#{bean.idType},#{bean.idNumber},#{bean.education},#{bean.degree},#{bean.department},#{bean.job},#{bean.title},#{bean.lPhone},#{bean.sPhone},#{bean.email},'1',#{time})")
-    int add(@Param("bean") addBean bean, @Param("time")String time);
+    @Insert("insert into staff(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,email) VALUES(#{bean.name},#{bean.sex},#{bean.nation},#{bean.nationality},#{bean.origin},#{bean.idType},#{bean.idNumber},#{bean.education},#{bean.degree},#{bean.department},#{bean.job},#{bean.title},#{bean.lPhone},#{bean.sPhone},#{bean.email})")
+    int add(@Param("bean") addBean bean);
 
     @Select("<script>"
             + "select wid,name,sex,education,department,baseWage from staff"

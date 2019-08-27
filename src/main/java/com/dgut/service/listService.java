@@ -35,9 +35,7 @@ public class listService {
     }
 
     public int add(addBean bean) {
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
-        String time = df.format(new Date());
-        return staffmapper.add(bean,time);
+        return staffmapper.add(bean);
     }
 
     public List<wageBean> findXclist(String department, String education, String search) {

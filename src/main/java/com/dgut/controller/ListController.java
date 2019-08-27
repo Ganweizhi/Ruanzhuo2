@@ -79,11 +79,13 @@ public class ListController {
         }
         if(!stime.equals("")) {
             String[] split = stime.split(",");
+            data = data.stream().filter(bean -> bean.getSigningTime()!=null).collect(Collectors.toList());
             data = data.stream().filter(bean -> bean.getSigningTime().compareTo(split[0]) >= 0 && bean.getSigningTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
         }
 
         if(!etime.equals("")) {
             String[] split = etime.split(",");
+            data = data.stream().filter(bean -> bean.getDepartureTime()!=null).collect(Collectors.toList());
             data = data.stream().filter(bean -> bean.getDepartureTime().compareTo(split[0]) >= 0 && bean.getDepartureTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
         }
         return data;
@@ -114,11 +116,13 @@ public class ListController {
         }
         if(!stime.equals("")) {
             String[] split = stime.split(",");
+            data = data.stream().filter(bean -> bean.getSigningTime()!=null).collect(Collectors.toList());
             data = data.stream().filter(bean -> bean.getSigningTime().compareTo(split[0]) >= 0 && bean.getSigningTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
         }
 
         if(!etime.equals("")) {
             String[] split = etime.split(",");
+            data = data.stream().filter(bean -> bean.getDepartureTime()!=null).collect(Collectors.toList());
             data = data.stream().filter(bean -> bean.getDepartureTime().compareTo(split[0]) >= 0 && bean.getDepartureTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
         }
 
