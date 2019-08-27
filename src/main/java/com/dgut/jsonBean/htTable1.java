@@ -1,26 +1,20 @@
 package com.dgut.jsonBean;
 
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+
+import javax.print.DocFlavor;
 
 public class htTable1 {
-    private String hid;
-    private String htName;
-    private String signingTime;
-    private String useTime;
-    private String htUrl;
-    private int state;
-    public htTable1(){
+   private String hid;
+   private String htName;
+   private String signingTime;
+   private String useTime;
+   private String htUrl;
+   private int state;
 
-    }
+   public htTable1(){
 
-    public htTable1(String hid, String htName, String signingTime, String useTime, String htUrl, int state) {
-        this.hid = hid;
-        this.htName = htName;
-        this.signingTime = signingTime;
-        this.useTime = useTime;
-        this.htUrl = htUrl;
-        this.state = state;
-    }
+   }
 
     public String getHid() {
         return hid;
@@ -67,6 +61,15 @@ public class htTable1 {
     }
 
     public void setState(int state) {
+        this.state = state;
+    }
+
+    public htTable1(String hid, String htName, String signingTime, String useTime, String htUrl, int state) {
+        this.hid = hid;
+        this.htName = htName;
+        this.signingTime = signingTime;
+        this.useTime = useTime;
+        this.htUrl = htUrl;
         this.state = state;
     }
 }

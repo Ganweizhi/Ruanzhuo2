@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -66,5 +69,20 @@ public class UserFileService {
         else if(s.equals("Oct")) return "10";
         else if(s.equals("Nov")) return "11";
         else return "12";
+    }
+    public int CalTime(String q,String  b) throws Exception
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Calendar rightNow = Calendar.getInstance();
+        int a = Integer.parseInt(q);
+        a = a*-1;
+        rightNow.add(Calendar.MONTH,a); //减去合同月份
+        Date nowC = rightNow.getTime();
+        String nowString = sdf.format(nowC);
+        //System.out.println(nowString);
+        //System.out.println(b.compareTo(nowString));
+        int w = b.compareTo(nowString);
+        if(w>=0) return 1;
+        else  return  0;
     }
 }

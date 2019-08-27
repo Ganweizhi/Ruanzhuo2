@@ -3,22 +3,21 @@ package com.dgut.jsonBean;
 import org.apache.ibatis.annotations.Select;
 
 public class htTable {
-    private String hid;
-    private String htName;
-    private String signingTime;
-    private String useTime;
-    private String htUrl;
+   private String hid;
+   private String hName;
+   private String hUrl;
+   private String useTime;
+   private String signingTime;
+   public htTable(){
 
-    public htTable(){
+   }
 
-    }
-
-    public htTable(String hid, String htName, String signingTime, String useTime, String htUrl) {
+    public htTable(String hid, String hName, String hUrl, String useTime, String signingTime) {
         this.hid = hid;
-        this.htName = htName;
-        this.signingTime = signingTime;
+        this.hName = hName;
+        this.hUrl = hUrl;
         this.useTime = useTime;
-        this.htUrl = htUrl;
+        this.signingTime = signingTime;
     }
 
     public String getHid() {
@@ -29,20 +28,20 @@ public class htTable {
         this.hid = hid;
     }
 
-    public String getHtName() {
-        return htName;
+    public String gethName() {
+        return hName;
     }
 
-    public void setHtName(String htName) {
-        this.htName = htName;
+    public void sethName(String hName) {
+        this.hName = hName;
     }
 
-    public String getSigningTime() {
-        return signingTime;
+    public String gethUrl() {
+        return hUrl;
     }
 
-    public void setSigningTime(String signingTime) {
-        this.signingTime = signingTime;
+    public void sethUrl(String hUrl) {
+        this.hUrl = hUrl;
     }
 
     public String getUseTime() {
@@ -53,11 +52,11 @@ public class htTable {
         this.useTime = useTime;
     }
 
-    public String getHtUrl() {
-        return htUrl;
+    public String getSigningTime() {
+        return signingTime;
     }
 
-    public void setHtUrl(String htUrl) {
-        this.htUrl = htUrl;
+    public void setSigningTime(String signingTime) {
+        this.signingTime = signingTime;
     }
 }

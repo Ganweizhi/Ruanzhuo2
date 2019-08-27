@@ -40,6 +40,7 @@ public interface UserFileMapper {
     @Update("update staff set departureTime =#{dtime} where wid =#{wid}")
      void updateDtime(@Param("wid") String wid,@Param("dtime") String dtime);
 
-    @Select("select hid,htname,signingTime,userTime,htUrl from file where wid =#{wid}")
+//    @Select("select hid,Hname,signingTime,useTime,hUrl from HT where wid =#{wid}")
+    @Select("select hid,Hname,signingTime,useTime,hUrl from ht where wid =#{wid}")
     List<htTable> htTale(@Param("wid") String wid);
 }

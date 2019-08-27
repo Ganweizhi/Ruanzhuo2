@@ -56,7 +56,7 @@ public class fileTestController {
 //        stime=stime+last;
         String time = iht.getSigningTime();
         String yuefen = userFileService.timeChange(time.substring(4,7));
-        String stime1 = time.substring(11,15)+"-"+time.substring(8,10)+"-"+yuefen;
+        String stime1 = time.substring(11,15)+"-"+yuefen+"-"+time.substring(8,10);
         File folder = new File(realPath);
         if (!folder.exists()) {
             folder.mkdirs();
@@ -153,28 +153,18 @@ public class fileTestController {
         }
         else return "{\"success\":0}";
     }
-    @RequestMapping(value="/httable",method = RequestMethod.POST)
+    @RequestMapping(value="/httable")
     public List<htTable1> htTbale1s1(String wid) throws Exception
     {
       List<htTable> list = userFileService.htTables(wid);
       int State[] = new int[list.size()];
       List<htTable1> list1 = new ArrayList<htTable1>();
       for(htTable date :list){
-          int m= 0;
-          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-          int i =Integer.parseInt(date.getUseTime());
-          String sm = date.getSigningTime();
-          Date  dt = sdf.parse(sm);
-          Calendar calendar = Calendar.getInstance();
-          calendar.setTime(dt);
-          calendar.add(Calendar.MONTH,i);
-          Date now = calendar.getTime();
-          String nowTime = sdf.format(date);
-          String htTime = dt.toString();
-          State[m] = htTime.compareTo(nowTime);
-          if(State[m] == -1) State[i] = 0;
-          htTable1 hb = new htTable1(date.getHid(),date.getHtName(),date.getSigningTime(),date.getUseTime(),date.getHtUrl(),State[i]);
-          list1.add(hb);
+          int i = 0 ;
+          State[i] =userFileService.CalTime(date.getUseTime(),date.getSigningTime());
+         htTable1 hb = new htTable1(date.getHid(),date.gethName(),date.getSigningTime(),date.getSigningTime(),date.gethUrl(),State[i]);
+         list1.add(hb);
+         i++;
      }
      return list1;
     }
