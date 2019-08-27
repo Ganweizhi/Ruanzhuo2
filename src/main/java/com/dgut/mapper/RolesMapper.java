@@ -1,6 +1,5 @@
 package com.dgut.mapper;
 
-import com.dgut.jsonBean.GllistBean;
 import com.dgut.jsonBean.RoleListBean;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
@@ -30,8 +29,8 @@ public interface RolesMapper {
      * @param name
      * @return
      */
-    @Select("select id form roles where name = #{name}")
-    Integer findRoleIdsByRoleName(@Param("name")String name);
+    @Select("select id from roles where name like name")
+    String findRoleIdsByRoleName(@Param("name")String name);
 
     /**
      * 根据id删除角色

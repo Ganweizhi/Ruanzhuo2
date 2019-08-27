@@ -1,7 +1,7 @@
 package com.dgut.service;
 
 import com.dgut.jsonBean.GllistBean;
-import com.dgut.jsonBean.GllistChangeBean;
+import com.dgut.jsonBean.GllistFromGleditBean;
 import com.dgut.mapper.ManagersMapper;
 import com.dgut.mapper.RolesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +35,7 @@ public class ManagersService {
     /**
      * 2. 修改管理员的状态
      */
-    public void editState(Integer gid, Integer state) {
+    public void editState(String gid, String state) {
         managersMapper.editManagesState(gid, state);
     }
 
@@ -44,7 +44,7 @@ public class ManagersService {
      *
      * @param gid
      */
-    public void deleteByManagersId(Integer gid) {
+    public void deleteByManagersId(String gid) {
         managersMapper.deleteByManagersId(gid);
     }
 
@@ -54,23 +54,30 @@ public class ManagersService {
      * @param gid
      * @param rid
      */
-    public void insertRolesManagers(Integer gid, Integer rid) {
+    public void insertRolesManagers(String gid, String rid) {
         managersMapper.insertRolesManagers(gid, rid);
     }
 
     /**
      * 5.对修改管理员的角色和状态的业务逻辑的实现
      *
-     * @param gllistChangeBean
+     * @param gllistFromGleditBean
      * @return
      */
-    public Integer editRolesOfManager(GllistChangeBean gllistChangeBean) {
+    public Integer editRolesOfManager(GllistFromGleditBean gllistFromGleditBean) {
         try {
-            this.editState(gllistChangeBean.getGid(), gllistChangeBean.getState());
-            this.deleteByManagersId(gllistChangeBean.getGid());
-            for (String str : gllistChangeBean.getRole()) {
-                Integer rid = rolesService.findRoleIdsByRoleName(str);
-                this.insertRolesManagers(gllistChangeBean.getGid(), rid);
+            System.out.println("start_________________");
+            this.editState(gllistFromGleditBean.getGid(), gllistFromGleditBean.getState());
+            System.out.println("----------editState");
+            this.deleteByManagersId(gllistFromGleditBean.getGid());
+            System.out.println("-----------deleteByManagersId");
+            System.out.println(gllistFromGleditBean);
+            for (String str : gllistFromGleditBean.getRoleLists()) {
+                System.out.println(str);
+                String rid = rolesService.findRoleIdsByRoleName("%" + str + "%");
+                System.out.println("--------------findRoleid");
+                this.insertRolesManagers(gllistFromGleditBean.getGid(), rid);
+                System.out.println("--------------insertRoles");
             }
         } catch (Exception e) {
             return 0;

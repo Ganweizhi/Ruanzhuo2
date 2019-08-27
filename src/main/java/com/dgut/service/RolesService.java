@@ -29,7 +29,7 @@ public class RolesService {
         rolesMapper.deleteRolesManagersById(rid);
     }
 
-    public Integer findRoleIdsByRoleName(String name) {
+    public String findRoleIdsByRoleName(String name) {
         return rolesMapper.findRoleIdsByRoleName(name);
     }
 }
