@@ -75,7 +75,7 @@ public class ManagerController {
      */
     @RequestMapping("/gledit")
     @ResponseBody
-    public Integer editRolesOfManager(@ModelAttribute GllistFromGleditBean gllistFromGleditBean) {
+    public Integer editRolesOfManager(@RequestBody GllistFromGleditBean gllistFromGleditBean) {
 //        GllistFromGleditBean gllistFromGleditBean = new GllistFromGleditBean(0, "hi", new ArrayList<>(), 0);
 //        gllistFromGleditBean.setGid(request.getParameter("gid"));
         System.out.println(gllistFromGleditBean);

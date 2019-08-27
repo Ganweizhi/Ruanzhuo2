@@ -7,7 +7,7 @@ public class GllistFromGleditBean implements Serializable {
 
     private String gid;  // 管理员莞工账号
     private String name;  // 管理员名称
-    private List<String> roleLists;  // 管理员的角色名称列表
+    private List<String> role;  // 管理员的角色名称列表
     private String state;  // 账号是否停用，0 或 1
 
 
@@ -31,12 +31,12 @@ public class GllistFromGleditBean implements Serializable {
         this.name = name;
     }
 
-    public List<String> getRoleLists() {
-        return roleLists;
+    public List<String> getRole() {
+        return role;
     }
 
-    public void setRoleLists(List<String> roleLists) {
-        this.roleLists = roleLists;
+    public void setRole(List<String> role) {
+        this.role = role;
     }
 
     public String getState() {
@@ -48,7 +48,7 @@ public class GllistFromGleditBean implements Serializable {
         return "GllistFromGleditBean{" +
                 "gid='" + gid + '\'' +
                 ", name='" + name + '\'' +
-                ", roleLists=" + roleLists +
+                ", role=" + role +
                 ", state='" + state + '\'' +
                 '}';
     }
