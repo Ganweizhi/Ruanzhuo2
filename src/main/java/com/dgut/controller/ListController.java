@@ -70,7 +70,9 @@ public class ListController {
 
         List<outlistBean> data = listservice.findOutlist(department, education,search);
         for (outlistBean datum : data) {
-            datum.setSigningTime(listservice.findSigningTimeByWid(datum.getWid()));
+            List<String> list = listservice.findSigningTimeByWid(datum.getWid());
+            Collections.sort(list);
+            datum.setSigningTime(list.get(list.size()-1));
             datum.setDepartment(listservice.getDepartmentNameByID(datum.getDepartment()));
         }
         if(!stime.equals("")) {
