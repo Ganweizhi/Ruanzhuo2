@@ -2,15 +2,19 @@ package com.dgut.controller;
 
         import com.dgut.jsonBean.IdReturnBean;
         import com.dgut.jsonBean.Inithtlist;
+        import com.dgut.jsonBean.htTable;
+        import com.dgut.jsonBean.htTable1;
         import com.dgut.service.UserFileService;
         import org.springframework.beans.factory.annotation.Autowired;
         import org.springframework.web.bind.annotation.*;
         import org.springframework.web.multipart.MultipartFile;
+        import sun.nio.cs.US_ASCII;
 
         import javax.servlet.http.HttpServletRequest;
         import java.io.File;
         import java.io.IOException;
-        import java.util.List;
+        import java.text.SimpleDateFormat;
+        import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -38,14 +42,21 @@ public class fileTestController {
         userFileService.SetImg(wid,url); //更新staff表的头像
         return "{\"success\":1,\"url\":\""+ url + "\"}";
     }
-    @RequestMapping(value = "/htfile" ,method = RequestMethod.POST)
-    public String saveHtFile(MultipartFile file,@ModelAttribute  Inithtlist iht) throws IOException
-   // public String saveHtFile(@RequestBody Inithtlist iht, MultipartFile file) throws IOException
+    @RequestMapping(value = "/htfile" )
+   // public String saveHtFile(MultipartFile file,@ModelAttribute  Inithtlist iht) throws IOException
+   public String saveHtFile( Inithtlist iht, MultipartFile file) throws Exception
     {
 
         System.out.println(iht);
         System.out.println(file.getOriginalFilename());
         String realPath = request.getServletContext().getRealPath("/img/HT");
+//        String stime = iht.getSigningTime().substring(0,29);
+//        String change = iht.getSigningTime().substring(29,33);
+//        String last = change.substring(0,2)+":"+change.substring(2);
+//        stime=stime+last;
+        String time = iht.getSigningTime();
+        String yuefen = userFileService.timeChange(time.substring(4,7));
+        String stime1 = time.substring(11,15)+"-"+time.substring(8,10)+"-"+yuefen;
         File folder = new File(realPath);
         if (!folder.exists()) {
             folder.mkdirs();
@@ -55,9 +66,9 @@ public class fileTestController {
         String oldName = file.getOriginalFilename();
         String newName = HID+ oldName.substring(oldName.lastIndexOf("."));
         file.transferTo(new File(folder,newName));
-        String HURL = realPath+"/"+newName;
-        userFileService.htInsert(iht.getWid(),HID,iht.getHtName(),HURL,iht.getUseTime(),iht.getSigningTime());
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/HT/" + newName;
+        userFileService.htInsert(iht.getWid(),HID,iht.getHtName(),url,iht.getUseTime(),stime1);
+        //userFileService.htInsert(iht.getWid().toString(),"123",iht.getHtName(),"56",iht.getUseTime(),stime1);
         System.out.println(url);
        return "{\"success\":1}";
     }
@@ -126,5 +137,45 @@ public class fileTestController {
         userFileService.SetYhkf(wid,url);
         IdReturnBean IB = new IdReturnBean("yhkf",newName,url);
         return IB;
+    }
+    @RequestMapping(value = "/htdelete")
+    public String htDelete(String wid,String hid)
+    {
+        userFileService.htDelete(wid, hid);
+        String realPath = request.getServletContext().getRealPath("/img/HT");
+        String S = userFileService.findHtUrl(wid,hid);
+        realPath = realPath+S.substring(S.lastIndexOf("/"));
+        File file = new File(realPath);
+        if(file.exists())
+        {
+            file.delete();
+            return "{\"success\":1}";
+        }
+        else return "{\"success\":0}";
+    }
+    @RequestMapping(value="/httable",method = RequestMethod.POST)
+    public List<htTable1> htTbale1s1(String wid) throws Exception
+    {
+      List<htTable> list = userFileService.htTables(wid);
+      int State[] = new int[list.size()];
+      List<htTable1> list1 = new ArrayList<htTable1>();
+      for(htTable date :list){
+          int m= 0;
+          SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+          int i =Integer.parseInt(date.getUseTime());
+          String sm = date.getSigningTime();
+          Date  dt = sdf.parse(sm);
+          Calendar calendar = Calendar.getInstance();
+          calendar.setTime(dt);
+          calendar.add(Calendar.MONTH,i);
+          Date now = calendar.getTime();
+          String nowTime = sdf.format(date);
+          String htTime = dt.toString();
+          State[m] = htTime.compareTo(nowTime);
+          if(State[m] == -1) State[i] = 0;
+          htTable1 hb = new htTable1(date.getHid(),date.getHtName(),date.getSigningTime(),date.getUseTime(),date.getHtUrl(),State[i]);
+          list1.add(hb);
+     }
+     return list1;
     }
 }

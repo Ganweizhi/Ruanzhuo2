@@ -94,7 +94,7 @@ VALUES('ccc', '1', '汉族', '中国','广东省东莞市', '0', '43250319750502
 DROP TABLE IF EXISTS `ht`;
 CREATE  table ht(
      wid int references staff(wid), --外键关联职工编号
-     hid int primary key , --ht id
+     hid varchar(255) primary key , --ht id
      hName varchar(255) default null, --ht名字
      hUrl   varchar(255)  default null,   --ht路径
      useTime varchar(20) default null, -- 合同有效期
