@@ -73,7 +73,6 @@ public class ManagersService {
                 gllistFromGleditBean.setState("0");
             this.editState(gllistFromGleditBean.getGid(), gllistFromGleditBean.getState());
             this.deleteByManagersId(gllistFromGleditBean.getGid());
-            System.out.println(gllistFromGleditBean);
             for (String str : gllistFromGleditBean.getRole()) {
                 if(!str.equals(",")) {
                     String rid = rolesService.findRoleIdsByRoleName("%" + str + "%");

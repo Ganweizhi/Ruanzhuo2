@@ -30,7 +30,6 @@ public class RolesService {
     }
 
     public String findRoleIdsByRoleName(String name) {
-        System.out.println(name);
         return rolesMapper.findRoleIdsByRoleName(name);
     }
 }
