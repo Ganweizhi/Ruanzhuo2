@@ -40,7 +40,14 @@ public class ListController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(@RequestBody addBean msgForm){
-        int state = listservice.add(msgForm);
+        String name = listservice.getNameByWid(msgForm.getWid());
+        int state;
+        if(name!=null){
+            //msgForm.setDepartment(listservice.getDepartmentIDByName(msgForm.getDepartment()));
+            state = listservice.updateMessage(msgForm);
+        }else {
+            state = listservice.add(msgForm);
+        }
         if(state==1)
             return "{\"success\":1}";
         else

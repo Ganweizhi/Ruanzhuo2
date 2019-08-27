@@ -47,6 +47,9 @@ public interface staffMapper {
     @Insert("insert into staff(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,email) VALUES(#{bean.name},#{bean.sex},#{bean.nation},#{bean.nationality},#{bean.origin},#{bean.idType},#{bean.idNumber},#{bean.education},#{bean.degree},#{bean.department},#{bean.job},#{bean.title},#{bean.lPhone},#{bean.sPhone},#{bean.email})")
     int add(@Param("bean") addBean bean);
 
+    @Update("update staff set name=#{msgForm.name},sex=#{msgForm.sex},nation=#{msgForm.nation},nationality=#{msgForm.nationality},origin=#{msgForm.origin},idType=#{msgForm.idType},idNumber=#{msgForm.idNumber},education=#{msgForm.education},degree=#{msgForm.degree},department=#{msgForm.department},job=#{msgForm.job},title=#{msgForm.title},lPhone=#{msgForm.lPhone},sPhone=#{msgForm.sPhone},email=#{msgForm.email} where wid=#{msgForm.wid}")
+    int updateMessage(@Param("msgForm")addBean msgForm);
+
     @Select("<script>"
             + "select wid,name,sex,education,department,baseWage from staff"
             + " <where>"
@@ -87,7 +90,7 @@ public interface staffMapper {
     @Select("select departureTime from staff where wid=#{wid}")
     String getDepartureTimeByWid(String wid);
 
-    @Select("select time,baseWage from wages where wid = #{wid}")
-    List<baseWages> findBaseWage(@Param("wid") String wid);
+    @Select("select name from  staff where wid=#{wid}")
+    String getNameByWid(String wid);
 
 }
