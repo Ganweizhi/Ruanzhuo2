@@ -1,9 +1,7 @@
 package com.dgut.controller;
-import com.dgut.jsonBean.addBean;
-import com.dgut.jsonBean.listBean;
-import com.dgut.jsonBean.listBeanPage;
-import com.dgut.jsonBean.outlistBean;
+import com.dgut.jsonBean.*;
 import com.dgut.model.staff;
+import com.dgut.service.UserFileService;
 import com.dgut.service.listService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +20,8 @@ public class ListController {
 
     @Autowired
     private listService listservice;
-
+    @Autowired
+    private UserFileService userFileService;
     @RequestMapping(value = "/init")
     public String getNewWid(){
         int wid = listservice.getNewWid()+2019500;
@@ -52,6 +51,10 @@ public class ListController {
     public String deleteByWid(String wid){
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
         listservice.deleteByWid(wid,df.format(new Date()));
+
+
+
+
         return "{\"success\":1}";
     }
 
@@ -143,5 +146,9 @@ public class ListController {
     public String add(){
         return "{\"success\":1}";
 
+    }
+    @RequestMapping("/xctable")
+    public List<baseWages> findBaseWages(String wid){
+        return listservice.findBaseWages(wid);
     }
 }

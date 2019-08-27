@@ -13,8 +13,8 @@ public interface UserFileMapper {
     @Insert("Insert into HT values(#{wid},#{hid},#{hname},#{hurl},#{usetime},#{signingtime})")
     void htInsert(@Param("wid")String wid,@Param("hid") String hid,@Param("hname") String hname, @Param("hurl") String hurl,@Param("usetime") String usetime,@Param("signingtime") String signingtime);
 
-    @Select("select count(*) as htSum from HT where wid =#{wid}")
-    int htSum(@Param("wid") String wid);
+    @Select("select hid,hname,hurl,usetime,signingtime from Ht where wid=#{wid}")
+    List<htTable> htSum(@Param("wid") String wid);
 
     @Update("update staff set sfzz =#{sfzz} where wid =#{wid}")
     void SfzzUpdate(@Param("wid") String wid, @Param("sfzz") String sfzz);
@@ -31,16 +31,18 @@ public interface UserFileMapper {
     @Update("update staff set yhkf =#{yhkf} where wid =#{wid}")
     void YhkfUpdate(@Param("wid") String wid,@Param("yhkf") String yhkz);
 
-    @Delete("delete from ht where wid= #{wid} and hid = #{hid}")
-    void htDelete(@Param("wid") String wid,@Param("hid") String hid);
+    @Delete("delete from ht where  hid = #{hid}")
+    void htDelete(@Param("hid") String hid);
 
-    @Select("select hurl from HT where wid= #{wid} and hid = #{hid}")
-    public String findHtUrl(@Param("wid") String wid,@Param("hid") String hid);
+    @Select("select hid,hName,hUrl,useTime,signingTime from HT where hid = #{hid}")
+    List<htTable> findHtUrl(@Param("wid") String wid,@Param("hid") String hid);
 
-    @Update("update staff set departureTime =#{dtime} where wid =#{wid}")
-     void updateDtime(@Param("wid") String wid,@Param("dtime") String dtime);
+    @Update("update staff set departureTime =''where wid =#{wid}")
+     void updateDtime(@Param("wid") String wid);
 
-//    @Select("select hid,Hname,signingTime,useTime,hUrl from HT where wid =#{wid}")
     @Select("select hid,Hname,signingTime,useTime,hUrl from ht where wid =#{wid}")
     List<htTable> htTale(@Param("wid") String wid);
+
+    @Select("select departureTime from staff where wid=#{wid}")
+    String checkDepartureTime(@Param("wid") String wid);
 }

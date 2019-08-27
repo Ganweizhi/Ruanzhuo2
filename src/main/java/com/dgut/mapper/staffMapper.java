@@ -86,4 +86,8 @@ public interface staffMapper {
 
     @Select("select departureTime from staff where wid=#{wid}")
     String getDepartureTimeByWid(String wid);
+
+    @Select("select time,baseWage from wages where wid = #{wid}")
+    List<baseWages> findBaseWage(@Param("wid") String wid);
+
 }

@@ -107,7 +107,7 @@ DROP TABLE IF EXISTS `wages`;
 CREATE  table wages(
     wid int references staff(wid), --外键关联职工编号
     wageId int primary key , -- id
-    bageWage varchar(255) default null, --基本工资
+    baseWage varchar(255) default null, --基本工资
     time   varchar(255)  default null,   --签约时间
 );
 

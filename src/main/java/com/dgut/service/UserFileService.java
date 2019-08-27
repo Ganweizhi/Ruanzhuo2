@@ -2,10 +2,10 @@ package com.dgut.service;
 
 import com.dgut.jsonBean.htTable;
 import com.dgut.mapper.UserFileMapper;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -18,12 +18,23 @@ public class UserFileService {
     public int htInsert(String wid,String hid,String hname,String hurl,String usetime,String signingtime)
     {
         userFileMapper.htInsert(wid, hid, hname, hurl, usetime, signingtime);
-        userFileMapper.updateDtime(wid,null); //上传合同后，将离职时间变空
+        userFileMapper.updateDtime(wid); //上传合同后，将离职时间变空
         return 1;
+    }
+    public void UpdateTime(String wid){
+        userFileMapper.updateDtime(wid);
     }
     public int htSum(String wid)
     {
-        return userFileMapper.htSum(wid);
+        int a = 0 ;
+        List<htTable> list  = userFileMapper.htSum(wid);
+        if(list.size()==0) return 0;
+        else {
+            int i = list.size();
+           String str = list.get(i-1).getHid();
+           a = Integer.parseInt(str.substring((str.lastIndexOf("_")+1)));
+            return a;
+        }
     }
     public void SetImg(String wid,String imgUrl)
     {
@@ -45,13 +56,15 @@ public class UserFileService {
     {
         userFileMapper.YhkfUpdate(wid,url);
     }
-    public void htDelete(String wid, String hid)
+    public void htDelete(String hid)
     {
-        userFileMapper.htDelete(wid,hid);
+        userFileMapper.htDelete(hid);
     }
     public String findHtUrl(String wid,String hid)
     {
-        return  userFileMapper.findHtUrl(wid,hid);
+       List<htTable> list = userFileMapper.findHtUrl(wid,hid);
+       String str = list.get(0).gethUrl();
+       return str;
     }
     public List<htTable> htTables(String wid){
        return  userFileMapper.htTale(wid);
@@ -85,4 +98,10 @@ public class UserFileService {
         if(w>=0) return 1;
         else  return  0;
     }
+   public int checkDepartureTime(String wid){
+        String str = userFileMapper.checkDepartureTime(wid);
+        if(str==null)
+            return 1;
+        else return 0;
+   }
 }

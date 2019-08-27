@@ -82,5 +82,7 @@ public class listService {
         }
         return "0";
     }
-
+   public  List<baseWages> findBaseWages(String wid){
+        return staffmapper.findBaseWage(wid);
+   }
 }
