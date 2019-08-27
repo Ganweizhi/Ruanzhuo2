@@ -94,6 +94,7 @@ response:{
 }
 ```
 **/download --下载导入模板**
+
 **/delete --离职人员**     #finsh by lgc
 *修改在职状态，添加离职时间*
 ```javascript
@@ -104,7 +105,7 @@ response:{
 	success:"状态"   //1成功，0失败
 }
 ```
-**/inlist --数据导入**
+**/inlist --数据导入** #finsh by lgc
 ```javascript
 params:{
 	[
@@ -140,13 +141,13 @@ response:{
 }
 ```
 ## 2. tabs
-**/init --新wid**
+**/init --新wid** #finsh by lgc
 ```javascript
 response:{
 	wid:"工号" //返回最新wid
 }
 ```
-**/add --添加人员**     #finsh by superlgc
+**/add --添加人员**     #finsh by lgc
 *详细数据见网页，用javabeen接收*
 ```javascript
 params:{
@@ -182,7 +183,7 @@ response:{
 	success:"状态"   //1成功，0失败
 }
 ```
-**/xcedit --添加/修改薪酬信息**     #finsh by superlgc
+**/xcedit --添加/修改薪酬信息**     #finsh by lgc
 *详细数据见网页，用javabeen接收？*
 ```javascript
 params:{
