@@ -38,12 +38,12 @@ CREATE TABLE `staff`  (
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,
                    email,baseWage,bankName,bankId,img)
                    VALUES('张三', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '博士研究生', '学士', '0', '清洁工'
-                            , '工人', '12547896321', '12345','124452@qq.com'
+                            , '工人', '12547896321', '12345','751609938@qq.com'
                             , '12345', '0', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,
                   email,baseWage,bankName,bankId,img)
 VALUES('张三', '0', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '博士研究生', '学士', '0', '清洁工'
-      , '工人', '12547896321', '12345','124452@qq.com'
+      , '工人', '12547896321', '12345','1790992954@qq.com'
       , '12345', '0', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,
                   email,baseWage,bankName,bankId,img)
@@ -100,6 +100,8 @@ CREATE  table ht(
      useTime varchar(20) default null, -- 合同有效期
      signingTime varchar(20) default null, --签约时间
 );
+insert into ht(hid,wid,useTime,signingTime) values (1,2019500,'1','2019-8-26');
+insert into ht(hid,wid,useTime,signingTime) values (2,2019501,'2','2019-8-26');
 
 DROP TABLE IF EXISTS `wages`;
 CREATE  table wages(

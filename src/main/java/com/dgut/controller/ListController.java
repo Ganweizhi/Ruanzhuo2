@@ -8,6 +8,7 @@ import com.dgut.service.listService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -84,7 +85,7 @@ public class ListController {
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public listBeanPage getList(String department,String education,String search , String stime,String etime,String currentPage) {
+    public listBeanPage getList(String department,String education,String search , String stime,String etime,String currentPage) throws ParseException {
         if(department.equals("")) {
             department = null;
         }
@@ -99,7 +100,7 @@ public class ListController {
         for (listBean datum : data) {
             datum.setSigningTime(listservice.findSigningTimeByWid(datum.getWid()));
             datum.setDepartment(listservice.getDepartmentNameByID(datum.getDepartment()));
-            datum.setState(datum.getDepartureTime()==null?"1":"0");
+            datum.setState(listservice.getStateByWid(datum.getWid()));
         }
         if(!stime.equals("")) {
             String[] split = stime.split(",");

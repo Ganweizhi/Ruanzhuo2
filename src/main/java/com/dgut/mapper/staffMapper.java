@@ -80,4 +80,10 @@ public interface staffMapper {
 
     @Select("select department from department where name=#{name}")
     String getDepartmentIDByName(@Param("name")String name);
+
+    @Select("select wid,hid,useTime,signingTime from ht where wid=#{wid}")
+    List<emailBean> getHtsByWid(String wid);
+
+    @Select("select departureTime from staff where wid=#{wid}")
+    String getDepartureTimeByWid(String wid);
 }
