@@ -25,12 +25,10 @@ public class ManagerController {
     private ManagersService managersService;
 
     /**
-     * 展示所有的管理员，还要展示对应的角色
+     * 封装GllistBeanPage
      * @return
      */
-    @RequestMapping("/gllist")
-    @ResponseBody
-    public GllistBeanPage findAll() {
+    public Map<Integer, GllistChangeBean> returnMap() {
         GllistChangeBean gllistChangeBean = new GllistChangeBean(0, "hi", new ArrayList<>(), 0);
         GllistChangeBean gllistChangeBean1 = new GllistChangeBean(0, "hi", new ArrayList<>(), 0);
         List<GllistBean> data = managersService.findAll();
@@ -53,10 +51,20 @@ public class ManagerController {
             }
         }
 
-        GllistBeanPage gllistAndNumBean = new GllistBeanPage(map, map.size());
-//        System.out.println(gllistAndNumBean);
-        return gllistAndNumBean;
+        return map;
     }
 
+
+    /**
+     * 展示所有的管理员，还要展示对应的角色
+     * @return
+     */
+    @RequestMapping("/gllist")
+    @ResponseBody
+    public GllistBeanPage findAll() {
+        Map<Integer, GllistChangeBean> map = returnMap();
+        GllistBeanPage gllistAndNumBean = new GllistBeanPage(map, map.size());
+        return gllistAndNumBean;
+    }
 
 }
