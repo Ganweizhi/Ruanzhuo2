@@ -2,6 +2,7 @@ package com.dgut.mapper;
 
 import com.dgut.jsonBean.GllistBean;
 import com.dgut.jsonBean.RoleListBean;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -31,4 +32,11 @@ public interface RolesMapper {
      */
     @Select("select id form roles where name = #{name}")
     String findRoleIdsByRoleName(@Param("name")String name);
+
+    /**
+     *
+     * @param id
+     */
+    @Delete("delete roles where id = #{rid}")
+    void deleteRoleById(@Param("rid")String id);
 }
