@@ -1,7 +1,7 @@
 package com.dgut.jsonBean;
 
 import java.io.Serializable;
-import java.util.List;
+
 
 public class Inithtlist implements Serializable {
   private String wid;

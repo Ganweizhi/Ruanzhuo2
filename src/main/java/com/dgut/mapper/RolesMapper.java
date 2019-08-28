@@ -29,7 +29,7 @@ public interface RolesMapper {
      * @param name
      * @return
      */
-    @Select("select id from roles where name like name")
+    @Select("select id from roles where name like #{name}")
     String findRoleIdsByRoleName(@Param("name")String name);
 
     /**

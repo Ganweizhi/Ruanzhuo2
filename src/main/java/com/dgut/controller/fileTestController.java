@@ -1,22 +1,20 @@
 package com.dgut.controller;
 
-import com.dgut.jsonBean.IdReturnBean;
-import com.dgut.jsonBean.Inithtlist;
-import com.dgut.jsonBean.htTable;
-import com.dgut.jsonBean.htTable1;
-import com.dgut.service.UserFileService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
+        import com.dgut.jsonBean.IdReturnBean;
+        import com.dgut.jsonBean.Inithtlist;
+        import com.dgut.jsonBean.htTable;
+        import com.dgut.jsonBean.htTable1;
+        import com.dgut.service.UserFileService;
+        import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.util.ResourceUtils;
+        import org.springframework.web.bind.annotation.*;
+        import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+        import javax.annotation.Resource;
+        import javax.servlet.http.HttpServletRequest;
+        import java.io.File;
+        import java.io.IOException;
+        import java.util.*;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -52,10 +50,6 @@ public class fileTestController {
         System.out.println(iht);
         System.out.println(file.getOriginalFilename());
         String realPath = request.getServletContext().getRealPath("/img/HT");
-//        String stime = iht.getSigningTime().substring(0,29);
-//        String change = iht.getSigningTime().substring(29,33);
-//        String last = change.substring(0,2)+":"+change.substring(2);
-//        stime=stime+last;
         String time = iht.getSigningTime();
         String yuefen = userFileService.timeChange(time.substring(4,7));
         String stime1 = time.substring(11,15)+"-"+yuefen+"-"+time.substring(8,10);
@@ -70,6 +64,7 @@ public class fileTestController {
         file.transferTo(new File(folder,newName));
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/HT/" + newName;
         userFileService.htInsert(iht.getWid(),HID,iht.getHtName(),url,iht.getUseTime(),stime1);
+        userFileService.UpdateTime(iht.getWid());
         //userFileService.htInsert(iht.getWid().toString(),"123",iht.getHtName(),"56",iht.getUseTime(),stime1);
         System.out.println(url);
        return "{\"success\":1}";
@@ -141,33 +136,57 @@ public class fileTestController {
         return IB;
     }
     @RequestMapping(value = "/htdelete")
-    public String htDelete(String wid,String hid)
+    public String htDelete(String wid,String hid) throws Exception
+   // public String htDelete(String hid,String wid)
     {
-        userFileService.htDelete(wid, hid);
-        String realPath = request.getServletContext().getRealPath("/img/HT");
+        String realPath = "/img/HT";
         String S = userFileService.findHtUrl(wid,hid);
         realPath = realPath+S.substring(S.lastIndexOf("/"));
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/HT/" + S.substring(S.lastIndexOf("/"));
+        String absolutePath = ResourceUtils.getURL("src/main/webapp").getPath();
+        realPath=absolutePath+realPath;
+        realPath = realPath.substring(1);
         File file = new File(realPath);
         if(file.exists())
         {
             file.delete();
+            userFileService.htDelete(hid);
+           // System.out.println("删除");
+            //System.out.println(realPath);
             return "{\"success\":1}";
         }
-        else return "{\"success\":0}";
+
+        else {
+            System.out.println(realPath);
+            return "{\"success\":0}";
+        }
     }
     @RequestMapping(value="/httable")
     public List<htTable1> htTbale1s1(String wid) throws Exception
     {
       List<htTable> list = userFileService.htTables(wid);
       int State[] = new int[list.size()];
+      int j = userFileService.checkDepartureTime(wid);
       List<htTable1> list1 = new ArrayList<htTable1>();
-      for(htTable date :list){
-          int i = 0 ;
-          State[i] =userFileService.CalTime(date.getUseTime(),date.getSigningTime());
-         htTable1 hb = new htTable1(date.getHid(),date.gethName(),date.getSigningTime(),date.getSigningTime(),date.gethUrl(),State[i]);
-         list1.add(hb);
-         i++;
-     }
+//      if(j==1) {
+//          for (htTable date : list) {
+//              int i = 0;
+//              State[i] = userFileService.CalTime(date.getUseTime(), date.getSigningTime());
+//              htTable1 hb = new htTable1(date.getHid(), date.gethName(), date.getSigningTime(), date.getUseTime(), date.gethUrl(), State[i]);
+//              list1.add(hb);
+//              i++;
+//          }
+//      }
+//      else {
+          for (htTable date : list) {
+              int i = 0;
+              State[i] = userFileService.CalTime(date.getUseTime(), date.getSigningTime());
+             // State[i] = 0;
+              htTable1 hb = new htTable1(date.getHid(), date.gethName(), date.getSigningTime(), date.getUseTime(), date.gethUrl(), State[i]);
+              list1.add(hb);
+              i++;
+          }
+    //  }
      return list1;
     }
 }
