@@ -1,6 +1,5 @@
 package com.dgut.controller;
 import com.dgut.jsonBean.*;
-import com.dgut.model.staff;
 import com.dgut.service.UserFileService;
 import com.dgut.service.listService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;

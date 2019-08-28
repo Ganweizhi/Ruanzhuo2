@@ -45,4 +45,6 @@ public interface RolesMapper {
      */
     @Delete("delete roles_managers where roles_id = #{rid}")
     void deleteRolesManagersById(@Param("rid")Integer rid);
+
+    void insertRole();
 }
