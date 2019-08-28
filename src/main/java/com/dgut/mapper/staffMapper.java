@@ -93,4 +93,6 @@ public interface staffMapper {
     @Select("select name from  staff where wid=#{wid}")
     String getNameByWid(String wid);
 
+    @Select("select baseWage,time from wages where wid =#{wid}")
+    List<baseWages> findBaseWages(@Param("wid") String wid);
 }

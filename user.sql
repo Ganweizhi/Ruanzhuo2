@@ -101,9 +101,9 @@ CREATE  table ht(
      signingTime varchar(20) default null, --签约时间
 );
 --insert into ht(hid,wid,useTime,signingTime) values (1,2019500,'1','2019-8-27');
---insert into ht(hid,wid,useTime,signingTime) values (2,2019501,'2','2019-8-27');
 
-DROP TABLE IF EXISTS `wages`;
+DROP TABLE--insert into ht(hid,wid,useTime,signingTime) values (2,2019501,'2','2019-8-27');
+  IF EXISTS `wages`;
 CREATE  table wages(
     wid int references staff(wid), --外键关联职工编号
     wageId int primary key , -- id

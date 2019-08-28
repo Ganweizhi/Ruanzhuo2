@@ -90,4 +90,9 @@ public class listService {
     public int updateMessage(addBean msgForm) {
         return staffmapper.updateMessage(msgForm);
     }
+
+    public List<baseWages> findBaseWages(String wid)
+    {
+        return  staffmapper.findBaseWages(wid);
+    }
 }
