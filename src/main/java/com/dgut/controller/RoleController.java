@@ -1,9 +1,6 @@
 package com.dgut.controller;
 
-import com.dgut.jsonBean.GllistChangeBean;
-import com.dgut.jsonBean.RoleListBean;
-import com.dgut.jsonBean.RoleListBeanPage;
-import com.dgut.jsonBean.outlistBean;
+import com.dgut.jsonBean.*;
 import com.dgut.service.RolesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -54,5 +51,17 @@ public class RoleController {
         }
 
         return 1;
+    }
+    /**
+     * @author superlgc
+     */
+    @RequestMapping(value = "/qxedit ")
+    public String qxedit(@RequestBody RoleListBean qxForm){
+        int state = rolesService.qxedit(qxForm);
+        System.out.println("lgc "+qxForm.toString());
+        if(state==1)
+            return "{\"success\":1}";
+        else
+            return "{\"success\":0}";
     }
 }

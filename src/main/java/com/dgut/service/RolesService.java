@@ -32,4 +32,8 @@ public class RolesService {
     public String findRoleIdsByRoleName(String name) {
         return rolesMapper.findRoleIdsByRoleName(name);
     }
+
+    public int qxedit(RoleListBean qxForm) {
+        return rolesMapper.qxedit(qxForm);
+    }
 }

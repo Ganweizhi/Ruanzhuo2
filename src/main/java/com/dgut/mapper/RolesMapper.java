@@ -1,10 +1,7 @@
 package com.dgut.mapper;
 
 import com.dgut.jsonBean.RoleListBean;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +13,9 @@ import java.util.List;
 @Mapper
 @Service
 public interface RolesMapper {
+
+    @Update("update roles set name=#{qxForm.name},page_power=#{qxForm.pagePower},department_power=#{qxForm.depPower} where id=#{qxForm.rid}")
+    int qxedit(@Param("qxForm")RoleListBean qxForm);
 
     /**
      * 查询所有角色
@@ -45,4 +45,6 @@ public interface RolesMapper {
      */
     @Delete("delete roles_managers where roles_id = #{rid}")
     void deleteRolesManagersById(@Param("rid")Integer rid);
+
+    void insertRole();
 }
