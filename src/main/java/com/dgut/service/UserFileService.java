@@ -18,12 +18,12 @@ public class UserFileService {
     public int htInsert(String wid,String hid,String hname,String hurl,String usetime,String signingtime)
     {
         userFileMapper.htInsert(wid, hid, hname, hurl, usetime, signingtime);
-        userFileMapper.updateDtime(wid); //上传合同后，将离职时间变空
+        userFileMapper.updateDtime(wid,null); //上传合同后，将离职时间变空
         return 1;
     }
-    public void UpdateTime(String wid){
-        userFileMapper.updateDtime(wid);
-    }
+  //  public void UpdateTime(String wid,String state){
+   //     userFileMapper.updateDtime(wid,null);
+   // }
     public int htSum(String wid)
     {
         int a = 0 ;
@@ -95,13 +95,19 @@ public class UserFileService {
         //System.out.println(nowString);
         //System.out.println(b.compareTo(nowString));
         int w = b.compareTo(nowString);
-        if(w>=0) return 1;
-        else  return  0;
+        if(w>=0) return 1;//合同有效
+        else  return  0;  //合同无效
     }
    public int checkDepartureTime(String wid){
         String str = userFileMapper.checkDepartureTime(wid);
         if(str==null)
             return 1;
         else return 0;
+   }
+   public String calHtTime(String wid) throws  Exception{
+       htTable hb =  userFileMapper.findCurrentHt(wid);
+       int i =  CalTime(hb.getUseTime(),hb.getSigningTime());
+       if(i==1) return  hb.getHid();//返回当前有效合同的hid;
+       else return "全都无效";
    }
 }
