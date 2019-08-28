@@ -32,4 +32,16 @@ public class RolesService {
     public String findRoleIdsByRoleName(String name) {
         return rolesMapper.findRoleIdsByRoleName(name);
     }
+
+    public int qxedit(RoleListBean qxForm) {
+        return rolesMapper.qxedit(qxForm);
+    }
+
+    public int gladd(String rid, String gid) {
+        return rolesMapper.gladd(rid,gid);
+    }
+
+    public int gllists(String rid, String gid) {
+        return rolesMapper.gllists(rid,gid);
+    }
 }

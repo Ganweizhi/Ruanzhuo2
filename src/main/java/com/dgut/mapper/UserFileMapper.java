@@ -37,12 +37,15 @@ public interface UserFileMapper {
     @Select("select hid,hName,hUrl,useTime,signingTime from HT where hid = #{hid}")
     List<htTable> findHtUrl(@Param("wid") String wid,@Param("hid") String hid);
 
-    @Update("update staff set departureTime =''where wid =#{wid}")
-     void updateDtime(@Param("wid") String wid);
+    @Update("update staff set departureTime =#{state} where wid =#{wid}")
+     void updateDtime(@Param("wid") String wid,@Param("state") String state);
 
     @Select("select hid,Hname,signingTime,useTime,hUrl from ht where wid =#{wid}")
     List<htTable> htTale(@Param("wid") String wid);
 
     @Select("select departureTime from staff where wid=#{wid}")
     String checkDepartureTime(@Param("wid") String wid);
+
+    @Select("select hid,hName,hUrl,useTime,signingTime from ht where wid =#{wid} order by signingTime desc limit 1")
+    htTable findCurrentHt(@Param("wid") String wid);
 }
