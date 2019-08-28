@@ -46,8 +46,7 @@ public class Login {
                 Manager manager = JSON.parseObject(sj, Manager.class);
                 System.out.println(manager);
                 request.getSession().setAttribute("manager", manager);
-                //System.out.println("莞工登录："+request.getSession().getId());
-                response.sendRedirect("http://ming-cdn.test.upcdn.net");
+                response.sendRedirect("http://localhost:8081");
             } else {
                 return JSON.parseObject(sj).getString("message");
             }
@@ -60,7 +59,6 @@ public class Login {
     @RequestMapping(value="/loginstate",method = {RequestMethod.POST,RequestMethod.GET})
     public String zt() {
         Manager m = (Manager) request.getSession().getAttribute("manager");
-        //System.out.println("判断登录状态："+request.getSession().getId());
         if(m==null) return "{\"state\":0,\"name\":\"未登录\"}";
         else return "{\"state\":1,\"name\":\""+ m.getName() +"\"}";
     }
@@ -73,6 +71,6 @@ public class Login {
     @RequestMapping(value="/tc",method = {RequestMethod.POST,RequestMethod.GET})
     public void tc(HttpServletResponse response) throws IOException {
         request.getSession().removeAttribute("manager");
-        response.sendRedirect("https://cas.dgut.edu.cn/logout?callback=http://ming-cdn.test.upcdn.net");
+        response.sendRedirect("https://cas.dgut.edu.cn/logout?callback=http://localhost:8081/");
     }
 }
