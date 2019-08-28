@@ -55,10 +55,34 @@ public class RoleController {
     /**
      * @author superlgc
      */
-    @RequestMapping(value = "/qxedit ")
+    @RequestMapping(value = "/qxedit")
     public String qxedit(@RequestBody RoleListBean qxForm){
         int state = rolesService.qxedit(qxForm);
         System.out.println("lgc "+qxForm.toString());
+        if(state==1)
+            return "{\"success\":1}";
+        else
+            return "{\"success\":0}";
+    }
+
+    @RequestMapping(value = "/gladd")
+    public String gladd(String rid, String gid){
+        int state = rolesService.gladd(rid,gid);
+        System.out.println(rid);
+        System.out.println(gid);
+        System.out.println(state);
+        if(state==1)
+            return "{\"success\":1}";
+        else
+            return "{\"success\":0}";
+    }
+
+    @RequestMapping(value = "/gllists")
+    public String gllists(String rid, String gid){
+        int state = rolesService.gllists(rid,gid);
+        System.out.println(rid);
+        System.out.println(gid);
+        System.out.println(state);
         if(state==1)
             return "{\"success\":1}";
         else
