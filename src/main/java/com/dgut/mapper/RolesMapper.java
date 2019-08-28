@@ -14,7 +14,6 @@ import java.util.List;
 @Mapper
 @Service
 public interface RolesMapper {
-
     @Update("update roles set name=#{qxForm.name},page_power=#{qxForm.pagePower},department_power=#{qxForm.depPower} where id=#{qxForm.rid}")
     int qxedit(@Param("qxForm")RoleListBean qxForm);
 
@@ -57,5 +56,4 @@ public interface RolesMapper {
     void deleteRolesManagersById(@Param("rid")Integer rid);
 
     void insertRole();
-
 }
