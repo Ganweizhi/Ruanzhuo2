@@ -1,6 +1,7 @@
 package com.dgut.service;
 
 import com.dgut.jsonBean.RoleListBean;
+import com.dgut.jsonBean.RoleWithoutIdBean;
 import com.dgut.jsonBean.gldelBean;
 import com.dgut.mapper.RolesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +49,15 @@ public class RolesService {
 
     public List<gldelBean> getGldeBean(String roles_id){
         return rolesMapper.getGldelBean(roles_id);
+    }
+
+    public Integer addRole(RoleWithoutIdBean roleWithoutIdBean) {
+        try {
+            rolesMapper.insertRole(roleWithoutIdBean.getName(), roleWithoutIdBean.getPagePower(), roleWithoutIdBean.getDepPower());
+        } catch (Exception e) {
+            return 0;
+        }
+
+        return 1;
     }
 }

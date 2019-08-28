@@ -55,5 +55,12 @@ public interface RolesMapper {
     @Delete("delete roles_managers where roles_id = #{rid}")
     void deleteRolesManagersById(@Param("rid")Integer rid);
 
-    void insertRole();
+    /**
+     * 添加一个新的角色
+     * @param name
+     * @param pagePower
+     * @param depPower
+     */
+    @Insert("insert into roles(name, page_power, department_power) values(#{name}, #{pagePower}, #{depPower})")
+    void insertRole(@Param("name")String name, @Param("pagePower")String pagePower, @Param("depPower")String depPower);
 }
