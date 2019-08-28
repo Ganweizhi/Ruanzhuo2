@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.dgut.jsonBean.Manager;
 import javax.servlet.http.HttpServletRequest;
@@ -46,7 +45,7 @@ public class Login {
                 Manager manager = JSON.parseObject(sj, Manager.class);
                 System.out.println(manager);
                 request.getSession().setAttribute("manager", manager);
-                response.sendRedirect("http://localhost:8081");
+                response.sendRedirect("http://ming-cdn.test.upcdn.net");
             } else {
                 return JSON.parseObject(sj).getString("message");
             }
@@ -57,20 +56,19 @@ public class Login {
     }
 
     @RequestMapping(value="/loginstate",method = {RequestMethod.POST,RequestMethod.GET})
-    public String zt() {
+    public Manager zt() {
         Manager m = (Manager) request.getSession().getAttribute("manager");
-        if(m==null) return "{\"state\":0,\"name\":\"未登录\"}";
-        else return "{\"state\":1,\"name\":\""+ m.getName() +"\"}";
-    }
-
-    @RequestMapping(value="/dl",method = {RequestMethod.POST,RequestMethod.GET})
-    public void dl(HttpServletResponse response) throws IOException {
-        response.sendRedirect("https://cas.dgut.edu.cn?appid=javaee&state="+ request.getSession().getId());
+        if(m==null) {
+            m = new Manager();
+            m.setName("-1");
+            m.setOpenid("https://cas.dgut.edu.cn?appid=javaee&state="+ request.getSession().getId());
+        }
+        return m;
     }
 
     @RequestMapping(value="/tc",method = {RequestMethod.POST,RequestMethod.GET})
     public void tc(HttpServletResponse response) throws IOException {
         request.getSession().removeAttribute("manager");
-        response.sendRedirect("https://cas.dgut.edu.cn/logout?callback=http://localhost:8081/");
+        response.sendRedirect("https://cas.dgut.edu.cn/logout?callback=https://localhost:8081/");
     }
 }

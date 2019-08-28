@@ -1,10 +1,12 @@
 package com.dgut.controller;
 import com.dgut.jsonBean.*;
+import com.dgut.service.LogService;
 import com.dgut.service.UserFileService;
 import com.dgut.service.listService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -17,7 +19,11 @@ import java.util.stream.Collectors;
 public class ListController {
 
     @Autowired
+    private LogService logservice;
+    @Autowired
     private listService listservice;
+    @Autowired
+    private HttpServletRequest request;
     @Autowired
     private UserFileService userFileService;
     @RequestMapping(value = "/init")
@@ -155,5 +161,32 @@ public class ListController {
     @RequestMapping("/xctable")
     public List<baseWages> findBaseWages(String wid){
         return listservice.findBaseWages(wid);
+    }
+
+    @RequestMapping(value = "/loglist")
+    @ResponseBody
+    public LogBeanPage getList(String date,String gid,String name,String ip ,String currentPage) throws ParseException {
+        if(gid.equals("")) {
+            gid = null;
+        }
+        if(name.equals("")) {
+            name = null;
+        }
+        if(ip.equals("")){
+            ip = null;
+        }
+
+        List<LogBean> data = logservice.findList(gid, name,ip);
+        if(!date.equals("")) {
+            String[] split = date.split(",");
+            data = data.stream().filter(bean -> bean.getDate()!=null).collect(Collectors.toList());
+            data = data.stream().filter(bean -> bean.getDate().compareTo(split[0]) >= 0 && bean.getDate().compareTo(split[1]) <= 0).collect(Collectors.toList());
+        }
+
+        int start = (Integer.parseInt(currentPage)-1)*7;
+        int end = start+7>data.size()?data.size():start+7;
+        List<LogBean> datas = data.subList(start,end);
+        LogBeanPage logBeanPage = new LogBeanPage(datas,data.size());
+        return logBeanPage;
     }
 }
