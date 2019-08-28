@@ -1,6 +1,7 @@
 package com.dgut.mapper;
 
 import com.dgut.jsonBean.RoleListBean;
+import com.dgut.jsonBean.gldelBean;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,9 @@ public interface RolesMapper {
     @Delete("delete roles_managers where roles_id=#{rid} and managers_id=#{gid}")
     int gllists(@Param("rid")String rid, @Param("gid")String gid);
 
+    @Select("select managers_id as gid,managers.name as name from roles_managers,managers where" +
+            " roles_id =#{roles_id} and  roles_managers.roles_id =managers.id ")
+    List<gldelBean> getGldelBean(@Param("roles_id") String roles_id);
     /**
      * 查询所有角色
      * @return

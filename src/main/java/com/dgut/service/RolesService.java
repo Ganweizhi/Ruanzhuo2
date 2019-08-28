@@ -1,6 +1,7 @@
 package com.dgut.service;
 
 import com.dgut.jsonBean.RoleListBean;
+import com.dgut.jsonBean.gldelBean;
 import com.dgut.mapper.RolesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,9 @@ public class RolesService {
 
     public int gllists(String rid, String gid) {
         return rolesMapper.gllists(rid,gid);
+    }
+
+    public List<gldelBean> getGldeBean(String roles_id){
+        return rolesMapper.getGldelBean(roles_id);
     }
 }

@@ -88,4 +88,8 @@ public class RoleController {
         else
             return "{\"success\":0}";
     }
+    @RequestMapping("/gldel")
+    public List<gldelBean> getgledelBean(String rid){
+        return rolesService.getGldeBean(rid);
+    }
 }

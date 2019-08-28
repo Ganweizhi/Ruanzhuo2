@@ -488,7 +488,7 @@ response:{
 	success:"状态"   //1成功，0失败
 }
 ```
-**/gldel --获取某角色下的管理员列表**     
+**/gldel --获取某角色下的管理员列表**     已做CCC
 ```javascript
 params:{
    	rid:"角色编号"
