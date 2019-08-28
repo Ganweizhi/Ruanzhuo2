@@ -478,7 +478,7 @@ response:{
 	success:"状态"   //1成功，0失败
 }
 ```
-**/gllists --给某管理员移除某角色**     
+**/gldel --给某管理员移除某角色**     
 ```javascript
 params:{
 	rid:"角色编号",
@@ -488,7 +488,7 @@ response:{
 	success:"状态"   //1成功，0失败
 }
 ```
-**/gldel --获取某角色下的管理员列表**     已做CCC
+**/gllists --获取某角色下的管理员列表**     已做CCC
 ```javascript
 params:{
    	rid:"角色编号"
@@ -523,7 +523,7 @@ response:{
 检测当前登录账号是否有编辑的权限
 ```javascript
 params:{
-   	index:"0或12" //对应人员和角色的编辑
+   	index:"0或13" //对应人员和角色的编辑
 }
 response:{
 	success:"状态"   //1成功，0失败

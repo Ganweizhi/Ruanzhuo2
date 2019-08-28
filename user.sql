@@ -178,3 +178,41 @@ insert into roles_managers(managers_id, roles_id) values(2019500, 0);
 -- insert into roles_managers(managers_id, roles_id) values(2019505, 2);
 
 
+
+-- 日志
+DROP TABLE IF EXISTS `log`;
+CREATE  table log(
+        lid int identity(0,1)  PRIMARY KEY,
+        date VARCHAR(255),
+        gid VARCHAR(255),
+        name VARCHAR(255),
+        ip VARCHAR(255),
+        action VARCHAR(255),
+        FOREIGN KEY(gid) REFERENCES managers(id)
+);
+
+-- 页面对应的权限(待定)
+DROP TABLE IF EXISTS `page_power`;
+CREATE  table page_power(
+        index int PRIMARY KEY,
+        url VARCHAR(255)
+);
+insert into page_power(index, url) values(0, '/list');
+insert into page_power(index, url) values(1, '/edit');
+insert into page_power(index, url) values(2, '/delete');
+insert into page_power(index, url) values(3, '/add');
+
+insert into page_power(index, url) values(4, '/loglist');
+insert into page_power(index, url) values(5, '');
+insert into page_power(index, url) values(6, '');
+insert into page_power(index, url) values(7, '');
+
+insert into page_power(index, url) values(8, '/gllist');
+insert into page_power(index, url) values(9, '/gledit');
+insert into page_power(index, url) values(10, '/');
+insert into page_power(index, url) values(11, '/gladda');
+
+insert into page_power(index, url) values(12, '/rolelist');
+insert into page_power(index, url) values(13, '/edit');
+insert into page_power(index, url) values(14, '/roledelete');
+insert into page_power(index, url) values(15, '/roleadd');

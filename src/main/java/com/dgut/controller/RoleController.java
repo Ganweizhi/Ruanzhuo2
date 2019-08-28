@@ -77,7 +77,7 @@ public class RoleController {
             return "{\"success\":0}";
     }
 
-    @RequestMapping(value = "/gllists")
+    @RequestMapping(value = "/gldel")
     public String gllists(String rid, String gid){
         int state = rolesService.gllists(rid,gid);
         System.out.println(rid);
@@ -88,7 +88,7 @@ public class RoleController {
         else
             return "{\"success\":0}";
     }
-    @RequestMapping("/gldel")
+    @RequestMapping("/gllists")
     public List<gldelBean> getgledelBean(String rid){
         return rolesService.getGldeBean(rid);
     }
