@@ -21,6 +21,7 @@ public class ManagersService {
 
     private RolesMapper rolesMapper;
 
+    @Autowired
     private RolesService rolesService;
 
     /**
@@ -66,18 +67,17 @@ public class ManagersService {
      */
     public Integer editRolesOfManager(GllistFromGleditBean gllistFromGleditBean) {
         try {
-            System.out.println("start_________________");
+            if (gllistFromGleditBean.getState().equals("true"))
+                gllistFromGleditBean.setState("1");
+            else
+                gllistFromGleditBean.setState("0");
             this.editState(gllistFromGleditBean.getGid(), gllistFromGleditBean.getState());
-            System.out.println("----------editState");
             this.deleteByManagersId(gllistFromGleditBean.getGid());
-            System.out.println("-----------deleteByManagersId");
-            System.out.println(gllistFromGleditBean);
-            for (String str : gllistFromGleditBean.getRoleLists()) {
-                System.out.println(str);
-                String rid = rolesService.findRoleIdsByRoleName("%" + str + "%");
-                System.out.println("--------------findRoleid");
-                this.insertRolesManagers(gllistFromGleditBean.getGid(), rid);
-                System.out.println("--------------insertRoles");
+            for (String str : gllistFromGleditBean.getRole()) {
+                if(!str.equals(",")) {
+                    String rid = rolesService.findRoleIdsByRoleName("%" + str + "%");
+                    this.insertRolesManagers(gllistFromGleditBean.getGid(), rid);
+                }
             }
         } catch (Exception e) {
             return 0;
