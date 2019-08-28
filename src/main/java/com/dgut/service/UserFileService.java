@@ -5,25 +5,37 @@ import com.dgut.mapper.UserFileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+
+import static com.dgut.util.Method.*;
 
 @Service
 public class UserFileService {
     @Autowired
     private UserFileMapper userFileMapper;
     public int htInsert(String wid,String hid,String hname,String hurl,String usetime,String signingtime)
+            throws Exception
     {
-        userFileMapper.htInsert(wid, hid, hname, hurl, usetime, signingtime);
-        userFileMapper.updateDtime(wid,null); //上传合同后，将离职时间变空
-        return 1;
+      userFileMapper.htInsert(wid, hid, hname, hurl, usetime, signingtime);
+        int i = CompareTime(usetime,signingtime);
+        if(i==1) {//新上传合同有效，刷新离职时间
+            userFileMapper.updateDtime(wid, null); //将离职时间变空
+           List<htTable> list = userFileMapper.htTale(wid);
+           for(htTable date:list){
+               int j = userFileMapper.isExsistInPht(date.getHid());
+               if(j==0) {
+                   if(!date.getHid().equals(hid)) { //除去新合同的HID
+                       userFileMapper.PhtInsert(date.getHid());//将老HID插入PHT表
+                   }
+               }
+           }
+            return 1;
+        }
+        else {
+            userFileMapper.PhtInsert(hid); //将无效合同的HID插入无效合同表PHT
+            return 1;//新上传合同无效，只上传不刷新离职时间
+        }
     }
-  //  public void UpdateTime(String wid,String state){
-   //     userFileMapper.updateDtime(wid,null);
-   // }
     public int htSum(String wid)
     {
         int a = 0 ;
@@ -58,7 +70,8 @@ public class UserFileService {
     }
     public void htDelete(String hid)
     {
-        userFileMapper.htDelete(hid);
+        userFileMapper.htDelete(hid); //删除HT表数据
+        userFileMapper.PhtDelete(hid);//删除PHT表数据
     }
     public String findHtUrl(String wid,String hid)
     {
@@ -69,45 +82,16 @@ public class UserFileService {
     public List<htTable> htTables(String wid){
        return  userFileMapper.htTale(wid);
     }
-    public String timeChange(String s){
-        if(s.equals("Jan")) return "01";
-        else if(s.equals("Feb")) return "02";
-        else if(s.equals("Mar")) return "03";
-        else if(s.equals("Apr")) return "04";
-        else if(s.equals("May")) return "05";
-        else if(s.equals("Jan")) return "06";
-        else if(s.equals("Jul")) return "07";
-        else if(s.equals("Aug")) return "08";
-        else if(s.equals("Sep")) return "09";
-        else if(s.equals("Oct")) return "10";
-        else if(s.equals("Nov")) return "11";
-        else return "12";
-    }
-    public int CalTime(String q,String  b) throws Exception
-    {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Calendar rightNow = Calendar.getInstance();
-        int a = Integer.parseInt(q);
-        a = a*-1;
-        rightNow.add(Calendar.MONTH,a); //减去合同月份
-        Date nowC = rightNow.getTime();
-        String nowString = sdf.format(nowC);
-        //System.out.println(nowString);
-        //System.out.println(b.compareTo(nowString));
-        int w = b.compareTo(nowString);
-        if(w>=0) return 1;//合同有效
-        else  return  0;  //合同无效
-    }
    public int checkDepartureTime(String wid){
         String str = userFileMapper.checkDepartureTime(wid);
         if(str==null)
             return 1;
         else return 0;
    }
-   public String calHtTime(String wid) throws  Exception{
-       htTable hb =  userFileMapper.findCurrentHt(wid);
-       int i =  CalTime(hb.getUseTime(),hb.getSigningTime());
-       if(i==1) return  hb.getHid();//返回当前有效合同的hid;
-       else return "全都无效";
+   public int isExisitInPht(String hid){
+        int i=0;
+       i = userFileMapper.isExsistInPht(hid);
+       if(i>0) return 1; //PHT表不存在该HID，即该合同没有过期
+       else  return 0;
    }
 }

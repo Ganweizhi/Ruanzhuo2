@@ -1,16 +1,14 @@
 package com.dgut.jsonBean;
 
-import org.apache.ibatis.annotations.Select;
-
 public class htTable {
-   private String hid;
-   private String hName;
-   private String hUrl;
-   private String useTime;
-   private String signingTime;
-   public htTable(){
+    private String hid;
+    private String hName;
+    private String hUrl;
+    private String useTime;
+    private String signingTime;
+    public htTable(){
 
-   }
+    }
 
     public htTable(String hid, String hName, String hUrl, String useTime, String signingTime) {
         this.hid = hid;

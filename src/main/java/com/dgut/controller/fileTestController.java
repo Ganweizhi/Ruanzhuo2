@@ -16,6 +16,8 @@ package com.dgut.controller;
         import java.io.IOException;
         import java.util.*;
 
+        import static com.dgut.util.Method.*;
+
 @RestController
 @CrossOrigin(origins = "*")
 public class fileTestController {
@@ -44,28 +46,27 @@ public class fileTestController {
     }
 
     @RequestMapping(value = "/htfile")
-    // public String saveHtFile(MultipartFile file,@ModelAttribute  Inithtlist iht) throws IOException
     public String saveHtFile(Inithtlist iht, MultipartFile file) throws Exception {
 
-        System.out.println(iht);
-        System.out.println(file.getOriginalFilename());
+        //System.out.println(iht);
+        //System.out.println(file.getOriginalFilename());
         String realPath = request.getServletContext().getRealPath("/img/HT");
         String time = iht.getSigningTime();
-        String yuefen = userFileService.timeChange(time.substring(4, 7));
-        String stime1 = time.substring(11, 15) + "-" + yuefen + "-" + time.substring(8, 10);
+        String yuefen = timeChange(time.substring(4, 7));
+        String signingTime = time.substring(11, 15) + "-" + yuefen + "-" + time.substring(8, 10);
+        //将前端发送时间转化为yyyy-MM-dd型
         File folder = new File(realPath);
         if (!folder.exists()) {
             folder.mkdirs();
         }
-        int i = userFileService.htSum(iht.getWid()) + 1;
+        int i = userFileService.htSum(iht.getWid()) + 1;//计算合同HID
         String HID = iht.getWid() + "_" + i;
         String oldName = file.getOriginalFilename();
         String newName = HID + oldName.substring(oldName.lastIndexOf("."));
         file.transferTo(new File(folder, newName));
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/img/HT/" + newName;
-        userFileService.htInsert(iht.getWid(), HID, iht.getHtName(), url, iht.getUseTime(), stime1);
-        // userFileService.UpdateTime(iht.getWid());
-        //userFileService.htInsert(iht.getWid().toString(),"123",iht.getHtName(),"56",iht.getUseTime(),stime1);
+        userFileService.htInsert(iht.getWid(), HID, iht.getHtName(), url, iht.getUseTime(), signingTime);
+        //插入数据库，并且在htInsert函数里判断合同是否有效
         System.out.println(url);
         return "{\"success\":1}";
     }
@@ -140,7 +141,6 @@ public class fileTestController {
 
     @RequestMapping(value = "/htdelete")
     public String htDelete(String wid, String hid) throws Exception
-    // public String htDelete(String hid,String wid)
     {
         String realPath = "/img/HT";
         String S = userFileService.findHtUrl(wid, hid);
@@ -153,48 +153,27 @@ public class fileTestController {
         if (file.exists()) {
             file.delete();
             userFileService.htDelete(hid);
-            // System.out.println("删除");
-            //System.out.println(realPath);
             return "{\"success\":1}";
         } else {
             System.out.println(realPath);
             return "{\"success\":0}";
         }
     }
-
     @RequestMapping(value = "/httable")
-    public List<htTable1> htTbale1s1(String wid) throws Exception {
+     public List<htTable1> htTbale1s(String wid) throws Exception {
         List<htTable> list = userFileService.htTables(wid);
-        int j = userFileService.checkDepartureTime(wid);//判断是否有离职时间
-        String rHID = userFileService.calHtTime(wid);   //获取最新合同的wid,如果过期则返回"全都无效"
-        if(j==1)
-        {
-            if(rHID.equals("全都无效")) j=0;
-            else j=1; //最新的一份合同有效
-        }
         List<htTable1> list1 = new ArrayList<htTable1>();
-        if (j == 1) {
-            for (htTable date : list) {
-                int i = 0;
-                htTable1 hb;
-                if(date.getHid().equals(rHID)) {
-                    hb = new htTable1(date.getHid(), date.gethName(), date.getSigningTime(), date.getUseTime(), date.gethUrl(), 1);//最新合同有效
-                }
-                else {
-                    hb = new htTable1(date.getHid(), date.gethName(), date.getSigningTime(), date.getUseTime(), date.gethUrl(), 0);//其余无效
-                }
+        for(htTable date:list){
+            int i = userFileService.isExisitInPht(date.getHid());
+            if(i==0){
+                htTable1 hb = new htTable1(date.getHid(),date.gethName(),date.getSigningTime(),date.getUseTime(),date.gethUrl(),1);
                 list1.add(hb);
-                i++;
             }
-            return list1;
-        } else {
-            for (htTable date : list) {
-                int i = 0;
-                htTable1 hb = new htTable1(date.getHid(), date.gethName(), date.getSigningTime(), date.getUseTime(), date.gethUrl(),0);
+            else{
+                htTable1 hb = new htTable1(date.getHid(),date.gethName(),date.getSigningTime(),date.getUseTime(),date.gethUrl(),0);
                 list1.add(hb);
-                i++;
             }
-            return list1;
         }
+        return list1;
     }
 }

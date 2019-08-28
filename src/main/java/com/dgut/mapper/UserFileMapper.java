@@ -46,6 +46,13 @@ public interface UserFileMapper {
     @Select("select departureTime from staff where wid=#{wid}")
     String checkDepartureTime(@Param("wid") String wid);
 
-    @Select("select hid,hName,hUrl,useTime,signingTime from ht where wid =#{wid} order by signingTime desc limit 1")
-    htTable findCurrentHt(@Param("wid") String wid);
+    @Insert("insert into PHT values(#{hid})")
+    void PhtInsert(@Param("hid")String hid);
+
+    @Delete("delete from PHT where hid =#{hid}")
+    void PhtDelete(@Param("hid") String hid);
+
+    @Select("select count(*)as hidSum from pht where hid =#{hid}")
+    int isExsistInPht(@Param("hid") String hid);
+
 }

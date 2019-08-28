@@ -100,6 +100,11 @@ CREATE  table ht(
      useTime varchar(20) default null, -- 合同有效期
      signingTime varchar(20) default null, --签约时间
 );
+
+DROP TABLE IF EXISTS `PHT`;
+create table pht(
+  HID varchar(255) primary key references ht(hid)
+);
 --insert into ht(hid,wid,useTime,signingTime) values (1,2019500,'1','2019-8-27');
 
 DROP TABLE--insert into ht(hid,wid,useTime,signingTime) values (2,2019501,'2','2019-8-27');
@@ -110,7 +115,6 @@ CREATE  table wages(
     baseWage varchar(255) default null, --基本工资
     time   varchar(255)  default null,   --签约时间
 );
-
 --权限部分
 --@author Wujiewei
 --两个实体表，一个映射表，多对多关系
