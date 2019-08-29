@@ -100,6 +100,11 @@ CREATE  table ht(
      useTime varchar(20) default null, -- 合同有效期
      signingTime varchar(20) default null, --签约时间
 );
+
+DROP TABLE IF EXISTS `PHT`;
+create table pht(
+  HID varchar(255) primary key references ht(hid)
+);
 --insert into ht(hid,wid,useTime,signingTime) values (1,2019500,'1','2019-8-27');
 
 DROP TABLE--insert into ht(hid,wid,useTime,signingTime) values (2,2019501,'2','2019-8-27');
@@ -110,23 +115,26 @@ CREATE  table wages(
     baseWage varchar(255) default null, --基本工资
     time   varchar(255)  default null,   --签约时间
 );
-
 --权限部分
 --@author Wujiewei
 --两个实体表，一个映射表，多对多关系
 --要区分职工和本系统的管理员的id
 DROP TABLE IF EXISTS `managers`;
 CREATE  table managers(
-                    id int identity(2019500,1)  PRIMARY KEY, --工号
+                    id VARCHAR(255) PRIMARY KEY, --工号
                     name VARCHAR(255),  --姓名
                     state tinyint(1) default 0, --登录状态，取值{0,1}，默认值0
                     CONSTRAINT chk_state CHECK (state = 1 OR state = 0)
 );
-insert into managers(name, state) values('王宝强', 0);
-insert into managers(name, state) values('周润发', 0);
-insert into managers(name, state) values('刘德华', 1);
-insert into managers(name, state) values('郭富城', 0);
-insert into managers(name, state) values('王祖贤', 1);
+insert into managers(id, state) values('201741412224', 0);
+insert into managers(id, state) values('110', 0);
+insert into managers(id, state) values('120', 1);
+insert into managers(id, state) values('119', 0);
+insert into managers(id, state) values('911', 1);
+
+insert into managers(id, state) values('201741412214', 0);
+insert into managers(id, state) values('201741412205', 0);
+insert into managers(id, state) values('201741404149', 0);
 
 
 DROP TABLE IF EXISTS `roles`;
@@ -158,19 +166,61 @@ insert into roles(name, page_power, department_power) values('后勤人员', 'FF
 DROP TABLE IF EXISTS `roles_managers`;
 CREATE  table roles_managers(
                     id int identity(0,1)  PRIMARY KEY, --角色和管理的组合，每当更改权限，就增加一条记录
-                    managers_id int,  --管理员主键
+                    managers_id VARCHAR(255),  --管理员主键
                     roles_id int, --角色主键
                     FOREIGN KEY(managers_id) REFERENCES managers(id),
                     FOREIGN KEY(roles_id) REFERENCES roles(id)
 );
-insert into roles_managers(managers_id, roles_id) values(2019502, 2);
-insert into roles_managers(managers_id, roles_id) values(2019502, 0);
-insert into roles_managers(managers_id, roles_id) values(2019501, 1);
-insert into roles_managers(managers_id, roles_id) values(2019501, 2);
-insert into roles_managers(managers_id, roles_id) values(2019502, 1);
-insert into roles_managers(managers_id, roles_id) values(2019503, 2);
-insert into roles_managers(managers_id, roles_id) values(2019504, 1);
-insert into roles_managers(managers_id, roles_id) values(2019500, 0);
+insert into roles_managers(managers_id, roles_id) values('201741412224', 0);
+insert into roles_managers(managers_id, roles_id) values('110', 0);
+insert into roles_managers(managers_id, roles_id) values('120', 1);
+insert into roles_managers(managers_id, roles_id) values('120', 2);
+insert into roles_managers(managers_id, roles_id) values('119', 1);
+insert into roles_managers(managers_id, roles_id) values('119', 2);
+insert into roles_managers(managers_id, roles_id) values('911', 1);
+insert into roles_managers(managers_id, roles_id) values('911', 0);
 -- insert into roles_managers(managers_id, roles_id) values(2019505, 2);
 
+insert into roles_managers(managers_id, roles_id) values('201741412214', 0);
+insert into roles_managers(managers_id, roles_id) values('201741412205', 0);
+insert into roles_managers(managers_id, roles_id) values('201741404149', 0);
 
+
+
+-- 日志
+DROP TABLE IF EXISTS `log`;
+CREATE  table log(
+        lid int identity(0,1)  PRIMARY KEY,
+        date VARCHAR(255),
+        gid VARCHAR(255),
+        name VARCHAR(255),
+        ip VARCHAR(255),
+        action VARCHAR(255),
+        FOREIGN KEY(gid) REFERENCES managers(id)
+);
+
+-- 页面对应的权限(待定)
+DROP TABLE IF EXISTS `page_power`;
+CREATE  table page_power(
+        index int PRIMARY KEY,
+        url VARCHAR(255)
+);
+insert into page_power(index, url) values(0, '/list');
+insert into page_power(index, url) values(1, '/edit');
+insert into page_power(index, url) values(2, '/delete');
+insert into page_power(index, url) values(3, '/add');
+
+insert into page_power(index, url) values(4, '/loglist');
+insert into page_power(index, url) values(5, '');
+insert into page_power(index, url) values(6, '');
+insert into page_power(index, url) values(7, '');
+
+insert into page_power(index, url) values(8, '/gllist');
+insert into page_power(index, url) values(9, '/gledit');
+insert into page_power(index, url) values(10, '/');
+insert into page_power(index, url) values(11, '/gladda');
+
+insert into page_power(index, url) values(12, '/rolelist');
+insert into page_power(index, url) values(13, '/edit');
+insert into page_power(index, url) values(14, '/roledelete');
+insert into page_power(index, url) values(15, '/roleadd');
