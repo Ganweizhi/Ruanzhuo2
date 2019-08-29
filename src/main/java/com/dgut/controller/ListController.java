@@ -12,6 +12,8 @@ import java.text.SimpleDateFormat;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 @RestController
@@ -45,9 +47,13 @@ public class ListController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(@RequestBody addBean msgForm){
         String name = listservice.getNameByWid(msgForm.getWid());
+        Pattern pattern = Pattern.compile("[0-9]*");
+        Matcher isNum = pattern.matcher(msgForm.getDepartment());
+        if( !isNum.matches() ){
+            msgForm.setDepartment(listservice.getDepartmentIDByName(msgForm.getDepartment()));
+        }
         int state;
         if(name!=null){
-            //msgForm.setDepartment(listservice.getDepartmentIDByName(msgForm.getDepartment()));
             state = listservice.updateMessage(msgForm);
         }else {
             state = listservice.add(msgForm);
