@@ -17,11 +17,16 @@ public class GllistBeanPage implements Serializable {
     {
 
     }
-    public GllistBeanPage(Map<String,GllistChangeBean> datas, int totalPage)
+    public GllistBeanPage(Map<String,GllistChangeBean> datas, int totalPage) {
+        this.data = data;
+        this.totalPage = totalPage;
+    }
+
+    public GllistBeanPage(Map<String,GllistChangeBean> datas, int totalPage, int start, int end)
     {
         List<GllistChangeBean> data = new ArrayList<GllistChangeBean>(datas.values());  // Collection转List， 比较容易犯错
-
-        this.data = data;
+        List<GllistChangeBean> subData = data.subList(start, end);
+        this.data = subData;
         this.totalPage = totalPage;
     }
 

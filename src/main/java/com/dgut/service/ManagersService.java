@@ -33,8 +33,8 @@ public class ManagersService {
      *
      * @return
      */
-    public List<GllistBean> findAll() {
-        return managersMapper.findAll();
+    public List<GllistBean> findAll(String gid, String name) {
+        return managersMapper.findAll(gid, name);
     }
 
     public Boolean findPagePower(int index) {

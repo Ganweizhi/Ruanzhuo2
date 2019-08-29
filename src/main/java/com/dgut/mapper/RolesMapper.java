@@ -26,12 +26,24 @@ public interface RolesMapper {
     @Select("select managers_id as gid,managers.name as name from roles_managers,managers where" +
             " roles_id =#{roles_id} and  roles_managers.roles_id =managers.id ")
     List<gldelBean> getGldelBean(@Param("roles_id") String roles_id);
+
     /**
      * 查询所有角色
      * @return
      */
-    @Select("select id as rid, name, page_power as pagePower, department_power as depPower  from roles")
-    List<RoleListBean> findAll();
+    @Select("<script>"
+            + "select id as rid, name, page_power as pagePower, department_power as depPower from roles"
+            + " <where>"
+            + "  <if test='rid != null' > "
+            + "     and rid like CONCAT('%',#{rid},'%') "
+            + " </if>"
+            + "  <if test='name != null' > "
+            + "     and name like CONCAT('%',#{name},'%') "
+            + " </if>"
+            + "</where>"
+            + "</script>")
+//    @Select("select id as rid, name, page_power as pagePower, department_power as depPower from roles")
+    List<RoleListBean> findAll(@Param("rid")String rid, @Param("name")String name);
 
     /**
      * 根据名称查询角色id
