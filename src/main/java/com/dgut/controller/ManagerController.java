@@ -73,7 +73,6 @@ public class ManagerController {
         int start = (Integer.parseInt(currentPage)-1)*7;
         int end = start+7>map.size()?map.size():start+7;
         GllistBeanPage gllistAndNumBean = new GllistBeanPage(map, map.size(), start, end);
-        System.out.println(gllistAndNumBean);
         return gllistAndNumBean;
     }
 
