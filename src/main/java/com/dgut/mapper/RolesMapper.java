@@ -35,7 +35,7 @@ public interface RolesMapper {
             + "select id as rid, name, page_power as pagePower, department_power as depPower from roles"
             + " <where>"
             + "  <if test='rid != null' > "
-            + "     and rid like CONCAT('%',#{rid},'%') "
+            + "     and id like CONCAT('%',#{rid},'%') "
             + " </if>"
             + "  <if test='name != null' > "
             + "     and name like CONCAT('%',#{name},'%') "
