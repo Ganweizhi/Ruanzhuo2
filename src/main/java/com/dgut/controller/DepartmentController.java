@@ -3,6 +3,7 @@ package com.dgut.controller;
 
 import com.dgut.jsonBean.DepartmentBean;
 import com.dgut.service.DepartmentService;
+import com.dgut.service.GetDepPower;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,9 @@ public class DepartmentController {
 
     @Autowired
     private DepartmentService departmentService;
+
+    @Autowired
+    private GetDepPower getDepPower;
 
     @RequestMapping("/department")
     public List<DepartmentBean> getDepartmentList(){

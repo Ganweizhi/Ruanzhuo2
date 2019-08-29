@@ -13,8 +13,19 @@ public class GetDepPower {
     private staffMapper staffmapper;
     public String getDepPower(String managers_id){
         List<String> list = staffmapper.getDepPower(managers_id);
-        System.out.println(list.toString());
-        for(int i=0; i<list.get(0); i++);
-        return null;
+//        System.out.println(list.toString());
+        String result = list.get(0);
+        result.replace('1','0');
+        StringBuilder sb = new StringBuilder(result);
+        for(int i=0; i<result.length(); i++){
+            for (String s : list) {
+                if(s.charAt(i)=='1'){
+                    sb.setCharAt(i,'1');
+                    break;
+                }
+            }
+        }
+//        System.out.println(sb.toString());
+        return sb.toString();
     }
 }

@@ -128,6 +128,11 @@ public class ListController {
         }
 
         List<listBean> data = listservice.findList(department, education, search);
+
+        String depPower = getDepPower.getDepPower(manager.getUsername());
+        StringBuilder sb = new StringBuilder(depPower).reverse();
+        data = data.stream().filter(bean ->sb.charAt(Integer.parseInt(bean.getDepartment()))=='1').collect(Collectors.toList());
+
         for (listBean datum : data) {
             List<String> list = listservice.findSigningTimeByWid(datum.getWid());
             if(list.size()!=0) {
@@ -148,9 +153,6 @@ public class ListController {
             data = data.stream().filter(bean -> bean.getDepartureTime()!=null).collect(Collectors.toList());
             data = data.stream().filter(bean -> bean.getDepartureTime().compareTo(split[0]) >= 0 && bean.getDepartureTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
         }
-
-        String depPower = getDepPower.getDepPower(manager.getUsername());
-
 
         int start = (Integer.parseInt(currentPage)-1)*7;
         int end = start+7>data.size()?data.size():start+7;
