@@ -1,13 +1,14 @@
 package com.dgut.controller;
 import com.dgut.jsonBean.*;
 import com.dgut.service.LogService;
+import com.dgut.service.ManagersService;
 import com.dgut.service.UserFileService;
 import com.dgut.service.listService;
-import com.dgut.service.GetDepPower;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collections;
@@ -26,7 +27,7 @@ public class ListController {
     @Autowired
     private listService listservice;
     @Autowired
-    private GetDepPower getDepPower;
+    private ManagersService managersService;
     @Autowired
     private HttpServletRequest request;
     @Autowired
@@ -39,6 +40,7 @@ public class ListController {
 
     @RequestMapping(value = "/inlist", method = RequestMethod.POST)
     public String add(@RequestBody List<outlistBean> msgForm){
+        if(managersService.findPagePower(3)) return "{\"success\":3}";
         System.out.println(msgForm);
         for (outlistBean bean : msgForm) {
             bean.setDepartment(listservice.getDepartmentIDByName(bean.getDepartment()));
@@ -69,12 +71,9 @@ public class ListController {
 
     @RequestMapping(value = "/delete")
     public String deleteByWid(String wid){
+        if(managersService.findPagePower(2)) return "{\"success\":3}";
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
         listservice.deleteByWid(wid,df.format(new Date()));
-
-
-
-
         return "{\"success\":1}";
     }
 
@@ -116,7 +115,8 @@ public class ListController {
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public listBeanPage getList(String department,String education,String search , String stime,String etime,String currentPage,@SessionAttribute Manager manager) throws ParseException {
+    public listBeanPage getList(String department,String education,String search , String stime,String etime,String currentPage) throws ParseException {
+        if(managersService.findPagePower(0)) return new listBeanPage(null,-1);
         if(department.equals("")) {
             department = null;
         }
@@ -128,11 +128,6 @@ public class ListController {
         }
 
         List<listBean> data = listservice.findList(department, education, search);
-
-        String depPower = getDepPower.getDepPower(manager.getUsername());
-        StringBuilder sb = new StringBuilder(depPower).reverse();
-        data = data.stream().filter(bean ->sb.charAt(Integer.parseInt(bean.getDepartment()))=='1').collect(Collectors.toList());
-
         for (listBean datum : data) {
             List<String> list = listservice.findSigningTimeByWid(datum.getWid());
             if(list.size()!=0) {
@@ -158,19 +153,20 @@ public class ListController {
         int end = start+7>data.size()?data.size():start+7;
         List<listBean> datas = data.subList(start,end);
         listBeanPage listBeanPage = new listBeanPage(datas,data.size());
-
         return listBeanPage;
     }
 
     @RequestMapping(value = "/edit")
     public String add(String index){
-        return "{\"success\":1}";
+        if(managersService.findPagePower(Integer.parseInt(index))) return "{\"success\":0}";
+        else return "{\"success\":1}";
 
     }
 
     @RequestMapping(value = "/ryadd")
     public String add(){
-        return "{\"success\":1}";
+        if(managersService.findPagePower(3)) return "{\"success\":0}";
+        else return "{\"success\":1}";
 
     }
     @RequestMapping("/xctable")
@@ -181,6 +177,7 @@ public class ListController {
     @RequestMapping(value = "/loglist")
     @ResponseBody
     public LogBeanPage getList(String date,String gid,String name,String ip ,String currentPage) throws ParseException {
+        if(managersService.findPagePower(4)) return new LogBeanPage(null,-1);
         if(gid.equals("")) {
             gid = null;
         }

@@ -44,7 +44,7 @@ public class Login {
             if (JSON.parseObject(sj).getString("message") == null) {
                 Manager manager = JSON.parseObject(sj, Manager.class);
                 request.getSession().setAttribute("manager", manager);
-                response.sendRedirect("http://ming-cdn.test.upcdn.net");
+                response.sendRedirect("http://localhost:8081");
             } else {
                 return JSON.parseObject(sj).getString("message");
             }

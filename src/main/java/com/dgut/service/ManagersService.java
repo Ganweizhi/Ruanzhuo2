@@ -1,12 +1,14 @@
 package com.dgut.service;
 
 import com.dgut.jsonBean.GllistBean;
+import com.dgut.jsonBean.*;
 import com.dgut.jsonBean.GllistFromGleditBean;
 import com.dgut.mapper.ManagersMapper;
 import com.dgut.mapper.RolesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -18,6 +20,8 @@ public class ManagersService {
 
     @Autowired
     private ManagersMapper managersMapper;
+    @Autowired
+    private HttpSession session;
 
     private RolesMapper rolesMapper;
 
@@ -31,6 +35,15 @@ public class ManagersService {
      */
     public List<GllistBean> findAll() {
         return managersMapper.findAll();
+    }
+
+    public Boolean findPagePower(int index) {
+        List<String> list = managersMapper.findPagePower(((Manager)session.getAttribute("manager")).getUsername());
+        int res=0;
+        for (String s:list) {
+            res = Integer.valueOf(s,16)|res;
+        }
+        return (new StringBuffer(Integer.toBinaryString(res)).reverse().toString()).charAt(index) == '0';
     }
 
     /**

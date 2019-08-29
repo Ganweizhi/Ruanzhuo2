@@ -1,9 +1,7 @@
 package com.dgut.controller;
 
-import com.dgut.jsonBean.RoleListBean;
-import com.dgut.jsonBean.RoleListBeanPage;
-import com.dgut.jsonBean.RoleWithoutIdBean;
-import com.dgut.jsonBean.gldelBean;
+import com.dgut.jsonBean.*;
+import com.dgut.service.ManagersService;
 import com.dgut.service.RolesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -19,10 +17,13 @@ public class RoleController {
 
     @Autowired
     private RolesService rolesService;
+    @Autowired
+    private ManagersService managersService;
 
     @RequestMapping("/rolelist")
     @ResponseBody
     public RoleListBeanPage findAll() {
+        if(managersService.findPagePower(12)) return new RoleListBeanPage(null,-1);
         List<RoleListBean> data = rolesService.findAll();
         RoleListBeanPage roleListBeanPage = new RoleListBeanPage(data, data.size());
         return roleListBeanPage;
@@ -45,6 +46,7 @@ public class RoleController {
     @RequestMapping(value = "/roledelete")
     @ResponseBody
     public Integer deleteRoleById(Integer rid) {
+        if(managersService.findPagePower(14)) return 3;
         try {
             rolesService.deleteRolesManagersById(rid);
             rolesService.deleteRoleById(rid);

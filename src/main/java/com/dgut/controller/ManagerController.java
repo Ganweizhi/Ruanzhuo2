@@ -65,6 +65,7 @@ public class ManagerController {
     @RequestMapping("/gllist")
     @ResponseBody
     public GllistBeanPage findAll() {
+        if(managersService.findPagePower(8)) return new GllistBeanPage(null,-1);
         Map<String, GllistChangeBean> map = returnMap();
         GllistBeanPage gllistAndNumBean = new GllistBeanPage(map, map.size());
         return gllistAndNumBean;
@@ -78,6 +79,7 @@ public class ManagerController {
     @RequestMapping("/gledit")
     @ResponseBody
     public Integer editRolesOfManager(@RequestBody GllistFromGleditBean gllistFromGleditBean) {
+        if(managersService.findPagePower(8)) return 3;
         return managersService.editRolesOfManager(gllistFromGleditBean);
     }
 }

@@ -44,4 +44,7 @@ public interface ManagersMapper {
     @Insert("insert into roles_managers(managers_id, roles_id) values(#{gid}, #{rid})")
     void insertRolesManagers(@Param("gid")String gid, @Param("rid")String rid);
 
+    @Select("select r.page_power from roles r, roles_managers mr where r.id = mr.roles_id and mr.managers_id=#{gid}")
+    List<String> findPagePower(@Param("gid")String gid);
+
 }
