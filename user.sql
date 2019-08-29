@@ -181,7 +181,8 @@ insert into roles_managers(managers_id, roles_id) values('911', 1);
 insert into roles_managers(managers_id, roles_id) values('911', 0);
 -- insert into roles_managers(managers_id, roles_id) values(2019505, 2);
 
-insert into roles_managers(managers_id, roles_id) values('201741412214', 0);
+insert into roles_managers(managers_id, roles_id) values('201741412214', 1);
+insert into roles_managers(managers_id, roles_id) values('201741412214', 2);
 insert into roles_managers(managers_id, roles_id) values('201741412205', 0);
 insert into roles_managers(managers_id, roles_id) values('201741404149', 0);
 

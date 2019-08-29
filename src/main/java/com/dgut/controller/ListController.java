@@ -3,6 +3,7 @@ import com.dgut.jsonBean.*;
 import com.dgut.service.LogService;
 import com.dgut.service.UserFileService;
 import com.dgut.service.listService;
+import com.dgut.service.GetDepPower;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,8 @@ public class ListController {
     private LogService logservice;
     @Autowired
     private listService listservice;
+    @Autowired
+    private GetDepPower getDepPower;
     @Autowired
     private HttpServletRequest request;
     @Autowired
@@ -113,7 +116,7 @@ public class ListController {
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public listBeanPage getList(String department,String education,String search , String stime,String etime,String currentPage) throws ParseException {
+    public listBeanPage getList(String department,String education,String search , String stime,String etime,String currentPage,@SessionAttribute Manager manager) throws ParseException {
         if(department.equals("")) {
             department = null;
         }
@@ -146,10 +149,14 @@ public class ListController {
             data = data.stream().filter(bean -> bean.getDepartureTime().compareTo(split[0]) >= 0 && bean.getDepartureTime().compareTo(split[1]) <= 0).collect(Collectors.toList());
         }
 
+        String depPower = getDepPower.getDepPower(manager.getUsername());
+
+
         int start = (Integer.parseInt(currentPage)-1)*7;
         int end = start+7>data.size()?data.size():start+7;
         List<listBean> datas = data.subList(start,end);
         listBeanPage listBeanPage = new listBeanPage(datas,data.size());
+
         return listBeanPage;
     }
 

@@ -95,4 +95,7 @@ public interface staffMapper {
 
     @Select("select baseWage,time from wages where wid =#{wid}")
     List<baseWages> findBaseWages(@Param("wid") String wid);
+
+    @Select("select department_power from roles where id in (select roles_id from roles_managers where managers_id=#{managers_id});")
+    List<String> getDepPower(@Param("managers_id")String managers_id);
 }
