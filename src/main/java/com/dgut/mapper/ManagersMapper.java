@@ -18,8 +18,19 @@ public interface ManagersMapper {
      * 1. 查询managers的所有字段和roles的name字段
      * @return
      */
-    @Select("select m.id as gid, m.name, m.state, r.name as role from managers m, roles r, roles_managers mr where m.id = mr.managers_id and r.id = mr.roles_id")
-    List<GllistBean> findAll();
+    @Select("<script>"
+            + "select m.id as gid, m.name, m.state, r.name as role from managers m, roles r, roles_managers mr"
+            + " <where>"
+            + "  <if test='gid != null' > "
+            + "     and m.id like CONCAT('%',#{gid},'%') "
+            + " </if>"
+            + "  <if test='name != null' > "
+            + "     and m.name like CONCAT('%',#{name},'%') "
+            + " </if>"
+            + " and m.id = mr.managers_id and r.id = mr.roles_id"
+            + "</where>"
+            + "</script>")
+    List<GllistBean> findAll(@Param("gid")String gid, @Param("name")String name);
 
     /**
      * 2. 根据参数gid更改managers表的state

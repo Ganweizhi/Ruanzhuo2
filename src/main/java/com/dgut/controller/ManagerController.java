@@ -29,17 +29,13 @@ public class ManagerController {
      * 封装GllistBeanPage
      * @return
      */
-    public Map<String, GllistChangeBean> returnMap() {
+    public Map<String, GllistChangeBean> returnMap(String gid, String name) {
         GllistChangeBean gllistChangeBean = new GllistChangeBean("0", "hi", new ArrayList<>(), 0);
-        GllistChangeBean gllistChangeBean1 = new GllistChangeBean("0", "hi", new ArrayList<>(), 0);
-        System.out.println("=================================here");
-        List<GllistBean> data = managersService.findAll();
-        System.out.println(data);
+        List<GllistBean> data = managersService.findAll(gid, name);
         Map<String, GllistChangeBean> map = new HashMap<String, GllistChangeBean>();  // 合并后的GllistBean保存在map中
         for(GllistBean getById : data) {
             gllistChangeBean = map.get(getById.getGid());  // 通过id判断是否存在对应的管理员
             if(gllistChangeBean != null){  // 存在则合并role字段，并保存到map
-//                System.out.println(gllistChangeBean);
                 gllistChangeBean.getRole().add(",");
                 gllistChangeBean.getRole().add(getById.getRole());
                 map.put(getById.getGid(), gllistChangeBean);
@@ -64,10 +60,20 @@ public class ManagerController {
      */
     @RequestMapping("/gllist")
     @ResponseBody
-    public GllistBeanPage findAll() {
+    public GllistBeanPage findAll(String gid, String name, String currentPage) {
         if(managersService.findPagePower(8)) return new GllistBeanPage(null,-1);
-        Map<String, GllistChangeBean> map = returnMap();
-        GllistBeanPage gllistAndNumBean = new GllistBeanPage(map, map.size());
+        if(gid.equals("")) {
+            gid = null;
+        }
+        if(name.equals("")) {
+            name = null;
+        }
+        Map<String, GllistChangeBean> map = returnMap(gid, name);
+
+        int start = (Integer.parseInt(currentPage)-1)*7;
+        int end = start+7>map.size()?map.size():start+7;
+        GllistBeanPage gllistAndNumBean = new GllistBeanPage(map, map.size(), start, end);
+        System.out.println(gllistAndNumBean);
         return gllistAndNumBean;
     }
 

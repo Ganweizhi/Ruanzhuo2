@@ -19,8 +19,8 @@ public class RolesService {
     @Autowired
     private RolesMapper rolesMapper;
 
-    public List<RoleListBean> findAll() {
-        return rolesMapper.findAll();
+    public List<RoleListBean> findAll(String rid, String name) {
+        return rolesMapper.findAll(rid, name);
     }
 
     public void deleteRoleById(Integer rid) {

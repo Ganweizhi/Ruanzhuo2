@@ -22,17 +22,28 @@ public class RoleController {
 
     @RequestMapping("/rolelist")
     @ResponseBody
-    public RoleListBeanPage findAll() {
+    public RoleListBeanPage findAll(String rid, String name, String currentPage) {
         if(managersService.findPagePower(12)) return new RoleListBeanPage(null,-1);
-        List<RoleListBean> data = rolesService.findAll();
-        RoleListBeanPage roleListBeanPage = new RoleListBeanPage(data, data.size());
+        if(rid.equals("")) {
+            rid = null;
+        }
+        if(name.equals("")) {
+            name = null;
+        }
+        List<RoleListBean> data = rolesService.findAll(rid, name);
+
+        int start = (Integer.parseInt(currentPage)-1)*7;
+        int end = start+7>data.size()?data.size():start+7;
+
+        List<RoleListBean> subData = data.subList(start, end);
+        RoleListBeanPage roleListBeanPage = new RoleListBeanPage(subData, data.size());
         return roleListBeanPage;
     }
 
     @RequestMapping("/roleLists")
     @ResponseBody
     public List<RoleListBean> returnRoleLists() {
-        List<RoleListBean> roleListBeans = rolesService.findAll();
+        List<RoleListBean> roleListBeans = rolesService.findAll(null, null);
         return roleListBeans;
     }
 
