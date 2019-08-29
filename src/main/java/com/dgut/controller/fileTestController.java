@@ -161,6 +161,8 @@ public class fileTestController {
     }
     @RequestMapping(value = "/httable")
      public List<htTable1> htTbale1s(String wid) throws Exception {
+
+        userFileService.setHidToPHT(wid);//先调用此方法
         List<htTable> list = userFileService.htTables(wid);
         List<htTable1> list1 = new ArrayList<htTable1>();
         for(htTable date:list){

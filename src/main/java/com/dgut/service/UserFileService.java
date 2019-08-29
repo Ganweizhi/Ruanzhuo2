@@ -94,4 +94,28 @@ public class UserFileService {
        if(i>0) return 1; //PHT表不存在该HID，即该合同没有过期
        else  return 0;
    }
+
+   public void setHidToPHT(String wid)throws  Exception{
+        String str = userFileMapper.checkDepartureTime(wid);
+        List<htTable> list = userFileMapper.htTale(wid);
+        if(str==null) {
+            for (htTable date : list) {
+                int i = CompareTime(date.getUseTime(), date.getSigningTime());
+                if (i == 0) {
+                    int j = userFileMapper.isExsistInPht(date.getHid());
+                    if (j == 0) {
+                        userFileMapper.PhtInsert(date.getHid());
+                    }
+                }
+            }
+        }else {
+            for (htTable date : list) {
+                int j = userFileMapper.isExsistInPht(date.getHid());
+                if(j==0){
+                    userFileMapper.PhtInsert(date.getHid());
+                }
+            }
+        }
+    }
+
 }
