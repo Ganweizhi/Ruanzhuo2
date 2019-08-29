@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class GllistChangeBean implements Serializable {
 
-    private Integer gid;  // 管理员莞工账号
+    private String gid;  // 管理员莞工账号
     private String name;  // 管理员名称
     private List<String> role;  // 管理员的角色名称列表
     private Integer state;  // 账号是否停用，0 或 1
@@ -18,18 +18,18 @@ public class GllistChangeBean implements Serializable {
 
     }
 
-    public GllistChangeBean (Integer gid, String name, List<String> role, Integer state) {
+    public GllistChangeBean (String gid, String name, List<String> role, Integer state) {
         this.gid = gid;
         this.name = name;
         this.role = role;
         this.state = state;
     }
 
-    public Integer getGid() {
+    public String getGid() {
         return gid;
     }
 
-    public void setGid(Integer gid) {
+    public void setGid(String gid) {
         this.gid = gid;
     }
 

@@ -9,16 +9,16 @@ import java.io.Serializable;
  * 查询数据库中所有的管理员，并封装到管理员对象
  */
 public class GllistBean implements Serializable {
-    private Integer gid;  // 管理员莞工账号
+    private String gid;  // 管理员莞工账号
     private String name;  // 管理员名称
     private String role;  // 管理员的角色名称
     private Integer state;  // 账号是否停用，0 或 1
 
-    public Integer getGid() {
+    public String getGid() {
         return gid;
     }
 
-    public void setGid(Integer gid) {
+    public void setGid(String gid) {
         this.gid = gid;
     }
 

@@ -1,7 +1,5 @@
 package com.dgut.jsonBean;
 
-import org.springframework.stereotype.Service;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +17,7 @@ public class GllistBeanPage implements Serializable {
     {
 
     }
-    public GllistBeanPage(Map<Integer,GllistChangeBean> datas, int totalPage)
+    public GllistBeanPage(Map<String,GllistChangeBean> datas, int totalPage)
     {
         List<GllistChangeBean> data = new ArrayList<GllistChangeBean>(datas.values());  // Collection转List， 比较容易犯错
 
