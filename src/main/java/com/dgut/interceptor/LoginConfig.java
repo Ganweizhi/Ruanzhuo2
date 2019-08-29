@@ -20,12 +20,6 @@ public class LoginConfig extends WebMvcConfigurerAdapter {
                 .addPathPatterns("/**")
                 .excludePathPatterns("/login/dgut")
                 .excludePathPatterns("/tc")
-                .excludePathPatterns("/sfzz")
-                .excludePathPatterns("/sfzf")
-                .excludePathPatterns("/yhkz")
-                .excludePathPatterns("/yhkf")
-                .excludePathPatterns("/headimg")
-                .excludePathPatterns("/htfile")
                 .excludePathPatterns("/loginstate");
         super.addInterceptors(registry);
     }

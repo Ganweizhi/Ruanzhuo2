@@ -32,4 +32,9 @@ public class DepartmentController {
         data = data.stream().filter(bean ->sb.charAt(Integer.parseInt(bean.getValue()))=='1').collect(Collectors.toList());
         return data;
     }
+
+    @RequestMapping("/departments")
+    public List<DepartmentBean> getDepartmentLists(){
+        return departmentService.findAll();
+    }
 }
