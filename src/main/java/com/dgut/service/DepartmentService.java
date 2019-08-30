@@ -16,5 +16,8 @@ public class DepartmentService {
     public List<DepartmentBean> findAll() {
         return DepartmentMapper.findAll();
     }
+    public List<DepartmentBean> findBank() {
+        return DepartmentMapper.findBank();
+    }
 
 }

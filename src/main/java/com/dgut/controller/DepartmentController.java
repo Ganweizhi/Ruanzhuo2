@@ -37,4 +37,9 @@ public class DepartmentController {
     public List<DepartmentBean> getDepartmentLists(){
         return departmentService.findAll();
     }
+
+    @RequestMapping("/bank")
+    public List<DepartmentBean> getBank(){
+        return departmentService.findBank();
+    }
 }

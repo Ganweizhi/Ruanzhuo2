@@ -113,6 +113,7 @@ public class RoleController {
     @RequestMapping("/roleadd")
     @ResponseBody
     public String addRole(@RequestBody RoleWithoutIdBean roleWithoutIdBean) {
+        if(managersService.findPagePower(15)) return "{\"success\":3}";
         Integer flag = rolesService.addRole(roleWithoutIdBean);
         if (flag == 1)
             return "{\"success\":1}";

@@ -13,4 +13,7 @@ public interface DepartmentMapper {
 
     @Select("select d.department as value, d.name as label from department d")
     List<DepartmentBean> findAll();
+
+    @Select("select b.id as value, b.bank_name as label from bank b")
+    List<DepartmentBean> findBank();
 }

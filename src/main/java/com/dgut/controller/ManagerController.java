@@ -84,7 +84,7 @@ public class ManagerController {
     @RequestMapping("/gledit")
     @ResponseBody
     public Integer editRolesOfManager(@RequestBody GllistFromGleditBean gllistFromGleditBean) {
-        if(managersService.findPagePower(8)) return 3;
+        if(managersService.findPagePower(9)) return 3;
         return managersService.editRolesOfManager(gllistFromGleditBean);
     }
 }
