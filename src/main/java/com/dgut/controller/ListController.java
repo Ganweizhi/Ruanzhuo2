@@ -1,9 +1,6 @@
 package com.dgut.controller;
 import com.dgut.jsonBean.*;
-import com.dgut.service.LogService;
-import com.dgut.service.ManagersService;
-import com.dgut.service.UserFileService;
-import com.dgut.service.listService;
+import com.dgut.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +27,9 @@ public class ListController {
     private ManagersService managersService;
     @Autowired
     private HttpServletRequest request;
+
+    @Autowired
+    private GetDepPower GetdepPower;
     @Autowired
     private UserFileService userFileService;
     @RequestMapping(value = "/init")
@@ -79,7 +79,7 @@ public class ListController {
 
     @RequestMapping(value = "/outlist")
     @ResponseBody
-    public List<outlistBean> getOutlist(String department, String education, String search, String stime, String etime) {
+    public List<outlistBean> getOutlist(String department, String education, String search, String stime, String etime,@SessionAttribute Manager manager) {
         if(department.equals("")) {
             department = null;
         }
@@ -91,6 +91,10 @@ public class ListController {
         }
 
         List<outlistBean> data = listservice.findOutlist(department, education,search);
+        String depPower = GetdepPower.getDepPower(manager.getUsername());
+        StringBuilder sb = new StringBuilder(depPower).reverse();
+        data = data.stream().filter(bean ->sb.charAt(Integer.parseInt(bean.getDepartment()))=='1').collect(Collectors.toList());
+
         for (outlistBean datum : data) {
             List<String> list = listservice.findSigningTimeByWid(datum.getWid());
             if(list.size()!=0) {
@@ -115,7 +119,7 @@ public class ListController {
 
     @RequestMapping(value = "/list")
     @ResponseBody
-    public listBeanPage getList(String department,String education,String search , String stime,String etime,String currentPage) throws ParseException {
+    public listBeanPage getList(String department,String education,String search , String stime,String etime,String currentPage,@SessionAttribute Manager manager) throws ParseException {
         if(managersService.findPagePower(0)) return new listBeanPage(null,-1);
         if(department.equals("")) {
             department = null;
@@ -128,6 +132,12 @@ public class ListController {
         }
 
         List<listBean> data = listservice.findList(department, education, search);
+
+        String depPower = GetdepPower.getDepPower(manager.getUsername());
+        StringBuilder sb = new StringBuilder(depPower).reverse();
+        data = data.stream().filter(bean ->sb.charAt(Integer.parseInt(bean.getDepartment()))=='1').collect(Collectors.toList());
+
+
         for (listBean datum : data) {
             List<String> list = listservice.findSigningTimeByWid(datum.getWid());
             if(list.size()!=0) {
