@@ -1,9 +1,6 @@
 package com.dgut.controller;
 
-import com.dgut.jsonBean.GllistBean;
-import com.dgut.jsonBean.GllistBeanPage;
-import com.dgut.jsonBean.GllistChangeBean;
-import com.dgut.jsonBean.GllistFromGleditBean;
+import com.dgut.jsonBean.*;
 import com.dgut.service.ManagersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -87,4 +84,17 @@ public class ManagerController {
         if(managersService.findPagePower(9)) return 3;
         return managersService.editRolesOfManager(gllistFromGleditBean);
     }
+
+
+    @RequestMapping("/gladda")
+    @ResponseBody
+    public String addManager(@RequestBody ManagerWithoutNameBean managerWithoutNameBean) {
+//        if(managersService.findPagePower(9)) return 3;  //这里要改
+        Integer flag =  managersService.addManager(managerWithoutNameBean);
+        if (flag == 1)
+            return "{\"success\":1}";
+        else
+            return "{\"success\":0}";
+    }
+
 }

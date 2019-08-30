@@ -1,10 +1,10 @@
 package com.dgut.service;
 
 import com.dgut.jsonBean.GllistBean;
-import com.dgut.jsonBean.*;
 import com.dgut.jsonBean.GllistFromGleditBean;
+import com.dgut.jsonBean.Manager;
+import com.dgut.jsonBean.ManagerWithoutNameBean;
 import com.dgut.mapper.ManagersMapper;
-import com.dgut.mapper.RolesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +23,6 @@ public class ManagersService {
     @Autowired
     private HttpSession session;
 
-    private RolesMapper rolesMapper;
-
     @Autowired
     private RolesService rolesService;
 
@@ -38,10 +36,10 @@ public class ManagersService {
     }
 
     public Boolean findPagePower(int index) {
-        List<String> list = managersMapper.findPagePower(((Manager)session.getAttribute("manager")).getUsername());
-        int res=0;
-        for (String s:list) {
-            res = Integer.valueOf(s,16)|res;
+        List<String> list = managersMapper.findPagePower(((Manager) session.getAttribute("manager")).getUsername());
+        int res = 0;
+        for (String s : list) {
+            res = Integer.valueOf(s, 16) | res;
         }
         return (new StringBuffer(Integer.toBinaryString(res)).reverse().toString()).charAt(index) == '0';
     }
@@ -87,7 +85,7 @@ public class ManagersService {
             this.editState(gllistFromGleditBean.getGid(), gllistFromGleditBean.getState());
             this.deleteByManagersId(gllistFromGleditBean.getGid());
             for (String str : gllistFromGleditBean.getRole()) {
-                if(!str.equals(",")) {
+                if (!str.equals(",")) {
                     String rid = rolesService.findRoleIdsByRoleName("%" + str + "%");
                     this.insertRolesManagers(gllistFromGleditBean.getGid(), rid);
                 }
@@ -97,5 +95,31 @@ public class ManagersService {
         }
         return 1;
     }
+
+    public Integer addManager(ManagerWithoutNameBean managerWithoutNameBean) {
+        try {
+            if (managerWithoutNameBean.getState().equals("true"))
+                managerWithoutNameBean.setState("1");
+            else
+                managerWithoutNameBean.setState("0");
+            System.out.println("111111111111111111111111111");
+            System.out.println(managerWithoutNameBean);
+            managersMapper.insertManager(managerWithoutNameBean.getGid(), managerWithoutNameBean.getState());
+            System.out.println("22222222222222222222222222222");
+            for (String str : managerWithoutNameBean.getRole()) {
+                if (!str.equals(",")) {
+                    String rid = rolesService.findRoleIdsByRoleName("%" + str + "%");
+                    System.out.println("33333333333333333333333333333333333333");
+                    this.insertRolesManagers(managerWithoutNameBean.getGid(), rid);
+                    System.out.println("444444444444444444444444444444444444");
+                }
+            }
+        } catch (Exception e) {
+            return 0;
+        }
+        return 1;
+    }
+
+
 
 }
