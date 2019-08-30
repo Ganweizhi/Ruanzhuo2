@@ -98,4 +98,10 @@ public interface staffMapper {
 
     @Select("select department_power from roles where id in (select roles_id from roles_managers where managers_id=#{managers_id});")
     List<String> getDepPower(@Param("managers_id")String managers_id);
+
+    @Select("select bank_name from bank where id=#{bankName}")
+    String getBankNameById(@Param("bankName")String bankName);
+
+    @Select("select id from bank where bank_name=#{bankName}")
+    String getBankIdByName(@Param("bankName")String bankName);
 }
