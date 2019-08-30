@@ -41,9 +41,9 @@ public class ListController {
     @RequestMapping(value = "/inlist", method = RequestMethod.POST)
     public String add(@RequestBody List<outlistBean> msgForm){
         if(managersService.findPagePower(3)) return "{\"success\":3}";
-        System.out.println(msgForm);
         for (outlistBean bean : msgForm) {
             bean.setDepartment(listservice.getDepartmentIDByName(bean.getDepartment()));
+            bean.setSex(bean.getSex().equals("男")?"0":"1");
             listservice.addInList(bean);
         }
         return "{\"success\":1}";
@@ -91,6 +91,9 @@ public class ListController {
         }
 
         List<outlistBean> data = listservice.findOutlist(department, education,search);
+        for (outlistBean bean : data) {
+            bean.setSex(bean.getSex().equals("0")?"男":"女");
+        }
         String depPower = GetdepPower.getDepPower(manager.getUsername());
         StringBuilder sb = new StringBuilder(depPower).reverse();
         data = data.stream().filter(bean ->sb.charAt(Integer.parseInt(bean.getDepartment()))=='1').collect(Collectors.toList());

@@ -75,7 +75,7 @@ public interface staffMapper {
     @Select("select signingTime from ht where wid=#{wid}")
     List<String> findSigningTimeByWid(@Param("wid")String wid);
 
-    @Insert("insert into staff(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,email,baseWage,bankName,bankId,departureTime) VALUES(#{bean.name},#{bean.sex},#{bean.nation},#{bean.nationality},#{bean.origin},#{bean.idType},#{bean.idNumber},#{bean.education},#{bean.degree},#{bean.department},#{bean.job},#{bean.title},#{bean.lPhone},#{bean.sPhone},#{bean.email},#{bean.baseWage},#{bean.bankName},#{bean.bankId},#{bean.departureTime})")
+    @Insert("insert into staff(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,email,baseWage,bankName,bankId) VALUES(#{bean.name},#{bean.sex},#{bean.nation},#{bean.nationality},#{bean.origin},#{bean.idType},#{bean.idNumber},#{bean.education},#{bean.degree},#{bean.department},#{bean.job},#{bean.title},#{bean.lPhone},#{bean.sPhone},#{bean.email},#{bean.baseWage},#{bean.bankName},#{bean.bankId})")
     void addInList(@Param("bean")outlistBean bean);
 
     @Select("select count(*) from staff")
