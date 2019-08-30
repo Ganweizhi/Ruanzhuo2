@@ -95,4 +95,12 @@ public class listService {
     {
         return  staffmapper.findBaseWages(wid);
     }
+
+    public String getBankNameById(String bankName) {
+        return staffmapper.getBankNameById(bankName);
+    }
+
+    public String getBankIdByName(String bankName) {
+        return staffmapper.getBankIdByName(bankName);
+    }
 }

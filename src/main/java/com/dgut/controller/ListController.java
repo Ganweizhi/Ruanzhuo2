@@ -44,13 +44,8 @@ public class ListController {
         for (outlistBean bean : msgForm) {
             bean.setDepartment(listservice.getDepartmentIDByName(bean.getDepartment()));
             bean.setSex(bean.getSex().equals("男")?"0":"1");
-            switch (bean.getBankName()){
-                case "中国工商银行": bean.setBankName("0");break;
-                case "中国农业银行": bean.setBankName("1");break;
-                case "中国建设银行": bean.setBankName("2");break;
-                case "中国招商银行": bean.setBankName("3");break;
-                case "中国交通银行": bean.setBankName("4");break;
-                case "邮政储蓄银行": bean.setBankName("5");break;
+            if(bean.getBankName()!=null){
+                bean.setBankName(listservice.getBankIdByName(bean.getBankName()));
             }
             switch (bean.getIdType()){
                 case "身份证": bean.setIdType("0");break;
@@ -109,14 +104,11 @@ public class ListController {
         List<outlistBean> data = listservice.findOutlist(department, education,search);
         for (outlistBean bean : data) {
             bean.setSex(bean.getSex().equals("0")?"男":"女");
-            switch (bean.getBankName()){
-                case "0": bean.setBankName("中国工商银行");break;
-                case "1": bean.setBankName("中国农业银行");break;
-                case "2": bean.setBankName("中国建设银行");break;
-                case "3": bean.setBankName("中国招商银行");break;
-                case "4": bean.setBankName("中国交通银行");break;
-                case "5": bean.setBankName("邮政储蓄银行");break;
+
+            if(bean.getBankName()!=null){
+                bean.setBankName(listservice.getBankNameById(bean.getBankName()));
             }
+
             switch (bean.getIdType()){
                 case "0": bean.setIdType("身份证");break;
                 case "1": bean.setIdType("港澳居民来往内地通行证");break;
