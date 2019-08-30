@@ -61,4 +61,10 @@ public interface ManagersMapper {
     @Insert("insert into managers(id, state) values(#{gid}, #{state})")
     void insertManager(@Param("gid")String gid, @Param("state")String state);
 
+    @Select("select * from managers m where m.id=#{gid}")
+    List<GllistBean> findGid(@Param("gid")String gid);
+
+    @Update("update managers set name = #{name} where id = #{gid}")
+    void setManagersName(@Param("gid")String gid, @Param("name")String name);
+
 }

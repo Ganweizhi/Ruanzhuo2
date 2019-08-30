@@ -19,7 +19,7 @@ public interface staffMapper {
             + "     and education = #{education}"
             + " </if>"
             + "  <if test='search != null' > "
-            + "     and name = #{search}"
+            + "     and name like CONCAT('%',#{search},'%')"
             + " </if>"
             + "</where>"
             + "</script>")
@@ -35,7 +35,7 @@ public interface staffMapper {
             + "     and education = #{education}"
             + " </if>"
             + "  <if test='search != null' > "
-            + "     and name = #{search}"
+            + "     and name like CONCAT('%',#{search},'%')"
             + " </if>"
             + "</where>"
             + "</script>")
@@ -60,7 +60,7 @@ public interface staffMapper {
             + "     and education = #{education}"
             + " </if>"
             + "  <if test='search != null' > "
-            + "     and name = #{search}"
+            + "     and name like CONCAT('%',#{search},'%')"
             + " </if>"
             + "</where>"
             + "</script>")

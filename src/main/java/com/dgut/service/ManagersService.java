@@ -120,6 +120,25 @@ public class ManagersService {
         return 1;
     }
 
+    public Boolean findGid(String gid){
+        List<GllistBean> list = managersMapper.findGid(gid);
+        if(list.size()==0){
+            return true;
+        }else if(list.get(0).getState()==0){
+            return true;
+        }else{
+            System.out.println(3);
+            return false;
+        }
+    }
 
+    public Boolean setManagersName(String gid,String name){
+        try{
+            managersMapper.setManagersName(gid,name);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
 
 }

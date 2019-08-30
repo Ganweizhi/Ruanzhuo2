@@ -1,6 +1,7 @@
 package com.dgut.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.dgut.service.ManagersService;
 import com.dgut.util.Send;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -23,6 +24,8 @@ public class Login {
 
     @Autowired
     private HttpServletRequest request;
+    @Autowired
+    private ManagersService managersService;
 
     @RequestMapping(value = "/login/dgut")
     public String login(String token, String state,HttpServletResponse response) throws IOException {
@@ -44,8 +47,12 @@ public class Login {
             if (JSON.parseObject(sj).getString("message") == null) {
                 Manager manager = JSON.parseObject(sj, Manager.class);
                 request.getSession().setAttribute("manager", manager);
-                response.sendRedirect("http://ming-cdn.test.upcdn.net");
-                //response.sendRedirect("http://localhost:8081");
+                System.out.println(manager);
+                if (manager!=null){
+                    managersService.setManagersName(manager.getUsername(),manager.getName());
+                }
+                //response.sendRedirect("http://ming-cdn.test.upcdn.net");
+                response.sendRedirect("http://localhost:8080");
             } else {
                 return JSON.parseObject(sj).getString("message");
             }
@@ -56,12 +63,16 @@ public class Login {
     }
 
     @RequestMapping(value="/loginstate",method = {RequestMethod.POST,RequestMethod.GET})
-    public Manager zt() {
+    public Manager zt(HttpServletResponse response) throws IOException {
         Manager m = (Manager) request.getSession().getAttribute("manager");
         if(m==null) {
             m = new Manager();
-            m.setName("-1");
+            m.setName("未登录");
             m.setOpenid("https://cas.dgut.edu.cn?appid=javaee&state="+ request.getSession().getId());
+        } else if (managersService.findGid(m.getUsername())) {
+            m = new Manager();
+            m.setName("未登记");
+            m.setOpenid("http://localhost:8080/tc");
         }
         return m;
     }
@@ -69,6 +80,6 @@ public class Login {
     @RequestMapping(value="/tc",method = {RequestMethod.POST,RequestMethod.GET})
     public void tc(HttpServletResponse response) throws IOException {
         request.getSession().removeAttribute("manager");
-        response.sendRedirect("https://cas.dgut.edu.cn/logout?callback=https://localhost:8081/");
+        response.sendRedirect("https://cas.dgut.edu.cn/logout?callback=http://localhost:8080");
     }
 }

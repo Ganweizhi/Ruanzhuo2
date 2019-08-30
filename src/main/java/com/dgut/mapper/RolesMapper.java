@@ -24,7 +24,7 @@ public interface RolesMapper {
     int gllists(@Param("rid")String rid, @Param("gid")String gid);
 
     @Select("select managers_id as gid,managers.name as name from roles_managers,managers where" +
-            " roles_id =#{roles_id} and  roles_managers.roles_id =managers.id ")
+            " roles_id =#{roles_id} and  roles_managers.managers_id =managers.id ")
     List<gldelBean> getGldelBean(@Param("roles_id") String roles_id);
 
     /**

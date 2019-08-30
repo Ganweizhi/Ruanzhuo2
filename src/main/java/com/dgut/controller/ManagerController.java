@@ -89,7 +89,7 @@ public class ManagerController {
     @RequestMapping("/gladda")
     @ResponseBody
     public String addManager(@RequestBody ManagerWithoutNameBean managerWithoutNameBean) {
-//        if(managersService.findPagePower(9)) return 3;  //这里要改
+        if(managersService.findPagePower(11)) return "{\"success\":3}"; 
         Integer flag =  managersService.addManager(managerWithoutNameBean);
         if (flag == 1)
             return "{\"success\":1}";

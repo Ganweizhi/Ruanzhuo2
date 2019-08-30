@@ -14,6 +14,7 @@ public class GetDepPower {
     public String getDepPower(String managers_id){
         List<String> list = staffmapper.getDepPower(managers_id);
 //        System.out.println(list.toString());
+        if(list.size()==0) return "00000000000000";
         String result = list.get(0);
         result.replace('1','0');
         StringBuilder sb = new StringBuilder(result);
