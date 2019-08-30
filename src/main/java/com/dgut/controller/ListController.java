@@ -44,6 +44,22 @@ public class ListController {
         for (outlistBean bean : msgForm) {
             bean.setDepartment(listservice.getDepartmentIDByName(bean.getDepartment()));
             bean.setSex(bean.getSex().equals("男")?"0":"1");
+            switch (bean.getBankName()){
+                case "中国工商银行": bean.setBankName("0");break;
+                case "中国农业银行": bean.setBankName("1");break;
+                case "中国建设银行": bean.setBankName("2");break;
+                case "中国招商银行": bean.setBankName("3");break;
+                case "中国交通银行": bean.setBankName("4");break;
+                case "邮政储蓄银行": bean.setBankName("5");break;
+            }
+            switch (bean.getIdType()){
+                case "身份证": bean.setIdType("0");break;
+                case "港澳居民来往内地通行证": bean.setIdType("1");break;
+                case "台湾居民来往大陆通行证": bean.setIdType("2");break;
+                case "护照": bean.setIdType("3");break;
+                case "外国人永久居留证": bean.setIdType("4");break;
+                case "其他国家或地区身份证明": bean.setIdType("5");break;
+            }
             listservice.addInList(bean);
         }
         return "{\"success\":1}";
@@ -93,6 +109,22 @@ public class ListController {
         List<outlistBean> data = listservice.findOutlist(department, education,search);
         for (outlistBean bean : data) {
             bean.setSex(bean.getSex().equals("0")?"男":"女");
+            switch (bean.getBankName()){
+                case "0": bean.setBankName("中国工商银行");break;
+                case "1": bean.setBankName("中国农业银行");break;
+                case "2": bean.setBankName("中国建设银行");break;
+                case "3": bean.setBankName("中国招商银行");break;
+                case "4": bean.setBankName("中国交通银行");break;
+                case "5": bean.setBankName("邮政储蓄银行");break;
+            }
+            switch (bean.getIdType()){
+                case "0": bean.setIdType("身份证");break;
+                case "1": bean.setIdType("港澳居民来往内地通行证");break;
+                case "2": bean.setIdType("台湾居民来往大陆通行证");break;
+                case "3": bean.setIdType("护照");break;
+                case "4": bean.setIdType("外国人永久居留证");break;
+                case "5": bean.setIdType("其他国家或地区身份证明");break;
+            }
         }
         String depPower = GetdepPower.getDepPower(manager.getUsername());
         StringBuilder sb = new StringBuilder(depPower).reverse();
