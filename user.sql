@@ -144,9 +144,9 @@ CREATE  table roles(
                     page_power VARCHAR(255), --页面权限，一串二进制数，长度固定
                     department_power VARCHAR(255),  -- 部门权限，一串二进制数，随着部门的增加，长度增长
 );
-insert into roles(name, page_power, department_power) values('超级管理员', 'FFFFF', '111');
-insert into roles(name, page_power, department_power) values('国交局人员', 'FF000', '010');
-insert into roles(name, page_power, department_power) values('后勤人员', 'FF000', '001');
+insert into roles(name, page_power, department_power) values('超级管理员', 'FFFFF', '11');
+insert into roles(name, page_power, department_power) values('国交局人员', 'FFFFF', '11');
+insert into roles(name, page_power, department_power) values('后勤人员', 'FFFFF', '11');
 -- ---
 --      a. 人员列表页面
 -- 　　　b. 薪酬管理页面
