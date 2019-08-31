@@ -1,19 +1,25 @@
 package com.dgut.controller;
 
+        import ch.qos.logback.core.util.FileUtil;
         import com.dgut.jsonBean.IdReturnBean;
         import com.dgut.jsonBean.Inithtlist;
         import com.dgut.jsonBean.htTable;
         import com.dgut.jsonBean.htTable1;
         import com.dgut.service.UserFileService;
         import org.springframework.beans.factory.annotation.Autowired;
+        import org.springframework.core.io.ClassPathResource;
+        import org.springframework.core.io.InputStreamResource;
+        import org.springframework.http.HttpHeaders;
+        import org.springframework.http.MediaType;
+        import org.springframework.http.ResponseEntity;
         import org.springframework.util.ResourceUtils;
         import org.springframework.web.bind.annotation.*;
         import org.springframework.web.multipart.MultipartFile;
 
         import javax.annotation.Resource;
         import javax.servlet.http.HttpServletRequest;
-        import java.io.File;
-        import java.io.IOException;
+        import javax.servlet.http.HttpServletResponse;
+        import java.io.*;
         import java.util.*;
 
         import static com.dgut.util.Method.*;
@@ -27,7 +33,7 @@ public class fileTestController {
     private com.dgut.service.listService listService;
     @Autowired
     private HttpServletRequest request;
-
+    private HttpServletResponse Res;
     @RequestMapping(value = "/headimg")
     public String saveHeadimg(String wid, MultipartFile file) throws Exception {
         String realPath = request.getServletContext().getRealPath("/img/headimg");
@@ -178,4 +184,106 @@ public class fileTestController {
         }
         return list1;
     }
+//    @RequestMapping("/download")
+//    @ResponseBody
+//    public void Download(HttpServletResponse response) {
+//        String realPath = "user.xlsx";
+//        String result =downloadFile(response,realPath);
+//        System.out.println(result);
+//    }
+//    @RequestMapping("/download")
+//    public void down(HttpServletResponse response){
+//        String PATH ="download";
+//        String FILENAME = "user.xlsx";
+//        String NEWNAME ="";
+//        downloadFile(response,FILENAME);
+//    }
+//    public  String downloadFile(HttpServletResponse response,String fileName) {
+//        String realPath = request.getServletContext().getRealPath("/img/download/");
+//        InputStream stream = FileUtil.class.getClassLoader().getResourceAsStream(realPath + fileName);
+//      //  InputStream stream = this.getClass().getResourceAsStream(realPath+f);
+//        System.out.println(stream);
+//        System.out.println(realPath);
+//        response.setHeader("content-type", "application/octet-stream");
+//        response.setContentType("application/octet-stream");
+//        try {
+//            String name = java.net.URLEncoder.encode(fileName, "UTF-8");
+//            response.setHeader("Content-Disposition", "attachment;filename=" + java.net.URLDecoder.decode(name, "ISO-8859-1") );
+//        } catch (UnsupportedEncodingException e2) {
+//            e2.printStackTrace();
+//        }
+//        byte[] buff = new byte[1024];
+//        BufferedInputStream bis = null;
+//        OutputStream os = null;
+//        try {
+//            os = response.getOutputStream();
+//            bis = new BufferedInputStream(stream);
+//            int i = bis.read(buff);
+//            while (i != -1) {
+//                os.write(buff, 0, buff.length);
+//                os.flush();
+//                i = bis.read(buff);
+//            }
+//        } catch (FileNotFoundException e1) {
+//            //e1.getMessage()+"系统找不到指定的文件";
+//            return "系统找不到指定的文件";
+//        }catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (bis != null) {
+//                try {
+//                    bis.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//        return "success";
+//    }
+@RequestMapping("/download")
+private String downloadFile(HttpServletResponse response){
+   String  realPath = request.getServletContext().getRealPath("/img/download/");
+//String downloadFilePath = "/img/download/";//被下载的文件在服务器中的路径,
+   String fileName = "test.xlsx";//被下载文件的名称
+   String downloadFilePath =realPath+fileName;
+
+   File file = new File(downloadFilePath);
+   if (file.exists()) {
+       response.setContentType("application/force-download");// 设置强制下载不打开            
+      response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);
+      byte[] buffer = new byte[1024];
+      FileInputStream fis = null;
+     BufferedInputStream bis = null;
+      try {
+      fis = new FileInputStream(file);
+      bis = new BufferedInputStream(fis);
+      OutputStream outputStream = response.getOutputStream();
+      int i = bis.read(buffer);
+      while (i != -1) {
+      outputStream.write(buffer, 0, i);
+      i = bis.read(buffer);
+   }
+
+   return "下载成功";
+   } catch (Exception e) {
+        e.printStackTrace();
+   } finally {
+      if (bis != null) {
+   try {
+     bis.close();
+    } catch (IOException e) {
+     e.printStackTrace();
+   }
+}
+    if (fis != null) {
+     try {
+     fis.close();
+   } catch (IOException e) {
+   e.printStackTrace();
+   }
+     }
+   }
+   }
+   return "下载失败";
+   }
 }

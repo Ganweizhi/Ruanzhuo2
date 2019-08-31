@@ -70,8 +70,8 @@ public class UserFileService {
     }
     public void htDelete(String hid)
     {
-        userFileMapper.htDelete(hid); //删除HT表数据
         userFileMapper.PhtDelete(hid);//删除PHT表数据
+        userFileMapper.htDelete(hid); //删除HT表数据
     }
     public String findHtUrl(String wid,String hid)
     {
