@@ -72,22 +72,22 @@ VALUES('ming', '1', '汉族', '中国','广东省东莞市', '0', '4325031975050
       , '123456', '4', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,
                   email,baseWage,bankName,bankId,img)
-VALUES('ccc', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '硕士研究生', '学位', '1', '清洁工'
+VALUES('ccc', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '硕士研究生', '硕士', '1', '清洁工'
       , '工人', '12547896321', '12345','124452@qq.com'
       , '123456', '6', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,
                   email,baseWage,bankName,bankId,img)
-VALUES('ccc', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '硕士研究生', '学位', '1', '清洁工'
+VALUES('ccc', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '硕士研究生', '硕士', '1', '清洁工'
       , '工人', '12547896321', '12345','124452@qq.com'
       , '123456', '8', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,
                   email,baseWage,bankName,bankId,img)
-VALUES('ccc', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '硕士研究生', '学位', '1', '清洁工'
+VALUES('ccc', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '硕士研究生', '硕士', '1', '清洁工'
       , '工人', '12547896321', '12345','124452@qq.com'
       , '123456', '9', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');
 INSERT INTO STAFF(name,sex,nation,nationality,origin,idType,idNumber,education,degree,department,job,title,lPhone,sPhone,
                   email,baseWage,bankName,bankId,img)
-VALUES('ccc', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '硕士研究生', '学位', '1', '清洁工'
+VALUES('ccc', '1', '汉族', '中国','广东省东莞市', '0', '432503197505028819', '硕士研究生', '硕士', '1', '清洁工'
       , '工人', '12547896321', '12345','124452@qq.com'
       , '123456', '8', '6222020903001483077', 'https://i.loli.net/2019/07/12/5d28410b6a20524513.jpg');
 
