@@ -82,7 +82,9 @@ public class RoleController {
     }
 
     @RequestMapping(value = "/gladd")
-    public String gladd(String rid, String gid) {
+    public String gladd(String rid, String gid,@SessionAttribute Manager manager) {
+        if(gid.equals(manager.getUsername()))
+            return "{\"success\":3}";
         int state = rolesService.gladd(rid, gid);
         System.out.println(rid);
         System.out.println(gid);
