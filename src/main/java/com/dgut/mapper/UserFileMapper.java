@@ -55,4 +55,6 @@ public interface UserFileMapper {
     @Select("select count(*)as hidSum from pht where hid =#{hid}")
     int isExsistInPht(@Param("hid") String hid);
 
+    //@Select("select name,sex,nation,nationality idType,idNumber,education,degree,department,job,title,lPhone,sPhone,email,baseWage,bankName,bankId")
+
 }
