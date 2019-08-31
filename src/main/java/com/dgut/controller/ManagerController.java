@@ -80,8 +80,10 @@ public class ManagerController {
      */
     @RequestMapping("/gledit")
     @ResponseBody
-    public Integer editRolesOfManager(@RequestBody GllistFromGleditBean gllistFromGleditBean) {
+    public Integer editRolesOfManager(@RequestBody GllistFromGleditBean gllistFromGleditBean,@SessionAttribute Manager manager) {
         if(managersService.findPagePower(9)) return 3;
+        if(gllistFromGleditBean.getGid().equals(manager.getUsername()))
+            return 3;
         return managersService.editRolesOfManager(gllistFromGleditBean);
     }
 
