@@ -135,7 +135,7 @@ insert into managers(id, state) values('911', 1);
 insert into managers(id, state) values('201741412214', 1);
 insert into managers(id, state) values('201741412205', 1);
 insert into managers(id, state) values('201741404149', 1);
-
+insert into managers(id, state) values('201741404211', 1);
 
 DROP TABLE IF EXISTS `roles`;
 CREATE  table roles(
@@ -182,6 +182,8 @@ insert into roles_managers(managers_id, roles_id) values('911', 0);
 -- insert into roles_managers(managers_id, roles_id) values(2019505, 2);
 
 insert into roles_managers(managers_id, roles_id) values('201741412214', 1);
+insert into roles_managers(managers_id, roles_id) values('201741404211', 1);
+insert into roles_managers(managers_id, roles_id) values('201741404211', 2);
 insert into roles_managers(managers_id, roles_id) values('201741412214', 2);
 insert into roles_managers(managers_id, roles_id) values('201741412205', 0);
 insert into roles_managers(managers_id, roles_id) values('201741404149', 0);
