@@ -115,6 +115,23 @@ public class SuccessCourse {
         return success_port;
     }
 
+    @Override
+    public String toString() {
+        return "SuccessCourse{" +
+                "success_id=" + success_id +
+                ", course_id=" + course_id +
+                ", teacher_id=" + teacher_id +
+                ", time='" + time + '\'' +
+                ", success_myself='" + success_myself + '\'' +
+                ", success_student='" + success_student + '\'' +
+                ", success_society='" + success_society + '\'' +
+                ", success_evaluation='" + success_evaluation + '\'' +
+                ", success_wechat='" + success_wechat + '\'' +
+                ", success_QQ='" + success_QQ + '\'' +
+                ", success_port='" + success_port + '\'' +
+                '}';
+    }
+
     public void setSuccess_port(String success_port) {
         this.success_port = success_port;
     }

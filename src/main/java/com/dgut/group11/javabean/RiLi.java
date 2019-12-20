@@ -15,6 +15,15 @@ public class RiLi {
         this.calendar_content = calendar_content;
     }
 
+    @Override
+    public String toString() {
+        return "RiLi{" +
+                "calendar_id=" + calendar_id +
+                ", calendar_title='" + calendar_title + '\'' +
+                ", calendar_content='" + calendar_content + '\'' +
+                '}';
+    }
+
     public int getCalendar_id() {
         return calendar_id;
     }
