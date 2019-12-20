@@ -1,5 +1,7 @@
 package com.dgut.group11.javabean;
-
+/*
+lgc
+ */
 public class SuccessCourse {
 
     private int success_id;

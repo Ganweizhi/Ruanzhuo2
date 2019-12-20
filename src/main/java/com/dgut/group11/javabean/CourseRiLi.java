@@ -1,5 +1,7 @@
 package com.dgut.group11.javabean;
-
+/*
+lgc
+ */
 import java.util.List;
 
 public class CourseRiLi {
