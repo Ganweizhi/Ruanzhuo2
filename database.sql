@@ -48,6 +48,10 @@ create table successCourse(
     foreign key (course_id) references course(course_id),
     foreign key (teacher_id) references teacher(teacher_id)
 );
+
+
+insert into academy(academy_name) values ( "test" );
+insert into teacher(teacher_name,academy_id) values ( "钟大师",1 );
 -- 上课班级表
 DROP table if exists sclass;
 create table sclass(
