@@ -15,6 +15,29 @@
 	<!-- js -->
 	<script type="text/javascript" src="js/jquery1.42.min.js"></script>
 	<script type="text/javascript" src="js/jquery.SuperSlide.2.1.3.js"></script>
+	<script language="javascript">
+		$(function () {
+			$.ajax({
+				type: "POST",
+				url: "/shehuipingjia",
+				// data: {"name":"yd","pwd":"123456"},
+				dataType: "json",
+				success: function (data) {
+					if (data !=null) {
+						var contextHtml = "";
+						contextHtml +="<p>" + "社会评价" + "</p>"
+						for (var i in data) {
+							contextHtml +="<p>" + data[i].context + "</p>"
+						}
+						$("contexts").html(contextHtml);
+					}
+				}
+			});
+			return false;
+		})
+		);
+
+	</script>
 </head>
 
 <body>
