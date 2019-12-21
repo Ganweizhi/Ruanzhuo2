@@ -16,5 +16,5 @@ public interface ITeamDao {
     List<Team> findAllTeam();
 
     @Select("select * from teacher where teacher_id in (select teacher_id from tbelongt where team_id =#{team_id})")
-    Teacher findTeacherByTeamId(String team_id);
+    List<Teacher> findTeacherByTeamId(String team_id);
 }

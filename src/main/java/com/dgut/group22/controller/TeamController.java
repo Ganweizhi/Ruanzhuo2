@@ -6,6 +6,7 @@ import com.dgut.group22.javaBean.Team;
 import com.dgut.group22.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,11 +28,11 @@ public class TeamController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping("findTeacherByTeamId")
-    public String findTeacherByTeamId(String team_id){
-        Teacher teacher=teamService.findTeacherByTeamId(team_id);
+    @RequestMapping("/findTeacherByTeamId/{team_id}")
+    public String findTeacherByTeamId(@PathVariable("team_id")String team_id){
+        List<Teacher> teachers=teamService.findTeacherByTeamId(team_id);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",teacher);
+        jsonObject.put("teachers",teachers);
         return jsonObject.toJSONString();
     }
 }
