@@ -16,4 +16,8 @@ public class FuZeRenService {
     public List<Teacher> findAllFuZeRen(){
         return fuZeRenDao.findAllFuZeRen();
     }
+
+    public Teacher findFuZeRenById(String teacher_id){
+        return fuZeRenDao.findFuZeRenById(teacher_id);
+    }
 }

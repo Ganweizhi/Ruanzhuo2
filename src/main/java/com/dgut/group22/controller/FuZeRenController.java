@@ -4,14 +4,13 @@ import com.alibaba.fastjson.JSONObject;
 import com.dgut.group22.javaBean.Teacher;
 import com.dgut.group22.service.FuZeRenService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 //Ning
-@Controller
+@RestController
 @RequestMapping("/FuZeRen")
 public class FuZeRenController {
     @Autowired
@@ -34,4 +33,14 @@ public class FuZeRenController {
         jsonObject.put("data",fuZeRen);
         return jsonObject.toJSONString();
     }
+
+    @RequestMapping("/findFuZeRenId")
+    @ResponseBody
+    public String  findFuZeRenId(@RequestParam String id){
+        Teacher fuZeRen = fuZeRenService.findFuZeRenById(id);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("data",fuZeRen);
+        return jsonObject.toJSONString();
+    }
+
 }
