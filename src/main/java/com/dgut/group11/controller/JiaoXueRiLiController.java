@@ -1,9 +1,7 @@
 package com.dgut.group11.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.dgut.group11.javabean.CourseRiLi;
-import com.dgut.group11.javabean.RiLi;
-import com.dgut.group11.javabean.SuccessCourse;
+import com.dgut.group11.javabean.*;
 import com.dgut.group11.service.JiaoXueRiLiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +35,13 @@ public class JiaoXueRiLiController {
         List<SuccessCourse> allSuccessCourse = jiaoXueRiLiService.findAllSuccessCourse();
         for(int i=(anInt-1)*10; i<(anInt-1)*10+10 && i<allSuccessCourse.size(); i++){
             successCourses.add(allSuccessCourse.get(i));
+        }
+
+        for(SuccessCourse successCourse : successCourses){
+            Teacher teacher = jiaoXueRiLiService.getTeacherById(successCourse.getTeacher_id());
+            Course course = jiaoXueRiLiService.getCourseById(successCourse.getCourse_id());
+            successCourse.setCourse(course);
+            successCourse.setTeacher(teacher);
         }
         JSONObject jsonObject = new JSONObject();
         int r = allSuccessCourse.size()%10==0?0:1;

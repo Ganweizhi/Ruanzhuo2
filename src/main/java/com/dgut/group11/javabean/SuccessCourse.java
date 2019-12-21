@@ -7,6 +7,8 @@ public class SuccessCourse {
     private int success_id;
     private int course_id;
     private int teacher_id;
+    private Course course;
+    private Teacher teacher;
     private String time;
     private String success_myself;
     private String success_student;
@@ -19,10 +21,12 @@ public class SuccessCourse {
     public SuccessCourse() {
     }
 
-    public SuccessCourse(int success_id, int course_id, int teacher_id, String time, String success_myself, String success_student, String success_society, String success_evaluation, String success_wechat, String success_QQ, String success_port) {
+    public SuccessCourse(int success_id, int course_id, int teacher_id, Course course, Teacher teacher, String time, String success_myself, String success_student, String success_society, String success_evaluation, String success_wechat, String success_QQ, String success_port) {
         this.success_id = success_id;
         this.course_id = course_id;
         this.teacher_id = teacher_id;
+        this.course = course;
+        this.teacher = teacher;
         this.time = time;
         this.success_myself = success_myself;
         this.success_student = success_student;
@@ -31,6 +35,22 @@ public class SuccessCourse {
         this.success_wechat = success_wechat;
         this.success_QQ = success_QQ;
         this.success_port = success_port;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
     }
 
     public int getSuccess_id() {
@@ -123,6 +143,8 @@ public class SuccessCourse {
                 "success_id=" + success_id +
                 ", course_id=" + course_id +
                 ", teacher_id=" + teacher_id +
+                ", course=" + course +
+                ", teacher=" + teacher +
                 ", time='" + time + '\'' +
                 ", success_myself='" + success_myself + '\'' +
                 ", success_student='" + success_student + '\'' +
