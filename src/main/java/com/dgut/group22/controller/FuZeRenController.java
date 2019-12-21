@@ -34,10 +34,10 @@ public class FuZeRenController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping("/findFuZeRenId")
+    @RequestMapping("/findFuZeRenById")
     @ResponseBody
-    public String  findFuZeRenId(@RequestParam String id){
-        Teacher fuZeRen = fuZeRenService.findFuZeRenById(id);
+    public String  findFuZeRenId(@RequestParam String teacher_id){
+        Teacher fuZeRen = fuZeRenService.findFuZeRenById(teacher_id);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("data",fuZeRen);
         return jsonObject.toJSONString();
