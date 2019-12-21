@@ -186,44 +186,10 @@
                 <i class="right"></i>
             </div>
             <!-- 详情内容 -->
-            <div class="teacher_k">
-                <ul>
-                    <li>
-                        <a href="Teacher_xq.html">
-                            <img src="images/teacher_img1.jpg">
-                            <p>王强</p>
-                            <span>物理组</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Teacher_xq.html">
-                            <img src="images/teacher_img2.jpg">
-                            <p>李四</p>
-                            <span>语文组</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Teacher_xq.html">
-                            <img src="images/teacher_img3.jpg">
-                            <p>叶永富</p>
-                            <span>数学组</span>
-                        </a>
-                    </li>
-
+            <div class="teacher_k" >
+                <ul id="message_content">
                 </ul>
-                <div class="pager">
-                    <a href="javascript:;" class="p" title="前一页" onclick="doGo(0);">«</a>
-                    <a href="javascript:;" class="current" onclick="doGo(1)">1</a>
-                    <a href="javascript:;" class="" onclick="doGo(2)">2</a>
-                    <a href="javascript:;" class="" onclick="doGo(3)">3</a>
-                    <a href="javascript:;" class="" onclick="doGo(4)">4</a>
-                    <a href="javascript:;" class="" onclick="doGo(5)">5</a>
-                    <a href="javascript:;" class="" onclick="doGo(6)">6</a>
-                    <a href="javascript:;" class="" onclick="doGo(7)">7</a>
-                    <a href="javascript:;" class="" onclick="doGo(8)">8</a>
-                    <a href="javascript:;" class="" onclick="doGo(9)">9</a>
-                    <a href="javascript:;" onclick="doGo(2)" class="p" title="后一页">»</a>
-                    <span>到第<input name="" type="text" id="ymz">页 <a href="#" onclick="goto_ymz()">确定</a></span>
+                <div class="pager" id="fuzeren_page">
                 </div>
             </div>
             <!-- 详情内容介绍 -->
@@ -290,4 +256,87 @@
             scrollTop: $(window).height()
         }, 1200);
     });
+</script>
+
+
+<script>
+    window.onload = function () {
+        doGo(1);
+    }
+    function doGo(Page) {
+        console.log("ajax开始");
+        var tbody = window.document.getElementById("message_content");
+        var tpagebody = window.document.getElementById("fuzeren_page");
+        $.ajax({
+                type: "POST",
+                url: "/successCourse/findAllsuccessCourse/"+Page,
+                async:false,
+                dataType: "json",
+                success:function (msg) {
+                    if( msg!=null){
+                        console.log(msg);
+                        var tpage="";
+                        var str = "";
+                        var data = msg.data;
+                        var currentPage = msg.curPage;
+                        var totalPate = msg.page;
+
+                        var course ;
+                        var teacher;
+
+                        console.log(data);
+                        console.log(currentPage);
+                        for( i in data){
+                            course = data[i].course;
+                            teacher = data[i].teacher;
+                            console.log(course);
+                            console.log(teacher);
+                            str += '<li style="width: 290px;\n' +
+                                '    height: 345px;\n' +
+                                '    float: left;\n' +
+                                '    margin-right: 12px;\n' +
+                                '    margin-bottom: 15px;\n' +
+                                '    box-shadow: 1px 1px 8px #ccc;\n' +
+                                '    -webkit-box-shadow: 1px 1px 8px #ccc;\n' +
+                                '    -moz-box-shadow: 1px 1px 8px #ccc;\n' +
+                                '    border-radius: 4px;\n' +
+                                '    text-align: center;"><a href="Teacher-zhujiang_teacher.html?teacher_id='+teacher.teacher_id+'&course_id='+ course.course_id+'"><img src="'+teacher.teacher_photo+'"><p style="line-height: 35px;\n' +
+                                '    font-size: 22px;\n' +
+                                '    color: #313131;">'+teacher.teacher_name+'</p><span style="color: #797979;\n' +
+                                '    font-size: 16px;\n' +
+                                '    line-height: 30px;">'+course.course_name+'</span></a></li>';
+                        }
+                    }
+                    tbody.innerHTML = str;
+
+                    console.log(Page);
+                    //写出分页跳转功能
+                    if( parseInt(currentPage) != parseInt("1")){
+                        tpage += '<a href="javascript:;" class="p" title="前一页" onclick="doGo('+ parseInt(Page-1) +');">«</a>';
+                    }
+
+                    for(i = parseInt("1");i<=totalPate;i++){
+                        if( i == parseInt(currentPage)){
+                            tpage += '<a href="javascript:;" class="current" onclick="doGo('+ parseInt(i)+')">'+ parseInt(i)+'</a>'
+                        }
+                        else{
+                            tpage += '<a href="javascript:;"  onclick="doGo('+ parseInt(i)+')">'+ parseInt(i)+'</a>'
+                        }
+                    }
+
+                    if(  parseInt(currentPage) != parseInt(totalPate) ){
+                        tpage += '<a href="javascript:;" onclick="doGo('+ parseInt(Page+1) +')" class="p" title="后一页">»</a>'
+                    }
+                    tpagebody.innerHTML = tpage;
+                    console.log(tpage);
+
+                },
+                error:function () {
+                    console.log("失败")
+
+                }
+            }
+        )
+
+    }
 </script>

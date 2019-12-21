@@ -301,18 +301,13 @@ CREATE TABLE userb(
 
 -- insert into academy(academy_name) values('aa');
 -- insert into academy(academy_name) values('aa');
---
 -- insert into course(course_name,course_introduction,course_feature,course_material,course_history,course_principal,course_credit,course_period) values('aa','bb','cc','dd','ee','1','ff','gg');
 -- insert into course(course_name,course_introduction,course_feature,course_material,course_history,course_principal,course_credit,course_period) values('aa','bb','cc','dd','ee','1','ff','gg');
 -- insert into course(course_name,course_introduction,course_feature,course_material,course_history,course_principal,course_credit,course_period) values('aa','bb','cc','dd','ee','1','ff','gg');
 -- insert into course(course_name,course_introduction,course_feature,course_material,course_history,course_principal,course_credit,course_period) values('aa','bb','cc','dd','ee','1','ff','gg');
---
---
 -- insert into teacher(teacher_name,academy_id,teacher_birth,teacher_sex,teacher_rank,teacher_phone,teacher_email,teacher_qualification,teacher_domain,teacher_job,teacher_address,teacher_resdire,teacher_resume) values('aa','1',now(),'1','ee','1111','ff','gg','ff','gg','ff','gg','ff');
 -- insert into teacher(teacher_name,academy_id,teacher_birth,teacher_sex,teacher_rank,teacher_phone,teacher_email,teacher_qualification,teacher_domain,teacher_job,teacher_address,teacher_resdire,teacher_resume) values('aa','2',now(),'2','ee','1111','ff','gg','ff','gg','ff','gg','ff');
 -- insert into teacher(teacher_name,academy_id,teacher_birth,teacher_sex,teacher_rank,teacher_phone,teacher_email,teacher_qualification,teacher_domain,teacher_job,teacher_address,teacher_resdire,teacher_resume) values('aa','1',now(),'1','ee','1111','ff','gg','ff','gg','ff','gg','ff');
-
-
 -- insert into course(course_name,course_introduction,course_feature,course_material,course_history,course_principal,course_credit,course_period) values('软件','好好看书','努力学习','哈哈哈','没历史','1','ff','gg');
 -- insert into course(course_name,course_introduction,course_feature,course_material,course_history,course_principal,course_credit,course_period) values('软件1','好好看书','努力学习','哈哈哈','没历史','1','ff','gg');
 -- insert into course(course_name,course_introduction,course_feature,course_material,course_history,course_principal,course_credit,course_period) values('软件2','好好看书','努力学习','哈哈哈','没历史','1','ff','gg');
@@ -325,10 +320,18 @@ CREATE TABLE userb(
 -- insert into course(course_name,course_introduction,course_feature,course_material,course_history,course_principal,course_credit,course_period) values('软件9','好好看书','努力学习','哈哈哈','没历史','1','ff','gg');
 -- insert into course(course_name,course_introduction,course_feature,course_material,course_history,course_principal,course_credit,course_period) values('软件10','好好看书','努力学习','哈哈哈','没历史','1','ff','gg');
 -- insert into course(course_name,course_introduction,course_feature,course_material,course_history,course_principal,course_credit,course_period) values('软件11','好好看书','努力学习','哈哈哈','没历史','1','ff','gg');
+-- INSERT into team(team_name,course_id,photo_team) VALUES('team1','1','images/teacher_img2.jpg');
+-- INSERT into team(team_name,course_id,photo_team) VALUES('team2','2', 'images/teacher_img2.jpg');
+-- insert into tbelongt(teacher_id,team_id) VALUES('1','3');
+-- insert into tbelongt(teacher_id,team_id) VALUES('2','3');
+-- insert into tbelongt(teacher_id,team_id) VALUES('24','1');
+-- insert into tbelongt(teacher_id,team_id) VALUES('33','1');
 
---
--- INSERT into team(team_id,team_name,course_id) VALUES('1','team1','1');
--- INSERT into team(team_id,team_name,course_id) VALUES('2','team2','2');
--- insert into tbelongt(tbelongt_id,teacher_id,team_id) VALUES('1','1','1');
--- insert into tbelongt(tbelongt_id,teacher_id,team_id) VALUES('2','2','2');
--- insert into tbelongt(tbelongt_id,teacher_id,team_id) VALUES('3','3','3');
+-- INSERT successcourse(success_id,course_id,teacher_id,time,success_myself,success_student,success_society,success_evaluation,success_wechat,success_QQ,success_port) VALUES('1','1','1','2018','aa','bb','cc','dd','ee','ff','gg');
+-- INSERT successcourse(success_id,course_id,teacher_id,time,success_myself,success_student,success_society,success_evaluation,success_wechat,success_QQ,success_port) VALUES('2','2','1','2018','aa','bb','cc','dd','ee','ff','gg');
+-- INSERT successcourse(success_id,course_id,teacher_id,time,success_myself,success_student,success_society,success_evaluation,success_wechat,success_QQ,success_port) VALUES('3','3','2','2018','aa','bb','cc','dd','ee','ff','gg');
+
+-- insert young(young_id,teacher_id,content) VALUES('1','1','哈哈哈');
+-- insert young(young_id,teacher_id,content) VALUES('2','2','啦啦啦');
+-- insert young(young_id,teacher_id,content) VALUES('3','3','拉拉');
+-- insert young(young_id,teacher_id,content) VALUES('4','4','哦哦哦');

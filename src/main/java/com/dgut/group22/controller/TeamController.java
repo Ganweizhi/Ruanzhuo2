@@ -36,6 +36,7 @@ public class TeamController {
         jsonObject.put("page",allTeams.size()/9+r);
         jsonObject.put("curPage",anInt);
         jsonObject.put("data",teams);
+//        System.out.println("11111111111111111"+teams.get(0).getCourse());
         return jsonObject.toJSONString();
     }
 
