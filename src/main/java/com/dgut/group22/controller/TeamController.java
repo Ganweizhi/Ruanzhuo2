@@ -14,6 +14,7 @@ import java.util.List;
 //Ning
 @RestController
 @Transactional
+@RequestMapping("/Team")
 public class TeamController {
     @Autowired
     TeamService teamService;

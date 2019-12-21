@@ -1,5 +1,6 @@
 package com.dgut.group22.javaBean;
 
+//Ning
 public class Team {
     int team_id;
     String team_name;
