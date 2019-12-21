@@ -11,9 +11,9 @@ import java.util.List;
 @Repository
 @Mapper
 public interface IFuZeRenDao {
-    @Select("select t.*,c.course_name from teacher t left Join course c on t.teacher_id= c.course_principal")
+    @Select("select t.*,c.course_name,c.course_id from teacher t right join course c on t.teacher_id= c.course_principal")
     List<Teacher> findAllFuZeRen();
 
-    @Select("select *  from teacher where teacher_id in (select course_principal from course) and teacher_id = #{teacher_id}")
+    @Select("select * from teacher where teacher_id in (select course_principal from course) and teacher_id = #{teacher_id}")
     Teacher findFuZeRenById(String teacher_id);
 }

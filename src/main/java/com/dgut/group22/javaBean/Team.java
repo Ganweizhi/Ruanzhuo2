@@ -1,10 +1,20 @@
 package com.dgut.group22.javaBean;
 
+//Ning
 public class Team {
     int team_id;
     String team_name;
     int course_id;
     String photo_team;
+    Course course;
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
 
     public int getTeam_id() {
         return team_id;

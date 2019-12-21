@@ -18,7 +18,7 @@ public class TeamService {
         return teamDao.findAllTeam();
     }
 
-    public Teacher findTeacherByTeamId(String TeamId){
+    public List<Teacher> findTeacherByTeamId(String TeamId){
         return teamDao.findTeacherByTeamId(TeamId);
     }
 }

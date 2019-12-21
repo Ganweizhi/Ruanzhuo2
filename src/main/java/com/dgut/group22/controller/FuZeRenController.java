@@ -1,7 +1,10 @@
 package com.dgut.group22.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dgut.group22.dao.ICourseDao;
+import com.dgut.group22.javaBean.Course;
 import com.dgut.group22.javaBean.Teacher;
+import com.dgut.group22.service.CourseService;
 import com.dgut.group22.service.FuZeRenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +18,8 @@ import java.util.List;
 public class FuZeRenController {
     @Autowired
     FuZeRenService fuZeRenService;
+    @Autowired
+    CourseService courseService;
 
     @RequestMapping(value="/findAllFuZeRen/{page}",method = {RequestMethod.POST})
     public String findAllFuZeRen(@PathVariable("page") String page){
@@ -34,13 +39,13 @@ public class FuZeRenController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping("/findFuZeRenId")
-    @ResponseBody
-    public String  findFuZeRenId(@RequestParam String id){
-        Teacher fuZeRen = fuZeRenService.findFuZeRenById(id);
+    @RequestMapping(value = "/findFuZeRenById/{teacher_id}&{course_id}",method = {RequestMethod.POST})
+    public String  findFuZeRenId(@PathVariable("teacher_id")String teacher_id,@PathVariable ("course_id") String course_id){
+        Teacher fuZeRen = fuZeRenService.findFuZeRenById(teacher_id);
+        Course course=courseService.findById(course_id);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",fuZeRen);
+        jsonObject.put("teacher",fuZeRen);
+        jsonObject.put("course",course);
         return jsonObject.toJSONString();
     }
-
 }
