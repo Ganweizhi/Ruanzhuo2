@@ -52,8 +52,8 @@ create table successCourse(
 );
 
 
-insert into academy(academy_name) values ( "test" );
-insert into teacher(teacher_name,academy_id) values ( "钟大师",1 );
+insert into academy(academy_name) values ('test' );
+insert into teacher(teacher_name,academy_id) values ( '钟大师',1 );
 -- 上课班级表
 DROP table if exists sclass;
 create table sclass(
