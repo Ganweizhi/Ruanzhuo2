@@ -39,9 +39,9 @@ public class FuZeRenController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping("/findFuZeRenById")
+    @RequestMapping(value = "/findFuZeRenById/{teacher_id}/{course_id}",method = {RequestMethod.GET})
     @ResponseBody
-    public String  findFuZeRenId(@RequestParam String teacher_id,@RequestParam String course_id){
+    public String  findFuZeRenId(@PathVariable("teacher_id")String teacher_id,@PathVariable ("course_id") String course_id){
         Teacher fuZeRen = fuZeRenService.findFuZeRenById(teacher_id);
         Course course=courseService.findById(course_id);
         JSONObject jsonObject = new JSONObject();
