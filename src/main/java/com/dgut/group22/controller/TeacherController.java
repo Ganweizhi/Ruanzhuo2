@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dgut.group22.javaBean.SuccessCourse;
 import com.dgut.group22.javaBean.Teacher;
+import com.dgut.group22.javaBean.Young;
 import com.dgut.group22.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,4 +51,13 @@ public class TeacherController {
         return jsonObject.toJSONString();
     }
 
+    @RequestMapping(value = "/findYoungById/{teacher_id}",method = {RequestMethod.POST})
+    public String findYoungById(@PathVariable("teacher_id") String teacher_id){
+        Young young = teacherService.findYoungById(teacher_id);
+        Teacher teacher = teacherService.findById(teacher_id);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("young",young);
+        jsonObject.put("teacher",teacher);
+        return jsonObject.toJSONString();
+    }
 }
