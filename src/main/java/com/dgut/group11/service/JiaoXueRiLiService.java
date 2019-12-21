@@ -5,6 +5,7 @@ import com.dgut.group11.javabean.Course;
 import com.dgut.group11.javabean.RiLi;
 import com.dgut.group11.javabean.SuccessCourse;
 import com.dgut.group11.javabean.Teacher;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
