@@ -63,7 +63,7 @@
                         <i class="layui-icon"></i>添加
                     </button>
                 </div>
-                <div class="layui-card-body ">
+                <div class="layui-card-body">
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
@@ -77,7 +77,7 @@
                             <th>操作</th>
                         </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="layui-table layui-form">
                         <tr>
                             <td>
                                 <input type="checkbox" name="" lay-skin="primary"></td>
@@ -210,7 +210,38 @@ function delAll(argument) {
             });
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });
+    $(document).ready(function () {
+        $.ajax({
+            url: "./wechat_upload",//请求地址
+            dataType: "json",//数据格式
+            type: "post",//请求方式
+            async: false,//是否异步请求
+            success: function (data) {   //如何发送成功
+                var html = "";
+                for (var i = 0; i < data.length; i++) {    //遍历data数组
+                    var ls = data[i];
+                    html += "                        <tr>\n" +
+                        "                            <td>\n" +
+                        "                                <input type=\"checkbox\" name=\"\" lay-skin=\"primary\"></td>\n" +
+                        "                            <td>" + ls.teacher_name + "</td>\n" +
+                        "                            <td>" + ls.big_title + "</td>\n" +
+                        "                            <td>" + ls.little_title + "</td>\n" +
+                        "                            <td>" + ls.time + "</td>\n" +
+                        "                            <td class=\"td-manage\">\n" +
+                        "                                <a title=\"查看\" onclick=\"xadmin.open('编辑','QQ_group-edit.html')\" href=\"javascript:;\">\n" +
+                        "                                    <i class=\"layui-icon\">&#xe63c;</i></a>\n" +
+                        "                                <a title=\"删除\" onclick=\"member_del(this,'要删除的id')\" href=\"javascript:;\">\n" +
+                        "                                    <i class=\"layui-icon\">&#xe640;</i></a>\n" +
+                        "                            </td>\n" +
+                        "                        </tr>"
+                    // html +="<li><a href='second page text.html?newsid="+ls.news_id+"'class='infNews_wrod_a'><span>"+ls.news_name+"</span></a><span class='date'>"+ls.news_time+"</span></li>";
+                }
+                $("#layui-table layui-form").html(html); //在html页面id=ulul的标签里显示html内容
+            },
+        })
+    })
 }</script>
+
 
 </html>
 </html>
