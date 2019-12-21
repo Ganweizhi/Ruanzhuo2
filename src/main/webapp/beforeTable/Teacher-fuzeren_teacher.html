@@ -139,94 +139,51 @@
 
 
 
-<!-- 左侧菜单手风琴导航效果 -->
-<script type="text/javascript">
-    function initMenu(){
-        $('#sidemenu dl').hide();
-        $('#sidemenu li a').click(function(){
-            var checkElement = $(this).next();
-            if((checkElement.is('dl')) && (checkElement.is(':visible')))
-            {
-                return false;
-            }
-            if((checkElement.is('dl')) && (!checkElement.is(':visible')))
-            {
-                $('#sidemenu dl:visible').slideUp('normal');
-                checkElement.slideDown('normal');
-                return false;
-            }
-        });
-    }
-    $(document).ready(function(){
-        initMenu();
-    })
-</script>
-
 <!-- 子页内容 -->
-<div class="px1200">
-    <div class="ziye">
-        <div class="left" aos="fade-up-right">
-            <h3 class="biaot">教师团队</h3>
-            <ul id="sidemenu">
-                <li><a href="Teacher-fuzeren.html">课程负责人</a></li>
-                <li class="no"><a href="#">课程教学团队</a></li>
-                <li><a href="Teacher-zhujiang.html">主讲教师</a></li>
-                <li><a href="Teacher-peiyang.html">青年教师培养</a></li>
-            </ul>
-<!--            <div class="erwm">-->
-<!--                <div><img src="images/erweim.jpg"></div>-->
-<!--            </div>-->
-<!--            <p class="erwm-text">关注东莞理工学院微信公众号</p>-->
-        </div>
-        <div class="right" aos="fade-up-left">
-            <div class="dqlj"><a href="index.html">首页</a>·<a href="Teacher-fuzeren.html">教师团队</a>·<a>课程教学团队</a></div>
-            <div class="right_biaot">
-                <i></i>
-                <h2>课程教学团队</h2>
-                <i class="right"></i>
-            </div>
-            <!-- 详情内容 -->
-            <div class="teacher_k">
-                <ul>
-                    <li>
-                        <a href="Teacher_xq.html">
-                            <img src="images/teacher_img1.jpg">
-                            <p>张三</p>
-                            <span>物理组</span>
-                        </a>
-                    </li>
-                    <!--<li>-->
-                        <!--<a href="Teacher_xq.html">-->
-                            <!--<img src="images/teacher_img2.jpg">-->
-                            <!--<p>王强</p>-->
-                            <!--<span>语文组</span>-->
-                        <!--</a>-->
-                    <!--</li>-->
-                    <!--<li>-->
-                        <!--<a href="Teacher_xq.html">-->
-                            <!--<img src="images/teacher_img3.jpg">-->
-                            <!--<p>叶永富</p>-->
-                            <!--<span>数学组</span>-->
-                        <!--</a>-->
-                    <!--</li>-->
-
-                </ul>
-                <div class="pager">
-                    <a href="javascript:;" class="p" title="前一页" onclick="doGo(0);">«</a>
-                    <a href="javascript:;" class="current" onclick="doGo(1)">1</a>
-                    <a href="javascript:;" class="" onclick="doGo(2)">2</a>
-                    <a href="javascript:;" class="" onclick="doGo(3)">3</a>
-                    <a href="javascript:;" class="" onclick="doGo(4)">4</a>
-                    <a href="javascript:;" class="" onclick="doGo(5)">5</a>
-                    <a href="javascript:;" class="" onclick="doGo(6)">6</a>
-                    <a href="javascript:;" class="" onclick="doGo(7)">7</a>
-                    <a href="javascript:;" class="" onclick="doGo(8)">8</a>
-                    <a href="javascript:;" class="" onclick="doGo(9)">9</a>
-                    <a href="javascript:;" onclick="doGo(2)" class="p" title="后一页">»</a>
-                    <span>到第<input name="" type="text" id="ymz">页 <a href="#" onclick="goto_ymz()">确定</a></span>
+<div class="teacher_xqk">
+    <div class="px1200">
+        <div class="top">
+            <div class="left"><img src="images/teacher_xq_img.jpg" id="fuzeren_photo"></a></div>
+            <div class="right">
+                <div class="dqlj"><a href="index.html">首页</a>·<a href="Teacher-fuzeren.html">教师团队</a>·<a>课程负责人</a></div>
+                <div class="right_biaot">
+                    <i></i>
+                    <h2>课程简介</h2>
+                    <i class="right"></i>
+                </div>
+                <div class="text">
+                    <!--课程简介-->
+                    <p id="text_p">
+                    </p>
+                    <span id="name_course"></span>
                 </div>
             </div>
-            <!-- 详情内容介绍 -->
+        </div>
+        <div class="nottom">
+            <div class="left">
+                <h1>课程负责人信息</h1>
+                <i></i>
+                <p id="name_teacher"></p>
+                <p id="rank_teacher"></p>
+                <p id="x_xuewei"></p>
+                <p id="e_email"></p>
+                <p id="t_domin"></p>
+                <p id="t_phone"></p>
+
+
+
+
+
+
+
+            </div>
+            <div class="right">
+                <h2>简历<i></i></h2>
+                <div class="text">
+                    <p id="introduction_teacher_text"></p>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
@@ -289,5 +246,81 @@
         $('html, body').animate({
             scrollTop: $(window).height()
         }, 1200);
+    });
+</script>
+
+<script>
+    $(function () {
+        function getQueryVariable(variable)
+        {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i=0;i<vars.length;i++) {
+                var pair = vars[i].split("=");
+                if(pair[0] === variable){return pair[1];}
+            }
+            return false;
+        };
+        $.ajax({
+            type: "POST",
+            url: "/FuZeRen/findFuZeRenById/" + getQueryVariable('teacher_id') + "&" + getQueryVariable('course_id'),
+            // data: {"name":"yd","pwd":"123456"},
+            async:false,
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                var course_in = "";
+                var introduc = window.document.getElementById("text_p");
+                var name_c = window.document.getElementById("name_course");
+                var course_na = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;-";
+                var rrank_teacher = "职 称：";
+                var r_teacher = window.document.getElementById("rank_teacher");
+                var nname_teacher = "姓 名：";
+                var n_teacher = window.document.getElementById("name_teacher");
+
+                var xuewei = "学 位：";
+                var x_wei = window.document.getElementById("x_xuewei");
+
+                var emain = "邮 箱：";
+                var e_eemail = window.document.getElementById("e_email");
+
+                var domin = "研究方向：";
+                var t_ddomin = window.document.getElementById("t_domin");
+
+                var phone = "电 话：";
+                var teacher_phonen = window.document.getElementById("t_phone")
+
+
+                var intro_t = "";
+                var int_t = window.document.getElementById("introduction_teacher_text");
+
+                var img_fuzeren = window.document.getElementById("fuzeren_photo");
+                if( data !=null){
+                    course_in += data['course'].course_introduction;
+                    course_na += data['course'].course_name;
+                    rrank_teacher += data['teacher'].teacher_rank;
+                    nname_teacher += data['teacher'].teacher_name;
+                    xuewei += data['teacher'].teacher_qualification;
+                    emain += data['teacher'].teacher_email;
+                    domin += data['teacher'].teacher_domain;
+                    intro_t += data['teacher'].teacher_resume
+                    phone += data['teacher'].teacher_phone;
+                    img_fuzeren.src = data['teacher'].teacher_photo
+                }
+                introduc.innerHTML = course_in;
+                name_c.innerHTML = course_na;
+                r_teacher.innerHTML = rrank_teacher;
+                n_teacher.innerHTML = nname_teacher;
+                x_wei.innerHTML = xuewei;
+                e_eemail.innerHTML = emain;
+                t_ddomin.innerHTML = domin;
+                int_t.innerHTML = intro_t;
+                teacher_phonen.innerHTML = phone;
+            },
+            error:function () {
+                console.log("出错了");
+                // console.log("/FuZeRen/findFuZeRenById/" + getQueryVariable('teacher_id') + "&" + getQueryVariable('course_id'));
+            }
+        });
     });
 </script>
