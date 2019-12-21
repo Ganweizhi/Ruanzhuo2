@@ -49,7 +49,7 @@ public class SuccessCourseController {
         return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 
-    @RequestMapping(value = "/findSuccessCourseMsg/{teacher_id}/{course_id}",method = {RequestMethod.POST})
+    @RequestMapping(value = "/findSuccessCourseMsg/{teacher_id}&{course_id}",method = {RequestMethod.POST})
     public String findSuccessCourseMsg(@PathVariable("teacher_id") String teacher_id,@PathVariable("course_id") String course_id){
         Teacher teacher = teacherService.findById(teacher_id);
         Course course=courseService.findById(course_id);

@@ -5,6 +5,8 @@ import com.dgut.group22.javaBean.Teacher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 //Ning
 @Service
 public class TeacherService {
@@ -12,5 +14,9 @@ public class TeacherService {
     ITeacherDao teacherDao;
     public Teacher findById(String teacher_id){
         return teacherDao.findById(teacher_id);
+    }
+
+    public List<Teacher> findAllYoungTeacher(){
+        return teacherDao.findAllYoungTeacher();
     }
 }
