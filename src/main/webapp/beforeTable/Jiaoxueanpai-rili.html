@@ -311,10 +311,10 @@
     $(function () {
         doGo(1);
     });
-    function doGo() {
+    function doGo(page) {
         $.ajax({
             type: "POST",
-            url: "/ka_ke_ke_cheng/1",
+            url: "/ka_ke_ke_cheng/"+page,
             // data: {"name":"yd","pwd":"123456"},
             async:false,
             dataType: "json",
@@ -333,7 +333,8 @@
                     var curPage = data.curPage;
                     var page = curPage > 1?curPage-1:1;
                     context += '<a href="javascript:;" class="p" title="前一页" onclick="doGo(' + page + ');">«</a>';
-                    for (var i=1;i<=2;i++) {
+                    console.log(totalPage);
+                    for (var i=1;i<=totalPage;i++) {
                         if (curPage === i) context += '<a href="javascript:;" class="current" onclick="doGo('+i+')">'+i+'</a>';
                         else context += '<a href="javascript:;" onclick="doGo('+i+')">'+i+'</a>';
                     }
