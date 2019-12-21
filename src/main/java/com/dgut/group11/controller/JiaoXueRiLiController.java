@@ -3,6 +3,7 @@ package com.dgut.group11.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.dgut.group11.javabean.*;
 import com.dgut.group11.service.JiaoXueRiLiService;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,9 +24,6 @@ public class JiaoXueRiLiController {
 
     @Autowired
     private JiaoXueRiLiService jiaoXueRiLiService;
-
-
-
 
     @RequestMapping(value="/ka_ke_ke_cheng/{page}",method = {RequestMethod.POST})
     public String ka_ke_ke_cheng(@PathVariable("page") String page){

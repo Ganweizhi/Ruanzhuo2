@@ -1,9 +1,14 @@
 package com.dgut.group22.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.dgut.group22.javaBean.Course;
 import com.dgut.group22.javaBean.SuccessCourse;
 import com.dgut.group22.javaBean.Teacher;
+import com.dgut.group22.service.CourseService;
 import com.dgut.group22.service.SuccessCourseService;
+import com.dgut.group22.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +26,10 @@ import java.util.List;
 public class SuccessCourseController {
     @Autowired
     SuccessCourseService successCourseService;
+    @Autowired
+    TeacherService teacherService;
+    @Autowired
+    CourseService courseService;
 
     @RequestMapping(value = "/findAllsuccessCourse/{page}",method = {RequestMethod.POST})
     public String findAllsuccessCourse(@PathVariable("page") String page){
@@ -37,6 +46,16 @@ public class SuccessCourseController {
         jsonObject.put("page",allSuccessCourse.size()/9+r);
         jsonObject.put("curPage",anInt);
         jsonObject.put("data",successCourse);
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
+    }
+
+    @RequestMapping(value = "/findSuccessCourseMsg/{teacher_id}&{course_id}",method = {RequestMethod.POST})
+    public String findSuccessCourseMsg(@PathVariable("teacher_id") String teacher_id,@PathVariable("course_id") String course_id){
+        Teacher teacher = teacherService.findById(teacher_id);
+        Course course=courseService.findById(course_id);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("teacher",teacher);
+        jsonObject.put("course",course);
         return jsonObject.toJSONString();
     }
 }

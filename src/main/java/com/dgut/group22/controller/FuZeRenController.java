@@ -7,6 +7,7 @@ import com.dgut.group22.javaBean.Teacher;
 import com.dgut.group22.service.CourseService;
 import com.dgut.group22.service.FuZeRenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.List;
 
 //Ning
 @RestController
+@Transactional
 @RequestMapping("/FuZeRen")
 public class FuZeRenController {
     @Autowired
