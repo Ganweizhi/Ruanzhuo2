@@ -24,7 +24,6 @@ public class AchievementController {
     //前台教学成果界面
     @RequestMapping(value = "/chengguo/{page}",method = {RequestMethod.POST})
     public String selectAllAchievement(@PathVariable("page") String page) {
-        System.out.println(page);
         List<Measure> allAchievement=achievementService.selectAllAchievement();
         int one = Integer.parseInt(page);
         List<Measure> achievement = new ArrayList<>();
@@ -89,8 +88,8 @@ public class AchievementController {
         contentService.insert(measureContent);
 
         Measure measure=new Measure();
-        measure.setAchievement_title(map.get("title"));
-        measure.setAchievement_time(map.get("date"));
+        measure.setMeasure_title(map.get("title"));
+        measure.setMeasure_time(map.get("date"));
         measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
         achievementService.insert(measure);
 
@@ -119,8 +118,8 @@ public class AchievementController {
         contentService.update(measureContent);
 
         Measure measure=new Measure();
-        measure.setAchievement_title(map.get("title"));
-        measure.setAchievement_time(map.get("date"));
+        measure.setMeasure_title(map.get("title"));
+        measure.setMeasure_time(map.get("date"));
         measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
         achievementService.update(measure);
 

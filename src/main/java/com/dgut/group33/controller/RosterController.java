@@ -37,7 +37,7 @@ public class RosterController {
         result.put("data", titleList);
         return result.toJSONString();
     }
-    @RequestMapping(value = "/ChungLife_dt_hmc/{content_id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/ChungLife_dt_hmc_show/{content_id}", method = RequestMethod.POST)
     public String getHmcById(@PathVariable String content_id) {
         int class_id = Integer.parseInt(content_id);
         List<Student> students = rosterService.findStudentByCid(class_id);

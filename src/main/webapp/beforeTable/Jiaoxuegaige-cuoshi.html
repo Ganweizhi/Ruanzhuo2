@@ -214,7 +214,7 @@
                                 console.log(data);
                                 var list = data['data'];
                                 for (var i in list) {
-                                    contextHtml += '<li><a href="Jiaoxuegaige-cuoshi-neirong.html?contentid=' + list[i].content_id + '"'+'</a>'+list[i].achievement_title+'<span style="margin-left: 700px">' + list[i].achievement_time + '</span></li >'
+                                    contextHtml += '<li><a href="Jiaoxuegaige-cuoshi-neirong.html?content_id=' + list[i].content_id + '"'+'</a>'+list[i].measure_title+'<span style="margin-left: 500px">' + list[i].measure_time + '</span></li >'
                                 }
                                 $(".but_list").html(contextHtml);
 
@@ -239,13 +239,7 @@
 
             </script>
             <div class="but_list">
-                <ul>
-                    <li class="img"><a href="ChungLife_dt_xq.html"><img src="images/DGUT_img.jpg"></a></li>
-                    <!--<li>-->
-                        <!--<a href="#">东莞理工学院"十三五"专业建设与发展规划</a>-->
-                        <!--<span>[2019-01-09]</span>-->
-                    <!--</li>-->
-                </ul>
+                <li class="img"><a href="ChungLife_dt_xq.html"><img src="images/DGUT_img.jpg"></a></li>
 
             </div>
             <!-- 详情内容介绍 -->

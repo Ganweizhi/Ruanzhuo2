@@ -10,34 +10,34 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString*/
 public class Measure {
-    private int achievement_id;
-    private String achievement_title;
-    private String achievement_time;
+    private int measure_id;
+    private String measure_title;
+    private String measure_time;
     private int content_id;
     private MeasureContent measureContent;
 
-    public int getAchievement_id() {
-        return achievement_id;
+    public int getMeasure_id() {
+        return measure_id;
     }
 
-    public void setAchievement_id(int achievement_id) {
-        this.achievement_id = achievement_id;
+    public void setMeasure_id(int measure_id) {
+        this.measure_id = measure_id;
     }
 
-    public String getAchievement_title() {
-        return achievement_title;
+    public String getMeasure_title() {
+        return measure_title;
     }
 
-    public void setAchievement_title(String achievement_title) {
-        this.achievement_title = achievement_title;
+    public void setMeasure_title(String measure_title) {
+        this.measure_title = measure_title;
     }
 
-    public String getAchievement_time() {
-        return achievement_time;
+    public String getMeasure_time() {
+        return measure_time;
     }
 
-    public void setAchievement_time(String achievement_time) {
-        this.achievement_time = achievement_time;
+    public void setMeasure_time(String measure_time) {
+        this.measure_time = measure_time;
     }
 
     public int getContent_id() {
