@@ -17,26 +17,41 @@
 	<script type="text/javascript" src="js/jquery.SuperSlide.2.1.3.js"></script>
 	<script language="javascript">
 		$(function () {
-					$.ajax({
-						type: "POST",
-						url: "/shehuipingjia/1",
-						// data: {"name":"yd","pwd":"123456"},
-						dataType: "json",
-						success: function (data) {
-							if (data !=null) {
-								var contextHtml = "";
-								var list = data['data'];
-								contextHtml +='<p>' + '社会评价:' + '</p>'
-								for (var i in list) {
-									contextHtml +='<p>' + list[i].expert + ': ' + list[i].content + '</p>'
-								}
-								$(".contexts").html(contextHtml);
-							}
+			doGo(1);
+		});
+		function doGo(page) {
+			$.ajax({
+				type: "POST",
+				url: "/shehuipingjia/"+page,
+				// data: {"name":"yd","pwd":"123456"},
+				dataType: "json",
+				success: function (data) {
+					if (data !=null) {
+						var contextHtml = "";
+						var list = data['data'];
+						contextHtml +='<p>' + '社会评价:' + '</p>'
+						for (var i in list) {
+							contextHtml +='<p>' + list[i].expert + ': ' + list[i].content + '</p>'
 						}
-					});
+						$(".contexts").html(contextHtml);
+						var context = "";
+						var totalPage = data.page;
+						var curPage = data.curPage;
+						var page = curPage > 1?curPage-1:1;
+						context += '<a href="javascript:;" class="p" title="前一页" onclick="doGo(' + page + ');">«</a>';
+						console.log(totalPage);
+						for (var i=1;i<=totalPage;i++) {
+							if (curPage === i) context += '<a href="javascript:;" class="current" onclick="doGo('+i+')">'+i+'</a>';
+							else context += '<a href="javascript:;" onclick="doGo('+i+')">'+i+'</a>';
+						}
+						page = curPage === totalPage?curPage:curPage+1;
+						context += '<a href="javascript:;" onclick="doGo('+page+')" class="p" title="后一页">»</a>';
+						console.log(context);
+						$(".pager").html(context);
+					}
 				}
-		);
-
+			});
+		};
 	</script>
 </head>
 
@@ -238,6 +253,8 @@
 				<!--					<div class="bdsharebuttonbox" style="position: absolute;right: 30px;bottom: 15px;"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>-->
 				<!--					<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>-->
 				<!--				</div>-->
+			</div>
+			<div class="pager">
 			</div>
 			<!-- 详情内容介绍 -->
 		</div>
