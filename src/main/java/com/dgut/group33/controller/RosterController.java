@@ -24,11 +24,9 @@ public class RosterController {
     public String getHmc(@PathVariable String page) {
         int anInt = Integer.parseInt(page);
         List<Title> titleList = new ArrayList<>();
-        List<Class> classes = new ArrayList<>();
         List<Class> allClass = rosterService.findAllClass();
         for (int i = (anInt - 1) * 10; i < (anInt - 1) * 10 + 10 && i < allClass.size(); i++) {
             Title title=new Title();
-            classes.add(allClass.get(i));
             title.setTitle(allClass.get(i).getClass_name()+"花名册");
             title.setContent_id(allClass.get(i).getClass_id());
             titleList.add(title);

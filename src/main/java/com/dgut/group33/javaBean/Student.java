@@ -26,14 +26,6 @@ public class Student {
                 '}';
     }
 
-    public int getClass_id() {
-        return class_id;
-    }
-
-    public void setClass_id(int class_id) {
-        this.class_id = class_id;
-    }
-
     public int getStudent_id() {
         return student_id;
     }
@@ -56,6 +48,14 @@ public class Student {
 
     public void setStudent_grade(String student_grade) {
         this.student_grade = student_grade;
+    }
+
+    public int getClass_id() {
+        return class_id;
+    }
+
+    public void setClass_id(int class_id) {
+        this.class_id = class_id;
     }
 
     public String getStudent_sex() {
