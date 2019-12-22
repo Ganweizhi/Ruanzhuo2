@@ -7,24 +7,22 @@ import com.dgut.group33.service.ApprovalService;
 import com.dgut.group33.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/approval")
+@ResponseBody
 public class ApprovalController {
     @Autowired
     private ApprovalService approvalService;
     @Autowired
     private ContentService contentService;
 
-    @RequestMapping(value = "/selectAll/{page}",method = {RequestMethod.POST})
+    //前台教学立项界面
+    @RequestMapping(value = "/xiliang/{page}",method = {RequestMethod.POST})
     public String selectAllApproval(@PathVariable("page") String page) {
         List<Measure> allApproval=approvalService.selectAllApproval();
         int one = Integer.parseInt(page);
@@ -43,7 +41,9 @@ public class ApprovalController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/selectA/{content_id}",method = {RequestMethod.POST})
+
+    //前台教学立项界面--文章内容
+    @RequestMapping(value="/lixiang-neirong/{content_id}",method = {RequestMethod.POST})
     public String selectA(@PathVariable("content_id") String contentid){
         int content_id = Integer.parseInt(contentid);
 
@@ -56,7 +56,9 @@ public class ApprovalController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/delete/{content_id}",method = {RequestMethod.POST})
+
+    //后台管理教学立项--删除
+    @RequestMapping(value="/dele-lixiang/{content_id}",method = {RequestMethod.POST})
     public String deleteA(@PathVariable("content_id") String contentid){
         int content_id = Integer.parseInt(contentid);
 
@@ -78,13 +80,11 @@ public class ApprovalController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/insert",method = {RequestMethod.POST})
-    public String insertA(@RequestParam Map<String,String> map){
-        /*int content_id = Integer.parseInt(contentid);
 
-        Measure measure=achievementService.selectA(content_id);
-        MeasureContent measureContent=contentService.selectA(content_id);
-        measure.setMeasureContent(measureContent);*/
+    //后台管理教学立项--添加
+    @RequestMapping(value="/add-lixiang",method = {RequestMethod.POST})
+    public String insertA(@RequestParam Map<String,String> map){
+
         MeasureContent measureContent=new MeasureContent();
         measureContent.setContent_author(map.get("author"));
         measureContent.setContent(map.get("content"));
@@ -111,9 +111,10 @@ public class ApprovalController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/alter",method = {RequestMethod.POST})
+
+    //后台管理教学立项--修改
+    @RequestMapping(value="/edit-lixiang",method = {RequestMethod.POST})
     public String alterA(@RequestParam Map<String,String> map){
-        //int content_id = Integer.parseInt(map.);
 
         MeasureContent measureContent=new MeasureContent();
         measureContent.setContent_author(map.get("author"));
@@ -126,7 +127,6 @@ public class ApprovalController {
         measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
         approvalService.update(measure);
 
-        //List<Measure> allAchievement=achievementService.selectAllAchievement();
         List<Measure> measure1=new ArrayList<>();
         List<Measure> measures=approvalService.selectAllApproval();
         for(int i=0;i<measures.size();i++){
@@ -135,6 +135,25 @@ public class ApprovalController {
             measure2.setMeasureContent(measureContent1);
             measure1.add(measure2);
         }
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("data",measure1);
+
+        return jsonObject.toJSONString();
+    }
+
+
+    //后台管理教学立项--展示所有
+    @RequestMapping(value="/allApproval",method = {RequestMethod.POST})
+    public String select(){
+        List<Measure> measure1=new ArrayList<>();
+        List<Measure> measures=approvalService.selectAllApproval();
+        for(int i=0;i<measures.size();i++){
+            MeasureContent measureContent1=contentService.selectA((measures.get(i)).getContent_id());
+            Measure measure2=measures.get(i);
+            measure2.setMeasureContent(measureContent1);
+            measure1.add(measure2);
+        }
+
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("data",measure1);
 

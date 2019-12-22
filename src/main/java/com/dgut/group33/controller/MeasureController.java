@@ -7,28 +7,25 @@ import com.dgut.group33.service.ContentService;
 import com.dgut.group33.service.MeasureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/measure")
+@ResponseBody
 public class MeasureController {
     @Autowired
     private MeasureService measureService;
     @Autowired
     private ContentService contentService;
 
-    @RequestMapping(value = "/selectAll/{page}",method = {RequestMethod.POST})
+    //前台教学措施界面
+    @RequestMapping(value = "/cuoshi/{page}",method = {RequestMethod.POST})
     public String selectAllMeasure(@PathVariable("page") String page) {
-        //System.out.println("aaaa");
+
         List<Measure> allMeasure=measureService.selectAllMeasure();
-        //System.out.println(allMeasure);
         int anInt = Integer.parseInt(page);
         List<Measure> measure = new ArrayList<>();
 
@@ -44,7 +41,8 @@ public class MeasureController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/selectA/{content_id}",method = {RequestMethod.POST})
+    //前台教学措施界面--文章信息
+    @RequestMapping(value="/cuoshi-neirong/{content_id}",method = {RequestMethod.POST})
     public String selectA(@PathVariable("content_id") String contentid){
         int content_id = Integer.parseInt(contentid);
 
@@ -57,7 +55,8 @@ public class MeasureController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/delete/{content_id}",method = {RequestMethod.POST})
+    //后台管理教学措施--删除
+    @RequestMapping(value="/dele-cuoshi/{content_id}",method = {RequestMethod.POST})
     public String deleteA(@PathVariable("content_id") String contentid){
         int content_id = Integer.parseInt(contentid);
 
@@ -79,13 +78,9 @@ public class MeasureController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/insert",method = {RequestMethod.POST})
+    //后台管理教学措施--添加
+    @RequestMapping(value="/add-cuoshi",method = {RequestMethod.POST})
     public String insertA(@RequestParam Map<String,String> map){
-        /*int content_id = Integer.parseInt(contentid);
-
-        Measure measure=achievementService.selectA(content_id);
-        MeasureContent measureContent=contentService.selectA(content_id);
-        measure.setMeasureContent(measureContent);*/
         MeasureContent measureContent=new MeasureContent();
         measureContent.setContent_author(map.get("author"));
         measureContent.setContent(map.get("content"));
@@ -112,9 +107,9 @@ public class MeasureController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/alter",method = {RequestMethod.POST})
+    //后台管理教学措施--修改
+    @RequestMapping(value="/edit-cuoshi",method = {RequestMethod.POST})
     public String alterA(@RequestParam Map<String,String> map){
-        //int content_id = Integer.parseInt(map.);
 
         MeasureContent measureContent=new MeasureContent();
         measureContent.setContent_author(map.get("author"));
@@ -127,7 +122,6 @@ public class MeasureController {
         measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
         measureService.update(measure);
 
-        //List<Measure> allAchievement=achievementService.selectAllAchievement();
         List<Measure> measure1=new ArrayList<>();
         List<Measure> measures=measureService.selectAllMeasure();
         for(int i=0;i<measures.size();i++){
@@ -142,9 +136,22 @@ public class MeasureController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping("/add")
-    public void add(){
-        System.out.println("Hellow World!");
+    //后台管理教学措施--展示所有
+    @RequestMapping(value="/allcuoshi",method = {RequestMethod.POST})
+    public String select(){
+        List<Measure> measure1=new ArrayList<>();
+        List<Measure> measures=measureService.selectAllMeasure();
+        for(int i=0;i<measures.size();i++){
+            MeasureContent measureContent1=contentService.selectA((measures.get(i)).getContent_id());
+            Measure measure2=measures.get(i);
+            measure2.setMeasureContent(measureContent1);
+            measure1.add(measure2);
+        }
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("data",measure1);
+
+        return jsonObject.toJSONString();
     }
 }
 

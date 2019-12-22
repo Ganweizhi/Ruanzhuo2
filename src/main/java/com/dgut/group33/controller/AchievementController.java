@@ -21,7 +21,8 @@ public class AchievementController {
     @Autowired
     private ContentService contentService;
 
-    @RequestMapping(value = "/cuoshi/{page}",method = {RequestMethod.POST})
+    //前台教学成果界面
+    @RequestMapping(value = "/chengguo/{page}",method = {RequestMethod.POST})
     public String selectAllAchievement(@PathVariable("page") String page) {
         System.out.println(page);
         List<Measure> allAchievement=achievementService.selectAllAchievement();
@@ -38,7 +39,9 @@ public class AchievementController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/cuoshi-neirong/{contentid}",method = {RequestMethod.POST})
+
+    //前台教学成果界面--文章内容
+    @RequestMapping(value="/chengguo-neirong/{contentid}",method = {RequestMethod.POST})
     public String selectA(@PathVariable("contentid") String contentid){
         int content_id = Integer.parseInt(contentid);
 
@@ -51,7 +54,9 @@ public class AchievementController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/delete/{content_id}",method = {RequestMethod.POST})
+
+    //后台管理教学成果--删除
+    @RequestMapping(value="/dele-chengguo/{content_id}",method = {RequestMethod.POST})
     public String deleteA(@PathVariable("content_id") String contentid){
         int content_id = Integer.parseInt(contentid);
 
@@ -73,13 +78,11 @@ public class AchievementController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/insert",method = {RequestMethod.POST})
-    public String insertA(@RequestParam Map<String,String> map){
-        /*int content_id = Integer.parseInt(contentid);
 
-        Measure measure=achievementService.selectA(content_id);
-        MeasureContent measureContent=contentService.selectA(content_id);
-        measure.setMeasureContent(measureContent);*/
+    //后台管理教学成果--添加
+    @RequestMapping(value="/add-chengguo",method = {RequestMethod.POST})
+    public String insertA(@RequestParam Map<String,String> map){
+
         MeasureContent measureContent=new MeasureContent();
         measureContent.setContent_author(map.get("author"));
         measureContent.setContent(map.get("content"));
@@ -106,10 +109,10 @@ public class AchievementController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/alter",method = {RequestMethod.POST})
-    public String alterA(@RequestParam Map<String,String> map){
-        //int content_id = Integer.parseInt(map.);
 
+    //后台管理教学成果--修改
+    @RequestMapping(value="/edit-chengguo",method = {RequestMethod.POST})
+    public String alterA(@RequestParam Map<String,String> map){
         MeasureContent measureContent=new MeasureContent();
         measureContent.setContent_author(map.get("author"));
         measureContent.setContent(map.get("content"));
@@ -121,7 +124,6 @@ public class AchievementController {
         measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
         achievementService.update(measure);
 
-        //List<Measure> allAchievement=achievementService.selectAllAchievement();
         List<Measure> measure1=new ArrayList<>();
         List<Measure> measures=achievementService.selectAllAchievement();
         for(int i=0;i<measures.size();i++){
@@ -137,4 +139,21 @@ public class AchievementController {
     }
 
 
+    //后台管理教学成果--展示所有
+    @RequestMapping(value="/allAchievement",method = {RequestMethod.POST})
+    public String select(){
+        List<Measure> measure1=new ArrayList<>();
+        List<Measure> measures=achievementService.selectAllAchievement();
+        for(int i=0;i<measures.size();i++){
+            MeasureContent measureContent1=contentService.selectA((measures.get(i)).getContent_id());
+            Measure measure2=measures.get(i);
+            measure2.setMeasureContent(measureContent1);
+            measure1.add(measure2);
+        }
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("data",measure1);
+
+        return jsonObject.toJSONString();
+    }
 }
