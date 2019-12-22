@@ -87,13 +87,13 @@ public class MeasureController {
         MeasureContent measureContent=contentService.selectA(content_id);
         measure.setMeasureContent(measureContent);*/
         MeasureContent measureContent=new MeasureContent();
-        measureContent.setiAuthor(map.get("author"));
+        measureContent.setContent_author(map.get("author"));
         measureContent.setContent(map.get("content"));
         contentService.insert(measureContent);
 
         Measure measure=new Measure();
-        measure.setTitle(map.get("title"));
-        measure.setTime(map.get("date"));
+        measure.setAchievement_title(map.get("title"));
+        measure.setAchievement_time(map.get("date"));
         measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
         measureService.insert(measure);
 
@@ -117,13 +117,13 @@ public class MeasureController {
         //int content_id = Integer.parseInt(map.);
 
         MeasureContent measureContent=new MeasureContent();
-        measureContent.setiAuthor(map.get("author"));
+        measureContent.setContent_author(map.get("author"));
         measureContent.setContent(map.get("content"));
         contentService.update(measureContent);
 
         Measure measure=new Measure();
-        measure.setTitle(map.get("title"));
-        measure.setTime(map.get("date"));
+        measure.setAchievement_title(map.get("title"));
+        measure.setAchievement_time(map.get("date"));
         measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
         measureService.update(measure);
 

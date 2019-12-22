@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Mapper
 public interface ContentMapper {
-    @Select("select * from content where content_id=#{content_id}")
+    @Select("select * from content where id=#{content_id}")
     MeasureContent selectA(int content_id);
 
     @Delete("delete from content where content_id=#{content_id}")

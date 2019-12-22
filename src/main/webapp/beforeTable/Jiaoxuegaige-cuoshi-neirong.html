@@ -201,9 +201,17 @@ $(".head .dh ul li").hover(function(){
 					doGo(1);
 				});
 				function doGo(page) {
+					(function ($) {
+						$.getUrlParam = function (name) {
+							var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+							var r = window.location.search.substr(1).match(reg);
+							if (r != null) return unescape(r[2]); return null;
+						}
+					})(jQuery);
+					var contentid=$.getUrlParam('contentid');
 					$.ajax({
 						type: "POST",
-						url: "/cuoshi/"+page,
+						url: "/cuoshi-neirong/"+contentid,
 						// data: {"name":"yd","pwd":"123456"},
 						async:false,
 						dataType: "json",
@@ -212,11 +220,11 @@ $(".head .dh ul li").hover(function(){
 								var contextHtml = "";
 								console.log(data);
 								var list = data['data'];
-								contextHtml += '<h1>'+list.title+'</h1>'+'<p><span>时间'+list.date+'</span><span>来源：东莞理工学院教务处</span>'+'</span><span>'+'作者：'+list.author+'</span>\n' +
+								contextHtml += '<h1>'+list.achievement_title+'</h1>'+'<p><span>时间'+list.achievement_time+'</span><span>来源：东莞理工学院教务处</span>'+'</span><span>'+'作者：'+list.measureContent.content_author+'</span>\n' +
 										'\t\t\t  \t\t</p>'
 								$(".biaot_xq").html(contextHtml);
 								var contextHtml2 = "";
-								contextHtml2 +='<p>'+list.content+'</p>>'
+								contextHtml2 +='<p>'+list.measureContent.content+'</p>>'
 								$(".jianj_k2").html(contextHtml2);
 							}
 						}

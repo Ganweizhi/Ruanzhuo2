@@ -2,23 +2,23 @@ package com.dgut.group33.javaBean;
 
 public class MeasureContent {
     private int id;
-    private String author;
+    private String content_author;
     private String content;
 
-    public int getid() {
+    public int getId() {
         return id;
     }
 
-    public void setid(int id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getContent_author() {
+        return content_author;
     }
 
-    public void setiAuthor(String author) {
-        this.author = author;
+    public void setContent_author(String content_author) {
+        this.content_author = content_author;
     }
 
     public String getContent() {

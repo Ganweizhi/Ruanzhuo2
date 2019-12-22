@@ -7,16 +7,14 @@ import com.dgut.group33.service.AchievementService;
 import com.dgut.group33.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Controller
+@ResponseBody
 public class AchievementController {
     @Autowired
     private AchievementService achievementService;
@@ -25,24 +23,23 @@ public class AchievementController {
 
     @RequestMapping(value = "/cuoshi/{page}",method = {RequestMethod.POST})
     public String selectAllAchievement(@PathVariable("page") String page) {
+        System.out.println(page);
         List<Measure> allAchievement=achievementService.selectAllAchievement();
         int one = Integer.parseInt(page);
         List<Measure> achievement = new ArrayList<>();
-
         for(int i=(one-1)*9; i<(one-1)*9+9 && i<allAchievement.size(); i++){
             achievement.add(allAchievement.get(i));
         }
         JSONObject jsonObject = new JSONObject();
         int r = allAchievement.size()%9==0?0:1;
-
         jsonObject.put("page",allAchievement.size()/9+r);
         jsonObject.put("curPage",one);
         jsonObject.put("data",achievement);
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/selectA/{content_id}",method = {RequestMethod.POST})
-    public String selectA(@PathVariable("content_id") String contentid){
+    @RequestMapping(value="/cuoshi-neirong/{contentid}",method = {RequestMethod.POST})
+    public String selectA(@PathVariable("contentid") String contentid){
         int content_id = Integer.parseInt(contentid);
 
         Measure measure=achievementService.selectA(content_id);
@@ -84,13 +81,13 @@ public class AchievementController {
         MeasureContent measureContent=contentService.selectA(content_id);
         measure.setMeasureContent(measureContent);*/
         MeasureContent measureContent=new MeasureContent();
-        measureContent.setiAuthor(map.get("author"));
+        measureContent.setContent_author(map.get("author"));
         measureContent.setContent(map.get("content"));
         contentService.insert(measureContent);
 
         Measure measure=new Measure();
-        measure.setTitle(map.get("title"));
-        measure.setTime(map.get("date"));
+        measure.setAchievement_title(map.get("title"));
+        measure.setAchievement_time(map.get("date"));
         measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
         achievementService.insert(measure);
 
@@ -114,13 +111,13 @@ public class AchievementController {
         //int content_id = Integer.parseInt(map.);
 
         MeasureContent measureContent=new MeasureContent();
-        measureContent.setiAuthor(map.get("author"));
+        measureContent.setContent_author(map.get("author"));
         measureContent.setContent(map.get("content"));
         contentService.update(measureContent);
 
         Measure measure=new Measure();
-        measure.setTitle(map.get("title"));
-        measure.setTime(map.get("date"));
+        measure.setAchievement_title(map.get("title"));
+        measure.setAchievement_time(map.get("date"));
         measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
         achievementService.update(measure);
 
