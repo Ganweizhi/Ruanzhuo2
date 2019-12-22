@@ -204,7 +204,7 @@
                 function doGo(page) {
                     $.ajax({
                         type: "POST",
-                        url: "/cuoshi",
+                        url: "/cuoshi/"+page,
                         // data: {"name":"yd","pwd":"123456"},
                         async:false,
                         dataType: "json",
@@ -218,20 +218,20 @@
                                 }
                                 $(".but_list").html(contextHtml);
 
-                                // var context = "";
-                                // var totalPage = data.totalPage;
-                                // var curPage = data.curPage;
-                                // var page = curPage > 1?curPage-1:1;
-                                // context += '<a href="javascript:;" class="p" title="前一页" onclick="doGo(' + page + ');">«</a>';
-                                // console.log(totalPage);
-                                // for (var i=1;i<=totalPage;i++) {
-                                //     if (curPage === i) context += '<a href="javascript:;" class="current" onclick="doGo('+i+')">'+i+'</a>';
-                                //     else context += '<a href="javascript:;" onclick="doGo('+i+')">'+i+'</a>';
-                                // }
-                                // page = curPage === totalPage?curPage:curPage+1;
-                                // context += '<a href="javascript:;" onclick="doGo('+page+')" class="p" title="后一页">»</a>';
-                                // console.log(context);
-                                // $(".pager").html(context);
+                                var context = "";
+                                var totalPage = data.totalPage;
+                                var curPage = data.curPage;
+                                var page = curPage > 1?curPage-1:1;
+                                context += '<a href="javascript:;" class="p" title="前一页" onclick="doGo(' + page + ');">«</a>';
+                                console.log(totalPage);
+                                for (var i=1;i<=totalPage;i++) {
+                                    if (curPage === i) context += '<a href="javascript:;" class="current" onclick="doGo('+i+')">'+i+'</a>';
+                                    else context += '<a href="javascript:;" onclick="doGo('+i+')">'+i+'</a>';
+                                }
+                                page = curPage === totalPage?curPage:curPage+1;
+                                context += '<a href="javascript:;" onclick="doGo('+page+')" class="p" title="后一页">»</a>';
+                                console.log(context);
+                                $(".pager").html(context);
                             }
                         }
                     });
