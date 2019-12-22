@@ -197,46 +197,54 @@
                 <i class="right"></i>
             </div>
             <!-- 详情内容 -->
+            <script>
+                $(function () {
+                    doGo(1);
+                });
+                function doGo(page) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/cuoshi",
+                        // data: {"name":"yd","pwd":"123456"},
+                        async:false,
+                        dataType: "json",
+                        success: function (data) {
+                            if (data != null) {
+                                var contextHtml = "";
+                                console.log(data);
+                                var list = data['data'];
+                                for (var i in list) {
+                                    contextHtml += '<li><a href="Jiaoxuegaige-cuoshi-neirong.html?contentid="' + list[i].contentid + '</a><span>' + list[i].date + '</span></li >'
+                                }
+                                $(".but_list").html(contextHtml);
+
+                                // var context = "";
+                                // var totalPage = data.totalPage;
+                                // var curPage = data.curPage;
+                                // var page = curPage > 1?curPage-1:1;
+                                // context += '<a href="javascript:;" class="p" title="前一页" onclick="doGo(' + page + ');">«</a>';
+                                // console.log(totalPage);
+                                // for (var i=1;i<=totalPage;i++) {
+                                //     if (curPage === i) context += '<a href="javascript:;" class="current" onclick="doGo('+i+')">'+i+'</a>';
+                                //     else context += '<a href="javascript:;" onclick="doGo('+i+')">'+i+'</a>';
+                                // }
+                                // page = curPage === totalPage?curPage:curPage+1;
+                                // context += '<a href="javascript:;" onclick="doGo('+page+')" class="p" title="后一页">»</a>';
+                                // console.log(context);
+                                // $(".pager").html(context);
+                            }
+                        }
+                    });
+                }
+
+            </script>
             <div class="but_list">
                 <ul>
                     <li class="img"><a href="ChungLife_dt_xq.html"><img src="images/DGUT_img.jpg"></a></li>
-                    <li>
-                        <a href="#">东莞理工学院"十三五"专业建设与发展规划</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">马宏伟校长应邀参加2019年教育部产学合作协同育人项目对接会并作主题报告</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">教育部教育事业统计工作专家组进校指导</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">2019广东材料发展论坛在东莞理工学院松山湖校区隆重召开</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">莞工支付成功入选全国高教信息化创新应用案例集</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">我校承办首届食品特征组分结构变化与品质功能调控国际研讨会暨国家重点研发计划项目2019年度总结会</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">校领导赴中国科学院大学考察交流 </a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">【党代会时评】坚定不移地走科研兴校之路</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">东莞市“百名法学家百场报告会”首次走进我校</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-
+                    <!--<li>-->
+                        <!--<a href="#">东莞理工学院"十三五"专业建设与发展规划</a>-->
+                        <!--<span>[2019-01-09]</span>-->
+                    <!--</li>-->
                 </ul>
                 <div class="pager">
                     <a href="javascript:;" class="p" title="前一页" onclick="doGo(0);">«</a>
