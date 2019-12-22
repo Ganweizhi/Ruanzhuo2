@@ -17,24 +17,24 @@
 	<script type="text/javascript" src="js/jquery.SuperSlide.2.1.3.js"></script>
 	<script language="javascript">
 		$(function () {
-			$.ajax({
-				type: "POST",
-				url: "/jiaosziping",
-				// data: {"name":"yd","pwd":"123456"},
-				dataType: "json",
-				success: function (data) {
-					if (data !=null) {
-						var contextHtml = "";
-						contextHtml +="<p>" + "教师自我评价" + "</p>"
-						for (var i in data) {
-							contextHtml +="<p>" + data[i].context + "</p>"
+					$.ajax({
+						type: "POST",
+						url: "/jiaoshiziwopingjia/1",
+						// data: {"name":"yd","pwd":"123456"},
+						dataType: "json",
+						success: function (data) {
+							if (data !=null) {
+								var contextHtml = "";
+								var list = data['data'];
+								contextHtml +='<p>' + '教师自我评价:' + '</p>'
+								for (var i in list) {
+									contextHtml +='<p>' + list[i].expert + ': ' + list[i].content + '</p>'
+								}
+								$(".contexts").html(contextHtml);
+							}
 						}
-						$("contexts").html(contextHtml);
-					}
+					});
 				}
-			});
-			return false;
-		})
 		);
 
 	</script>
@@ -229,12 +229,7 @@
 					<!--						<span>作者：</span>-->
 					<!--					</p>-->
 				</div>
-				<div>
-					<p>教师自我评价：</p>
-					<p>黄芝晓：手机报编辑与制作这门课程，不仅重视理论建设，同时着重培养学生的实践操作能力。同时把校内手机报作为实践平台，为学生提供了实践机会，有效提高了学生的动手操作能力。</p>
-					<p>严三九：手机报编辑与制作这门课程，能够紧跟时代媒介发展趋势，及时开发新媒体课程，拓展了新闻专业的教学内容，具有一定的创新性和前瞻性。</p>
-					<p>徐博龙：上海电影艺术职业学院手机报内容丰富，所采写、编辑的学校新闻条理清晰，重点突出，栏目设计定位明确，为学校起到了很好的信息传播和宣传作用。该专业开设《手机报编辑与制作》课程，与时俱进，具有前瞻性眼光和办学思路。</p>
-					<p>林伟民：2012年，上海第二届口语传播论坛举行。新闻采编专业学生应邀到会采访，并完成了该期手机报专题制作任务。该协会秘书长林伟民先生说，我收到这份手机报后很兴奋，这份手机报形式新颖，紧跟时代媒体发展趋势，采编内容主题突出，把本次论坛的前沿思想做了详尽的采集和传播，信息量大。</p>
+				<div class="contexts">
 				</div>
 				<!--				<a href="javascript:history.go(-1);" style="float: right; color: #545454;">[关闭]</a>-->
 				<!--				<div class="fany">-->

@@ -17,24 +17,24 @@
 	<script type="text/javascript" src="js/jquery.SuperSlide.2.1.3.js"></script>
 	<script language="javascript">
 		$(function () {
-			$.ajax({
-				type: "POST",
-				url: "/xuesziping",
-				// data: {"name":"yd","pwd":"123456"},
-				dataType: "json",
-				success: function (data) {
-					if (data !=null) {
-						var contextHtml = "";
-						contextHtml +="<p>" + "校内学生评价:" + "</p>"
-						for (var i in data) {
-							contextHtml +="<p>" + data[i].context + "</p>"
+					$.ajax({
+						type: "POST",
+						url: "/xiaoneixueshengpingjia/1",
+						// data: {"name":"yd","pwd":"123456"},
+						dataType: "json",
+						success: function (data) {
+							if (data !=null) {
+								var contextHtml = "";
+								var list = data['data'];
+								contextHtml +='<p>' + '校内学生评价：' + '</p>'
+								for (var i in list) {
+									contextHtml +='<p>' + list[i].expert + ': ' + list[i].content + '</p>'
+								}
+								$(".contexts").html(contextHtml);
+							}
 						}
-						$("contexts").html(contextHtml);
-					}
+					});
 				}
-			});
-			return false;
-		})
 		);
 
 	</script>
@@ -229,15 +229,7 @@
 					<!--						<span>作者：</span>-->
 					<!--					</p>-->
 				</div>
-				<div>
-					<p>校内学生评价：</p>
-					<p>马云超：感觉这门课程与其他课程不一样，上课轻松活泼，没有压力，尤其从手机上收到自己做的作品时，感觉很神奇。期末考核方法与其他考试方法也大不同。有学生说，在编辑手机报时，含着眼泪给爸爸妈妈写“我爱您”，还真有些不好意思。春节回到家，父母问得最多就是：那个手机报真的是你做的吗？</p>
-					<p>王丽晨：这门课程不仅让我们学到了手机报的编排技术，还让我们学会思考，思考每一期手机报的主题，在选择主题时老师就比较注重思想内涵，在一步步的教导中，我们懂得了更多的人生道理。 </p>
-					<p>周妍：作为新闻专业的学生，我们学习了很多种技能，写作、采访、摄影、摄像，这门课程可以说是我们各种技能的综合，由于容量支撑不足，我们暂时没有加入视频内容，但是我们尽量做到图文并茂，当手机报发送到学院每一个老师和学生手上时我无比得高兴，感谢老师给我们这样的平台。</p>
-					<p>周艳菲：这门课的实训方式十分有趣，同学、老师、家长都成为我们的受众，更重要的是我们学到了一门新技术，我一些其他学习新闻专业的同学没有做过手机报，他们看到我的作品时十分惊讶，我想这就是我们学院的特色，我们始终走在时代前沿。</p>
-					<p>黄海灵：我平时不爱说话，在家里也是比较含蓄内敛型的人，父母在这方面总是不满意。但是这次我把内心想说的话通过手机报的方式发给他们后，他们对我的态度变了很多，终于把我当成一个大人，在亲戚面前还十分骄傲地给他们看我的作品，无形中增加了亲人之间的感情和了解，感谢手机报这门课。</p>
-					<p>王玉瑾:我对于我们来说，深刻的理论知识不能让我们保持高度集中，但是像手机报这样在做中学在学中做的方式却能够让我们一节课不眨眼，因为每一次尝试都有不同的效果，每个同学之间也互相竞争，谁的手机报做得更好看。</p>
-					<p>黄夏红：作为一个女生，我不喜欢扛着笨重的机器，坐在电脑前，对文字精雕细琢，对图片进行切分倒是我十分热爱的。手机现在是我们90后的必备物品，能做出一份手机报也让我们觉得十分有创意，我希望手机报继续开设下去，并且可以尝试为企业定制手机报，这样对学生的考验更高，也让我们有更广阔的发展平台。</p>
+				<div class="contexts">
 				</div>
 				<!--				<a href="javascript:history.go(-1);" style="float: right; color: #545454;">[关闭]</a>-->
 				<!--				<div class="fany">-->
