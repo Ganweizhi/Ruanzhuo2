@@ -21,28 +21,39 @@ public class resourceController {
     @Autowired
     private resourceService resourceService;
 
-    @RequestMapping(value = "/GetAllResource",method = RequestMethod.GET)
+    @RequestMapping(value = "/GetAllTextbook",method = RequestMethod.GET)
     @ResponseBody
-    public List<String> GetAllResource(HttpServletRequest requset) throws FileNotFoundException {
+    public List<String> GetAllTextbook(HttpServletRequest request) throws FileNotFoundException {
         List<String> strings=new ArrayList<String>();
 //        File sourceFile= null;
         String path=null;
         List<resource> resources=resourceService.GetAllResource();
         for(resource resource: resources ){
+            if(resource.getResource_textbook()!=null)
             strings.add(resource.getResource_textbook());
-//            path= requset.getServletContext().getRealPath("/ppt/");//获取文件的路径
+            String downloadFilePath =System.getProperty("user.dir");
+//            downloadFilePath =downloadFilePath+"\\src\\main\\resources\\ppt";
+//            String downloadFilePath = request.getSession().getServletContext().getRealPath("/");
+            System.out.println(downloadFilePath);
+//            path= request.getServletContext().getRealPath("/ppt/");//获取文件的路径
 //            strings.add(path+resource.getResource_textbook());
         }
         return strings;
     }
 
-    @RequestMapping("/downloadFile")
-    private String downloadFile(HttpServletResponse response ,HttpServletRequest requset){
-        String downloadFilePath = requset.getServletContext().getRealPath("/ppt/");//被下载的文件在服务器中的路径,
-        String fileName = " ";
-        //TODO 被下载文件的名称,通过传id在数据库中找文件名
-
-        File file = new File(downloadFilePath);
+    @RequestMapping("/downLoadFile")
+    @ResponseBody
+    private String downLoadFile(HttpServletResponse response ,HttpServletRequest request,String fileName){
+        String downloadFilePath =System.getProperty("user.dir");
+//        downloadFilePath = "G:\\复习";
+        downloadFilePath =downloadFilePath+"\\src\\main\\resources\\ppt\\";
+//        String downloadFilePath = request.getServletContext().getRealPath("/ppt/");//被下载的文件在服务器中的路径,
+//        String fileName = " ";
+        System.out.println(fileName);
+        System.out.println(downloadFilePath);
+        File file = new File(downloadFilePath,fileName);
+        System.out.println(file.getPath());
+        System.out.println(file.exists());
         if (file.exists()) {
             response.setContentType("application/force-download");// 设置强制下载不打开
             response.addHeader("Content-Disposition", "attachment;fileName=" + fileName);
@@ -52,6 +63,7 @@ public class resourceController {
             try {
                 fis = new FileInputStream(file);
                 bis = new BufferedInputStream(fis);
+                System.out.println(fileName);
                 OutputStream outputStream = response.getOutputStream();
                 int i = bis.read(buffer);
                 while (i != -1) {

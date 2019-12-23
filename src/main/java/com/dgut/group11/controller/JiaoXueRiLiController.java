@@ -43,7 +43,7 @@ public class JiaoXueRiLiController {
         }
         JSONObject jsonObject = new JSONObject();
         int r = allSuccessCourse.size()%10==0?0:1;
-        jsonObject.put("tatolPage",allSuccessCourse.size()/10+r);
+        jsonObject.put("totalPage",allSuccessCourse.size()/10+r);
         jsonObject.put("curPage",anInt);
         jsonObject.put("data",successCourses);
 
