@@ -26,4 +26,7 @@ public interface CoursePlanMapper {
             @Result(property = "grade",column = "grade"),
     })
     CoursePlan findCoursePlanById(int course_plan_id);
+    @Insert("insert into course_plan (course_plan_id,speciality_id,grade)values(#{course_plan_id},#{speciality_id},#{grade})")
+    int addCoursePlan(CoursePlan coursePlan);
+
 }

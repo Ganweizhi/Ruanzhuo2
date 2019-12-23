@@ -7,10 +7,7 @@ import com.dgut.group33.javaBean.Title;
 import com.dgut.group33.service.RosterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +17,7 @@ import java.util.List;
 public class RosterController {
     @Autowired
     RosterService rosterService;
+
     @RequestMapping(value = "/ChungLife_dt_hmc/{page}", method = RequestMethod.POST)
     public String getHmc(@PathVariable String page) {
         int anInt = Integer.parseInt(page);
@@ -44,5 +42,35 @@ public class RosterController {
         result.put("title", title.concat("花名册"));
         result.put("StudentList", students);
         return result.toJSONString();
+    }
+    @RequestMapping(value = "/ChungLife_dt_hmc/addClass", method = RequestMethod.POST)
+    public String addClassInform( Class classinform){
+        System.out.println(classinform.getClass_name());
+        int res = rosterService.addClass(classinform);
+        JSONObject result = new JSONObject();
+        System.out.println(res);
+        if(res>0){
+
+            result.put("msg", "添加成功");
+            return result.toJSONString();
+        }else {
+            result.put("msg", "添加失败");
+            return result.toJSONString();
+        }
+    }
+    @RequestMapping(value = "/ChungLife_dt_hmc/addStudent", method = RequestMethod.POST)
+    public String addClassInform( Student student){
+
+        int res = rosterService.addStudent(student);
+        JSONObject result = new JSONObject();
+        System.out.println(res);
+        if(res>0){
+
+            result.put("msg", "添加成功");
+            return result.toJSONString();
+        }else {
+            result.put("msg", "添加失败");
+            return result.toJSONString();
+        }
     }
 }

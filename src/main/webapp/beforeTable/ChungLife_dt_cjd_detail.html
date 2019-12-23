@@ -19,6 +19,7 @@
 </head>
 
 <body>
+
     <!-- 头部 -->
     <div class="head">
         <div>
@@ -159,7 +160,6 @@
             </div>
         </div>
     </div>
-
     <script type="text/javascript">
         $(document).ready(function() {
             $(".head .dh ul li").hover(function() {
@@ -168,6 +168,7 @@
             });
         });
     </script>
+
 
 
     <!-- 左侧菜单手风琴导航效果 -->
@@ -186,7 +187,6 @@
                 }
             });
         }
-
         $(document).ready(function() {
             initMenu();
         })
@@ -196,124 +196,114 @@
     <div class="px1200">
         <div class="ziye">
             <div class="left" aos="fade-up-right">
-                <h3 class="biaot">教学管理</h3>
+                <h3 class="biaot">班级花名册</h3>
                 <ul id="sidemenu">
-                    <li><a href="ChungLife_dt.html">开课计划</a></li>
-                    <li><a href="ChungLife_dt_sk.html">上课班级</a></li>
-                    <li><a href="ChungLife_dt_hmc.html">班级花名册</a></li>
-                    <li class="no"><a href="ChungLife_dt_cjd.html">班级成绩单</a></li>
-                    <li><a href="ChungLife_dt_zy.html">学生作业案例</a></li>
+                    <!--<li class="no"><a href="#">党团建设</a></li>-->
+                    <!--<li><a href="ChungLife_sq.html">视频春光</a></li>-->
+                    <!--<li><a href="#">文艺活动</a></li>-->
+                    <!--<li><a href="#">拓展训练</a></li>-->
+                    <!--<li><a href="#">家校连心</a></li>-->
+                    <!--<li>-->
+                    <!--<a href="javascript:;">名师工作室</a>-->
+                    <!--<dl>-->
+                    <!--<dd><a href="ChungLife_ms.html">名校长</a></dd>-->
+                    <!--<dd><a href="#">名园长</a></dd>-->
+                    <!--<dd><a href="#">名教师</a></dd>-->
+                    <!--<dd><a href="#">名学生</a></dd>-->
+                    <!--</dl> -->
+                    <!--</li>-->
+                </ul>
+                <!--			<div class="erwm">-->
+                <!--				<div><img src="images/erweim.jpg"></div>-->
+                <!--			</div>-->
+                <!--			<p class="erwm-text">关注东莞理工学院微信公众号</p>-->
             </div>
             <div class="right" aos="fade-up-left">
-                <div class="dqlj"><a href="ChungLife_dt.html">教学管理</a>·<a href="ChungLife_dt_hmc.html">班级花名册</a></div>
-                <div class="right_biaot">
-                    <i></i>
-                    <h2>班级花名册</h2>
-                    <i class="right"></i>
-                </div>
-                <!-- 详情内容 -->
-                <div class="but_list">
 
-                    <ul class="ChungLife_dt_hmc">
-                    </ul>
-                    <div class="pager">
-                        <a href="javascript:;" class="p pastPage" title="前一页">«</a>
-                        <a href="javascript:;" class="current getPageData" onclick="doGo(1)">1</a>
-                        <a href="javascript:;" class="getPageData" onclick="doGo(2)">2</a>
-                        <a href="javascript:;" class="getPageData" onclick="doGo(3)">3</a>
-                        <a href="javascript:;" class="getPageData" onclick="doGo(4)">4</a>
-                        <a href="javascript:;" class="getPageData" onclick="doGo(5)">5</a>
-                        <a href="javascript:;" class="getPageData" onclick="doGo(6)">6</a>
-                        <a href="javascript:;" class="getPageData" onclick="doGo(7)">7</a>
-                        <a href="javascript:;" class="getPageData" onclick="doGo(8)">8</a>
-                        <a href="javascript:;" class="getPageData" onclick="doGo(9)">9</a>
-                        <a href="javascript:;" class="p nextPage" title="后一页">»</a>
-                        <span>到第<input name="" type="text" id="ymz">页 <a href="#" onclick="goto_ymz()">确定</a></span>
+                <!-- 详情内容 -->
+                <div class="jianj_k">
+                    <div class="biaot_xq">
+                        <h1 class="title"></h1>
+
+                    </div>
+                    <table class="layui-table" lay-skin="line" id="datas">
+                        <!-- <colgroup>
+                            <col width="150">
+                            <col width="00">
+                            <col>
+                        </colgroup> -->
+                        <thead>
+                            <tr>
+                                <th>选课编号</th>
+                                <th>学号</th>
+                                <th>成绩</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="template">
+                                <td id="select_id"></td>
+                                <td id="student_id"></td>
+                                <td id="score"></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="javascript:history.go(-1);" style="float: right; color: #545454;">[关闭]</a>
+                    <div class="fany">
+                        <a href="#">上一页：没有了</a>
+                        <a href="#">上一页：网络空间安全学院软件需求教学大纲</a>
+                        <div class="bdsharebuttonbox" style="position: absolute;right: 30px;bottom: 15px;">
+                            <a href="#" class="bds_more" data-cmd="more"></a>
+                            <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                            <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                        </div>
+                        <script>
+                            window._bd_share_config = {
+                                "common": {
+                                    "bdSnsKey": {},
+                                    "bdText": "",
+                                    "bdMini": "2",
+                                    "bdMiniList": false,
+                                    "bdPic": "",
+                                    "bdStyle": "0",
+                                    "bdSize": "16"
+                                },
+                                "share": {}
+                            };
+                            with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+                        </script>
                     </div>
                 </div>
                 <script type="text/javascript">
-                    var pagenum = 1; //全局变量
-                    function doGo(num) {
-                        pagenum = num;
-                    }
+                    var url = location.search;
+                    var realUrl = url.split("=")[1];
+                    console.log(realUrl)
                     $(document).ready(function() {
+
                         $.ajax({
-                            url: "http://localhost:8080/ChungLife_dt_cjd/1",
+                            url: realUrl,
                             type: "post",
                             dataType: "json",
                             async: false,
                             success: function(data) {
-                                //   console.log(data)
+                                console.log(data)
                                 if (data != null) {
-                                    var itemshtml = "";
-                                    for (var i in data.data) {
-                                        itemshtml += "<li>";
-                                        itemshtml += "<a href=" + "ChungLife_dt_cjd_detail.html?url=http://localhost:8080/ChungLife_dt_cjd_show/" + data.data[i].content_id + ">" + data.data[i].title + "</a></li>";
-                                    }
-                                    console.log(itemshtml)
-                                    $(".ChungLife_dt_hmc").html(itemshtml);
+                                    $.each(data.StudentList, function(i, n) {
+                                        var row = $("#template").clone();
+                                        row.find("#select_id").text(n.select_id);
+                                        row.find("#score").text(n.score);
+                                        row.find("#student_id").text(n.student_id);
+                                        row.appendTo("#datas"); //添加到模板的容器中
+                                    });
+                                    $(".title").html(data.title)
                                 }
                             }
                         })
-                        $(".getPageData").click(function() {
 
-                            $.ajax({
-                                url: "http://localhost:8080/ChungLife_dt_cjd/" + pagenum,
-                                type: "post",
-                                dataType: "json",
-                                async: false,
-                                success: function(data) {
-                                    if (data != null) {
-                                        var itemshtml = "";
-                                        for (var i in data) {
-                                            itemshtml += "<li>";
-                                            itemshtml += "<a href=" + "ChungLife_dt_hmc_detail.html?url=http://localhost:8080/ChungLife_dt_hmc_show/" + data[i].content_id + ">" + data[i].title + "</a></li>";
-                                        }
-                                        $(".ChungLife_dt_hmc").html(itemshtml);
-                                    }
-                                }
-                            })
-                        })
-                        $(".pastPage").click(function() {
-                            if (pagenum != 1) {
-                                pagenum--;
-                            }
-                            $.ajax({
-                                url: "http://localhost:8080/ChungLife_dt_hmc/" + pagenum,
-                                type: "post",
-                                dataType: "json",
-                                async: false,
-                                success: function(data) {
-                                    if (data != null) {
-                                        var itemshtml = "";
-                                        for (var i in data) {
-                                            itemshtml += "<li>";
-                                            itemshtml += "<a href=" + "ChungLife_dt_hmc_detail.html?url=http://localhost:8080/ChungLife_dt_hmc_show/" + data[i].content_id + ">" + data[i].title + "</a></li>";
-                                        }
-                                        $(".ChungLife_dt_hmc").html(itemshtml);
-                                    }
-                                }
-                            })
-                        })
-                        $(".nextPage").click(function() {
-                            pagenum++;
-                            $.ajax({
-                                url: "http://localhost:8080/ChungLife_dt_hmc/" + pagenum,
-                                type: "post",
-                                dataType: "json",
-                                async: false,
-                                success: function(data) {
-                                    if (data != null) {
-                                        var itemshtml = "";
-                                        for (var i in data) {
-                                            itemshtml += "<li>";
-                                            itemshtml += "<a href=" + "ChungLife_dt_hmc_detail.html?url=http://localhost:8080/ChungLife_dt_hmc_show/" + data[i].content_id + ">" + data[i].title + "</a></li>";
-                                        }
-                                        $(".ChungLife_dt_hmc").html(itemshtml);
-                                    }
-                                }
-                            })
-                        })
                     });
                 </script>
                 <!-- 详情内容介绍 -->

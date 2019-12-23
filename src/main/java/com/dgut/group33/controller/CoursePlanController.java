@@ -19,6 +19,7 @@ import java.util.List;
 public class CoursePlanController {
     @Autowired
     CoursePlanService coursePlanService;
+
     @RequestMapping(value = "/ChungLife_dt/{page}", method = RequestMethod.POST)
     public String getCoursePlan(@PathVariable String page) {
         int anInt = Integer.parseInt(page);
@@ -46,5 +47,33 @@ public class CoursePlanController {
         result.put("CourseList", courses);
         System.out.println(result.toJSONString());
         return result.toJSONString();
+    }
+    @RequestMapping(value = "/ChungLife_dt/addCoursePlan", method = RequestMethod.POST)
+    public  String addCoursePlan(CoursePlan coursePlan){
+        coursePlan.setSpeciality_id(1);
+        int res = coursePlanService.addCoursePlan(coursePlan);
+        JSONObject result = new JSONObject();
+        if(res>0){
+
+            result.put("msg", "添加成功");
+            return result.toJSONString();
+        }else {
+            result.put("msg", "添加失败");
+            return result.toJSONString();
+        }
+    }
+
+    @RequestMapping(value = "/ChungLife_dt/addCourse", method = RequestMethod.POST)
+    public  String addCoursePlan(Course course){
+        int res = coursePlanService.addCourse(course);
+        JSONObject result = new JSONObject();
+        if(res>0){
+
+            result.put("msg", "添加成功");
+            return result.toJSONString();
+        }else {
+            result.put("msg", "添加失败");
+            return result.toJSONString();
+        }
     }
 }

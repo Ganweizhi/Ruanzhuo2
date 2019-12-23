@@ -94,4 +94,28 @@ public class resourceController {
         return "下载失败";
     }
 
+    @RequestMapping(value = "/GetAllBase",method = RequestMethod.GET)
+    @ResponseBody
+    public List<String> GetAllBase(HttpServletRequest request) throws FileNotFoundException {
+        List<String> strings=new ArrayList<String>();
+        List<resource> resources=resourceService.GetAllResource();
+        for(resource resource: resources ){
+            if(resource.getResource_base()!=null)
+                strings.add(resource.getResource_base());
+        }
+        return strings;
+    }
+
+    @RequestMapping(value = "/GetAllDocument",method = RequestMethod.GET)
+    @ResponseBody
+    public List<String> GetAllDocument(HttpServletRequest request) throws FileNotFoundException {
+        List<String> strings=new ArrayList<String>();
+        List<resource> resources=resourceService.GetAllResource();
+        for(resource resource: resources ){
+            if(resource.getResource_document()!=null)
+                strings.add(resource.getResource_document());
+        }
+        return strings;
+    }
+
 }

@@ -3,6 +3,7 @@ package com.dgut.group33.service;
 import com.dgut.group33.dao.ClassMapper;
 import com.dgut.group33.dao.StudentMapper;
 import com.dgut.group33.javaBean.Class;
+import com.dgut.group33.javaBean.SelectCourse;
 import com.dgut.group33.javaBean.Student;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,4 +28,8 @@ public class RosterService {
     public List<Student> findStudentByCid(int class_id) {
         return studentMapper.findStudentByCid(class_id);
     }
+
+    public int addClass(Class classinform){return classMapper.addClass(classinform);}
+    public int addStudent(Student student){return  studentMapper.addStudent(student);}
+
 }

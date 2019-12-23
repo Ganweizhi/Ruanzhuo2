@@ -4,6 +4,7 @@ import com.dgut.group33.dao.CourseMapper;
 import com.dgut.group33.dao.CoursePlanMapper;
 import com.dgut.group33.javaBean.Course;
 import com.dgut.group33.javaBean.CoursePlan;
+import com.dgut.group33.javaBean.SelectCourse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,4 +29,17 @@ public class CoursePlanService {
         return courseMapper.findCourseByCpid(course_plan_id);
     }
 
+    public int addCoursePlan(CoursePlan coursePlan){
+        return  coursePlanMapper.addCoursePlan(coursePlan);
+    }
+    public int addCourse(Course course){
+        return  courseMapper.addCourse(course);
+    }
+
+    public SelectCourse findScoreById(int student_id){
+        return  courseMapper.findScoreById(student_id);
+    }
+    public int  addSelectScore(SelectCourse selectCourse){
+        return courseMapper.addSelectScore(selectCourse);
+    }
 }
