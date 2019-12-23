@@ -18,7 +18,44 @@
 
 <body>
 
-
+<script language="javascript">
+    $(function () {
+        doGo(1);
+    });
+    function doGo(page) {
+        $.ajax({
+            type: "POST",
+            url: "/ChungLife_dt_show/"+page,
+            // data: {"name":"yd","pwd":"123456"},
+            dataType: "json",
+            success: function (data) {
+                if (data !=null) {
+                    var contextHtml = "";
+                    var list = data['data'];
+                    contextHtml +='<p>' + '教师自我评价:' + '</p>'
+                    for (var i in list) {
+                        contextHtml +='<p>' + list[i].expert + ': ' + list[i].content + '</p>'
+                    }
+                    $(".contexts").html(contextHtml);
+                    var context = "";
+                    var totalPage = data.page;
+                    var curPage = data.curPage;
+                    var page = curPage > 1?curPage-1:1;
+                    context += '<a href="javascript:;" class="p" title="前一页" onclick="doGo(' + page + ');">«</a>';
+                    console.log(totalPage);
+                    for (var i=1;i<=totalPage;i++) {
+                        if (curPage === i) context += '<a href="javascript:;" class="current" onclick="doGo('+i+')">'+i+'</a>';
+                        else context += '<a href="javascript:;" onclick="doGo('+i+')">'+i+'</a>';
+                    }
+                    page = curPage === totalPage?curPage:curPage+1;
+                    context += '<a href="javascript:;" onclick="doGo('+page+')" class="p" title="后一页">»</a>';
+                    console.log(context);
+                    $(".pager").html(context);
+                }
+            }
+        });
+    };
+</script>
 <!-- 头部 -->
 <div class="head">
     <div>

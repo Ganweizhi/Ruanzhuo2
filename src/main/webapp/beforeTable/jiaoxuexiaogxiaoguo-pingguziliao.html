@@ -19,17 +19,16 @@
 		$(function () {
 			$.ajax({
 				type: "POST",
-				url: "/pingguziliao",
+				url: "/pingguziliao/1",
 				// data: {"name":"yd","pwd":"123456"},
 				dataType: "json",
 				success: function (data) {
 					if (data !=null) {
 						var contextHtml = "";
-						contextHtml +="<p>" + "校内学生评价:" + "</p>"
 						for (var i in data) {
-							contextHtml +="<p>" + data[i].context + "</p>"
+							contextHtml +="<li><a href=\"ChungLife_dt_xq.html\">" + data[i].title + "</li>"
 						}
-						$("contexts").html(contextHtml);
+						$("but_list").html(contextHtml);
 					}
 				}
 			});
@@ -225,43 +224,7 @@ $(".head .dh ul li").hover(function(){
 			  <div class="but_list">
 			  	<ul>
 			  		<li>
-			  			<a href="ChungLife_dt_xq.html">本科教学工作审核评估相关知识</a>
-			  			<span>[2019-01-09]</span>
-			  		</li>
-			  		<li>
-			  			<a href="ChungLife_dt_xq.html">自评报告填报指南</a>
-			  			<span>[2019-01-09]</span>
-			  		</li>
-			  		<li>
-			  			<a href="ChungLife_dt_xq.html">审核评估一点通</a>
-			  			<span>[2019-01-09]</span>
-			  		</li>
-			  		<li>
-			  			<a href="ChungLife_dt_xq.html">本科教学工作审核评估相关知识（学生版）</a>
-			  			<span>[2019-01-09]</span>
-			  		</li>
-			  		<li>
-			  			<a href="ChungLife_dt_xq.html">本科教学工作审核评估相关知识（教师版）</a>
-			  			<span>[2019-01-09]</span>
-			  		</li>
-			  		<li>
-			  			<a href="ChungLife_dt_xq.html">学院举行试卷、毕业设计（论文）、实习管理工作规</a>
-			  			<span>[2019-01-09]</span>
-			  		</li>
-			  		<li>
-			  			<a href="ChungLife_dt_xq.html">学院召开本科教学工作审核评估专题工作会</a>
-			  			<span>[2019-01-09]</span>
-			  		</li>
-			  		<li>
-			  			<a href="ChungLife_dt_xq.html">学院召开本科教学工作审核评估专题培训会</a>
-			  			<span>[2019-01-09]</span>
-			  		</li>
-			  		<li>
-			  			<a href="ChungLife_dt_xq.html">学院本科教学审核评估支撑材料收集布置会</a>
-			  			<span>[2019-01-09]</span>
-			  		</li>
-			  		<li>
-			  			<a href="ChungLife_dt_xq.html">东莞理工学院-定位与目标</a>
+			  			<a href="ChungLife_dt_xq.html" download="本科教学工作审核评估相关知识.txt">本科教学工作审核评估相关知识</a>
 			  			<span>[2019-01-09]</span>
 			  		</li>
 			  	</ul>
