@@ -196,7 +196,7 @@
     <div class="px1200">
         <div class="ziye">
             <div class="left" aos="fade-up-right">
-                <h3 class="biaot">教学大纲</h3>
+                <h3 class="biaot">班级花名册</h3>
                 <ul id="sidemenu">
                     <!--<li class="no"><a href="#">党团建设</a></li>-->
                     <!--<li><a href="ChungLife_sq.html">视频春光</a></li>-->
@@ -219,24 +219,19 @@
                 <!--			<p class="erwm-text">关注东莞理工学院微信公众号</p>-->
             </div>
             <div class="right" aos="fade-up-left">
-                <div class="dqlj"><a href="index.html">首页</a>·<a href="ChungLife_dt.html">教学大纲</a>·<a>大纲详情</a></div>
-                <div class="right_biaot">
-                    <i></i>
-                    <h2>大学物理C</h2>
-                    <i class="right"></i>
-                </div>
+
                 <!-- 详情内容 -->
                 <div class="jianj_k">
                     <div class="biaot_xq">
-                        <h1>网络空间安全学院大学物理C教学大纲</h1>
+                        <h1 class="title"></h1>
 
                     </div>
                     <table class="layui-table" lay-skin="line" id="datas">
-                        <colgroup>
+                        <!-- <colgroup>
                             <col width="150">
-                            <col width="200">
+                            <col width="00">
                             <col>
-                        </colgroup>
+                        </colgroup> -->
                         <thead>
                             <tr>
                                 <th>班级编号</th>
@@ -254,7 +249,7 @@
                                 <td id="student_grade"></td>
                                 <td id="student_name"></td>
                                 <td id="student_sex"></td>
-                                <td id="student_photo"></td>
+                                <td id="student_phone"></td>
                                 <td id="student_birth"></td>
                                 <td id="student_email"></td>
                             </tr>
@@ -292,6 +287,7 @@
                 <script type="text/javascript">
                     var url = location.search;
                     var realUrl = url.split("=")[1];
+                    console.log(realUrl)
                     $(document).ready(function() {
 
                         $.ajax({
@@ -301,17 +297,18 @@
                             async: false,
                             success: function(data) {
                                 if (data != null) {
-                                    $.each(data, function(i, n) {
+                                    $.each(data.StudentList, function(i, n) {
                                         var row = $("#template").clone();
                                         row.find("#class_id").text(n.class_id);
                                         row.find("#student_grade").text(n.student_grade);
                                         row.find("#student_name").text(n.student_name);
                                         row.find("#student_sex").text(n.student_sex);
-                                        row.find("#student_photo").text(n.student_photo);
+                                        row.find("#student_phone").text(n.student_phone);
                                         row.find("#student_birth").text(n.student_birth);
                                         row.find("#student_email").text(n.student_email);
                                         row.appendTo("#datas"); //添加到模板的容器中
                                     });
+                                    $(".title").html(data.title)
                                 }
                             }
                         })

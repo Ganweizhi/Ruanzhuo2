@@ -215,11 +215,8 @@
                 <!-- 详情内容 -->
                 <div class="but_list">
 
-                    <ul class="ChungLife_dt_sk">
-                        <li>
-                            <a href="ChungLife_dt_xq.html">网络空间安全学院大学物理C教学大纲</a>
-                            <span>[2019-01-09]</span>
-                        </li>
+                    <ul class="ChungLife_dt">
+
                     </ul>
                     <div class="pager">
                         <a href="javascript:;" class="p pastPage" title="前一页">«</a>
@@ -243,38 +240,40 @@
                     }
                     $(document).ready(function() {
                         $.ajax({
-                            url: "/ChungLife_dt_sk/1",
+                            url: "http://localhost:8080/ChungLife_dt/1",
                             type: "post",
                             dataType: "json",
                             async: false,
                             success: function(data) {
+                                //   console.log(data)
                                 if (data != null) {
                                     var itemshtml = "";
-                                    for (var i in data.titleList) {
+                                    for (var i in data.data) {
                                         itemshtml += "<li>";
-                                        itemshtml += "<a href=" + "ChungLife_dt_xq.html?url=ChungLife_dt_sk" + data.titleList[i].content_id + ">" + data.titleList[i].title + "</a>";
-                                        itemshtml += "<span>[" + data.titleList[i].date + "]</span></li>";
+                                        itemshtml += "<a href=" + "ChungLife_dt_detail.html?url=http://localhost:8080/ChungLife_dt_show/" + data.data[i].content_id + ">" + data.data[i].title + "</a></li>";
                                     }
-                                    $(".ChungLife_dt_sk").html(itemshtml);
+                                    console.log(itemshtml)
+                                    $(".ChungLife_dt").html(itemshtml);
                                 }
                             }
                         })
                         $(".getPageData").click(function() {
 
                             $.ajax({
-                                url: "/ChungLife_dt_sk/" + pagenum,
+                                url: "http://localhost:8080/ChungLife_dt/" + pagenum,
                                 type: "post",
                                 dataType: "json",
                                 async: false,
                                 success: function(data) {
+                                    //   console.log(data)
                                     if (data != null) {
                                         var itemshtml = "";
-                                        for (var i in data.titleList) {
+                                        for (var i in data.data) {
                                             itemshtml += "<li>";
-                                            itemshtml += "<a href=" + "ChungLife_dt_xq.html?url=ChungLife_dt_sk" + data.titleList[i].content_id + ">" + data.titleList[i].title + "</a>";
-                                            itemshtml += "<span>[" + data.titleList[i].date + "]</span></li>";
+                                            itemshtml += "<a href=" + "ChungLife_dt_detail.html?url=http://localhost:8080/ChungLife_dt_show/" + data.data[i].content_id + ">" + data.data[i].title + "</a></li>";
                                         }
-                                        $(".ChungLife_dt_sk").html(itemshtml);
+                                        console.log(itemshtml)
+                                        $(".ChungLife_dt").html(itemshtml);
                                     }
                                 }
                             })
@@ -284,19 +283,20 @@
                                 pagenum--;
                             }
                             $.ajax({
-                                url: "/ChungLife_dt_sk/" + pagenum,
+                                url: "http://localhost:8080/ChungLife_dt/" + pagenum,
                                 type: "post",
                                 dataType: "json",
                                 async: false,
                                 success: function(data) {
+                                    //   console.log(data)
                                     if (data != null) {
                                         var itemshtml = "";
-                                        for (var i in data.titleList) {
+                                        for (var i in data.data) {
                                             itemshtml += "<li>";
-                                            itemshtml += "<a href=" + "ChungLife_dt_xq.html?url=ChungLife_dt_sk" + data.titleList[i].content_id + ">" + data.titleList[i].title + "</a>";
-                                            itemshtml += "<span>[" + data.titleList[i].date + "]</span></li>";
+                                            itemshtml += "<a href=" + "ChungLife_dt_detail.html?url=http://localhost:8080/ChungLife_dt_show/" + data.data[i].content_id + ">" + data.data[i].title + "</a></li>";
                                         }
-                                        $(".ChungLife_dt_sk").html(itemshtml);
+                                        console.log(itemshtml)
+                                        $(".ChungLife_dt").html(itemshtml);
                                     }
                                 }
                             })
@@ -304,19 +304,20 @@
                         $(".nextPage").click(function() {
                             pagenum++;
                             $.ajax({
-                                url: "/ChungLife_dt_sk/" + pagenum,
+                                url: "http://localhost:8080/ChungLife_dt/" + pagenum,
                                 type: "post",
                                 dataType: "json",
                                 async: false,
                                 success: function(data) {
+                                    //   console.log(data)
                                     if (data != null) {
                                         var itemshtml = "";
-                                        for (var i in data.titleList) {
+                                        for (var i in data.data) {
                                             itemshtml += "<li>";
-                                            itemshtml += "<a href=" + "ChungLife_dt_xq.html?url=ChungLife_dt_sk" + data.titleList[i].content_id + ">" + data.titleList[i].title + "</a>";
-                                            itemshtml += "<span>[" + data.titleList[i].date + "]</span></li>";
+                                            itemshtml += "<a href=" + "ChungLife_dt_detail.html?url=http://localhost:8080/ChungLife_dt_show/" + data.data[i].content_id + ">" + data.data[i].title + "</a></li>";
                                         }
-                                        $(".ChungLife_dt_sk").html(itemshtml);
+                                        console.log(itemshtml)
+                                        $(".ChungLife_dt").html(itemshtml);
                                     }
                                 }
                             })

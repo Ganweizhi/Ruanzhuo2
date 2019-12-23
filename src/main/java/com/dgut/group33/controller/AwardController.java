@@ -91,8 +91,8 @@ public class AwardController {
         contentService.insert(measureContent);
 
         Measure measure=new Measure();
-        measure.setAchievement_title(map.get("title"));
-        measure.setAchievement_time(map.get("date"));
+        measure.setMeasure_title(map.get("title"));
+        measure.setMeasure_time(map.get("date"));
         measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
         awardService.insert(measure);
 
@@ -122,8 +122,8 @@ public class AwardController {
         contentService.update(measureContent);
 
         Measure measure=new Measure();
-        measure.setAchievement_title(map.get("title"));
-        measure.setAchievement_time(map.get("date"));
+        measure.setMeasure_title(map.get("title"));
+        measure.setMeasure_time(map.get("date"));
         measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
         awardService.update(measure);
 

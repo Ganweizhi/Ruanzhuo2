@@ -22,7 +22,7 @@ public class ApprovalController {
     private ContentService contentService;
 
     //前台教学立项界面
-    @RequestMapping(value = "/xiliang/{page}",method = {RequestMethod.POST})
+    @RequestMapping(value = "/lixiang/{page}",method = {RequestMethod.POST})
     public String selectAllApproval(@PathVariable("page") String page) {
         List<Measure> allApproval=approvalService.selectAllApproval();
         int one = Integer.parseInt(page);
@@ -91,8 +91,8 @@ public class ApprovalController {
         contentService.insert(measureContent);
 
         Measure measure=new Measure();
-        measure.setAchievement_title(map.get("title"));
-        measure.setAchievement_time(map.get("date"));
+        measure.setMeasure_title(map.get("title"));
+        measure.setMeasure_time(map.get("date"));
         measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
         approvalService.insert(measure);
 
@@ -122,8 +122,8 @@ public class ApprovalController {
         contentService.update(measureContent);
 
         Measure measure=new Measure();
-        measure.setAchievement_title(map.get("title"));
-        measure.setAchievement_time(map.get("date"));
+        measure.setMeasure_title(map.get("title"));
+        measure.setMeasure_time(map.get("date"));
         measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
         approvalService.update(measure);
 

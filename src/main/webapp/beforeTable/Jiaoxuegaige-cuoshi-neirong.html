@@ -166,7 +166,7 @@ $(".head .dh ul li").hover(function(){
 <div class="px1200">
 	<div class="ziye">
 		<div class="left" aos="fade-up-right">
-			<h3 class="biaot">教学大纲</h3>
+			<h3 class="biaot">教学改革措施</h3>
 			<ul id="sidemenu">
 				<!--<li class="no"><a href="#">党团建设</a></li>-->
 				<!--<li><a href="ChungLife_sq.html">视频春光</a></li>-->
@@ -208,7 +208,7 @@ $(".head .dh ul li").hover(function(){
 							if (r != null) return unescape(r[2]); return null;
 						}
 					})(jQuery);
-					var contentid=$.getUrlParam('contentid');
+					var contentid=$.getUrlParam('content_id');
 					$.ajax({
 						type: "POST",
 						url: "/cuoshi-neirong/"+contentid,
@@ -220,7 +220,7 @@ $(".head .dh ul li").hover(function(){
 								var contextHtml = "";
 								console.log(data);
 								var list = data['data'];
-								contextHtml += '<h1>'+list.achievement_title+'</h1>'+'<p><span>时间'+list.achievement_time+'</span><span>来源：东莞理工学院教务处</span>'+'</span><span>'+'作者：'+list.measureContent.content_author+'</span>\n' +
+								contextHtml += '<h1>'+list.measure_title+'</h1>'+'<p><span>时间'+list.measure_time+'</span><span>来源：东莞理工学院教务处</span>'+'</span><span>'+'作者：'+list.measureContent.content_author+'</span>\n' +
 										'\t\t\t  \t\t</p>'
 								$(".biaot_xq").html(contextHtml);
 								var contextHtml2 = "";

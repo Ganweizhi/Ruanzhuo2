@@ -17,25 +17,41 @@
 	<script type="text/javascript" src="js/jquery.SuperSlide.2.1.3.js"></script>
 	<script language="javascript">
 		$(function () {
-				$.ajax({
+			doGo(1);
+		});
+		function doGo(page) {
+			$.ajax({
 					type: "POST",
-					url: "/xiaowaizhuanjia",
+					url: "/xiaowaizhuanjia/"+page,
 					// data: {"name":"yd","pwd":"123456"},
 					dataType: "json",
 					success: function (data) {
 						if (data !=null) {
 							var contextHtml = "";
-							contextHtml +="<p>" + "校外专家评价:" + "</p>"
-							for (var i in data) {
-								contextHtml +="<p>" + data[i].context + "</p>"
+							var list = data['data'];
+							contextHtml +='<p>' + '校外专家评价:' + '</p>'
+							for (var i in list) {
+								contextHtml +='<p>' + list[i].expert + ': ' + list[i].content + '</p>'
 							}
-							$("contexts").html(contextHtml);
+							$(".contexts").html(contextHtml);
+							var context = "";
+							var totalPage = data.page;
+							var curPage = data.curPage;
+							var page = curPage > 1?curPage-1:1;
+							context += '<a href="javascript:;" class="p" title="前一页" onclick="doGo(' + page + ');">«</a>';
+							console.log(totalPage);
+							for (var i=1;i<=totalPage;i++) {
+								if (curPage === i) context += '<a href="javascript:;" class="current" onclick="doGo('+i+')">'+i+'</a>';
+								else context += '<a href="javascript:;" onclick="doGo('+i+')">'+i+'</a>';
+							}
+							page = curPage === totalPage?curPage:curPage+1;
+							context += '<a href="javascript:;" onclick="doGo('+page+')" class="p" title="后一页">»</a>';
+							console.log(context);
+							$(".pager").html(context);
 						}
 					}
 				});
-				return false;
-			})
-		);
+			};
 
 	</script>
 </head>
@@ -225,12 +241,9 @@
 					<h1>校外专家评价</h1>
 				</div>
 				<div class="contexts">
-					<p>校外专家评价：</p>
-					<p>复旦大学新闻学院博士生导师黄芝晓：手机报编辑与制作这门课程，不仅重视理论建设，同时着重培养学生的实践操作能力。同时把校内手机报作为实践平台，为学生提供了实践机会，有效提高了学生的动手操作能力。</p>
-					<p>中国传播学会常务理事、华东师范大学传播学院院长严三九：手机报编辑与制作这门课程，能够紧跟时代媒介发展趋势，及时开发新媒体课程，拓展了新闻专业的教学内容，具有一定的创新性和前瞻性。</p>
-					<p>复旦大学访问学者、高级记者徐博龙：上海电影艺术职业学院手机报内容丰富，所采写、编辑的学校新闻条理清晰，重点突出，栏目设计定位明确，为学校起到了很好的信息传播和宣传作用。该专业开设《手机报编辑与制作》课程，与时俱进，具有前瞻性眼光和办学思路。</p>
-					<p>上海市口语传播协会秘书长林伟民先生：2012年，上海第二届口语传播论坛举行。新闻采编专业学生应邀到会采访，并完成了该期手机报专题制作任务。该协会秘书长林伟民先生说，我收到这份手机报后很兴奋，这份手机报形式新颖，紧跟时代媒体发展趋势，采编内容主题突出，把本次论坛的前沿思想做了详尽的采集和传播，信息量大。</p>
 				</div>
+			</div>
+			<div class="pager">
 			</div>
 		</div>
 	</div>
