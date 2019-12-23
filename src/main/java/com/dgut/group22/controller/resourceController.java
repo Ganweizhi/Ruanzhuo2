@@ -1,5 +1,6 @@
 package com.dgut.group22.controller;
 
+import com.dgut.group22.javaBean.experiment_house;
 import com.dgut.group22.javaBean.resource;
 import com.dgut.group22.service.resourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,7 +95,7 @@ public class resourceController {
         return "下载失败";
     }
 
-    @RequestMapping(value = "/GetAllBase",method = RequestMethod.GET)
+    @RequestMapping(value = "/GetAllBase",method = RequestMethod.GET)    //习题库
     @ResponseBody
     public List<String> GetAllBase(HttpServletRequest request) throws FileNotFoundException {
         List<String> strings=new ArrayList<String>();
@@ -106,7 +107,7 @@ public class resourceController {
         return strings;
     }
 
-    @RequestMapping(value = "/GetAllDocument",method = RequestMethod.GET)
+    @RequestMapping(value = "/GetAllDocument",method = RequestMethod.GET)       //技术文档
     @ResponseBody
     public List<String> GetAllDocument(HttpServletRequest request) throws FileNotFoundException {
         List<String> strings=new ArrayList<String>();
@@ -114,6 +115,30 @@ public class resourceController {
         for(resource resource: resources ){
             if(resource.getResource_document()!=null)
                 strings.add(resource.getResource_document());
+        }
+        return strings;
+    }
+
+    @RequestMapping(value = "/GetAllExperiment",method = RequestMethod.GET)    //习题库
+    @ResponseBody
+    public List<String> GetAllExperiment(HttpServletRequest request) throws FileNotFoundException {
+        List<String> strings=new ArrayList<String>();
+        List<resource> resources=resourceService.GetAllResource();
+        for(resource resource: resources ){
+            if(resource.getResource_experiment()!=null)
+                strings.add(resource.getResource_experiment());
+        }
+        return strings;
+    }
+
+    @RequestMapping(value = "/GetAllExperiment_house",method = RequestMethod.GET)    //习题库
+    @ResponseBody
+    public List<String> GetAllExperiment_house(HttpServletRequest request) throws FileNotFoundException {
+        List<String> strings=new ArrayList<String>();
+        List<experiment_house> experiment_houses=resourceService.GetAllExperiment_house();
+        for(experiment_house experiment_house: experiment_houses ){
+            if(experiment_house.getExperiment_huanj()!=null)
+                strings.add(experiment_house.getExperiment_huanj());
         }
         return strings;
     }
