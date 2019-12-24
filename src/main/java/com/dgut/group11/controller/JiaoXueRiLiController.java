@@ -55,6 +55,13 @@ public class JiaoXueRiLiController {
         int success_id = Integer.parseInt(coureseId);
 
         SuccessCourse successCourse = jiaoXueRiLiService.findSuccessCourseById(success_id);
+
+        Teacher teacher = jiaoXueRiLiService.getTeacherById(successCourse.getTeacher_id());
+        Course course = jiaoXueRiLiService.getCourseById(successCourse.getCourse_id());
+        successCourse.setCourse(course);
+        successCourse.setTeacher(teacher);
+
+
         List<RiLi> riLiList = jiaoXueRiLiService.findAllRiLiBySuccessCourseId(success_id);
 
         CourseRiLi courseRiLi = new CourseRiLi(successCourse,riLiList);
