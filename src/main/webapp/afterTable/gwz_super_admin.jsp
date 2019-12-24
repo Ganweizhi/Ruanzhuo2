@@ -1,4 +1,4 @@
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html class="x-admin-sm">
     <head>
         <meta charset="UTF-8">

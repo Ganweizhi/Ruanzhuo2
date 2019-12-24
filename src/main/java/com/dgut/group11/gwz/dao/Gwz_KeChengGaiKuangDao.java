@@ -17,7 +17,7 @@ public interface Gwz_KeChengGaiKuangDao {
     public List<gwz_Course> FindAllCourse();
 
     @Select("select * from course where course_id=#{course_id}")
-    public  List<gwz_Course> FindCourseById(int course_id);
+    public  gwz_Course FindCourseById(int course_id);
 
 
 

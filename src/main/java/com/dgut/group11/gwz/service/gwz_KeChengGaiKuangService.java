@@ -10,6 +10,8 @@ import java.util.List;
 @Service
 public class gwz_KeChengGaiKuangService {
 
+    public gwz_KeChengGaiKuangService(){}
+
     @Autowired
     Gwz_KeChengGaiKuangDao gwz_keChengGaiKuangDao;
 
@@ -17,7 +19,7 @@ public class gwz_KeChengGaiKuangService {
         return gwz_keChengGaiKuangDao.FindAllCourse();
     }
 
-    public List<gwz_Course> FindCourseById(int course_id){
+    public gwz_Course FindCourseById(int course_id){
         return gwz_keChengGaiKuangDao.FindCourseById(course_id);
     }
 

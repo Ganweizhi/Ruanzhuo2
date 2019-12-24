@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@ page import="java.util.List" %>
+<%@ page import="com.dgut.group11.gwz.javabean.gwz_Course" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html class="x-admin-sm">
     
     <head>
@@ -19,7 +21,7 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
-                            <form class="layui-form layui-col-space5" action="/">
+                            <form class="layui-form layui-col-space5" action="/course/AddJianJie">
                                 <div class="layui-input-inline layui-show-xs-block">
                                     <button class="layui-btn" lay-submit="" lay-filter="sreach">
                                         <i class="layui-icon">添加课程简介</i></button>
@@ -31,28 +33,37 @@
                             <table class="layui-table layui-form">
                                 <thead>
                                     <tr>
+                                        <th>课程ID</th>
                                         <th>课程名</th>
                                         <th>课程学分</th>
                                         <th>课程学时</th>
                                         <th>课程简介</th>
                                         <th>操作</th></tr>
                                 </thead>
+                                <%
+                                    List<gwz_Course> courseList=(List<gwz_Course>)request.getSession().getAttribute("JianJie_courseList");
+                                    System.out.println(courseList);
+                                    for (gwz_Course course:courseList){
+                                %>
                                 <tbody>
                                     <tr>
-                                        <td>黄老师</td>
-                                        <td>论语</td>
-                                        <td>2019.1.1</td>
-                                        <td>儒家经典之一，是孔子弟子及其再传弟子关于孔子及其弟子言行的记录。这个语录集至战国前期成书。全书共20篇492章，以语录体为主，叙事体为辅，主要记录孔子及其弟子的言行，较为集中地体现了孔子的政治主张、伦理思想、道德观念及教育原则等。此书是儒家学派的经典著作之一</td>
+                                        <td><%=course.getCourse_id()%></td>
+                                        <td><%=course.getCourse_name()%></td>
+                                        <td><%=course.getCourse_credit()%></td>
+                                        <td><%=course.getCourse_period()%></td>
+                                        <td><%=course.getCourse_introduction()%></td>
                                         <td class="td-manage">
-                                            <a title="编辑" onclick="xadmin.open('编辑','/course/EditJianJie')" href="javascript:;">
+                                            <a title="编辑" onclick="xadmin.open('编辑','/course/EditJianJie?course_id=<%=course.getCourse_id()%>')" href="javascript:;">
                                                 <i class="layui-icon">&#xe63c;</i></a>
                                             <a title="删除"  href="javascript:;">
                                                 <i class="layui-icon">&#xe640;</i>
                                             </a>
                                         </td>
                                     </tr>
-
                                 </tbody>
+                                <%
+                                    }
+                                %>
                             </table>
                         </div>
 
