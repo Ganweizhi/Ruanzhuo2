@@ -169,12 +169,12 @@
 <div class="px1200">
     <div class="ziye">
         <div class="left" aos="fade-up-right">
-            <h3 class="biaot">教学日历</h3>
+            <h3 class="biaot">教学内容</h3>
             <ul id="sidemenu">
             </ul>
         </div>
         <div class="right" aos="fade-up-left">
-            <div class="dqlj"><a href="index.html">首页</a>·<a href="Jiaoxueanpai-rili.html">教学日历</a>·<a>日历详情</a></div>
+            <div class="dqlj"><a href="index.html">首页</a>·<a href="Jiaoxueanpai-dagang.html">教学内容</a>·<a>内容详情</a></div>
             <div class="right_biaot">
                 <i></i>
                 <h2 id="courseName"></h2>
@@ -202,7 +202,7 @@
     $(function () {
         $.ajax({
             type: "POST",
-            url: "/jiao_xue_ri_li/" + getQueryVariable('success_id'),
+            url: "/jiao_xue_nei_rong/" + getQueryVariable('success_id'),
             // data: {"name":"yd","pwd":"123456"},
             dataType: "json",
             success: function (data) {
@@ -211,9 +211,9 @@
                     var contextHtml = "";
                     var obj = data.data.successCourse;
                     $("#courseName").text(obj.course.course_name);
-                    var list = data.data.riLiList;
+                    var list = data.data.neiRongList;
                     for (var i in list) {
-                        contextHtml += '<tr><td>'+ list[i].calendar_title +'</td><td>'+ list[i].calendar_content +'</td></tr>';
+                        contextHtml += '<tr><td>'+ list[i].contentb_title +'</td><td>'+ list[i].contentb_content +'</td></tr>';
                     }
                     $("#t_body").html(contextHtml);
                 }

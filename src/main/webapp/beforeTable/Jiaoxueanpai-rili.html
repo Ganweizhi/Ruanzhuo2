@@ -324,7 +324,7 @@
                     console.log(data);
                     var list = data['data'];
                     for (var i in list) {
-                        contextHtml += '<li><a href="Jiaoxueanpai-rili-neirong.html?success_id=' + list[i].success_id + '">'+ list[i].course.course_name + '</a><span>' + list[i].time + '</span></li >'
+                        contextHtml += '<li><a href="Jiaoxueanpai-rili-neirong.html?success_id=' + list[i].success_id + '教学日历' +  '">'+ list[i].course.course_name + '</a><span>' + list[i].time + '</span></li >'
                     }
                     $("#content").html(contextHtml);
 
