@@ -11,9 +11,11 @@ import java.util.List;
 @Repository
 @Mapper
 public interface IFuZeRenDao {
+    //查询所有课程负责人
     @Select("select t.*,c.course_name,c.course_id from teacher t right join course c on t.teacher_id= c.course_principal")
     List<Teacher> findAllFuZeRen();
 
+    //按teacherId查询课程负责人
     @Select("select * from teacher where teacher_id = #{teacher_id}")
     Teacher findFuZeRenById(String teacher_id);
 }

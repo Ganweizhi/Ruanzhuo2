@@ -1,7 +1,6 @@
 package com.dgut.group22.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.dgut.group22.dao.ICourseDao;
 import com.dgut.group22.javaBean.Course;
 import com.dgut.group22.javaBean.Teacher;
 import com.dgut.group22.service.CourseService;
