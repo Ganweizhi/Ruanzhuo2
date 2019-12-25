@@ -169,12 +169,12 @@
 <div class="px1200">
     <div class="ziye">
         <div class="left" aos="fade-up-right">
-            <h3 class="biaot">教学日历</h3>
+            <h3 class="biaot">教学方法与手段</h3>
             <ul id="sidemenu">
             </ul>
         </div>
         <div class="right" aos="fade-up-left">
-            <div class="dqlj"><a href="index.html">首页</a>·<a href="Jiaoxueanpai-rili.html">教学日历</a>·<a>日历详情</a></div>
+            <div class="dqlj"><a href="index.html">首页</a>·<a href="Jiaoxueanpai-dagang.html">教学方法与手段</a>·<a>方法与手段详情</a></div>
             <div class="right_biaot">
                 <i></i>
                 <h2 id="courseName"></h2>
@@ -182,16 +182,16 @@
             </div>
             <!-- 详情内容 -->
             <div style="margin-top: 20px;">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>标题</th>
-                            <th>内容</th>
-                        </tr>
-                        </thead>
-                        <tbody id="t_body">
-                        </tbody>
-                    </table>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>标题</th>
+                        <th>内容</th>
+                    </tr>
+                    </thead>
+                    <tbody id="t_body">
+                    </tbody>
+                </table>
             </div>
             <!-- 详情内容介绍 -->
         </div>
@@ -202,7 +202,7 @@
     $(function () {
         $.ajax({
             type: "POST",
-            url: "/jiao_xue_ri_li/" + getQueryVariable('success_id'),
+            url: "/jiao_xue_fang_fa/" + getQueryVariable('success_id'),
             // data: {"name":"yd","pwd":"123456"},
             dataType: "json",
             success: function (data) {
@@ -211,9 +211,9 @@
                     var contextHtml = "";
                     var obj = data.data.successCourse;
                     $("#courseName").text(obj.course.course_name);
-                    var list = data.data.riLiList;
+                    var list = data.data.fangFaList;
                     for (var i in list) {
-                        contextHtml += '<tr><td>'+ list[i].calendar_title +'</td><td>'+ list[i].calendar_content +'</td></tr>';
+                        contextHtml += '<tr><td>'+ list[i].methodb_title +'</td><td>'+ list[i].methodb_content +'</td></tr>';
                     }
                     $("#t_body").html(contextHtml);
                 }
