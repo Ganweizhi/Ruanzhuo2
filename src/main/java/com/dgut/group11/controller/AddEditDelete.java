@@ -13,6 +13,7 @@ import com.dgut.group11.service.JiaoXueRiLiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -33,7 +34,7 @@ public class AddEditDelete {
     @Autowired
     private JiaoXueRiLiService jiaoXueRiLiService;
 
-    @RequestMapping(value="/listContentb",method = {RequestMethod.POST})
+    @RequestMapping(value="/listContentb",method = {RequestMethod.GET})
     public String listContentb(){
 
         List<Contentb> list = addEditDeleteDao.findAll1();
@@ -113,19 +114,25 @@ public class AddEditDelete {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/listTeaching_program",method = {RequestMethod.POST})
-    public String listTeaching_program(){
+    @RequestMapping(value="/listTeaching_program",method = {RequestMethod.GET})
+    public String listTeaching_program(int page, int limit){
 
         List<Teaching_program> list = addEditDeleteDao.findAll6();
+
 
         for(Teaching_program l : list){
             SuccessCourse successCourse = jiaoXueRiLiService.findSuccessCourseById(l.getSuccess_id());
             Course course = jiaoXueRiLiService.getCourseById(successCourse.getCourse_id());
             l.setCourse_name(course.getCourse_name());
         }
+        List<Teaching_program> list2 = new ArrayList<>();
+        for(int i=(page-1)*limit; i<i+limit; i++){
+            list2.add(list.get(i));
+        }
+
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",list);
+        jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
 
