@@ -10,9 +10,11 @@ import com.dgut.group11.dao.AddEditDeleteDao;
 import com.dgut.group11.dao.Teaching_ProgramDao;
 import com.dgut.group11.javabean.*;
 import com.dgut.group11.service.JiaoXueRiLiService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*
@@ -33,8 +35,8 @@ public class AddEditDelete {
     @Autowired
     private JiaoXueRiLiService jiaoXueRiLiService;
 
-    @RequestMapping(value="/listContentb",method = {RequestMethod.POST})
-    public String listContentb(){
+    @RequestMapping(value="/listContentb",method = {RequestMethod.GET})
+    public String listContentb(@Param("page") int page, @Param("limit") int limit){
 
         List<Contentb> list = addEditDeleteDao.findAll1();
 
@@ -43,14 +45,18 @@ public class AddEditDelete {
             Course course = jiaoXueRiLiService.getCourseById(successCourse.getCourse_id());
             l.setCourse_name(course.getCourse_name());
         }
+        List<Contentb> list2 = new ArrayList<>();
+        for(int i=(page-1)*limit,j=i; i<j+limit && i< list.size(); i++){
+            list2.add(list.get(i));
+        }
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",list);
+        jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/listMethodb",method = {RequestMethod.POST})
-    public String listMethodb(){
+    @RequestMapping(value="/listMethodb",method = {RequestMethod.GET})
+    public String listMethodb(@Param("page") int page, @Param("limit") int limit){
 
         List<Methodb> list = addEditDeleteDao.findAll2();
 
@@ -60,13 +66,18 @@ public class AddEditDelete {
             l.setCourse_name(course.getCourse_name());
         }
 
+        List<Methodb> list2 = new ArrayList<>();
+        for(int i=(page-1)*limit,j=i; i<j+limit && i< list.size(); i++){
+            list2.add(list.get(i));
+        }
+
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",list);
+        jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/listPlanb",method = {RequestMethod.POST})
-    public String listPlanb(){
+    @RequestMapping(value="/listPlanb",method = {RequestMethod.GET})
+    public String listPlanb(@Param("page") int page, @Param("limit") int limit){
 
         List<Planb> list = addEditDeleteDao.findAll3();
 
@@ -76,13 +87,18 @@ public class AddEditDelete {
             l.setCourse_name(course.getCourse_name());
         }
 
+        List<Planb> list2 = new ArrayList<>();
+        for(int i=(page-1)*limit,j=i; i<j+limit && i< list.size(); i++){
+            list2.add(list.get(i));
+        }
+
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",list);
+        jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/listProblemb",method = {RequestMethod.POST})
-    public String listProblemb(){
+    @RequestMapping(value="/listProblemb",method = {RequestMethod.GET})
+    public String listProblemb(@Param("page") int page, @Param("limit") int limit){
 
         List<Problemb> list = addEditDeleteDao.findAll4();
 
@@ -92,13 +108,18 @@ public class AddEditDelete {
             l.setCourse_name(course.getCourse_name());
         }
 
+        List<Problemb> list2 = new ArrayList<>();
+        for(int i=(page-1)*limit,j=i; i<j+limit && i< list.size(); i++){
+            list2.add(list.get(i));
+        }
+
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",list);
+        jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/listCalendar",method = {RequestMethod.POST})
-    public String listCalendar(){
+    @RequestMapping(value="/listCalendar",method = {RequestMethod.GET})
+    public String listCalendar(@Param("page") int page, @Param("limit") int limit){
 
         List<RiLi> list = addEditDeleteDao.findAll5();
 
@@ -107,25 +128,38 @@ public class AddEditDelete {
             Course course = jiaoXueRiLiService.getCourseById(successCourse.getCourse_id());
             l.setCourse_name(course.getCourse_name());
         }
+        List<RiLi> list2 = new ArrayList<>();
+        for(int i=(page-1)*limit,j=i; i<j+limit && i< list.size(); i++){
+            list2.add(list.get(i));
+        }
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",list);
+        jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/listTeaching_program",method = {RequestMethod.POST})
-    public String listTeaching_program(){
+    @RequestMapping(value="/listTeaching_program",method = {RequestMethod.GET})
+    public String listTeaching_program(@Param("page") int page, @Param("limit") int limit){
 
         List<Teaching_program> list = addEditDeleteDao.findAll6();
+
 
         for(Teaching_program l : list){
             SuccessCourse successCourse = jiaoXueRiLiService.findSuccessCourseById(l.getSuccess_id());
             Course course = jiaoXueRiLiService.getCourseById(successCourse.getCourse_id());
             l.setCourse_name(course.getCourse_name());
         }
+        List<Teaching_program> list2 = new ArrayList<>();
+        for(int i=(page-1)*limit,j=i; i<j+limit && i< list.size(); i++){
+            list2.add(list.get(i));
+        }
+
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",list);
+        jsonObject.put("code",0);
+        jsonObject.put("msg","");
+        jsonObject.put("count",limit);
+        jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
 
