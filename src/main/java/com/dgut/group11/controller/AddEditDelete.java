@@ -7,6 +7,7 @@ lgc
 
 import com.alibaba.fastjson.JSONObject;
 import com.dgut.group11.dao.AddEditDeleteDao;
+import com.dgut.group11.dao.Teaching_ProgramDao;
 import com.dgut.group11.javabean.*;
 import com.dgut.group11.service.JiaoXueRiLiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -127,6 +128,228 @@ public class AddEditDelete {
         jsonObject.put("data",list);
         return jsonObject.toJSONString();
     }
+
+
+
+
+    @RequestMapping(value="/addContentb",method = {RequestMethod.POST})
+    public String addContentb(@RequestBody Contentb contentb){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            addEditDeleteDao.add1(contentb);
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
+
+
+        return jsonObject.toJSONString();
+    }
+    @RequestMapping(value="/updateContentb",method = {RequestMethod.POST})
+    public String updateContentb(@RequestBody Contentb contentb){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            addEditDeleteDao.edit1(contentb);
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
+
+
+        return jsonObject.toJSONString();
+    }
+    @RequestMapping(value="/deleteContentb",method = {RequestMethod.POST})
+    public String deleteContentb(@RequestBody Contentb contentb){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            addEditDeleteDao.delete1(contentb);
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
+
+
+        return jsonObject.toJSONString();
+    }
+
+    @RequestMapping(value="/addMethodb",method = {RequestMethod.POST})
+    public String addMethodb(@RequestBody Methodb methodb){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            addEditDeleteDao.add2(methodb);
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
+
+
+        return jsonObject.toJSONString();
+    }
+    @RequestMapping(value="/editMethodb",method = {RequestMethod.POST})
+    public String editMethodb(@RequestBody Methodb methodb){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            addEditDeleteDao.edit2(methodb);
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
+
+
+        return jsonObject.toJSONString();
+    }
+    @RequestMapping(value="/deleteMethodb",method = {RequestMethod.POST})
+    public String deleteMethodb(@RequestBody Methodb methodb){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            addEditDeleteDao.delete2(methodb);
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
+
+
+        return jsonObject.toJSONString();
+    }
+
+    @RequestMapping(value="/addPlanb",method = {RequestMethod.POST})
+    public String addPlanb(@RequestBody Planb planb){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            addEditDeleteDao.add3(planb);
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
+
+
+        return jsonObject.toJSONString();
+    }
+    @RequestMapping(value="/editPlanb",method = {RequestMethod.POST})
+    public String editPlanb(@RequestBody Planb planb){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            addEditDeleteDao.edit3(planb);
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
+
+
+        return jsonObject.toJSONString();
+    }
+    @RequestMapping(value="/deletePlanb",method = {RequestMethod.POST})
+    public String deletePlanb(@RequestBody Planb planb){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            addEditDeleteDao.delete3(planb);
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
+
+
+        return jsonObject.toJSONString();
+    }
+
+    @RequestMapping(value="/addProblemb",method = {RequestMethod.POST})
+    public String addProblemb(@RequestBody Problemb problemb){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            addEditDeleteDao.add4(problemb);
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
+
+
+        return jsonObject.toJSONString();
+    }
+    @RequestMapping(value="/editProblemb",method = {RequestMethod.POST})
+    public String editProblemb(@RequestBody Problemb problemb){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            addEditDeleteDao.edit4(problemb);
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
+
+
+        return jsonObject.toJSONString();
+    }
+    @RequestMapping(value="/deleteProblemb",method = {RequestMethod.POST})
+    public String deleteProblemb(@RequestBody Problemb problemb){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            addEditDeleteDao.delete4(problemb);
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
+
+
+        return jsonObject.toJSONString();
+    }
+
+    @RequestMapping(value="/addCalendar",method = {RequestMethod.POST})
+    public String addCalendar(@RequestBody RiLi riLi){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            addEditDeleteDao.add5();
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
+
+
+        return jsonObject.toJSONString();
+    }
+
+    @RequestMapping(value="/addTeaching_program",method = {RequestMethod.POST})
+    public String addTeaching_program(@RequestBody Teaching_program teaching_program){
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            addEditDeleteDao.add6();
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
+
+
+        return jsonObject.toJSONString();
+    }
+
+
+
 
 
 
