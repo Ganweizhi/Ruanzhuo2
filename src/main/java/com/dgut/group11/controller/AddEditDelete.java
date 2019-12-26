@@ -316,37 +316,37 @@ public class AddEditDelete {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/addCalendar",method = {RequestMethod.POST})
-    public String addCalendar(@RequestBody RiLi riLi){
-
-        JSONObject jsonObject = new JSONObject();
-        try {
-            addEditDeleteDao.add5();
-            jsonObject.put("data",1);
-        }catch (Exception e){
-            e.printStackTrace();
-            jsonObject.put("data",0);
-        }
-
-
-        return jsonObject.toJSONString();
-    }
-
-    @RequestMapping(value="/addTeaching_program",method = {RequestMethod.POST})
-    public String addTeaching_program(@RequestBody Teaching_program teaching_program){
-
-        JSONObject jsonObject = new JSONObject();
-        try {
-            addEditDeleteDao.add6();
-            jsonObject.put("data",1);
-        }catch (Exception e){
-            e.printStackTrace();
-            jsonObject.put("data",0);
-        }
-
-
-        return jsonObject.toJSONString();
-    }
+//    @RequestMapping(value="/addCalendar",method = {RequestMethod.POST})
+//    public String addCalendar(@RequestBody RiLi riLi){
+//
+//        JSONObject jsonObject = new JSONObject();
+//        try {
+//            addEditDeleteDao.add5();
+//            jsonObject.put("data",1);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            jsonObject.put("data",0);
+//        }
+//
+//
+//        return jsonObject.toJSONString();
+//    }
+//
+//    @RequestMapping(value="/addTeaching_program",method = {RequestMethod.POST})
+//    public String addTeaching_program(@RequestBody Teaching_program teaching_program){
+//
+//        JSONObject jsonObject = new JSONObject();
+//        try {
+//            addEditDeleteDao.add6();
+//            jsonObject.put("data",1);
+//        }catch (Exception e){
+//            e.printStackTrace();
+//            jsonObject.put("data",0);
+//        }
+//
+//
+//        return jsonObject.toJSONString();
+//    }
 
 
 
