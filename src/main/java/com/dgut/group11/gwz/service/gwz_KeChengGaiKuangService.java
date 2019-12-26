@@ -16,7 +16,7 @@ public class gwz_KeChengGaiKuangService {
     Gwz_KeChengGaiKuangDao gwz_keChengGaiKuangDao;
 
     public List<gwz_Course> FindAllCourse(){
-        return gwz_keChengGaiKuangDao.FindAllCourse();
+        return gwz_keChengGaiKuangDao.FindAllFullCourse();
     }
 
     public gwz_Course FindCourseById(int course_id){

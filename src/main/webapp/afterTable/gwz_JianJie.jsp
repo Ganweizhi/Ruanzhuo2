@@ -35,6 +35,8 @@
                                     <tr>
                                         <th>课程ID</th>
                                         <th>课程名</th>
+                                        <th>教师ID(教师姓名)</th>
+                                        <th>学院</th>
                                         <th>课程学分</th>
                                         <th>课程学时</th>
                                         <th>课程简介</th>
@@ -49,13 +51,15 @@
                                     <tr>
                                         <td><%=course.getCourse_id()%></td>
                                         <td><%=course.getCourse_name()%></td>
+                                        <td><%=course.getGwzTeacher().getTeacher_id()%>(<%=course.getGwzTeacher().getTeacher_name()%>)</td>
+                                        <td><%=course.getGwzTeacher().getGwzAcademy().getAcademy_name()%></td>
                                         <td><%=course.getCourse_credit()%></td>
                                         <td><%=course.getCourse_period()%></td>
                                         <td><%=course.getCourse_introduction()%></td>
                                         <td class="td-manage">
                                             <a title="编辑" onclick="xadmin.open('编辑','/course/EditJianJie?course_id=<%=course.getCourse_id()%>')" href="javascript:;">
                                                 <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="删除"  href="javascript:;">
+                                            <a title="删除"  href="/course/delete_JianJie?course_id=<%=course.getCourse_id()%>">
                                                 <i class="layui-icon">&#xe640;</i>
                                             </a>
                                         </td>

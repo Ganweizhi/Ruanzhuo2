@@ -41,7 +41,7 @@
                         <label for="course_name" class="layui-form-label">
                             <span class="x-red">*</span>课程名字</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="course_name" name="course_name" value="<%=course.getCourse_name()%>" required="" autocomplete="off" class="layui-input"></div>
+                            <input type="text" id="course_name" name="course_name" value="<%=course.getCourse_name()%>" required="" autocomplete="off" class="layui-input" readonly="readonly"></div>
                     </div>
 
         <div class="layui-form-item layui-form-text">

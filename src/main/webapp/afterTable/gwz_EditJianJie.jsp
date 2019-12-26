@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.dgut.group11.gwz.javabean.gwz_Course" %>
 <%@ page import="org.springframework.beans.factory.annotation.Autowired" %>
+<%@ page import="com.dgut.group11.gwz.javabean.gwz_teacher" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html class="x-admin-sm">
     
@@ -25,6 +26,7 @@
     <body>
     <%
        gwz_Course course=(gwz_Course) request.getSession().getAttribute("EditJianJie_course");
+        List<gwz_teacher> teacherList=(List<gwz_teacher>) request.getSession().getAttribute("AddJianJie_teacherList");
     %>
         <div class="layui-fluid">
             <div class="layui-row">
@@ -36,6 +38,18 @@
                             <span class="x-red">*</span>课程ID</label>
                         <div class="layui-input-inline">
                             <input type="text" id="course_id" name="course_id" value="<%=course.getCourse_id()%>" required="" autocomplete="off" class="layui-input" readonly="readonly"></div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">
+                            <span class="x-red">*</span>负责教师</label>
+                        <div class="layui-input-inline layui-show-xs-block">
+                            <select name="teacher_id">
+                                <%for ( gwz_teacher teacher:teacherList){%>
+                                <option value="<%=teacher.getTeacher_id()%>"><%=teacher.getTeacher_name()%>(<%=teacher.getGwzAcademy().getAcademy_name()%>)</option>
+                                <%}%>
+                            </select>
+                        </div>
                     </div>
 
 

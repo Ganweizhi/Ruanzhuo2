@@ -48,7 +48,7 @@
                                         <td class="td-manage">
                                             <a title="编辑" onclick="xadmin.open('编辑','/course/EditJiaoCai?course_id=<%=course.getCourse_id()%>')" href="javascript:;">
                                                 <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="删除" href="javascript:;">
+                                            <a title="删除" href="/course/delete_JiaoCai?course_id=<%=course.getCourse_id()%>">
                                                 <i class="layui-icon">&#xe640;</i></a>
                                         </td>
                                     </tr>

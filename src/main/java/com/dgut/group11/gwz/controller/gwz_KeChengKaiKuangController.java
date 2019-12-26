@@ -4,7 +4,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dgut.group11.gwz.dao.Gwz_KeChengGaiKuangDao;
 import com.dgut.group11.gwz.javabean.gwz_Course;
+import com.dgut.group11.gwz.javabean.gwz_teacher;
 import com.dgut.group11.gwz.service.gwz_KeChengGaiKuangService;
+import org.apache.ibatis.annotations.Result;
+import org.omg.Messaging.SYNC_WITH_TRANSPORT;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,43 +37,36 @@ public class gwz_KeChengKaiKuangController  extends HttpServlet {
 
     @RequestMapping(value = "/JianJie_front" ,method = {RequestMethod.GET})
     @ResponseBody
-    public String gwz_JianJie_front(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllCourse();
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("data",courseList);
-        System.out.println(jsonObject.toString());
-        return jsonObject.toString();
+    public void gwz_JianJie_front(Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllFullCourse();
+        request.getSession().setAttribute("",courseList);
+        response.sendRedirect("/beforeTable/");
     }
 
 
     @RequestMapping(value = "/JiaoCai_front",method = {RequestMethod.GET})
     @ResponseBody
-    public String gwz_JiaoCai_front(Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
-        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllCourse();
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("data",courseList);
-        System.out.println(jsonObject.toString());
-        return jsonObject.toString();
+    public void gwz_JiaoCai_front(Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
+        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllFullCourse();
+        request.getSession().setAttribute("",courseList);
+        response.sendRedirect("/beforeTable/");
     }
 
     @RequestMapping(value = "/LiShi_front" ,method = {RequestMethod.GET})
     @ResponseBody
-    public String gwz_LiShi_front(Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
-        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllCourse();
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("data",courseList);
-        System.out.println(jsonObject.toString());
-        return jsonObject.toString();//
+    public void gwz_LiShi_front(Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
+        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllFullCourse();
+        request.getSession().setAttribute("",courseList);
+        response.sendRedirect("/beforeTable/");
+
     }
 
     @RequestMapping(value = "/TeSe_front",method = {RequestMethod.GET})
     @ResponseBody
-    public String gwz_TeSe_front(Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
-        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllCourse();
-        JSONObject jsonObject=new JSONObject();
-        jsonObject.put("data",courseList);
-        System.out.println(jsonObject.toString());
-        return jsonObject.toString();
+    public void gwz_TeSe_front(Model model,HttpServletRequest request, HttpServletResponse response) throws IOException {
+        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllFullCourse();
+        request.getSession().setAttribute("",courseList);
+        response.sendRedirect("/beforeTable/");
     }
 
 
@@ -81,9 +77,12 @@ public class gwz_KeChengKaiKuangController  extends HttpServlet {
 
 
 
+
+//    下面都是你甘哥的，你的在上面
+
     @RequestMapping("/JianJie")
     public void gwz_JianJie(Model model, HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
-        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllCourse();
+        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllFullCourse();
         request.getSession().setAttribute("JianJie_courseList",courseList);
         response.sendRedirect("/afterTable/gwz_JianJie.jsp");
     }
@@ -91,21 +90,21 @@ public class gwz_KeChengKaiKuangController  extends HttpServlet {
 
     @RequestMapping("/JiaoCai")
     public void gwz_JiaoCai(Model model,HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
-        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllCourse();
+        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllFullCourse();
         request.getSession().setAttribute("JiaoCai_courseList",courseList);
         response.sendRedirect("/afterTable/gwz_JiaoCai.jsp");
     }
 
     @RequestMapping("/LiShi")
     public void gwz_LiShi(Model model,HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
-        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllCourse();
+        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllFullCourse();
         request.getSession().setAttribute("LiShi_courseList",courseList);
         response.sendRedirect("/afterTable/gwz_LiShi.jsp");
     }
 
     @RequestMapping("/TeSe")
     public void gwz_TeSe(Model model,HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
-        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllCourse();
+        List<gwz_Course> courseList=gwz_keChengGaiKuangDao.FindAllFullCourse();
         request.getSession().setAttribute("TeSe_courseList",courseList);
         response.sendRedirect("/afterTable/gwz_TeSe.jsp");
     }
@@ -115,14 +114,10 @@ public class gwz_KeChengKaiKuangController  extends HttpServlet {
 
 
 
-
-
-
-
-
-
     @RequestMapping("/AddJianJie")
     public void AddJianJie(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+        List<gwz_teacher> teacherList=gwz_keChengGaiKuangDao.FindFullTeacherList();
+        request.getSession().setAttribute("AddJianJie_teacherList",teacherList);
         response.sendRedirect("/afterTable/gwz_AddJianJie.jsp");
     }
 
@@ -159,7 +154,9 @@ public class gwz_KeChengKaiKuangController  extends HttpServlet {
 
 
     @RequestMapping("/accept_AddJianJie")
-    public String accept_AddJianJie(gwz_Course course){
+    public String accept_AddJianJie(gwz_Course course,int teacher_id){
+        gwz_teacher teacher=gwz_keChengGaiKuangDao.FindFullTeacherById(teacher_id);
+        course.setGwzTeacher(teacher);
         gwz_keChengGaiKuangDao.AddJianJie(course);
         return "redirect:/course/JianJie";
     }
@@ -172,7 +169,9 @@ public class gwz_KeChengKaiKuangController  extends HttpServlet {
 
     @RequestMapping("/accept_EditJianJie")
     @ResponseBody
-    public String accept_EditJianJie(gwz_Course course){
+    public String accept_EditJianJie(gwz_Course course,int teacher_id){
+        gwz_teacher teacher=gwz_keChengGaiKuangDao.FindFullTeacherById(teacher_id);
+        course.setGwzTeacher(teacher);
         gwz_keChengGaiKuangDao.EditJianJie(course);
         return "sucessful";
     }
@@ -197,5 +196,36 @@ public class gwz_KeChengKaiKuangController  extends HttpServlet {
         gwz_keChengGaiKuangDao.EditLiShi(course);
         return "sucessful";
     }
+
+
+
+
+
+
+    @RequestMapping("/delete_JianJie")
+    public String delete_JianJie(int course_id){
+        gwz_keChengGaiKuangDao.deleteJianjie(course_id);
+        return "redirect:/course/JianJie";
+    }
+
+    @RequestMapping("/delete_JiaoCai")
+    public String delete_JiaoCai(int course_id){
+        gwz_keChengGaiKuangDao.deleteJiaoCai(course_id);
+        return "redirect:/course/JiaoCai";
+    }
+
+    @RequestMapping("/delete_LiShi")
+    public String delete_LiShi(int course_id){
+        gwz_keChengGaiKuangDao.deleteLiShi(course_id);
+        return "redirect:/course/LiShi";
+    }
+
+    @RequestMapping("/delete_TeSe")
+    public String delete_TeSe(int course_id){
+        gwz_keChengGaiKuangDao.deleteTeSe(course_id);
+        return "redirect:/course/TeSe";
+    }
+
+
 
 }
