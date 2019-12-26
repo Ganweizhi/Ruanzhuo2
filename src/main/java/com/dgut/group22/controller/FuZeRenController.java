@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dgut.group22.javaBean.Course;
 import com.dgut.group22.javaBean.Teacher;
+import com.dgut.group22.javaBean.Team;
 import com.dgut.group22.service.CourseService;
 import com.dgut.group22.service.FuZeRenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +59,7 @@ public class FuZeRenController {
         jsonObject.put("page",allFuZeRen.size()/5+r);
         jsonObject.put("curPage",anInt);
         jsonObject.put("data",fuZeRen);
+        System.out.println(jsonObject);
         return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 
@@ -79,17 +81,16 @@ public class FuZeRenController {
         return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 
-    @RequestMapping(value = "/updateFuZeRen",method = {RequestMethod.POST})
-    public String updateFuZeRen(Teacher teacher){
-        fuZeRenService.updateTeacher(teacher);
-        return "1";
-    }
-
     @RequestMapping(value = "/deleteFuZeRen/{course_id}",method = {RequestMethod.POST})
     public String deleteFuZeRen(@PathVariable ("course_id") String course_id){
         String flag="0";
-        flag = fuZeRenService.deleteFuZeRen(course_id);
         JSONObject jsonObject = new JSONObject();
+        try {
+            flag = fuZeRenService.deleteFuZeRen(course_id);
+        }
+        catch (Exception e){
+            flag="0";
+        }
         if(flag=="1")
             jsonObject.put("data","成功");
         else
@@ -101,9 +102,14 @@ public class FuZeRenController {
     public String saveFuZeRen(@PathVariable("teacher_id")String teacher_id,@PathVariable ("course_id") String course_id){
         String flag="0";
         JSONObject jsonObject = new JSONObject();
-        Course course = courseService.findById(course_id);
-        course.setCourse_principal(teacher_id);
-        flag=courseService.updateCourse(course);
+        try{
+            Course course = courseService.findById(course_id);
+            course.setCourse_principal(teacher_id);
+            flag=courseService.updateCourse(course);
+        }
+        catch (Exception e){
+            flag="0";
+        }
         if(flag=="1")
             jsonObject.put("data","成功");
         else jsonObject.put("data","失败");
@@ -114,7 +120,9 @@ public class FuZeRenController {
     public String updateFuZeRen(@PathVariable("teacher_id")String teacher_id,@PathVariable ("course_id") String course_id){
         String flag="0";
         JSONObject jsonObject = new JSONObject();
-        flag = fuZeRenService.updateFuZeRen(teacher_id,course_id);
+        Teacher teacher=fuZeRenService.findFuZeRenById(teacher_id);
+        if(teacher!=null)
+            flag = fuZeRenService.updateFuZeRen(teacher_id,course_id);
         if(flag=="1")
             jsonObject.put("data","成功");
         else jsonObject.put("data","失败");
