@@ -1,6 +1,8 @@
 package com.dgut.group22.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dgut.group22.javaBean.Course;
 import com.dgut.group22.javaBean.Teacher;
 import com.dgut.group22.service.CourseService;
@@ -37,7 +39,24 @@ public class FuZeRenController {
         jsonObject.put("page",allFuZeRen.size()/9+r);
         jsonObject.put("curPage",anInt);
         jsonObject.put("data",fuZeRen);
-        return jsonObject.toJSONString();
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
+    }
+
+    @RequestMapping(value="/findAllFuZeRenAfter/{page}",method = {RequestMethod.POST})
+    public String findAllFuZeRenAfter(@PathVariable("page") String page){
+        int anInt = Integer.parseInt(page);
+        List<Teacher> fuZeRen = new ArrayList<>();
+        List<Teacher> allFuZeRen = fuZeRenService.findAllFuZeRen();
+
+        for(int i=(anInt-1)*5; i<(anInt-1)*5+5 && i<allFuZeRen.size(); i++){
+            fuZeRen.add(allFuZeRen.get(i));
+        }
+        JSONObject jsonObject = new JSONObject();
+        int r = allFuZeRen.size()%5==0?0:1;
+        jsonObject.put("page",allFuZeRen.size()/5+r);
+        jsonObject.put("curPage",anInt);
+        jsonObject.put("data",fuZeRen);
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     @RequestMapping(value = "/findFuZeRenById/{teacher_id}&{course_id}",method = {RequestMethod.POST})
@@ -47,6 +66,8 @@ public class FuZeRenController {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("teacher",fuZeRen);
         jsonObject.put("course",course);
-        return jsonObject.toJSONString();
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
+
+
 }

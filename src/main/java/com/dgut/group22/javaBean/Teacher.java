@@ -6,6 +6,7 @@ public class Teacher {
     int teacher_id;
     String teacher_name;
     int academy_id;
+    Academy academy;
     Date teacher_birth;
     String teacher_sex;
     String teacher_rank;
@@ -20,6 +21,14 @@ public class Teacher {
     String teacher_photo;
     String course_name;
     String course_id;
+
+    public Academy getAcademy() {
+        return academy;
+    }
+
+    public void setAcademy(Academy academy) {
+        this.academy = academy;
+    }
 
     public String getCourse_id() {
         return course_id;

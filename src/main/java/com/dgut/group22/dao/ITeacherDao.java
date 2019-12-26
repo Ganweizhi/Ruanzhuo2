@@ -1,9 +1,9 @@
 package com.dgut.group22.dao;
 
+import com.dgut.group22.javaBean.Academy;
 import com.dgut.group22.javaBean.Teacher;
 import com.dgut.group22.javaBean.Young;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
