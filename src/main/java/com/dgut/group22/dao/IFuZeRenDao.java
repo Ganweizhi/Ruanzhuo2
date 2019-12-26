@@ -16,7 +16,7 @@ public interface IFuZeRenDao {
     @Select("select t.*,c.course_name,c.course_id from teacher t right join course c on t.teacher_id= c.course_principal")
     List<Teacher> findAllFuZeRen();
 
-    @Select("select * from teacher t right join course c on t.teacher_id= c.course_principal")
+    @Select("select t.* from teacher t right join course c on t.teacher_id= c.course_principal")
     @Results({
             @Result(property = "teacher_id",column = "teacher_id"),
             @Result(property = "teacher_name",column = "teacher_name"),
@@ -36,6 +36,7 @@ public interface IFuZeRenDao {
             @Result(property = "teacher_photo",column = "teacher_photo"),
             @Result(property = "course_name",column = "course_name"),
             @Result(property = "course_id",column = "course_id"),
+            @Result(property = "course",column = "course_id",javaType = Course.class,one=@One(select = "com.dgut.group22.dao.ICourseDao.findById")),
     })
     List<Teacher> findAllTeacher();
 
@@ -66,4 +67,7 @@ public interface IFuZeRenDao {
 
     @Update("update teacher set teacher_name=#{teacher_name}, academy_id=#{academy_id}, teacher_birth=#{teacher_birth}, teacher_sex=#{teacher_sex}, teacher_rank=#{teacher_rank}, teacher_phone=#{teacher_phone}, teacher_email=#{teacher_email}, teacher_qualification=#{teacher_qualification}, teacher_domain=#{teacher_domain}, teacher_address=#{teacher_address}, teacher_resdire=#{teacher_resdire}, teacher_resume=#{teacher_resume}, teacher_photo=#{teacher_photo}, course_name=#{course_name}, course_id=#{course_id} where teacher_id=#{teacher_id}")
     void update(String teacher_id);
+
+    @Delete("delete teacher where teacher_id=#{teacher_id}")
+    void delete(String teacher_id);
 }
