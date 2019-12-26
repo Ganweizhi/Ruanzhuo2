@@ -33,4 +33,9 @@ public class FuZeRenService {
         fuZeRenDao.deleteFuZeRen(course_id);
         return "1";
     }
+
+    public String updateFuZeRen(String course_principal,String course_id){
+        fuZeRenDao.updateFuZeRen(course_principal,course_id);
+        return "1";
+    }
 }

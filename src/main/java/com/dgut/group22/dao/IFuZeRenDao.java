@@ -68,6 +68,10 @@ public interface IFuZeRenDao {
     @Update("update teacher set teacher_name=#{teacher_name}, academy_id=#{academy_id}, teacher_birth=#{teacher_birth}, teacher_sex=#{teacher_sex}, teacher_rank=#{teacher_rank}, teacher_phone=#{teacher_phone}, teacher_email=#{teacher_email}, teacher_qualification=#{teacher_qualification}, teacher_domain=#{teacher_domain}, teacher_address=#{teacher_address}, teacher_resdire=#{teacher_resdire}, teacher_resume=#{teacher_resume}, teacher_photo=#{teacher_photo}, course_name=#{course_name}, course_id=#{course_id} where teacher_id=#{teacher_id}")
     void update(Teacher teacher);
 
+    @Update("update course set course_principal=#{course_principal} where course_id=#{course_id}")
+    void updateFuZeRen(String course_principal,String course_id);
+
     @Update("update course set course_principal=null where course_id=#{course_id}")
     void deleteFuZeRen(String course_id);
+
 }

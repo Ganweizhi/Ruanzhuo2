@@ -10,6 +10,7 @@ import com.dgut.group22.service.FuZeRenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -93,6 +94,30 @@ public class FuZeRenController {
             jsonObject.put("data","成功");
         else
             jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
+
+    @RequestMapping(value = "/saveFuZeRen/{teacher_id}&{course_id}",method = {RequestMethod.POST})
+    public String saveFuZeRen(@PathVariable("teacher_id")String teacher_id,@PathVariable ("course_id") String course_id){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        Course course = courseService.findById(course_id);
+        course.setCourse_principal(teacher_id);
+        flag=courseService.updateCourse(course);
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
+
+    @RequestMapping(value = "/updateFuZeRen/{teacher_id}&{course_id}",method = {RequestMethod.POST})
+    public String updateFuZeRen(@PathVariable("teacher_id")String teacher_id,@PathVariable ("course_id") String course_id){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        flag = fuZeRenService.updateFuZeRen(teacher_id,course_id);
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else jsonObject.put("data","失败");
         return jsonObject.toJSONString();
     }
 }

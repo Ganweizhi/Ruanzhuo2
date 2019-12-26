@@ -6,10 +6,8 @@ import com.dgut.group22.javaBean.Team;
 import com.dgut.group22.service.TeamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,6 +43,12 @@ public class TeamController {
         List<Teacher> allTeachers=teamService.findTeacherByTeamId(team_id);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("teachers",allTeachers);
+        return jsonObject.toJSONString();
+    }
+
+    @RequestMapping(value = "/saveFuZeRen",method = {RequestMethod.POST})
+    public String saveFuZeRen(Team team,@RequestParam("imageFile") MultipartFile file){
+        JSONObject jsonObject = new JSONObject();
         return jsonObject.toJSONString();
     }
 }
