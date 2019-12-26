@@ -6,6 +6,23 @@ public class Methodb {
     private String methodb_title;
     private String methodb_content ;
     private int success_id;
+    private String course_name;
+
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
+
+    public Methodb(int methodb_id, String methodb_title, String methodb_content, int success_id, String course_name) {
+        this.methodb_id = methodb_id;
+        this.methodb_title = methodb_title;
+        this.methodb_content = methodb_content;
+        this.success_id = success_id;
+        this.course_name = course_name;
+    }
 
     public Methodb(int methodb_id, String methodb_title, String methodb_content, int success_id) {
         this.methodb_id = methodb_id;

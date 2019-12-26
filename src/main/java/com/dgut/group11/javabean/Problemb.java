@@ -6,6 +6,23 @@ public class Problemb {
     private String problemb_title ;
     private String problemb_content ;
     private int success_id;
+    private String course_name;
+
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
+
+    public Problemb(int problemb_id, String problemb_title, String problemb_content, int success_id, String course_name) {
+        this.problemb_id = problemb_id;
+        this.problemb_title = problemb_title;
+        this.problemb_content = problemb_content;
+        this.success_id = success_id;
+        this.course_name = course_name;
+    }
 
     public Problemb(int problemb_id, String problemb_title, String problemb_content, int success_id) {
         this.problemb_id = problemb_id;

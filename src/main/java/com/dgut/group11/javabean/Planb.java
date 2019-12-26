@@ -5,6 +5,23 @@ public class Planb {
     private String planb_title;
     private String planb_content ;
     private String success_id;
+    private String course_name;
+
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
+
+    public Planb(int planb_id, String planb_title, String planb_content, String success_id, String course_name) {
+        this.planb_id = planb_id;
+        this.planb_title = planb_title;
+        this.planb_content = planb_content;
+        this.success_id = success_id;
+        this.course_name = course_name;
+    }
 
     public Planb() {
     }
