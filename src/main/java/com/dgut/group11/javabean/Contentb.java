@@ -6,6 +6,23 @@ public class Contentb {
     private String contentb_title ;
     private String contentb_content;
     private int success_id;
+    private String course_name;
+
+    public Contentb(int contentb_id, String contentb_title, String contentb_content, int success_id, String course_name) {
+        this.contentb_id = contentb_id;
+        this.contentb_title = contentb_title;
+        this.contentb_content = contentb_content;
+        this.success_id = success_id;
+        this.course_name = course_name;
+    }
+
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
 
     public Contentb() {
     }
