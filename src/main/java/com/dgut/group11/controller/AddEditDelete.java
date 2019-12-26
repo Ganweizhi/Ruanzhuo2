@@ -51,6 +51,9 @@ public class AddEditDelete {
         }
 
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",0);
+        jsonObject.put("msg","");
+        jsonObject.put("count",list.size());
         jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
@@ -72,6 +75,9 @@ public class AddEditDelete {
         }
 
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",0);
+        jsonObject.put("msg","");
+        jsonObject.put("count",list.size());
         jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
@@ -93,6 +99,9 @@ public class AddEditDelete {
         }
 
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",0);
+        jsonObject.put("msg","");
+        jsonObject.put("count",list.size());
         jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
@@ -114,6 +123,9 @@ public class AddEditDelete {
         }
 
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",0);
+        jsonObject.put("msg","");
+        jsonObject.put("count",list.size());
         jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
@@ -134,6 +146,9 @@ public class AddEditDelete {
         }
 
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",0);
+        jsonObject.put("msg","");
+        jsonObject.put("count",list.size());
         jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
@@ -158,7 +173,7 @@ public class AddEditDelete {
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("code",0);
         jsonObject.put("msg","");
-        jsonObject.put("count",limit);
+        jsonObject.put("count",list.size());
         jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
