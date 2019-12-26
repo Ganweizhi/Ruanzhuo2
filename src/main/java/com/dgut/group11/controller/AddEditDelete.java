@@ -35,7 +35,7 @@ public class AddEditDelete {
     private JiaoXueRiLiService jiaoXueRiLiService;
 
     @RequestMapping(value="/listContentb",method = {RequestMethod.GET})
-    public String listContentb(){
+    public String listContentb(int page, int limit){
 
         List<Contentb> list = addEditDeleteDao.findAll1();
 
@@ -44,14 +44,18 @@ public class AddEditDelete {
             Course course = jiaoXueRiLiService.getCourseById(successCourse.getCourse_id());
             l.setCourse_name(course.getCourse_name());
         }
+        List<Contentb> list2 = new ArrayList<>();
+        for(int i=(page-1)*limit,j=i; i<j+limit && i< list.size(); i++){
+            list2.add(list.get(i));
+        }
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",list);
+        jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/listMethodb",method = {RequestMethod.POST})
-    public String listMethodb(){
+    @RequestMapping(value="/listMethodb",method = {RequestMethod.GET})
+    public String listMethodb(int page, int limit){
 
         List<Methodb> list = addEditDeleteDao.findAll2();
 
@@ -61,13 +65,18 @@ public class AddEditDelete {
             l.setCourse_name(course.getCourse_name());
         }
 
+        List<Methodb> list2 = new ArrayList<>();
+        for(int i=(page-1)*limit,j=i; i<j+limit && i< list.size(); i++){
+            list2.add(list.get(i));
+        }
+
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",list);
+        jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/listPlanb",method = {RequestMethod.POST})
-    public String listPlanb(){
+    @RequestMapping(value="/listPlanb",method = {RequestMethod.GET})
+    public String listPlanb(int page, int limit){
 
         List<Planb> list = addEditDeleteDao.findAll3();
 
@@ -77,13 +86,18 @@ public class AddEditDelete {
             l.setCourse_name(course.getCourse_name());
         }
 
+        List<Planb> list2 = new ArrayList<>();
+        for(int i=(page-1)*limit,j=i; i<j+limit && i< list.size(); i++){
+            list2.add(list.get(i));
+        }
+
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",list);
+        jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/listProblemb",method = {RequestMethod.POST})
-    public String listProblemb(){
+    @RequestMapping(value="/listProblemb",method = {RequestMethod.GET})
+    public String listProblemb(int page, int limit){
 
         List<Problemb> list = addEditDeleteDao.findAll4();
 
@@ -93,13 +107,18 @@ public class AddEditDelete {
             l.setCourse_name(course.getCourse_name());
         }
 
+        List<Problemb> list2 = new ArrayList<>();
+        for(int i=(page-1)*limit,j=i; i<j+limit && i< list.size(); i++){
+            list2.add(list.get(i));
+        }
+
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",list);
+        jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value="/listCalendar",method = {RequestMethod.POST})
-    public String listCalendar(){
+    @RequestMapping(value="/listCalendar",method = {RequestMethod.GET})
+    public String listCalendar(int page, int limit){
 
         List<RiLi> list = addEditDeleteDao.findAll5();
 
@@ -108,9 +127,13 @@ public class AddEditDelete {
             Course course = jiaoXueRiLiService.getCourseById(successCourse.getCourse_id());
             l.setCourse_name(course.getCourse_name());
         }
+        List<RiLi> list2 = new ArrayList<>();
+        for(int i=(page-1)*limit,j=i; i<j+limit && i< list.size(); i++){
+            list2.add(list.get(i));
+        }
 
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",list);
+        jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
 
@@ -126,7 +149,7 @@ public class AddEditDelete {
             l.setCourse_name(course.getCourse_name());
         }
         List<Teaching_program> list2 = new ArrayList<>();
-        for(int i=(page-1)*limit; i<i+limit; i++){
+        for(int i=(page-1)*limit,j=i; i<j+limit && i< list.size(); i++){
             list2.add(list.get(i));
         }
 
