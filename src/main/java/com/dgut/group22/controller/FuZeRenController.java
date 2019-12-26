@@ -46,7 +46,7 @@ public class FuZeRenController {
     public String findAllFuZeRenAfter(@PathVariable("page") String page){
         int anInt = Integer.parseInt(page);
         List<Teacher> fuZeRen = new ArrayList<>();
-        List<Teacher> allFuZeRen = fuZeRenService.findAllFuZeRen();
+        List<Teacher> allFuZeRen = fuZeRenService.findAllTeacher();
 
         for(int i=(anInt-1)*5; i<(anInt-1)*5+5 && i<allFuZeRen.size(); i++){
             fuZeRen.add(allFuZeRen.get(i));
