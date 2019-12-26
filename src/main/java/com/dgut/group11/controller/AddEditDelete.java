@@ -10,6 +10,7 @@ import com.dgut.group11.dao.AddEditDeleteDao;
 import com.dgut.group11.dao.Teaching_ProgramDao;
 import com.dgut.group11.javabean.*;
 import com.dgut.group11.service.JiaoXueRiLiService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -138,7 +139,7 @@ public class AddEditDelete {
     }
 
     @RequestMapping(value="/listTeaching_program",method = {RequestMethod.GET})
-    public String listTeaching_program(int page, int limit){
+    public String listTeaching_program(@Param("page") int page, @Param("limit") int limit){
 
         List<Teaching_program> list = addEditDeleteDao.findAll6();
 
@@ -155,6 +156,9 @@ public class AddEditDelete {
 
 
         JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",0);
+        jsonObject.put("msg","");
+        jsonObject.put("count",limit);
         jsonObject.put("data",list2);
         return jsonObject.toJSONString();
     }
