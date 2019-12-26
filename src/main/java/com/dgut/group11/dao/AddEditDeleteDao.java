@@ -51,11 +51,24 @@ public interface AddEditDeleteDao {
     @Delete("delete planb where planb_id=#{planb_id}")
     void delete3(@Param("planb")Planb planb);
 
-    @Insert(" insert into problemb(problemb_title,problemb_content,success_id) VALUES(#{problemb_title},#{problemb_content},#{success_id}")
+    @Insert("insert into problemb(problemb_title,problemb_content,success_id) VALUES(#{problemb_title},#{problemb_content},#{success_id}")
     void add4(@Param("problemb")Problemb problemb);
     @Update("update problemb set problemb_title=#{problemb_title},problemb_content=#{problemb_content},success_id=#{success_id} where problemb_id=#{problemb_id}")
     void edit4(@Param("problemb")Problemb problemb);
     @Delete("delete problemb where problemb_id=#{problemb_id}")
     void delete4(@Param("problemb")Problemb problemb);
 
+    @Insert("insert into calendar(calendar_title,calendar_content,success_id) VALUES(#{calendar_title},#{calendar_content},#{success_id}")
+    void add5(@Param("calendar")RiLi calendar);
+    @Update("update calendar set calendar_title=#{calendar_title},calendar_content=#{calendar_content},success_id=#{success_id} where calendar_id=#{calendar_id}")
+    void edit5(@Param("calendar")RiLi calendar);
+    @Delete("delete calendar where calendar_id=#{calendar_id}")
+    void delete5(@Param("calendar")RiLi calendar);
+
+    @Insert("insert into teaching_program(teaching_program_title,teaching_program_content,success_id) VALUES(#{teaching_program_title},#{teaching_program_content},#{success_id}")
+    void add6(@Param("teaching_program")Teaching_program teaching_program);
+    @Update("update teaching_program set teaching_program_title=#{teaching_program_title},teaching_program_content=#{teaching_program_content},success_id=#{success_id} where teaching_program_id=#{teaching_program_id}")
+    void edit6(@Param("teaching_program")Teaching_program teaching_program);
+    @Delete("delete teaching_program where teaching_program_id=#{teaching_program_id}")
+    void delete6(@Param("teaching_program")Teaching_program teaching_program);
 }
