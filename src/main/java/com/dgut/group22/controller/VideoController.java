@@ -10,13 +10,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/resource")
@@ -66,5 +70,22 @@ public class VideoController {
         }
         return null;
 
+    }
+
+    //Ning
+    //上传文件
+    @RequestMapping("/upload")
+    public void Upload(MultipartFile upload) throws IOException {
+        String downloadFilePath =System.getProperty("user.dir");
+        downloadFilePath =downloadFilePath+"\\src\\main\\resources\\video\\";
+        File file = new File(downloadFilePath);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+        String fileName = upload.getOriginalFilename();
+        String uuid = UUID.randomUUID().toString().replace("-","");
+        fileName = uuid + "_" + fileName;
+        upload.transferTo(new File(downloadFilePath,fileName));
+        System.out.println("成功");
     }
 }
