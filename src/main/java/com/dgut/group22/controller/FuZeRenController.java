@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class FuZeRenController {
     }
 
     @RequestMapping(value = "/findFuZeRenById/{teacher_id}&{course_id}",method = {RequestMethod.POST})
-    public String  findFuZeRenId(@PathVariable("teacher_id")String teacher_id,@PathVariable ("course_id") String course_id){
+    public String findFuZeRenId(@PathVariable("teacher_id")String teacher_id,@PathVariable ("course_id") String course_id){
         Teacher fuZeRen = fuZeRenService.findFuZeRenById(teacher_id);
         Course course=courseService.findById(course_id);
         JSONObject jsonObject = new JSONObject();
@@ -69,5 +70,29 @@ public class FuZeRenController {
         return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 
+    @RequestMapping(value = "/findFuZeRenIdAfter/{teacher_id}",method = {RequestMethod.POST})
+    public String findFuZeRenIdAfter(@PathVariable("teacher_id")String teacher_id){
+        Teacher fuZeRen = fuZeRenService.findFuZeRenById(teacher_id);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("teacher",fuZeRen);
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
+    }
 
+    @RequestMapping(value = "/updateFuZeRen",method = {RequestMethod.POST})
+    public String updateFuZeRen(Teacher teacher){
+        fuZeRenService.updateTeacher(teacher);
+        return "1";
+    }
+
+    @RequestMapping(value = "/deleteFuZeRen/{course_id}",method = {RequestMethod.POST})
+    public String deleteFuZeRen(@PathVariable ("course_id") String course_id){
+        String flag="0";
+        flag = fuZeRenService.deleteFuZeRen(course_id);
+        JSONObject jsonObject = new JSONObject();
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else
+            jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
 }

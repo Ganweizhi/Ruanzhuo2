@@ -24,4 +24,13 @@ public class FuZeRenService {
     public List<Teacher> findAllTeacher(){
         return fuZeRenDao.findAllTeacher();
     }
+
+    public void updateTeacher(Teacher teacher){
+        fuZeRenDao.update(teacher);
+    }
+
+    public String deleteFuZeRen(String course_id){
+        fuZeRenDao.deleteFuZeRen(course_id);
+        return "1";
+    }
 }
