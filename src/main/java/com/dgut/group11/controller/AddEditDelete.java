@@ -36,7 +36,7 @@ public class AddEditDelete {
     private JiaoXueRiLiService jiaoXueRiLiService;
 
     @RequestMapping(value="/listContentb",method = {RequestMethod.GET})
-    public String listContentb(int page, int limit){
+    public String listContentb(@Param("page") int page, @Param("limit") int limit){
 
         List<Contentb> list = addEditDeleteDao.findAll1();
 
@@ -56,7 +56,7 @@ public class AddEditDelete {
     }
 
     @RequestMapping(value="/listMethodb",method = {RequestMethod.GET})
-    public String listMethodb(int page, int limit){
+    public String listMethodb(@Param("page") int page, @Param("limit") int limit){
 
         List<Methodb> list = addEditDeleteDao.findAll2();
 
@@ -77,7 +77,7 @@ public class AddEditDelete {
     }
 
     @RequestMapping(value="/listPlanb",method = {RequestMethod.GET})
-    public String listPlanb(int page, int limit){
+    public String listPlanb(@Param("page") int page, @Param("limit") int limit){
 
         List<Planb> list = addEditDeleteDao.findAll3();
 
@@ -98,7 +98,7 @@ public class AddEditDelete {
     }
 
     @RequestMapping(value="/listProblemb",method = {RequestMethod.GET})
-    public String listProblemb(int page, int limit){
+    public String listProblemb(@Param("page") int page, @Param("limit") int limit){
 
         List<Problemb> list = addEditDeleteDao.findAll4();
 
@@ -119,7 +119,7 @@ public class AddEditDelete {
     }
 
     @RequestMapping(value="/listCalendar",method = {RequestMethod.GET})
-    public String listCalendar(int page, int limit){
+    public String listCalendar(@Param("page") int page, @Param("limit") int limit){
 
         List<RiLi> list = addEditDeleteDao.findAll5();
 
