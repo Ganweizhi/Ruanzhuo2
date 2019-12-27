@@ -22,40 +22,43 @@
 <div class="layui-fluid">
     <div class="layui-row">
         <form class="layui-form" action="/QQ_upload" accept-charset="utf-8" enctype="multipart/form-data" method="post">
-<!--            <div class="layui-upload">-->
-<!--                &lt;!&ndash;<button type="button" class="layui-btn" id="test2">群图片上传</button>&ndash;&gt;-->
-<!--                &lt;!&ndash;<blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">&ndash;&gt;-->
-<!--                &lt;!&ndash;预览图：&ndash;&gt;-->
-<!--                &lt;!&ndash;<div class="layui-upload-li st" id="demo2"></div>&ndash;&gt;-->
-<!--                &lt;!&ndash;</blockquote>&ndash;&gt;-->
-<!--                选择文件<input id="file" type="file" name="pic">-->
-
-<!--            </div>-->
-            选择文件<input id="file" type="file" name="pic">
-<!--            <div class="layui-form-item">-->
-<!--            <label for="username" class="layui-form-label">-->
-<!--                <span class="x-red">*</span>发表人</label>-->
-<!--              <div class="layui-input-inline">-->
-<!--                <input type="text" id="username" name="username" required="" lay-verify="required"-->
-<!--                       autocomplete="off" class="layui-input">-->
-<!--              </div>-->
-<!--           </div>-->
-
-            <div>
-                <span>课程</span>
-                <select name="course" id="course_id">
-                    <option>选择</option>
-                </select>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    <span class="x-red">*</span>选择文件</label>
+                <div class="layui-input-inline">
+                    <br>
+                    <input id="file" type="file" name="pic">
+                </div>
             </div>
-
-
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    <span class="x-red">*</span>课程</label>
+                <div class="layui-input-inline">
+                    <br>
+                    <select name="course_id" id="course_id" lay-ignore>
+                        <option value="0">请选择课程</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label">
+                    <span class="x-red">*</span>负责教师</label>
+                <div class="layui-input-inline">
+                    <br>
+                    <select name="teacher_id" lay-ignore>
+                        <option value="0">请选择教师</option>
+                    </select>
+                </div>
+                <br>
                 <div class="layui-form-item">
-                    <label  class="layui-form-label"></label>
+                    <label for="L_repass" class="layui-form-label"></label>
                     <button class="layui-btn" lay-filter="add" lay-submit="" onclick="submit()">提交</button>
                 </div>
+            </div>
         </form>
     </div>
 </div>
+</body>
 <script>layui.use(['form', 'layer'],
     function () {
         $ = layui.jquery;
@@ -336,31 +339,6 @@
     // }
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
-<!--<script>-->
-<!--    $(document).ready(function () {-->
-
-<!--        var url="/getCourse_id"; //访问后台去数据库查询select的选项,此处需填写后台接口路径-->
-<!--        $.ajax({-->
-<!--            type:"post",-->
-<!--            url:url,-->
-<!--            dataType:"json",-->
-<!--            success:function(userList){-->
-<!--                console.log(userList);-->
-<!--                var unitObj=document.getElementById("course_id"); //页面上的<html:select>元素-->
-<!--                if(userList!=null){ //后台传回来的select选项-->
-<!--                    for(i in userList){-->
-<!--                        //遍历后台传回的结果，一项项往select中添加option-->
-<!--                        unitObj.options.add(new Option(userList.course_id,userList.course_id));-->
-<!--                    }-->
-<!--                }-->
-<!--            },-->
-<!--            error:function(){-->
-<!--                J.alert('Error');-->
-<!--            }-->
-<!--        })-->
-<!--    })-->
-<!--    -->
-<!--</script>-->
 <script>
     $(document).ready(function () {
 
@@ -377,7 +355,32 @@
                 for (var i = 0; i < data["size"]; i++) {
                     var s = i+"";
                     console.log("第一行:"+data[s].course_id);
-                    unitObj.options.add(new Option(data[s].course_id,data[s].course_name))
+                    unitObj.options.add(new Option(data[s].course_name,data[s].course_id))
+                }
+            },
+            error:function(){
+                J.alert('Error');
+            }
+        })
+    })
+</script>
+<script>
+    $(document).ready(function () {
+
+        var url="/getTeacher_id"; //访问后台去数据库查询select的选项,此处需填写后台接口路径
+        $.ajax({
+            type:"post",
+            url:url,
+            dataType:"json",
+            success : function(data) {
+                var unitObj=document.getElementById("teacher_id");
+                console.log(data);
+                // console.log(data["size"]);
+                // console.log(data.length);
+                for (var i = 0; i < data["size"]; i++) {
+                    var s = i+"";
+                    console.log("第一行:"+data[s].teacher_id);
+                    unitObj.options.add(new Option(data[s].teacher_name,data[s].teacher_id))
                 }
             },
             error:function(){
