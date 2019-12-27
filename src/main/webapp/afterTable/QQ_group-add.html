@@ -21,13 +21,14 @@
 <body>
 <div class="layui-fluid">
     <div class="layui-row">
-        <form class="layui-form">
+        <form class="layui-form" action="/QQ_upload" accept-charset="utf-8">
             <div class="layui-upload">
-                <button type="button" class="layui-btn" id="test2">群图片上传</button>
-                <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
-                    预览图：
-                    <div class="layui-upload-list" id="demo2"></div>
-                </blockquote>
+                <!--<button type="button" class="layui-btn" id="test2">群图片上传</button>-->
+                <!--<blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">-->
+                    <!--预览图：-->
+                    <!--<div class="layui-upload-li st" id="demo2"></div>-->
+                <!--</blockquote>-->
+                选择文件<input id="file" type="file" name="pic">
             </div>
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
@@ -141,7 +142,7 @@
         //普通图片上传
         var uploadInst = upload.render({
             elem: '#test1'
-            , url: '/upload/'
+            , url: '/QQ_upload/'
             , before: function (obj) {
                 //预读本地文件示例，不支持ie8
                 obj.preview(function (index, file, result) {
@@ -326,44 +327,44 @@
 
     });
 
-    function submit() {
-        var username = $("#username").val();
-        var big_title = $("#big_title").val();
-        var little_title = $("#little_title").val();
-        var course_id = $("#course_id").children('option:selected').val()
-        var teacher_id = $("#teacher_id").children('option:selected').val()
-        var time = $("#time").val();
-
-        var data = {
-            "username": username,
-            "big_title": big_title,
-            "little_title": little_title,
-            "course_id": course_id,
-            "teacher_id": teacher_id,
-            "time": time
-        }
-
-
-        $.ajax({
-            type: "post",
-            url: "./QQ_upload",
-            data: data,
-            cache: true,
-            async: true,
-            success: function (data, textStatus, jqXHR) {
-                if (data.code == 200) {
-                    alert("插入成功了");
-                } else {
-                    alert(data.message);
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-
-                alert(typeof (errorThrown));
-            }
-
-        });
-    }
+    // function submit() {
+    //     var username = $("#username").val();
+    //     var big_title = $("#big_title").val();
+    //     var little_title = $("#little_title").val();
+    //     var course_id = $("#course_id").children('option:selected').val()
+    //     var teacher_id = $("#teacher_id").children('option:selected').val()
+    //     var time = $("#time").val();
+    //
+    //     var data = {
+    //         "username": username,
+    //         "big_title": big_title,
+    //         "little_title": little_title,
+    //         "course_id": course_id,
+    //         "teacher_id": teacher_id,
+    //         "time": time
+    //     }
+    //
+    //
+    //     $.ajax({
+    //         type: "post",
+    //         url: "./QQ_upload",
+    //         data: data,
+    //         cache: true,
+    //         async: true,
+    //         success: function (data, textStatus, jqXHR) {
+    //             if (data.code == 200) {
+    //                 alert("插入成功了");
+    //             } else {
+    //                 alert(data.message);
+    //             }
+    //         },
+    //         error: function (XMLHttpRequest, textStatus, errorThrown) {
+    //
+    //             alert(typeof (errorThrown));
+    //         }
+    //
+    //     });
+    // }
 </script>
 </body>
 
