@@ -15,4 +15,6 @@ public interface upload {
     List<successCourse> getAllSuccessCourse();
     @Select("select * from successCourse where isnull(success_QQ) ")
     List<successCourse> getAllSuccessCourseNotUploadQQ();
+    @Select("select course_id from successCourse")
+    List<String> getCourse_id();
 }

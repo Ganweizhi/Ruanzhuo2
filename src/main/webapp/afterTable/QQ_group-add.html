@@ -32,22 +32,21 @@
 
 <!--            </div>-->
             选择文件<input id="file" type="file" name="pic">
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>发表人</label>
-                <div class="layui-input-inline">
-                    <input type="text" id="username" name="username" required="" lay-verify="required"
-                           autocomplete="off" class="layui-input"></div>
-            </div>
+<!--            <div class="layui-form-item">-->
+<!--            <label for="username" class="layui-form-label">-->
+<!--                <span class="x-red">*</span>发表人</label>-->
+<!--              <div class="layui-input-inline">-->
+<!--                <input type="text" id="username" name="username" required="" lay-verify="required"-->
+<!--                       autocomplete="off" class="layui-input">-->
+<!--              </div>-->
+<!--           </div>-->
 
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
                     <span class="x-red">*</span>课程</label>
                 <div class="layui-input-inline">
                     <select name="course_id" id="course_id">
-                        <option value="0">语文</option>
-                        <option value="1">数学</option>
-                        <option value="2">英语</option>
+                        <option >选择课程编号</option>
                     </select>
                 </div>
             </div>
@@ -348,6 +347,56 @@
     //
     //     });
     // }
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<!--<script>-->
+<!--    $(document).ready(function () {-->
+
+<!--        var url="/getCourse_id"; //访问后台去数据库查询select的选项,此处需填写后台接口路径-->
+<!--        $.ajax({-->
+<!--            type:"post",-->
+<!--            url:url,-->
+<!--            dataType:"json",-->
+<!--            success:function(userList){-->
+<!--                console.log(userList);-->
+<!--                var unitObj=document.getElementById("course_id"); //页面上的<html:select>元素-->
+<!--                if(userList!=null){ //后台传回来的select选项-->
+<!--                    for(i in userList){-->
+<!--                        //遍历后台传回的结果，一项项往select中添加option-->
+<!--                        unitObj.options.add(new Option(userList.course_id,userList.course_id));-->
+<!--                    }-->
+<!--                }-->
+<!--            },-->
+<!--            error:function(){-->
+<!--                J.alert('Error');-->
+<!--            }-->
+<!--        })-->
+<!--    })-->
+<!--    -->
+<!--</script>-->
+<script>
+    $(document).ready(function () {
+
+        var url="/getCourse_id"; //访问后台去数据库查询select的选项,此处需填写后台接口路径
+        $.ajax({
+            type:"post",
+            url:url,
+            dataType:"json",
+            success:function(userList){
+                if(userList!=null){ //后台传回来的select选项
+                    for(var i=0;i<userList.length;i++){
+                        //遍历后台传回的结果，一项项往select中添加option
+                        u$("#course_id").append("<option> " + userList[i].course_id + "</option>>");
+                    }
+                }
+
+                console.log(userList);
+            },
+            error:function(){
+                J.alert('Error');
+            }
+        })
+    })
 </script>
 </body>
 
