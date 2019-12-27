@@ -36,7 +36,7 @@
                 for (var i = 0; i < data["size"]; i++) {
                     var s = i+"";
                     console.log("第一行:"+data[s].course_id);
-                    unitObj.options.add(new Option(data[s].course_id,data[s].course_name))
+                    unitObj.options.add(new Option(data[s].course_name,data[s].course_id,))
                 }
             },
             error:function(){

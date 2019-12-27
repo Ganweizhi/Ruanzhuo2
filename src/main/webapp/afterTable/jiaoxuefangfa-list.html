@@ -43,17 +43,17 @@
 <!--                    </form>-->
 <!--                </div>-->
                 <div class="layui-card-header">
-                    <button class="layui-btn" onclick="xadmin.open('添加内容','./jiaoxuedagang-add.html',800,600)">
+                    <button class="layui-btn" onclick="xadmin.open('添加内容','./jiaoxuefangfa-add.html',800,600)">
                         <i class="layui-icon"></i>添加
                     </button>
                 </div>
                 <div class="layui-card-body ">
-                    <table class="layui-table" lay-data="{url:'/listTeaching_program', page:true, id:'idTest'}" lay-filter="demo">
+                    <table class="layui-table" lay-data="{url:'/listMethodb', page:true, id:'idTest'}" lay-filter="demo">
                         <thead>
                         <tr>
                             <th lay-data="{field:'course_name'}">课程名</th>
-                            <th lay-data="{field:'teaching_program_title'}">大纲标题</th>
-                            <th lay-data="{field:'teaching_program_content'}">大纲内容</th>
+                            <th lay-data="{field:'methodb_title'}">方法标题</th>
+                            <th lay-data="{field:'methodb_content'}">方法内容</th>
                             <th lay-data="{fixed: 'right', align:'center', toolbar: '#barDemo'}"></th>
                         </tr>
                         </thead>
@@ -80,7 +80,7 @@
                 layer.confirm('真的删除行么', function(index){
                     $.ajax({
                         type: "POST",
-                        url: "/deleteTeaching_program",
+                        url: "/deleteMethodb",
                         data: JSON.stringify(data),
                         contentType: "application/json;charset=UTF-8",
                         dataType: "json",
@@ -113,7 +113,7 @@
                 layer.open({
                     type: 2
                     ,title: '编辑'
-                    ,content: 'jiaoxuedagang-edit.html'
+                    ,content: 'jiaoxuefangfa-edit.html'
                     ,maxmin: true
                     ,area: ['500px', '450px']
                     ,success: function(layero, index){
@@ -121,10 +121,10 @@
                         var div = layero.find('iframe').contents().find('#pa');
 
                         // 测试 ：
-                        div.find("#teaching_program_id").val(obj.data.teaching_program_id);
+                        div.find("#methodb_id").val(obj.data.methodb_id);
                         div.find("#success_id").val(obj.data.success_id);
-                        div.find("#teaching_program_title").val(obj.data.teaching_program_title);
-                        div.find("#teaching_program_content").val(obj.data.teaching_program_content);
+                        div.find("#methodb_title").val(obj.data.methodb_title);
+                        div.find("#methodb_content").val(obj.data.methodb_content);
 
                     }
                 });

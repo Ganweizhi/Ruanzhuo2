@@ -57,67 +57,58 @@
                 </div>
                 <div class="layui-card-header">
                     <button class="layui-btn layui-btn-danger" onclick="delAll()">
-                        <i class="layui-icon"></i>批量删除
+                        批量删除
                     </button>
                     <button class="layui-btn" onclick="xadmin.open('添加内容','QQ_group-add.html',800,600)">
-                        <i class="layui-icon"></i>添加
+                        添加
                     </button>
                 </div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
-                            <th>
-                                <input type="checkbox" name="" lay-skin="primary">
-                            </th>
+                            <th>ID</th>
                             <th>发表人</th>
-                            <th>大标题</th>
-                            <th>小标题</th>
+                            <th>标题</th>
                             <th>发表时间</th>
                             <th>操作</th>
                         </tr>
                         </thead>
                         <tbody id="layui-table layui-form">
                         <tr>
-                            <td>
-                                <input type="checkbox" name="" lay-skin="primary"></td>
+                            <td>1</td>
                             <td>黄老师</td>
                             <td>QQ群1</td>
-                            <td>东莞理工学院物理教学群</td>
                             <td>2019.1.1</td>
                             <td class="td-manage">
                                 <a title="查看" onclick="xadmin.open('编辑','QQ_group-edit.html')" href="javascript:;">
-                                    <i class="layui-icon">&#xe63c;</i></a>
+                                    <i class="layui-icon">修改</i></a>
                                 <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                    <i class="layui-icon">&#xe640;</i></a>
+                                    <i class="layui-icon">删除</i></a>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <input type="checkbox" name="" lay-skin="primary"></td>
+                            <td>2</td>
                             <td>黄老师</td>
                             <td>QQ群1</td>
-                            <td>东莞理工学院物理教学群</td>
                             <td>2019.1.1</td>
                             <td class="td-manage">
                                 <a title="查看" onclick="xadmin.open('编辑','QQ_group-edit.html')" href="javascript:;">
-                                    <i class="layui-icon">&#xe63c;</i></a>
+                                    <i class="layui-icon">修改</i></a>
                                 <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                    <i class="layui-icon">&#xe640;</i></a>
+                                    <i class="layui-icon">删除</i></a>
                             </td>
                         </tr>
                         <tr>
-                            <td>
-                                <input type="checkbox" name="" lay-skin="primary"></td>
+                            <td>3</td>
                             <td>黄老师</td>
                             <td>QQ群1</td>
-                            <td>东莞理工学院物理教学群</td>
                             <td>2019.1.1</td>
                             <td class="td-manage">
                                 <a title="查看" onclick="xadmin.open('编辑','QQ_group-edit.html')" href="javascript:;">
-                                    <i class="layui-icon">&#xe63c;</i></a>
+                                    <i class="layui-icon">修改</i></a>
                                 <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                    <i class="layui-icon">&#xe640;</i></a>
+                                    <i class="layui-icon">删除</i></a>
                             </td>
                         </tr>
                         </tbody>
@@ -139,77 +130,8 @@
     </div>
 </div>
 </body>
-<script>layui.use(['laydate', 'form'],
-    function () {
-        var laydate = layui.laydate;
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#start' //指定元素
-        });
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#end' //指定元素
-        });
-    });
-
-/*用户-停用*/
-function member_stop(obj, id) {
-    layer.confirm('确认要停用吗？',
-        function (index) {
-
-            if ($(obj).attr('title') == '启用') {
-
-                //发异步把用户状态进行更改
-                $(obj).attr('title', '停用');
-                $(obj).find('i').html('&#xe62f;');
-
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                layer.msg('已停用!', {
-                    icon: 5,
-                    time: 1000
-                });
-
-            } else {
-                $(obj).attr('title', '启用');
-                $(obj).find('i').html('&#xe601;');
-
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!', {
-                    icon: 5,
-                    time: 1000
-                });
-            }
-
-        });
-}
-
-/*用户-删除*/
-function member_del(obj, id) {
-    layer.confirm('确认要删除吗？',
-        function (index) {
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!', {
-                icon: 1,
-                time: 1000
-            });
-        });
-}
-
-function delAll(argument) {
-
-    var data = tableCheck.getData();
-
-    layer.confirm('确认要删除吗？' + data,
-        function (index) {
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', {
-                icon: 1
-            });
-            $(".layui-form-checked").not('.header').parents('tr').remove();
-        });
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+<script>
     $(document).ready(function () {
         $.ajax({
             url: "./QQ_upload",//请求地址
@@ -240,31 +162,6 @@ function delAll(argument) {
             },
         })
     })
-
-    function del() {
-        var pno = $("#pno_del").val();
-
-        $.ajax({
-            type: "post",
-            url: "HelloDelete",
-            data: {
-                "pno": pno
-            },
-            cache: true,
-            async: true,
-            success: function (data, textStatus, jqXHR) {
-                if (data.code == 200) {
-                    alert("删除成功了");
-                } else {
-                    alert(data.message);
-                }
-            },
-            error: function (XMLHttpRequest, textStatus, errorThrown) {
-
-                alert(typeof (errorThrown));
-            }
-        })
 </script>
-
 </html>
 </html>
