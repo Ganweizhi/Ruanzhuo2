@@ -1,5 +1,6 @@
 package com.dgut.group22.controller;
 
+import com.dgut.group22.javaBean.SuccessCourse;
 import com.dgut.group22.javaBean.experiment_house;
 import com.dgut.group22.javaBean.resource;
 import com.dgut.group22.service.resourceService;
@@ -119,7 +120,7 @@ public class resourceController {
         return strings;
     }
 
-    @RequestMapping(value = "/GetAllExperiment",method = RequestMethod.GET)    //习题库
+    @RequestMapping(value = "/GetAllExperiment",method = RequestMethod.GET)
     @ResponseBody
     public List<String> GetAllExperiment(HttpServletRequest request) throws FileNotFoundException {
         List<String> strings=new ArrayList<String>();
@@ -131,7 +132,7 @@ public class resourceController {
         return strings;
     }
 
-    @RequestMapping(value = "/GetAllExperiment_house",method = RequestMethod.GET)    //习题库
+    @RequestMapping(value = "/GetAllExperiment_house",method = RequestMethod.GET)
     @ResponseBody
     public List<String> GetAllExperiment_house(HttpServletRequest request) throws FileNotFoundException {
         List<String> strings=new ArrayList<String>();
@@ -143,4 +144,18 @@ public class resourceController {
         return strings;
     }
 
+    @RequestMapping(value = "/UploadPPT",method = RequestMethod.GET)
+    @ResponseBody
+    public String UploadPPT(HttpServletRequest request,String course_name,String teacher_name){
+        System.out.println(course_name+teacher_name);
+        SuccessCourse successCourse = resourceService.selectSuccessCourse(course_name,teacher_name);
+//        System.out.println(successCourse.toString());
+        if(successCourse==null){
+            return "没有找到该门课程，请重新上传";
+        }
+        resource resource = new resource();
+        resource.setSuccess_id(successCourse.getSuccess_id());
+        resourceService.insertTextbook(resource);
+        return "操作成功！";
+    }
 }
