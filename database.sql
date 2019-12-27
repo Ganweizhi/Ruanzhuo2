@@ -34,7 +34,7 @@ create table course(
     foreign key (course_principal) references teacher(teacher_id)
 );
 -- 开课表
-DROP table if exists successCourse;
+DROP table if exists succes5sCourse;
 create table successCourse(
     success_id int primary key AUTO_INCREMENT not null,
     course_id int ,
