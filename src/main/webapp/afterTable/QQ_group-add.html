@@ -41,31 +41,18 @@
 <!--              </div>-->
 <!--           </div>-->
 
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>课程</label>
-                <div class="layui-input-inline">
-                    <select name="course_id" id="course_id">
-                        <option >选择课程编号</option>
-                    </select>
-                </div>
+            <div>
+                <span>课程</span>
+                <select name="course" id="course_id">
+                    <option>选择</option>
+                </select>
             </div>
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>负责教师</label>
-                <div class="layui-input-inline">
-                    <select name="teacher_id" id="teacher_id">
-                        <option value="0">王老师</option>
-                        <option value="1">陈老师</option>
-                        <option value="2">吴老师</option>
-                    </select>
-                </div>
+
 
                 <div class="layui-form-item">
-                    <label for="L_repass" class="layui-form-label"></label>
+                    <label  class="layui-form-label"></label>
                     <button class="layui-btn" lay-filter="add" lay-submit="" onclick="submit()">提交</button>
                 </div>
-            </div>
         </form>
     </div>
 </div>
@@ -382,15 +369,16 @@
             type:"post",
             url:url,
             dataType:"json",
-            success:function(userList){
-                if(userList!=null){ //后台传回来的select选项
-                    for(var i=0;i<userList.length;i++){
-                        //遍历后台传回的结果，一项项往select中添加option
-                        u$("#course_id").append("<option> " + userList[i].course_id + "</option>>");
-                    }
+            success : function(data) {
+                var unitObj=document.getElementById("course_id");
+                console.log(data);
+               // console.log(data["size"]);
+               // console.log(data.length);
+                for (var i = 0; i < data["size"]; i++) {
+                    var s = i+"";
+                    console.log("第一行:"+data[s].course_id);
+                    unitObj.options.add(new Option(data[s].course_id,data[s].course_name))
                 }
-
-                console.log(userList);
             },
             error:function(){
                 J.alert('Error');

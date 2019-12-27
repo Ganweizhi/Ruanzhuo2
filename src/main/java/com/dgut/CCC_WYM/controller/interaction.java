@@ -3,6 +3,7 @@ package com.dgut.CCC_WYM.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.dgut.CCC_WYM.beans.course;
 import com.dgut.CCC_WYM.services.uploadServices;
 import org.apache.ibatis.annotations.Param;
 import org.junit.jupiter.api.Test;
@@ -51,18 +52,20 @@ public class interaction {
    @ResponseBody
    public String getAllCourse_id()
    {
-       List<String> corseList = new ArrayList<>();
-       List<String> course = Upload.getCourse_Id();
+       List<course> corseList = new ArrayList<>();
+       List<course> course = Upload.getCourse();
        JSONObject jsonObject = new JSONObject();
        for(int i = 0;i<course.size();i++)
        {
            corseList.add(course.get(i));
        }
-       for(String s:corseList)
+       int i = 0;
+       for(course s:corseList)
        {
-           jsonObject.put("course_id",s);
-           jsonObject.put("course_id",s);
+           jsonObject.put(i+"",s);
+           i++;
        }
+       jsonObject.put("size",i);
        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
    }
 

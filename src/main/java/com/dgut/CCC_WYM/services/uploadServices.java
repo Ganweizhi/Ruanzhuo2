@@ -1,5 +1,6 @@
 package com.dgut.CCC_WYM.services;
 
+        import com.dgut.CCC_WYM.beans.course;
         import com.dgut.CCC_WYM.beans.successCourse;
         import com.dgut.CCC_WYM.mapper.upload;
         import org.junit.jupiter.api.Test;
@@ -20,6 +21,10 @@ public class uploadServices {
     public List<String> getCourse_Id()
     {
         return Upload.getCourse_id();
+    }
+    public List<course> getCourse()
+    {
+        return Upload.getCourse();
     }
 
 }
