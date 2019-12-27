@@ -414,6 +414,7 @@ public class AddEditDelete {
     @RequestMapping(value="/addTeaching_program",method = {RequestMethod.POST})
     public String addTeaching_program(@RequestBody Teaching_program teaching_program){
 
+        System.out.println(teaching_program);
         JSONObject jsonObject = new JSONObject();
         try {
             addEditDeleteDao.add6(teaching_program);
@@ -429,6 +430,7 @@ public class AddEditDelete {
     @RequestMapping(value="/editTeaching_program",method = {RequestMethod.POST})
     public String editTeaching_program(@RequestBody Teaching_program teaching_program){
 
+        System.out.println(teaching_program);
         JSONObject jsonObject = new JSONObject();
         try {
             addEditDeleteDao.edit6(teaching_program);
