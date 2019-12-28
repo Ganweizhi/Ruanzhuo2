@@ -42,4 +42,8 @@ public class resourceService {
     public SuccessCourse selectSuccessCourseById(Integer success_id){
         return resourceDao.selectSuccessCourseById(success_id);
     }
+
+    public int DeleteTextbook(Integer resource_id){
+        return resourceDao.DeleteTextbook(resource_id);
+    }
 }

@@ -201,4 +201,16 @@ public class resourceController {
         return map;
     }
 
+    @RequestMapping(value = "/DeleteTextbook",method = RequestMethod.GET)
+    @ResponseBody
+    public String DeleteTextbook(Integer resource_id){
+        String code="0";
+        int state=1;
+        state= resourceService.DeleteTextbook(resource_id);
+        System.out.println(state);
+        if(state==0)
+            code="400";
+        return code;
+    }
+
 }

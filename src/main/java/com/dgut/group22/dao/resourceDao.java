@@ -1,6 +1,7 @@
 package com.dgut.group22.dao;
 
 import com.dgut.group22.javaBean.*;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -31,4 +32,7 @@ public interface resourceDao {
 
     @Select("select * from successCourse where success_id= #{success_id}")
     SuccessCourse selectSuccessCourseById(Integer success_id);
+
+    @Delete("delete from resource where resource_id= #{resource_id}")
+     int DeleteTextbook(Integer resource_id);
 }
