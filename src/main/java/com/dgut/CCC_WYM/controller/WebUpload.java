@@ -3,6 +3,7 @@ package com.dgut.CCC_WYM.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.dgut.CCC_WYM.javabeans.Webquestion;
 import com.dgut.CCC_WYM.javabeans.image_qq;
 import com.dgut.CCC_WYM.javabeans.webTitle;
 import com.dgut.CCC_WYM.services.uploadServices;
@@ -44,12 +45,24 @@ public class WebUpload {
        if(total<=3){
            for(webTitle s:AllQQ)
            {
+               try {
+                   if (s.getAnswer().isEmpty()) s.setAnswer("暂未回答");
+               }catch (Exception ex)
+               {
+                   s.setAnswer("暂未回答");
+               }
                jsonObject.put(i+"",s);
                i++;
            }
        }else {
            for (int m = (pages - 1) * 3; m < total; m++) {
                if (i >= 3) break;
+               try{
+                   if(AllQQ.get(m).getAnswer().isEmpty())AllQQ.get(m).setAnswer("暂未回答");
+               }catch (Exception ex)
+               {
+                   AllQQ.get(m).setAnswer("暂未回答");
+               }
                jsonObject.put(i + "", AllQQ.get(m));
                i++;
            }
@@ -59,5 +72,68 @@ public class WebUpload {
        jsonObject.put("curPage",pages);
        jsonObject.put("totalPage",totalPage);
        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
+   }
+   @RequestMapping("/jiaoxuehudong_wangye/{page}")
+   @ResponseBody
+   public String getAllQuestion(@PathVariable("page")String page)
+   {
+       List<webTitle>  webTitles  = Upload.getAllTitle();
+       int total = webTitles.size();
+       int totalPage;
+       if(total%6==0) totalPage = total/6;
+       else totalPage = total/6+1;
+       JSONObject jsonObject = new JSONObject();
+       int i = 0;
+       int pages = Integer.valueOf(page);
+       if(pages<=0) pages=1;
+       if(pages>=totalPage) pages=totalPage;
+       if(total<=6){
+           for(webTitle s:webTitles)
+           {
+             try {
+               if(s.getAnswer().isEmpty());
+             }catch (Exception ex )
+             {
+                 s.setAnswer("暂未回答");
+             }
+               jsonObject.put(i+"",s);
+               i++;
+           }
+       }else {
+           for (int m = (pages - 1) * 6; m < total; m++) {
+               if (i >= 6) break;
+               try {
+                   if(webTitles.get(m).getAnswer().isEmpty());
+               }catch (Exception ex )
+               {
+                   webTitles.get(m).setAnswer("暂未回答");
+               }
+
+              // if(webTitles.get(m).getAnswer().isEmpty())webTitles.get(m).setAnswer("暂未回答");
+               jsonObject.put(i + "", webTitles.get(m));
+               i++;
+           }
+       }
+       if(i==6)jsonObject.put("size",6);
+       else jsonObject.put("size",i);
+       jsonObject.put("curPage",pages);
+       jsonObject.put("totalPage",totalPage);
+       return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
+   }
+   @RequestMapping("/wangye-neirong/{contentid}")
+    @ResponseBody
+    public String getWebById(@PathVariable("contentid")String contentid)
+   {
+       JSONObject jsonObject = new JSONObject();
+       Webquestion webquestion = Upload.getWebQuestionById(contentid);
+      try
+      {
+          if(webquestion.getAnswer().isEmpty()) ;
+      }catch (Exception ex)
+      {
+          webquestion.setAnswer("暂未回答");
+      }
+       jsonObject.put("0",webquestion);
+       return JSON.toJSONString(jsonObject,SerializerFeature.DisableCircularReferenceDetect);
    }
 }

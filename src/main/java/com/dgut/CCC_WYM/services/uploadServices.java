@@ -55,4 +55,8 @@ public class uploadServices {
     {
         return  Upload.getAllTitle();
     }
+    public Webquestion getWebQuestionById(String qid)
+    {
+        return Upload.getWebQuestionByQid(qid);
+    }
 }

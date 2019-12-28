@@ -192,7 +192,7 @@
             <div class="but_list">
                 <ul class="question">
                     <li>
-                        <a href="Jiaoxuehudong-wangye-neirong.html?content_id=1">请问老师高斯定理怎么理解</a>
+                        <a href="Jiaoxuehudong-wangye-neirong.html">请问老师高斯定理怎么理解</a>
                         <span>[2019-01-09]</span>
                     </li>
                 </ul>
@@ -282,8 +282,8 @@
                     var size = data.size;
                     for (i=0;i<size;i++) {
                         contextHtml += '                    <li>\n' +
-                            '                        <a href="Jiaoxuehudong-wangye-neirong.html?content_id='+ data[i+''].question_id+'">请问老师高斯定理怎么理解</a>\n' +
-                            '                        <span>[2019-01-09]</span>\n' +
+                            '                        <a href="Jiaoxuehudong-wangye-neirong.html?content_id='+ data[i+''].question_id+'">'+data[i+''].title+'</a>\n' +
+                            '                        <span>['+ data[''+i].time +']</span>\n' +
                             '                    </li>'
                     }
                     $(".question").html(contextHtml);

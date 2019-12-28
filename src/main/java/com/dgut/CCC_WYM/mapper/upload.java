@@ -40,6 +40,9 @@ public interface upload {
     List<beforeQQ> getBeforQQ();
     @Insert("insert into question(name,title,times,content) values(#{name},#{title},#{times},#{content})")
     void insertIntoQuestion(@Param("name")String name,@Param("title")String title,@Param("times")String times,@Param("content")String content);
-    @Select("select name as question_name,title,times from question")
+    @Select("select * from question")
     List<webTitle> getAllTitle();
+    @Select("select * from question where question_id = #{question_id}")
+    Webquestion getWebQuestionByQid(String qid);
+
 }

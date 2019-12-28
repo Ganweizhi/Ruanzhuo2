@@ -1,19 +1,29 @@
 package com.dgut.CCC_WYM.javabeans;
 
-import org.apache.ibatis.annotations.Select;
 
 public class webTitle {
-    private String question_name;
+    private String question_id;
+    private String name;
     private String title;
     private String times;
+    private String content;
+    private String answer;
     webTitle(){}
 
-    public String getQuestion_name() {
-        return question_name;
+    public String getQuestion_id() {
+        return question_id;
     }
 
-    public void setQuestion_name(String question_name) {
-        this.question_name = question_name;
+    public void setQuestion_id(String question_id) {
+        this.question_id = question_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getTitle() {
@@ -30,5 +40,21 @@ public class webTitle {
 
     public void setTimes(String times) {
         this.times = times;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 }
