@@ -1,5 +1,6 @@
 package com.dgut.group22.service;
 
+import com.dgut.group22.dao.ISuccessCourseDao;
 import com.dgut.group22.javaBean.*;
 import com.dgut.group22.dao.resourceDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ public class resourceService {
 
     @Autowired
     private resourceDao resourceDao;
+
     public List<resource> GetAllResource(){
         List<resource> resources = resourceDao.selectAllResource();
         return resources;
@@ -29,6 +31,7 @@ public class resourceService {
             return null;
         }
         SuccessCourse successCourse = resourceDao.selectSuccessCourse(course.getCourse_id(),teacher.getTeacher_id());
+        System.out.println(successCourse.toString());
         return successCourse;
     }
 

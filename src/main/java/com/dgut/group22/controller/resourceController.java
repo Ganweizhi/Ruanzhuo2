@@ -153,7 +153,8 @@ public class resourceController {
         SuccessCourse successCourse = resourceService.selectSuccessCourse(course_name,teacher_name);
 //        System.out.println(successCourse.toString());
         if(successCourse==null){
-            return "没有找到该门课程，请重新上传";
+            code="400";
+            return code;
         }
 //        resource resource = new resource();
 //        resource.setSuccess_id(successCourse.getSuccess_id());
