@@ -48,7 +48,7 @@ public class GroupImageUpload {
        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/group_image/qq_image/" + newName;
        System.out.println(url);
        Upload.setQQimage(newName,success_id);
-       return "{\"success\":1}";
+       return "redirect:afterTable/super_admin.html";
    }
    @RequestMapping("/getCourse_id")
    @ResponseBody
@@ -90,6 +90,21 @@ public class GroupImageUpload {
     public String getSuccess_id()
     {
       List<success_id> success_ids= Upload.getALLsucessIdForQQ();
+        JSONObject jsonObject = new JSONObject();
+        int i = 0;
+        for(success_id t:success_ids)
+        {
+            jsonObject.put(i+"",t);
+            i++;
+        }
+        jsonObject.put("size",i);
+        return  JSON.toJSONString(jsonObject,SerializerFeature.DisableCircularReferenceDetect);
+    }
+    @RequestMapping("/WechatgetSuccess_id")
+    @ResponseBody
+    public String getWechatSuccess_id()
+    {
+        List<success_id> success_ids= Upload.getALLsucessIdForQQ();
         JSONObject jsonObject = new JSONObject();
         int i = 0;
         for(success_id t:success_ids)
@@ -144,6 +159,9 @@ public class GroupImageUpload {
         else totalPage = total/3+1;
         JSONObject jsonObject = new JSONObject();
         int i = 0;
+        int pages = Integer.valueOf(page);
+        if(pages<=0) pages=1;
+        if(pages>=totalPage) pages=totalPage;
         if(total<=3){
             for(image_wechat s:AllWechat)
             {
@@ -151,7 +169,6 @@ public class GroupImageUpload {
                 i++;
             }
         }else {
-            int pages = Integer.valueOf(page);
             for (int m = (pages - 1) * 3; m < total; m++) {
                 if (i >= 3) break;
                 jsonObject.put(i + "", AllWechat.get(m));
@@ -160,6 +177,7 @@ public class GroupImageUpload {
         }
         if(i==3)jsonObject.put("size",3);
         else jsonObject.put("size",i);
+        jsonObject.put("curPage",pages);
         jsonObject.put("totalPage",totalPage);
         return JSON.toJSONString(jsonObject,SerializerFeature.DisableCircularReferenceDetect);
     }
@@ -174,6 +192,9 @@ public class GroupImageUpload {
         else totalPage = total/3+1;
         JSONObject jsonObject = new JSONObject();
         int i = 0;
+        int pages = Integer.valueOf(page);
+        if(pages<=0) pages=1;
+        if(pages>=totalPage) pages=totalPage;
         if(total<=3){
             for(beforeQQ s:beforeQQS)
             {
@@ -181,7 +202,6 @@ public class GroupImageUpload {
                 i++;
             }
         }else {
-            int pages = Integer.valueOf(page);
             for (int m = (pages - 1) * 3; m < total; m++) {
                 if (i >= 3) break;
                 jsonObject.put(i + "", beforeQQS.get(m));
@@ -190,6 +210,7 @@ public class GroupImageUpload {
         }
         if(i==3)jsonObject.put("size",3);
         else jsonObject.put("size",i);
+        jsonObject.put("curPage",pages);
         jsonObject.put("totalPage",totalPage);
         return JSON.toJSONString(jsonObject,SerializerFeature.DisableCircularReferenceDetect);
     }

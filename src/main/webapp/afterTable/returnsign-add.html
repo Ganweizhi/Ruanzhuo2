@@ -20,40 +20,34 @@
     <body>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form">
+                <form class="layui-form" action="/Webquestion" method="post">
                     <div class="layui-form-item">
                         <label for="username" class="layui-form-label">
                             <span class="x-red">*</span>发表人</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="username" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                            <input type="text"  name="name" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
                     </div>
                     <div class="layui-form-item">
                         <label for="username" class="layui-form-label">
                             <span class="x-red">*</span>标题</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="username" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                            <input type="text"  name="title" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
                     </div>
-                    
                     <div class="layui-form-item">
                         <label for="username" class="layui-form-label">
                             <span class="x-red">*</span>发表时间</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="username" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                            <input type="text" id="username" name="times" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
                     </div>
-                    
-            
-                   
-                    
-
-        <div class="layui-form-item layui-form-text">
-            <label for="desc" class="layui-form-label">反馈内容</label>
-            <div class="layui-input-block">
-                <textarea placeholder="请输入内容" id="desc" name="desc" class="layui-textarea"></textarea>
-            </div>
-        </div>
+                    <div class="layui-form-item layui-form-text">
+                        <label for="desc" class="layui-form-label">反馈内容</label>
+                        <div class="layui-input-block">
+                            <textarea placeholder="请输入内容" id="desc" name="content" class="layui-textarea"></textarea>
+                        </div>
+                    </div>
         <div class="layui-form-item">
             <label for="L_repass" class="layui-form-label"></label>
-            <button class="layui-btn" lay-filter="add" lay-submit="">发布</button></div>
+            <button class="layui-btn" lay-filter="add" lay-submit="" onclick="submit()">提交</button></div>
         </form>
         </div>
         </div>

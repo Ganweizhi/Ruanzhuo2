@@ -2,10 +2,7 @@ package com.dgut.CCC_WYM.mapper;
 
 import com.dgut.CCC_WYM.javabeans.*;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -35,8 +32,14 @@ public interface upload {
     void setWechatimage(@Param("wechat")String wechat,@Param("course_id")String course_id,@Param("teacher_id")String teacher_id);
     @Select("select success_id,course_name from successCourse,course where course.course_id = successCourse.course_id and success_qq is null ")
     List<success_id> getAllSuccess_idForQQ();
+    @Select("select success_id,course_name from successCourse,course where course.course_id = successCourse.course_id and success_wechat is null ")
+    List<success_id> getAllSuccess_idForWechat();
     @Update("update successCourse set success_QQ=null where success_id = #{success_id}")
     void deleteQQ(String success_id);
     @Select("select success_QQ,course.course_name,successCourse.course_id from successCourse,course where successCourse.course_id = course.course_id and success_QQ is not null")
     List<beforeQQ> getBeforQQ();
+    @Insert("insert into question(name,title,times,content) values(#{name},#{title},#{times},#{content})")
+    void insertIntoQuestion(@Param("name")String name,@Param("title")String title,@Param("times")String times,@Param("content")String content);
+    @Select("select name as question_name,title,times from question")
+    List<webTitle> getAllTitle();
 }
