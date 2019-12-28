@@ -1,4 +1,4 @@
-package com.dgut.CCC_WYM.beans;
+package com.dgut.CCC_WYM.javabeans;
 
 import javax.xml.crypto.Data;
 

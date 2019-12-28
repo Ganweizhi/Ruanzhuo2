@@ -1,4 +1,4 @@
-package com.dgut.CCC_WYM.beans;
+package com.dgut.CCC_WYM.javabeans;
 
 public class course {
     private String course_id;
