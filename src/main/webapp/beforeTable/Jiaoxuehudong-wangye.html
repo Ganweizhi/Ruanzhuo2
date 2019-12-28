@@ -15,6 +15,7 @@
     <!-- js -->
     <script type="text/javascript" src="js/jquery1.42.min.js"></script>
     <script type="text/javascript" src="js/jquery.SuperSlide.2.1.3.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 </head>
 
 <body>
@@ -191,23 +192,11 @@
             <div class="but_list">
                 <ul class="question">
                     <li>
-                        <a href="Jiaoxuehudong-wangye-neirong.html">请问老师高斯定理怎么理解</a>
+                        <a href="Jiaoxuehudong-wangye-neirong.html?content_id=1">请问老师高斯定理怎么理解</a>
                         <span>[2019-01-09]</span>
                     </li>
                 </ul>
                 <div class="pager">
-                    <a href="javascript:;" class="p" title="前一页" onclick="doGo(0);">«</a>
-                    <a href="javascript:;" class="current" onclick="doGo(1)">1</a>
-                    <a href="javascript:;" class="" onclick="doGo(2)">2</a>
-                    <a href="javascript:;" class="" onclick="doGo(3)">3</a>
-                    <a href="javascript:;" class="" onclick="doGo(4)">4</a>
-                    <a href="javascript:;" class="" onclick="doGo(5)">5</a>
-                    <a href="javascript:;" class="" onclick="doGo(6)">6</a>
-                    <a href="javascript:;" class="" onclick="doGo(7)">7</a>
-                    <a href="javascript:;" class="" onclick="doGo(8)">8</a>
-                    <a href="javascript:;" class="" onclick="doGo(9)">9</a>
-                    <a href="javascript:;" onclick="doGo(2)" class="p" title="后一页">»</a>
-                    <span>到第<input name="" type="text" id="ymz">页 <a href="#" onclick="goto_ymz()">确定</a></span>
                 </div>
             </div>
             <!-- 详情内容介绍 -->
@@ -293,8 +282,8 @@
                     var size = data.size;
                     for (i=0;i<size;i++) {
                         contextHtml += '                    <li>\n' +
-                            '                        <a href="Jiaoxuehudong-wangye-neirong.html?content_id="+'+ data[''+i].+'>'+data[i+''].title+'</a>\n' +
-                            '                        <span>['+ data[''+i].time +']</span>\n' +
+                            '                        <a href="Jiaoxuehudong-wangye-neirong.html?content_id='+ data[i+''].question_id+'">请问老师高斯定理怎么理解</a>\n' +
+                            '                        <span>[2019-01-09]</span>\n' +
                             '                    </li>'
                     }
                     $(".question").html(contextHtml);

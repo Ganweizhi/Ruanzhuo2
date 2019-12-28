@@ -47,4 +47,12 @@ public class uploadServices {
     {
        return Upload.getBeforQQ();
     }
+    public void webUpload(String name,String title,String times,String content)
+    {
+        Upload.insertIntoQuestion(name, title, times, content);
+    }
+    public List<webTitle> getAllTitle()
+    {
+        return  Upload.getAllTitle();
+    }
 }

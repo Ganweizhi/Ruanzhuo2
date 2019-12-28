@@ -15,6 +15,7 @@
     <!-- js -->
     <script type="text/javascript" src="js/jquery1.42.min.js"></script>
     <script type="text/javascript" src="js/jquery.SuperSlide.2.1.3.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 </head>
 
 <body>
@@ -209,6 +210,7 @@
                         }
                     })(jQuery);
                     var contentid=$.getUrlParam('content_id');
+                    console.log(contentid)
                     $.ajax({
                         type: "POST",
                         url: "/wangye-neirong/"+contentid,
@@ -219,13 +221,16 @@
                             if (data != null) {
                                 var contextHtml = "";
                                 console.log(data);
-                                var list = data['data'];
-                                contextHtml += '<h1>'+list.measure_title+'</h1>'+'<p><span>时间'+list.measure_time+'</span><span>来源：东莞理工学院教务处</span>'+'</span><span>'+'作者：'+list.measureContent.content_author+'</span>\n' +
+                                contextHtml += '<h1>'+data.title+'</h1>'+'<p><span>时间'+data.times+'</span><span>来源：东莞理工学院教务处</span>'+'</span><span>'+'作者：'+data.name+'</span>\n' +
                                     '\t\t\t  \t\t</p>'
                                 $(".biaot_xq").html(contextHtml);
                                 var contextHtml2 = "";
-                                contextHtml2 +='<p>'+list.measureContent.content+'</p>>'
+                                contextHtml2 +='<p>&nbsp;&nbsp;&nbsp;'+data["0"].contnet+'</p>'
                                 $(".jianj_k2").html(contextHtml2);
+
+                                var contextHtml3 = "";
+                                contextHtml3 +='<p>&nbsp;&nbsp;&nbsp;'+data["0"].answer+'</p>'
+                                $(".jianj_k3").html(contextHtml3);
                             }
                         }
                     });
@@ -235,15 +240,14 @@
             <div class="jianj_k">
                 <div class="biaot_xq">
                 </div>
+                <p style="font-size: 20px;font-weight: bold">学生问题:</p>
                 <div class="jianj_k2">
                 </div>
-                <a href="javascript:history.go(-1);" style="float: right; color: #545454;">[关闭]</a>
-                <div class="fany">
-                    <a href="#">上一页：没有了</a>
-                    <a href="#">上一页：网络空间安全学院软件需求教学大纲</a>
-                    <div class="bdsharebuttonbox" style="position: absolute;right: 30px;bottom: 15px;"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
-                    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+                <p style="font-size: 20px;font-weight: bold">老师回答:</p>
+                <div class="jianj_k3">
+                    <p>&nbsp;&nbsp;&nbsp;123</p>
                 </div>
+                <a href="javascript:history.go(-1);" style="float: right; color: #545454;">[关闭]</a>
             </div>
             <!-- 详情内容介绍 -->
         </div>

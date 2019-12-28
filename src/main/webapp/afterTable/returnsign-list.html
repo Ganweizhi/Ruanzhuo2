@@ -183,14 +183,14 @@ function delAll(argument) {
                     var totalPate = msg.totalPage;
                     var tpage="";
                     var size = msg.size;
-                    console.log("size:"+size);
+                    console.log(msg);
                     for( i=0;i<size;i++){
                         str += ' <tr>\n' +
                             '                            <td>\n' +
                             '                                <input type="checkbox" name="" lay-skin="primary"></td>\n' +
-                            '                            <td>'+data[i+''].name+'</td>\n' +
-                            '                            <td>'+data[i+''].title+'</td>\n' +
-                            '                            <td>'+data[i+''].times+'</td>\n' +
+                            '                            <td>'+msg[i+""].question_name+'</td>\n' +
+                            '                            <td>'+msg[i+""].title+'</td>\n' +
+                            '                            <td>'+msg[i+""].times+'</td>\n' +
                             '                            <td class="td-manage">\n' +
                             '                                <a title="查看" onclick="xadmin.open(\'编辑\',\'returnsign-edit.html\')" href="javascript:;">\n' +
                             '                                    <i class="layui-icon">&#xe63c;</i></a>\n' +
