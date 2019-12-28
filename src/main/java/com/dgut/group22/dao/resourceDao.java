@@ -4,9 +4,11 @@ import com.dgut.group22.javaBean.*;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 @Mapper
 public interface resourceDao {
     @Select("select * from resource")

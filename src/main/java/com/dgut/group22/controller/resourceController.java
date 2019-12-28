@@ -9,12 +9,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/resource")
@@ -47,7 +49,6 @@ public class resourceController {
     @ResponseBody
     private String downLoadFile(HttpServletResponse response ,HttpServletRequest request,String fileName){
         String downloadFilePath =System.getProperty("user.dir");
-//        downloadFilePath = "G:\\复习";
         downloadFilePath =downloadFilePath+"\\src\\main\\resources\\ppt\\";
 //        String downloadFilePath = request.getServletContext().getRealPath("/ppt/");//被下载的文件在服务器中的路径,
 //        String fileName = " ";
@@ -144,18 +145,47 @@ public class resourceController {
         return strings;
     }
 
-    @RequestMapping(value = "/UploadPPT",method = RequestMethod.GET)
+    @RequestMapping(value = "/UploadPPT",method = RequestMethod.POST)
     @ResponseBody
-    public String UploadPPT(HttpServletRequest request,String course_name,String teacher_name){
+    public String UploadPPT(MultipartFile[] file, HttpServletRequest request, String course_name, String teacher_name){
+        String code="0";
         System.out.println(course_name+teacher_name);
         SuccessCourse successCourse = resourceService.selectSuccessCourse(course_name,teacher_name);
 //        System.out.println(successCourse.toString());
         if(successCourse==null){
-            return "没有找到该门课程，请重新上传";
+            code="400";
+            return code;
         }
-        resource resource = new resource();
-        resource.setSuccess_id(successCourse.getSuccess_id());
-        resourceService.insertTextbook(resource);
-        return "操作成功！";
+//        resource resource = new resource();
+//        resource.setSuccess_id(successCourse.getSuccess_id());
+//        resourceService.insertTextbook(resource);
+//        return "操作成功！";
+        try {
+            //创建文件在服务器端存放路径
+            String downloadFilePath = System.getProperty("user.dir");
+            downloadFilePath =downloadFilePath+"\\src\\main\\resources\\ppt\\";
+            File fileDir = new File(downloadFilePath);
+            //生成文件在服务器端存放的名字
+            for(int i=0; i<file.length; i++) {
+//                String fileSuffix = file[i].getOriginalFilename().substring(file[i].getOriginalFilename().lastIndexOf("."));
+//                String fileName= UUID.randomUUID().toString()+fileSuffix;
+                String fileName=file[i].getOriginalFilename();
+                File files = new File(fileDir+"/"+fileName);
+                //上传
+                file[i].transferTo(files);
+                resource resource = new resource();
+                resource.setSuccess_id(successCourse.getSuccess_id());
+                resource.setResource_textbook(fileName);
+                resourceService.insertTextbook(resource);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "上传失败";
+        }
+        return code;
+
     }
+
+
 }
