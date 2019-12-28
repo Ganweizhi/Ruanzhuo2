@@ -7,7 +7,7 @@
     <meta name="description" content="教育学校">
     <meta name="format-detection" content="telephone=no"><!-- 禁止IPHONE识别手机号码 -->
     <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
-    <title>东莞理工学院-教学安排</title>
+    <title>东莞理工学院-教学管理</title>
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/aos.css">
@@ -18,7 +18,6 @@
 </head>
 
 <body>
-
 
 <!-- 头部 -->
 <div class="head">
@@ -129,7 +128,6 @@
         </div>
     </div>
 </div>
-
 <script type="text/javascript">
     $(document).ready(function(){
         $(".head .dh ul li").hover(function(){
@@ -168,46 +166,83 @@
 <div class="px1200">
     <div class="ziye">
         <div class="left" aos="fade-up-right">
-            <h3 class="biaot">教学互动</h3>
+            <h3 class="biaot">教学改革成果</h3>
             <ul id="sidemenu">
-                <li ><a href="Jiaoxuehudong-wechat.html">微信群</a></li>
-                <li ><a href="Jiaoxuehudong-QQ.html">QQ群</a></li>
-                <li  class="no"><a href="#">网页版</a></li>
-
+                <!--<li class="no"><a href="#">党团建设</a></li>-->
+                <!--<li><a href="ChungLife_sq.html">视频春光</a></li>-->
+                <!--<li><a href="#">文艺活动</a></li>-->
+                <!--<li><a href="#">拓展训练</a></li>-->
+                <!--<li><a href="#">家校连心</a></li>-->
+                <!--<li>-->
+                <!--<a href="javascript:;">名师工作室</a>-->
+                <!--<dl>-->
+                <!--<dd><a href="ChungLife_ms.html">名校长</a></dd>-->
+                <!--<dd><a href="#">名园长</a></dd>-->
+                <!--<dd><a href="#">名教师</a></dd>-->
+                <!--<dd><a href="#">名学生</a></dd>-->
+                <!--</dl> -->
+                <!--</li>-->
             </ul>
-            <!--            <div class="erwm">-->
-            <!--                <div><img src="images/erweim.jpg"></div>-->
-            <!--            </div>-->
-            <!--            <p class="erwm-text">关注东莞理工学院微信公众号</p>-->
+            <!--			<div class="erwm">-->
+            <!--				<div><img src="images/erweim.jpg"></div>-->
+            <!--			</div>-->
+            <!--			<p class="erwm-text">关注东莞理工学院微信公众号</p>-->
         </div>
         <div class="right" aos="fade-up-left">
-            <div class="dqlj"><a href="index.html">首页</a>·<a href="#">教学互动</a>·<a>贴吧</a></div>
+            <div class="dqlj"><a href="index.html">首页</a>·<a href="ChungLife_dt.html">教学大纲</a>·<a>大纲详情</a></div>
             <div class="right_biaot">
                 <i></i>
-                <h2>东莞理工学院贴吧</h2>
+                <h2>大学物理C</h2>
                 <i class="right"></i>
             </div>
             <!-- 详情内容 -->
-            <div class="but_list">
-                <ul class="question">
-                    <li>
-                        <a href="Jiaoxuehudong-wangye-neirong.html">请问老师高斯定理怎么理解</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                </ul>
-                <div class="pager">
-                    <a href="javascript:;" class="p" title="前一页" onclick="doGo(0);">«</a>
-                    <a href="javascript:;" class="current" onclick="doGo(1)">1</a>
-                    <a href="javascript:;" class="" onclick="doGo(2)">2</a>
-                    <a href="javascript:;" class="" onclick="doGo(3)">3</a>
-                    <a href="javascript:;" class="" onclick="doGo(4)">4</a>
-                    <a href="javascript:;" class="" onclick="doGo(5)">5</a>
-                    <a href="javascript:;" class="" onclick="doGo(6)">6</a>
-                    <a href="javascript:;" class="" onclick="doGo(7)">7</a>
-                    <a href="javascript:;" class="" onclick="doGo(8)">8</a>
-                    <a href="javascript:;" class="" onclick="doGo(9)">9</a>
-                    <a href="javascript:;" onclick="doGo(2)" class="p" title="后一页">»</a>
-                    <span>到第<input name="" type="text" id="ymz">页 <a href="#" onclick="goto_ymz()">确定</a></span>
+            <script>
+                $(function () {
+                    doGo(1);
+                });
+                function doGo(page) {
+                    (function ($) {
+                        $.getUrlParam = function (name) {
+                            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+                            var r = window.location.search.substr(1).match(reg);
+                            if (r != null) return unescape(r[2]); return null;
+                        }
+                    })(jQuery);
+                    var contentid=$.getUrlParam('content_id');
+                    $.ajax({
+                        type: "POST",
+                        url: "/wangye-neirong/"+contentid,
+                        // data: {"name":"yd","pwd":"123456"},
+                        async:false,
+                        dataType: "json",
+                        success: function (data) {
+                            if (data != null) {
+                                var contextHtml = "";
+                                console.log(data);
+                                var list = data['data'];
+                                contextHtml += '<h1>'+list.measure_title+'</h1>'+'<p><span>时间'+list.measure_time+'</span><span>来源：东莞理工学院教务处</span>'+'</span><span>'+'作者：'+list.measureContent.content_author+'</span>\n' +
+                                    '\t\t\t  \t\t</p>'
+                                $(".biaot_xq").html(contextHtml);
+                                var contextHtml2 = "";
+                                contextHtml2 +='<p>'+list.measureContent.content+'</p>>'
+                                $(".jianj_k2").html(contextHtml2);
+                            }
+                        }
+                    });
+                }
+
+            </script>
+            <div class="jianj_k">
+                <div class="biaot_xq">
+                </div>
+                <div class="jianj_k2">
+                </div>
+                <a href="javascript:history.go(-1);" style="float: right; color: #545454;">[关闭]</a>
+                <div class="fany">
+                    <a href="#">上一页：没有了</a>
+                    <a href="#">上一页：网络空间安全学院软件需求教学大纲</a>
+                    <div class="bdsharebuttonbox" style="position: absolute;right: 30px;bottom: 15px;"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
+                    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
                 </div>
             </div>
             <!-- 详情内容介绍 -->
@@ -216,7 +251,7 @@
 </div>
 
 <!-- footer -->
-<div class="footerBeiJ" style="height: 200px; overflow: inherit;">
+<div class="footerBeiJ"  style="height: 200px; overflow: inherit;">
     <div class="footerZd">
         <div class="px1200">
             <div class="footerLogo"><img src="images/logoFooter.png"></div>
@@ -237,7 +272,7 @@
         </div>
         <div class="beian">
             <div class="px1200">
-                <p>东莞理工学院  Copyright © 2016-2020 All Rights Reserved    　粤ICP备05012247号       总数：439767 </p>
+                <p>东莞理工学院  Copyright © 2016-2020 All Rights Reserved    　粤ICP备05012247号          总数：439767 </p>
             </div>
         </div>
     </div>
@@ -274,48 +309,4 @@
             scrollTop: $(window).height()
         }, 1200);
     });
-</script>
-<script>
-    $(function () {
-        doGo(1);
-    });
-    function doGo(page) {
-        $.ajax({
-            type: "post",
-            url: "/jiaoxuehudong_wangye/"+page,
-            // data: {"name":"yd","pwd":"123456"},
-            async:false,
-            dataType: "json",
-            success: function (data) {
-                if (data != null) {
-                    var contextHtml = "";
-                    console.log(data);
-                    var size = data.size;
-                    for (i=0;i<size;i++) {
-                        contextHtml += '                    <li>\n' +
-                            '                        <a href="Jiaoxuehudong-wangye-neirong.html?content_id="+'+ data[''+i].+'>'+data[i+''].title+'</a>\n' +
-                            '                        <span>['+ data[''+i].time +']</span>\n' +
-                            '                    </li>'
-                    }
-                    $(".question").html(contextHtml);
-
-                    var context = "";
-                    var totalPage = data.page;
-                    var curPage = data.curPage;
-                    var page = curPage > 1?curPage-1:1;
-                    context += '<a href="javascript:;" class="p" title="前一页" onclick="doGo(' + page + ');">«</a>';
-                    console.log(totalPage);
-                    for (var i=1;i<=totalPage;i++) {
-                        if (curPage === i) context += '<a href="javascript:;" class="current" onclick="doGo('+i+')">'+i+'</a>';
-                        else context += '<a href="javascript:;" onclick="doGo('+i+')">'+i+'</a>';
-                    }
-                    page = curPage === totalPage?curPage:curPage+1;
-                    context += '<a href="javascript:;" onclick="doGo('+page+')" class="p" title="后一页">»</a>';
-                    console.log(context);
-                    $(".pager").html(context);
-                }
-            }
-        });
-    }
-
 </script>
