@@ -28,4 +28,7 @@ public interface resourceDao {
 
     @Insert("insert into resource values (#{resource_id},#{success_id},#{resource_textbook},#{resource_video},#{resource_base},#{resource_experiment},#{resource_document})")
     int insertTextbook(resource resource);
+
+    @Select("select * from successCourse where success_id= #{success_id}")
+    SuccessCourse selectSuccessCourseById(Integer success_id);
 }

@@ -1,8 +1,6 @@
 package com.dgut.group22.controller;
 
-import com.dgut.group22.javaBean.SuccessCourse;
-import com.dgut.group22.javaBean.experiment_house;
-import com.dgut.group22.javaBean.resource;
+import com.dgut.group22.javaBean.*;
 import com.dgut.group22.service.resourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,9 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping("/resource")
@@ -186,6 +182,23 @@ public class resourceController {
         return code;
 
     }
-
+    @RequestMapping(value = "/GetAlltextbook",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> GetAlltextbook(HttpServletRequest request) throws FileNotFoundException {
+        List<resource> resourceList = new ArrayList<>();
+        List<SuccessCourse> successCourseList = new ArrayList<>();
+        List<resource> resources=resourceService.GetAllResource();
+        Map<String, Object> map = new HashMap<>();
+        for(resource resource: resources ){
+            if(resource.getResource_textbook()!=null){
+                resourceList.add(resource);
+                SuccessCourse successCourse = resourceService.selectSuccessCourseById(resource.getSuccess_id());
+                successCourseList.add(successCourse);
+            }
+        }
+        map.put("resourceList",resourceList);
+        map.put("successCourseList",successCourseList);
+        return map;
+    }
 
 }

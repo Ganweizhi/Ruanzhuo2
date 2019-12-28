@@ -39,4 +39,7 @@ public class resourceService {
         return resourceDao.insertTextbook(resource);
     }
 
+    public SuccessCourse selectSuccessCourseById(Integer success_id){
+        return resourceDao.selectSuccessCourseById(success_id);
+    }
 }
