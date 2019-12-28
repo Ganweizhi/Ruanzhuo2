@@ -145,9 +145,10 @@ public class resourceController {
         return strings;
     }
 
-    @RequestMapping(value = "/UploadPPT",method = RequestMethod.GET)
+    @RequestMapping(value = "/UploadPPT",method = RequestMethod.POST)
     @ResponseBody
     public String UploadPPT(MultipartFile[] file, HttpServletRequest request, String course_name, String teacher_name){
+        String code="0";
         System.out.println(course_name+teacher_name);
         SuccessCourse successCourse = resourceService.selectSuccessCourse(course_name,teacher_name);
 //        System.out.println(successCourse.toString());
@@ -181,7 +182,7 @@ public class resourceController {
             e.printStackTrace();
             return "上传失败";
         }
-        return "上传成功";
+        return code;
 
     }
 
