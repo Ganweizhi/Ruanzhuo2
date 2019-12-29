@@ -1,10 +1,7 @@
 package com.dgut.group22.dao;
 
 import com.dgut.group22.javaBean.*;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -42,8 +39,8 @@ public interface resourceDao {
     @Select("select * from teacher where teacher_id= #{teacher_id}")
     Teacher selectTeacherById(int teacher_id);
 
-    @Delete("delete from resource where resource_id= #{resource_id}")
-     int DeleteTextbook(Integer resource_id);
+    @Update("update resource set resource_textbook=#{resource_textbook}, resource_video=#{resource_video},  resource_base=#{resource_base}, resource_experiment=#{resource_experiment}, resource_document=#{resource_document} where resource_id= #{resource_id}")
+     int DeleteTextbook(resource resource);
 
     @Delete("delete from experiment_house where experiment_id= #{experiment_id}")
     int DeleteExperiment_house(Integer experiment_id);

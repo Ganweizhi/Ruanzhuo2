@@ -347,8 +347,14 @@ public class resourceController {
     @ResponseBody
     public String DeleteTextbook(Integer resource_id){
         String code="0";
+        resource resource = resourceService.selectResourceById(resource_id);
+        resource.setResource_textbook(null);
+        resource.setResource_video(null);
+        resource.setResource_base(null);
+        resource.setResource_experiment(null);
+        resource.setResource_document(null);
         int state=1;
-        state= resourceService.DeleteTextbook(resource_id);
+        state= resourceService.DeleteTextbook(resource);
         System.out.println(state);
         if(state==0)
             code="400";

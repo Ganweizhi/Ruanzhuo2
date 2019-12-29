@@ -43,8 +43,8 @@ public class resourceService {
         return resourceDao.selectSuccessCourseById(success_id);
     }
 
-    public int DeleteTextbook(Integer resource_id){
-        return resourceDao.DeleteTextbook(resource_id);
+    public int DeleteTextbook(resource resource){
+        return resourceDao.DeleteTextbook(resource);
     }
 
     public int DeleteExperiment_house(Integer experiment_id){
