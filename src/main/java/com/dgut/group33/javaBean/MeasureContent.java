@@ -28,4 +28,13 @@ public class MeasureContent {
     public void setContent(String content) {
         this.content = content;
     }
+
+    @Override
+    public String toString() {
+        return "MeasureContent{" +
+                "id=" + id +
+                ", content_author='" + content_author + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }

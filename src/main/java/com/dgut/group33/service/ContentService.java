@@ -1,6 +1,7 @@
 package com.dgut.group33.service;
 
 import com.dgut.group33.dao.ContentMapper;
+import com.dgut.group33.javaBean.AddEditContent;
 import com.dgut.group33.javaBean.MeasureContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +18,7 @@ public class ContentService{
 
     public void delete(int content_id){contentMapper.delete(content_id);}
 
-    public void insert(MeasureContent content){contentMapper.insert(content);}
+    public void insert(AddEditContent content){contentMapper.insert(content);}
 
-    public void update(MeasureContent content){contentMapper.update(content);}
+    public void update(AddEditContent content){contentMapper.update(content);}
 }

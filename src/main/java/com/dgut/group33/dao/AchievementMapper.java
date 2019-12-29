@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface AchievementMapper {
-    @Select("select * from achievement")
+    @Select("select * from achievement order by measure_time desc")
     List<Measure> select();
 
     @Select("select * from achievement where content_id=#{content_id}")

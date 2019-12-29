@@ -30,7 +30,7 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5">
+                    <!--<form class="layui-form layui-col-space5">
                         <div class="layui-input-inline layui-show-xs-block">
                             <input class="layui-input" placeholder="开始日" name="start" id="start"></div>
                         <div class="layui-input-inline layui-show-xs-block">
@@ -41,7 +41,7 @@
                             <button class="layui-btn" lay-submit="" lay-filter="sreach">
                                 <i class="layui-icon">&#xe615;</i></button>
                         </div>
-                    </form>
+                    </form>-->
                 </div>
                 <div class="layui-card-header">
                     <!--<button class="layui-btn layui-btn-danger" onclick="delAll()">-->
@@ -61,7 +61,7 @@
                             <th>实验名称</th>
                             <th>操作</th></tr>
                         </thead>
-                        <tbody>
+                        <tbody class="body">
                         <tr>
                             <td>
                                 <input type="checkbox" name="" lay-skin="primary"></td>
@@ -103,7 +103,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="layui-card-body ">
+               <!-- <div class="layui-card-body ">
                     <div class="page">
                         <div>
                             <a class="prev" href="">&lt;&lt;</a>
@@ -114,7 +114,7 @@
                             <a class="next" href="">&gt;&gt;</a></div>
                     </div>
                 </div>
-            </div>
+            --></div>
         </div>
     </div>
 </div>
@@ -191,5 +191,36 @@ function delAll(argument) {
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });
 }</script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $.ajax({
+        url: "/resource/GetAllexperiment",
+        type: "GET",
+        dataType: "json",
+        async: false, //设置ajax的同步
+        success: function (data) {
+            if (data != null) {
+                console.log(data);
+                var tableHtml = "";
+                for (var i in data.resourceList) {
+                    tableHtml += "<tr>";
+                    tableHtml +="<td>\n" +
+                        "                                <input type=\"checkbox\" name=\"\" lay-skin=\"primary\"></td>"
+                    tableHtml += "<td>" + data.courseList[i].course_name + "</td>";
+                    tableHtml += "<td>" + data.teacherList[i].teacher_name + "</td>";
+                    tableHtml += "<td>2019-11-" + i + "</td>";
+                    tableHtml += "<td>" + data.resourceList[i].resource_experiment + "</td>";
+                    tableHtml +="<td class=\"td-manage\">\n" +
+                        "<a title=\"删除\" onclick=\"member_del(this,"+data.resourceList[i].resource_id+")\" id='dele' href=\"javascript:;\">\n" +
+                        "<i class=\"layui-icon\">&#xe640;</i></a>\n" +
+                        "</td>"
+                    tableHtml += "</tr>";
+                }
+                $(".body").html(tableHtml);
+            }
+        }
+    });
+
+</script>
 
 </html>
