@@ -54,4 +54,8 @@ public class resourceService {
     public Teacher selectTeacherById(int teacher_id){
         return resourceDao.selectTeacherById(teacher_id);
     }
+
+    public resource selectResourceById(Integer resource_id){
+        return resourceDao.selectResourceById(resource_id);
+    }
 }
