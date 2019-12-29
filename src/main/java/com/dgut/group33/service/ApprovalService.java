@@ -1,5 +1,6 @@
 package com.dgut.group33.service;
 
+import com.dgut.group33.javaBean.AddEditContent;
 import com.dgut.group33.javaBean.Measure;
 import com.dgut.group33.dao.ApprovalMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class ApprovalService{
 
     public void delete(int achievement_id){approvalMapper.delete(achievement_id);}
 
-    public void insert(Measure measure){approvalMapper.insert(measure);}
+    public void insert(AddEditContent measure){approvalMapper.insert(measure);}
 
-    public void update(Measure measure){approvalMapper.update(measure);}
+    public void update(AddEditContent measure){approvalMapper.update(measure);}
 }

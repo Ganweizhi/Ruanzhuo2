@@ -214,7 +214,7 @@
                                 console.log(data);
                                 var list = data['data'];
                                 for (var i in list) {
-                                    contextHtml += '<li><a href="Jiaoxuegaige-cuoshi-neirong.html?content_id=' + list[i].content_id + '"'+'</a>'+list[i].measure_title+'<span style="margin-left: 500px">' + list[i].measure_time + '</span></li >'
+                                    contextHtml += '<li><a style="width: 800px" href="Jiaoxuegaige-cuoshi-neirong.html?content_id=' + list[i].content_id + '"'+'</a>'+list[i].measure_title+'<span style="float:right;">' + list[i].measure_time + '</span></li >'
                                 }
                                 $(".but_list").html(contextHtml);
 
