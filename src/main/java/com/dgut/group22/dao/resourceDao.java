@@ -33,6 +33,12 @@ public interface resourceDao {
     @Select("select * from successCourse where success_id= #{success_id}")
     SuccessCourse selectSuccessCourseById(Integer success_id);
 
+    @Select("select * from course where course_id= #{course_id}")
+    Course selectCourseById(int course_id);
+
+    @Select("select * from teacher where teacher_id= #{teacher_id}")
+    Teacher selectTeacherById(int teacher_id);
+
     @Delete("delete from resource where resource_id= #{resource_id}")
      int DeleteTextbook(Integer resource_id);
 }

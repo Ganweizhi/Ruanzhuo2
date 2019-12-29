@@ -187,6 +187,8 @@ public class resourceController {
     public Map<String, Object> GetAlltextbook(HttpServletRequest request) throws FileNotFoundException {
         List<resource> resourceList = new ArrayList<>();
         List<SuccessCourse> successCourseList = new ArrayList<>();
+        List<Course> courseList = new ArrayList<>();
+        List<Teacher> teacherList = new ArrayList<>();
         List<resource> resources=resourceService.GetAllResource();
         Map<String, Object> map = new HashMap<>();
         for(resource resource: resources ){
@@ -194,10 +196,16 @@ public class resourceController {
                 resourceList.add(resource);
                 SuccessCourse successCourse = resourceService.selectSuccessCourseById(resource.getSuccess_id());
                 successCourseList.add(successCourse);
+                Course course = resourceService.selectCourseById(successCourse.getCourse_id());
+                courseList.add(course);
+                Teacher teacher = resourceService.selectTeacherById(successCourse.getTeacher_id());
+                teacherList.add(teacher);
             }
         }
         map.put("resourceList",resourceList);
-        map.put("successCourseList",successCourseList);
+//        map.put("successCourseList",successCourseList);
+        map.put("courseList",courseList);
+        map.put("teacherList",teacherList);
         return map;
     }
 
