@@ -214,12 +214,12 @@
                                 console.log(data);
                                 var list = data['data'];
                                 for (var i in list) {
-                                    contextHtml += '<li><a href="Jiaoxuegaige-cuoshi-neirong.html?contentid="' + list[i].contentid + '</a><span>' + list[i].date + '</span></li >'
+                                    contextHtml += '<li><a style="width: 800px" href="Jiaoxuegaige-cuoshi-neirong.html?content_id=' + list[i].content_id + '"'+'</a>'+list[i].measure_title+'<span style="float:right;">' + list[i].measure_time + '</span></li >'
                                 }
                                 $(".but_list").html(contextHtml);
 
                                 var context = "";
-                                var totalPage = data.totalPage;
+                                var totalPage = data.page;
                                 var curPage = data.curPage;
                                 var page = curPage > 1?curPage-1:1;
                                 context += '<a href="javascript:;" class="p" title="前一页" onclick="doGo(' + page + ');">«</a>';
@@ -239,29 +239,12 @@
 
             </script>
             <div class="but_list">
-                <ul>
-                    <li class="img"><a href="ChungLife_dt_xq.html"><img src="images/DGUT_img.jpg"></a></li>
-                    <!--<li>-->
-                        <!--<a href="#">东莞理工学院"十三五"专业建设与发展规划</a>-->
-                        <!--<span>[2019-01-09]</span>-->
-                    <!--</li>-->
-                </ul>
-                <div class="pager">
-                    <a href="javascript:;" class="p" title="前一页" onclick="doGo(0);">«</a>
-                    <a href="javascript:;" class="current" onclick="doGo(1)">1</a>
-                    <a href="javascript:;" class="" onclick="doGo(2)">2</a>
-                    <a href="javascript:;" class="" onclick="doGo(3)">3</a>
-                    <a href="javascript:;" class="" onclick="doGo(4)">4</a>
-                    <a href="javascript:;" class="" onclick="doGo(5)">5</a>
-                    <a href="javascript:;" class="" onclick="doGo(6)">6</a>
-                    <a href="javascript:;" class="" onclick="doGo(7)">7</a>
-                    <a href="javascript:;" class="" onclick="doGo(8)">8</a>
-                    <a href="javascript:;" class="" onclick="doGo(9)">9</a>
-                    <a href="javascript:;" onclick="doGo(2)" class="p" title="后一页">»</a>
-                    <span>到第<input name="" type="text" id="ymz">页 <a href="#" onclick="goto_ymz()">确定</a></span>
-                </div>
+                <li class="img"><a href="ChungLife_dt_xq.html"><img src="images/DGUT_img.jpg"></a></li>
+
             </div>
             <!-- 详情内容介绍 -->
+        </div>
+        <div class="pager">
         </div>
     </div>
 </div>

@@ -324,7 +324,7 @@
                     console.log(data);
                     var list = data['data'];
                     for (var i in list) {
-                        contextHtml += '<li><a href="Jiaoxueanpai-rili-neirong.html?success_id="' + list[i].success_id + '">'+ list[i].course.course_name + '</a><span>' + list[i].time + '</span></li >'
+                        contextHtml += '<li><a href="Jiaoxueanpai-rili-neirong.html?success_id=' + list[i].success_id + '">'+ list[i].course.course_name + '教学日历' +  '</a><span>' + list[i].time + '</span></li >'
                     }
                     $("#content").html(contextHtml);
 
@@ -333,7 +333,7 @@
                     var curPage = data.curPage;
                     var page = curPage > 1?curPage-1:1;
                     context += '<a href="javascript:;" class="p" title="前一页" onclick="doGo(' + page + ');">«</a>';
-                    console.log(totalPage);
+                    console.log(typeof(totalPage));
                     for (var i=1;i<=totalPage;i++) {
                         if (curPage === i) context += '<a href="javascript:;" class="current" onclick="doGo('+i+')">'+i+'</a>';
                         else context += '<a href="javascript:;" onclick="doGo('+i+')">'+i+'</a>';

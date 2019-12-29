@@ -5,6 +5,15 @@ public class Title {
     private String date;
     private Integer content_id;
 
+    @Override
+    public String toString() {
+        return "Title{" +
+                "title='" + title + '\'' +
+                ", date='" + date + '\'' +
+                ", content_id=" + content_id +
+                '}';
+    }
+
     public String getTitle() {
         return title;
     }

@@ -34,7 +34,7 @@ create table course(
     foreign key (course_principal) references teacher(teacher_id)
 );
 -- 开课表
-DROP table if exists successCourse;
+DROP table if exists succes5sCourse;
 create table successCourse(
     success_id int primary key AUTO_INCREMENT not null,
     course_id int ,
@@ -122,7 +122,7 @@ create table selectcourse
     constraint selectcourse_student_fk
         foreign key (student_id) references student,
     constraint selectcourse_success_fk
-        foreign key (success_id) references successcourse
+        foreign key (success_id) references successCourse
 );
 
 
@@ -185,7 +185,7 @@ CREATE TABLE  resource  (
    resource_experiment  varchar(255) DEFAULT NULL, #案例库
    resource_document  varchar(255) DEFAULT NULL,   #文档
    PRIMARY KEY  ( resource_id ),
-   FOREIGN KEY ( success_id ) REFERENCES  successcourse  ( success_id )
+   FOREIGN KEY ( success_id ) REFERENCES  successCourse  ( success_id )
 );
 -- 班级表
 DROP TABLE IF EXISTS  class ;
@@ -216,7 +216,7 @@ CREATE TABLE homework(
 	 success_id int ,
 	 PRIMARY KEY  (homework_id),
 	 FOREIGN KEY (student_id) REFERENCES student(student_id),
-	 FOREIGN KEY (success_id) REFERENCES successcourse(success_id)
+	 FOREIGN KEY (success_id) REFERENCES successCourse(success_id)
 );
 -- 学院表
 DROP TABLE IF EXISTS academy;
@@ -233,7 +233,7 @@ CREATE TABLE homeworkcase(
 	 success_id int ,
 	 PRIMARY KEY  (homework_case_id),
 	 FOREIGN KEY (homework_id) REFERENCES homework(homework_id),
-	 FOREIGN KEY (success_id) REFERENCES successcourse(success_id)
+	 FOREIGN KEY (success_id) REFERENCES successCourse(success_id)
 );
 
 -- 日历表
@@ -243,7 +243,7 @@ CREATE TABLE calendar(
    calendar_title varchar(255) DEFAULT NULL,
    calendar_content varchar(255)DEFAULT NULL,
    success_id int ,
-   FOREIGN KEY (success_id) REFERENCES successcourse(success_id)
+   FOREIGN KEY (success_id) REFERENCES successCourse(success_id)
 );
 
 -- 教学内容表
@@ -253,7 +253,7 @@ CREATE TABLE contentb(
    contentb_title varchar(255) DEFAULT NULL,
    contentb_content varchar(255)DEFAULT NULL,
    success_id int ,
-   FOREIGN KEY (success_id) REFERENCES successcourse(success_id)
+   FOREIGN KEY (success_id) REFERENCES successCourse(success_id)
 );
 -- 教学计划表
 DROP TABLE IF EXISTS planb;
@@ -262,7 +262,7 @@ CREATE TABLE planb(
    planb_title varchar(255) DEFAULT NULL,
    planb_content varchar(255)DEFAULT NULL,
    success_id int ,
-   FOREIGN KEY (success_id) REFERENCES successcourse(success_id)
+   FOREIGN KEY (success_id) REFERENCES successCourse(success_id)
 );
 -- 教学难点表
 DROP TABLE IF EXISTS problemb;
@@ -271,7 +271,7 @@ CREATE TABLE problemb(
    problemb_title varchar(255) DEFAULT NULL,
    problemb_content varchar(255)DEFAULT NULL,
    success_id int ,
-   FOREIGN KEY (success_id) REFERENCES successcourse(success_id)
+   FOREIGN KEY (success_id) REFERENCES successCourse(success_id)
 );
 -- 教学方法表
 DROP TABLE IF EXISTS methodb;
@@ -280,7 +280,7 @@ CREATE TABLE methodb(
    methodb_title varchar(255) DEFAULT NULL,
    methodb_content varchar(255)DEFAULT NULL,
    success_id int ,
-   FOREIGN KEY (success_id) REFERENCES successcourse(success_id)
+   FOREIGN KEY (success_id) REFERENCES successCourse(success_id)
 );
 -- 账号表
 DROP TABLE IF EXISTS userb;
@@ -296,8 +296,16 @@ CREATE TABLE userb(
    FOREIGN KEY (teacher_id) REFERENCES teacher(teacher_id)
    
 );
-
-
+drop table if exists question;
+drop table if exists question;
+create table question(
+                         question_id int primary key NOT NULL auto_increment,
+                         name varchar(20) not null ,
+                         title varchar(255) not null,
+                         times date default null,
+                         content varchar(5000) default null,
+                         answer varchar(5000) default null
+)
 
 -- insert into academy(academy_name) values('aa');
 -- insert into academy(academy_name) values('aa');
@@ -327,9 +335,9 @@ CREATE TABLE userb(
 -- insert into tbelongt(teacher_id,team_id) VALUES('24','1');
 -- insert into tbelongt(teacher_id,team_id) VALUES('33','1');
 
--- INSERT successcourse(success_id,course_id,teacher_id,time,success_myself,success_student,success_society,success_evaluation,success_wechat,success_QQ,success_port) VALUES('1','1','1','2018','aa','bb','cc','dd','ee','ff','gg');
--- INSERT successcourse(success_id,course_id,teacher_id,time,success_myself,success_student,success_society,success_evaluation,success_wechat,success_QQ,success_port) VALUES('2','2','1','2018','aa','bb','cc','dd','ee','ff','gg');
--- INSERT successcourse(success_id,course_id,teacher_id,time,success_myself,success_student,success_society,success_evaluation,success_wechat,success_QQ,success_port) VALUES('3','3','2','2018','aa','bb','cc','dd','ee','ff','gg');
+-- INSERT successCourse(success_id,course_id,teacher_id,time,success_myself,success_student,success_society,success_evaluation,success_wechat,success_QQ,success_port) VALUES('1','1','1','2018','aa','bb','cc','dd','ee','ff','gg');
+-- INSERT successCourse(success_id,course_id,teacher_id,time,success_myself,success_student,success_society,success_evaluation,success_wechat,success_QQ,success_port) VALUES('2','2','1','2018','aa','bb','cc','dd','ee','ff','gg');
+-- INSERT successCourse(success_id,course_id,teacher_id,time,success_myself,success_student,success_society,success_evaluation,success_wechat,success_QQ,success_port) VALUES('3','3','2','2018','aa','bb','cc','dd','ee','ff','gg');
 
 -- insert young(young_id,teacher_id,content) VALUES('1','1','哈哈哈');
 -- insert young(young_id,teacher_id,content) VALUES('2','2','啦啦啦');

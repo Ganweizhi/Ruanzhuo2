@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface ITeamDao {
+    //查询所有教师团队
     @Select("select * from team")
     @Results({
             @Result(property = "team_id",column = "team_id"),
@@ -22,6 +23,7 @@ public interface ITeamDao {
     })
     List<Team> findAllTeam();
 
+    //按teamId查询教师团队
     @Select("select * from teacher where teacher_id in (select teacher_id from tbelongt where team_id =#{team_id})")
     List<Teacher> findTeacherByTeamId(String team_id);
 }

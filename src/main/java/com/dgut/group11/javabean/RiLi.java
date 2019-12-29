@@ -7,6 +7,32 @@ public class RiLi {
     private int calendar_id;
     private String calendar_title;
     private String calendar_content;
+    private int success_id;
+    private String course_name;
+
+    public int getSuccess_id() {
+        return success_id;
+    }
+
+    public void setSuccess_id(int success_id) {
+        this.success_id = success_id;
+    }
+
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
+
+    public RiLi(int calendar_id, String calendar_title, String calendar_content, int success_id, String course_name) {
+        this.calendar_id = calendar_id;
+        this.calendar_title = calendar_title;
+        this.calendar_content = calendar_content;
+        this.success_id = success_id;
+        this.course_name = course_name;
+    }
 
     public RiLi() {
     }

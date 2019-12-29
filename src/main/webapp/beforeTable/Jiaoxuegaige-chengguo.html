@@ -196,62 +196,55 @@
                 <h2>教学改革成果</h2>
                 <i class="right"></i>
             </div>
+            <script>
+                $(function () {
+                    doGo(1);
+                });
+                function doGo(page) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/chengguo/"+page,
+                        // data: {"name":"yd","pwd":"123456"},
+                        async:false,
+                        dataType: "json",
+                        success: function (data) {
+                            if (data != null) {
+                                var contextHtml = "";
+                                console.log(data);
+                                var list = data['data'];
+                                for (var i in list) {
+                                    contextHtml += '<li><a style="width: 800px" href="Jiaoxuegaige-chengguo-neirong.html?content_id=' + list[i].content_id + '"'+'</a>'+list[i].measure_title+'<span style="float: right">' + list[i].measure_time + '</span></li >'
+                                }
+                                $(".but_list").html(contextHtml);
+
+                                var context = "";
+                                var totalPage = data.page;
+                                var curPage = data.curPage;
+                                var page = curPage > 1?curPage-1:1;
+                                context += '<a href="javascript:;" class="p" title="前一页" onclick="doGo(' + page + ');">«</a>';
+                                console.log(totalPage);
+                                for (var i=1;i<=totalPage;i++) {
+                                    if (curPage === i) context += '<a href="javascript:;" class="current" onclick="doGo('+i+')">'+i+'</a>';
+                                    else context += '<a href="javascript:;" onclick="doGo('+i+')">'+i+'</a>';
+                                }
+                                page = curPage === totalPage?curPage:curPage+1;
+                                context += '<a href="javascript:;" onclick="doGo('+page+')" class="p" title="后一页">»</a>';
+                                console.log(context);
+                                $(".pager").html(context);
+                            }
+                        }
+                    });
+                }
+
+            </script>
             <!-- 详情内容 -->
             <div class="but_list">
                 <ul>
-                    <li class="img"><a href="ChungLife_dt_xq.html"><img src="images/DGUT_img.jpg"></a></li>
-                    <li>
-                        <a href="#">我校参加全国慕课教育创新大会暨高校在线开放课程联盟联席会年会</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">关于“外研社杯”全国英语竞赛系列选拔赛的通知</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">关于2019“外研社•国才杯”全国英语写作、阅读大赛东莞理工学院网络选拔赛的通知</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">东莞理工学院兼职课程教师管理办法</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">关于2019-2020学年第二学期专业（基础）选修课程网上选课的通知</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">我校承办首届食品特征组分结构变化与品质功能调控国际研讨会暨国家重点研发计划项目2019年度总结会</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">校领导赴中国科学院大学考察交流 </a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">【党代会时评】坚定不移地走科研兴校之路</a>
-                        <span>[2019-01-09]</span>
-                    </li>
-                    <li>
-                        <a href="#">东莞市“百名法学家百场报告会”首次走进我校</a>
-                        <span>[2019-01-09]</span>
-                    </li>
 
                 </ul>
-                <div class="pager">
-                    <a href="javascript:;" class="p" title="前一页" onclick="doGo(0);">«</a>
-                    <a href="javascript:;" class="current" onclick="doGo(1)">1</a>
-                    <a href="javascript:;" class="" onclick="doGo(2)">2</a>
-                    <a href="javascript:;" class="" onclick="doGo(3)">3</a>
-                    <a href="javascript:;" class="" onclick="doGo(4)">4</a>
-                    <a href="javascript:;" class="" onclick="doGo(5)">5</a>
-                    <a href="javascript:;" class="" onclick="doGo(6)">6</a>
-                    <a href="javascript:;" class="" onclick="doGo(7)">7</a>
-                    <a href="javascript:;" class="" onclick="doGo(8)">8</a>
-                    <a href="javascript:;" class="" onclick="doGo(9)">9</a>
-                    <a href="javascript:;" onclick="doGo(2)" class="p" title="后一页">»</a>
-                    <span>到第<input name="" type="text" id="ymz">页 <a href="#" onclick="goto_ymz()">确定</a></span>
-                </div>
+
+            </div>
+            <div class="pager">
             </div>
             <!-- 详情内容介绍 -->
         </div>

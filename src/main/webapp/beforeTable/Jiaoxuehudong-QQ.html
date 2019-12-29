@@ -189,42 +189,15 @@
             </div>
             <!-- 详情内容 -->
             <div class="teacher_k">
-                <ul>
+                <ul class="teacher_j">
                     <li>
                         <a href="#">
-                            <img src="images/wechatgroup.jpg">
+                            <img src="/group_image/qq_image/1.jpg">
                             <p>QQ群1</p>
-                            <span>东莞理工学院物理教学群</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="images/wechatgroup.jpg">
-                            <p>QQ群2</p>
-                            <span>东莞理工学院政治教学群</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <img src="images/wechatgroup.jpg">
-                            <p>QQ群3</p>
-                            <span>东莞理工学院化学教学群</span>
                         </a>
                     </li>
                 </ul>
                 <div class="pager">
-                    <a href="javascript:;" class="p" title="前一页" onclick="doGo(0);">«</a>
-                    <a href="javascript:;" class="current" onclick="doGo(1)">1</a>
-                    <a href="javascript:;" class="" onclick="doGo(2)">2</a>
-                    <a href="javascript:;" class="" onclick="doGo(3)">3</a>
-                    <a href="javascript:;" class="" onclick="doGo(4)">4</a>
-                    <a href="javascript:;" class="" onclick="doGo(5)">5</a>
-                    <a href="javascript:;" class="" onclick="doGo(6)">6</a>
-                    <a href="javascript:;" class="" onclick="doGo(7)">7</a>
-                    <a href="javascript:;" class="" onclick="doGo(8)">8</a>
-                    <a href="javascript:;" class="" onclick="doGo(9)">9</a>
-                    <a href="javascript:;" onclick="doGo(2)" class="p" title="后一页">»</a>
-                    <span>到第<input name="" type="text" id="ymz">页 <a href="#" onclick="goto_ymz()">确定</a></span>
                 </div>
             </div>
             <!-- 详情内容介绍 -->
@@ -275,7 +248,7 @@
 
 <script type="text/javascript" src="js/highlight.min.js"></script>
 <script type="text/javascript" src="js/aos.js"></script>
-
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 <script>
     AOS.init({
         easing: 'ease-out-back',
@@ -291,4 +264,50 @@
             scrollTop: $(window).height()
         }, 1200);
     });
+</script>
+<script>
+    $(function () {
+        doGo(1);
+    });
+    function doGo(page) {
+        $.ajax({
+            type: "post",
+            url: "/jiaoxuehudong_QQ/"+page,
+            // data: {"name":"yd","pwd":"123456"},
+            async:false,
+            dataType: "json",
+            success: function (data) {
+                if (data != null) {
+                    var contextHtml = "";
+                    console.log(data);
+                    var size = data.size;
+                    for (i=0;i<size;i++) {
+                        contextHtml += '<li>\n' +
+                            '                        <a href="#">\n' +
+                            '                            <img src="/beforeTable/group_image/qq_image/'+ data[i+""].success_qq+ '">\n' +
+                            '                            <p>'+ data[''+i].course_name+'教学互动群</p>\n' +
+                            '                        </a>\n' +
+                            '                    </li>'
+                    }
+                    $(".teacher_j").html(contextHtml);
+
+                    var context = "";
+                    var totalPage = data.page;
+                    var curPage = data.curPage;
+                    var page = curPage > 1?curPage-1:1;
+                    context += '<a href="javascript:;" class="p" title="前一页" onclick="doGo(' + page + ');">«</a>';
+                    console.log(totalPage);
+                    for (var i=1;i<=totalPage;i++) {
+                        if (curPage === i) context += '<a href="javascript:;" class="current" onclick="doGo('+i+')">'+i+'</a>';
+                        else context += '<a href="javascript:;" onclick="doGo('+i+')">'+i+'</a>';
+                    }
+                    page = curPage === totalPage?curPage:curPage+1;
+                    context += '<a href="javascript:;" onclick="doGo('+page+')" class="p" title="后一页">»</a>';
+                    console.log(context);
+                    $(".pager").html(context);
+                }
+            }
+        });
+    }
+
 </script>

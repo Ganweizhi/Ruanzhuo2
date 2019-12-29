@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface ISuccessCourseDao {
+    //查询所有成功开课课程
     @Select("select * from successCourse")
     @Results({
             @Result(id = true,property = "success_id",column = "success_id"),

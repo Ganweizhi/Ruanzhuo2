@@ -14,4 +14,9 @@ public class CourseService {
     public Course findById(String course_id){
         return  courseDao.findById(course_id);
     }
+
+    public String updateCourse(Course course){
+        courseDao.updateCourse(course);
+        return "1";
+    }
 }
