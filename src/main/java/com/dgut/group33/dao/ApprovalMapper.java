@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface ApprovalMapper {
-    @Select("select * from approval")
+    @Select("select * from approval order by measure_time desc")
     List<Measure> select();
 
     @Select("select * from approval where content_id=#{content_id}")

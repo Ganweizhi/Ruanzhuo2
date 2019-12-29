@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface AwardMapper {
-    @Select("select * from award")
+    @Select("select * from award order by measure_time desc")
     List<Measure> select();
 
     @Select("select * from award where content_id=#{content_id}")
