@@ -44,4 +44,7 @@ public interface resourceDao {
 
     @Delete("delete from resource where resource_id= #{resource_id}")
      int DeleteTextbook(Integer resource_id);
+
+    @Delete("delete from experiment_house where experiment_id= #{experiment_id}")
+    int DeleteExperiment_house(Integer experiment_id);
 }

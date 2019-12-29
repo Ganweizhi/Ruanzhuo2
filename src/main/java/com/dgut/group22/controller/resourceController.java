@@ -317,7 +317,7 @@ public class resourceController {
         return map;
     }
 
-    @RequestMapping(value = "/GetAllexperiment_house",method = RequestMethod.GET)     //文档
+    @RequestMapping(value = "/GetAllexperiment_house",method = RequestMethod.GET)     //
     @ResponseBody
     public Map<String, Object> GetAllexperiment_house(HttpServletRequest request) throws FileNotFoundException {
         List<experiment_house> experimentHouseList = new ArrayList<>();
@@ -349,6 +349,18 @@ public class resourceController {
         String code="0";
         int state=1;
         state= resourceService.DeleteTextbook(resource_id);
+        System.out.println(state);
+        if(state==0)
+            code="400";
+        return code;
+    }
+
+    @RequestMapping(value = "/DeleteExperiment_house",method = RequestMethod.GET)
+    @ResponseBody
+    public String DeleteExperiment_house(Integer experiment_id){
+        String code="0";
+        int state=1;
+        state= resourceService.DeleteExperiment_house(experiment_id);
         System.out.println(state);
         if(state==0)
             code="400";
