@@ -78,7 +78,7 @@ public interface Gwz_KeChengGaiKuangDao {
     @Insert("insert into course(course_name,course_introduction,course_credit,course_period,course_principal) values (#{course_name},#{course_introduction},#{course_credit},#{course_period},#{gwzTeacher.teacher_id})")
     public void AddJianJie(gwz_Course course);
 
-    @Update("update course set course_name=#{course_name},course_introduction=#{course_introduction},course_credit=#{course_introduction},course_period=#{course_introduction},course_principal=#{gwzTeacher.teacher_id} where course_id=#{course_id}")
+    @Update("update course set course_name=#{course_name},course_introduction=#{course_introduction},course_credit=#{course_credit},course_period=#{course_period},course_principal=#{gwzTeacher.teacher_id} where course_id=#{course_id}")
     public void EditJianJie(gwz_Course course);
 
 
@@ -95,17 +95,17 @@ public interface Gwz_KeChengGaiKuangDao {
     @Update("update course set course_history=#{course_history} where course_id=#{course_id}")
     public void EditLiShi(gwz_Course course);
 
-    @Update("update course set course_introduction=null")
+    @Update("update course set course_introduction=null where course_id=#{course_id}")
     public void deleteJianjie(int course_id);
 
 
-    @Update("update course set course_material=null")
+    @Update("update course set course_material=null where course_id=#{course_id}")
     public void deleteJiaoCai(int course_id);
 
-    @Update("update course set course_history=null")
+    @Update("update course set course_history=null where course_id=#{course_id}")
     public void deleteLiShi(int course_id);
 
-    @Update("update course set course_feature=null")
+    @Update("update course set course_feature=null where course_id=#{course_id}")
     public void deleteTeSe(int course_id);
 
 

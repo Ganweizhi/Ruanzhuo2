@@ -1,5 +1,6 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.dgut.group11.gwz.javabean.gwz_Course" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html class="x-admin-sm">
     
@@ -43,6 +44,10 @@
                                         <th>操作</th></tr>
                                 </thead>
                                 <%
+                                    HashMap<String,Object> hashMap=(HashMap<String, Object>) request.getSession().getAttribute("JianJie_hashmap");
+                                    int next=(int)hashMap.get("next");
+                                    int pre=(int)hashMap.get("pre");
+                                    int last=(int)hashMap.get("last");
                                     List<gwz_Course> courseList=(List<gwz_Course>)request.getSession().getAttribute("JianJie_courseList");
                                     System.out.println(courseList);
                                     for (gwz_Course course:courseList){
@@ -70,7 +75,16 @@
                                 %>
                             </table>
                         </div>
-
+                        <div class="layui-card-body ">
+                            <div class="page">
+                                <div>
+                                    <a href="/course/JianJie?start=0">[首  页]</a>
+                                    <a href="/course/JianJie?start=<%=pre%>">[上一页]</a>
+                                    <a href="/course/JianJie?start=<%=next%>">[下一页]</a>
+                                    <a href="/course/JianJie?start=<%=last%>">[末  页]</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

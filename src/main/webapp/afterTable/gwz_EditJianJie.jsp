@@ -26,7 +26,7 @@
     <body>
     <%
        gwz_Course course=(gwz_Course) request.getSession().getAttribute("EditJianJie_course");
-        List<gwz_teacher> teacherList=(List<gwz_teacher>) request.getSession().getAttribute("AddJianJie_teacherList");
+        List<gwz_teacher> teacherList=(List<gwz_teacher>) request.getSession().getAttribute("EditJianJie_teacherList");
     %>
         <div class="layui-fluid">
             <div class="layui-row">
@@ -65,14 +65,14 @@
                         <label for="course_credit" class="layui-form-label">
                             <span class="x-red">*</span>课程学分</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="course_credit" name="course_credit" value="<%=course.getCourse_credit()%>" required="" autocomplete="off" class="layui-input"></div>
+                            <input type="number" id="course_credit" name="course_credit" value="<%=course.getCourse_credit()%>" required="" autocomplete="off" class="layui-input"></div>
                     </div>
 
                     <div class="layui-form-item">
                         <label for="course_period" class="layui-form-label">
                             <span class="x-red">*</span>课程时长</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="course_period" name="course_period" value="<%=course.getCourse_period()%>" required="" autocomplete="off" class="layui-input"></div>
+                            <input type="number" id="course_period" name="course_period" value="<%=course.getCourse_period()%>" required="" autocomplete="off" class="layui-input"></div>
                     </div>
 
 
