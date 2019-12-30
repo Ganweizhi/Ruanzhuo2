@@ -24,4 +24,8 @@ public class TeacherService {
     public Young findYoungById(String teacher_id){
         return teacherDao.findYoungById(teacher_id);
     }
+
+    public void updateTeacher(Teacher teacher){
+        teacherDao.update(teacher);
+    }
 }
