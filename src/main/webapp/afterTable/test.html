@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎页面-X-admin2.2</title>
+    <script src="https://cdn.suoluomei.com/common/js/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+<h1>注册表单</h1>
+<form action="" method="post" id="mySelect">
+    <p>
+        <label>籍&nbsp;&nbsp;&nbsp;贯：</label>
+        <select name="site" id="course_id">
+        </select>
+    </p>
+    <p>
+        <input type="submit" name="" value="提交1">
+        <input type="reset" name="" value="重置1">
+    </p>
+
+</form>
+</body>
+<script>
+    $(document).ready(function () {
+
+        var url="/getCourse_id"; //访问后台去数据库查询select的选项,此处需填写后台接口路径
+        $.ajax({
+            type:"post",
+            url:url,
+            dataType:"json",
+            success : function(data) {
+                var unitObj=document.getElementById("course_id");
+                console.log(data);
+                // console.log(data["size"]);
+                // console.log(data.length);
+                for (var i = 0; i < data["size"]; i++) {
+                    var s = i+"";
+                    console.log("第一行:"+data[s].course_id);
+                    unitObj.options.add(new Option(data[s].course_name,data[s].course_id,))
+                }
+            },
+            error:function(){
+                J.alert('Error');
+            }
+        })
+    })
+</script>
+</html>

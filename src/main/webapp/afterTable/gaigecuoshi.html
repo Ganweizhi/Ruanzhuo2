@@ -13,6 +13,7 @@
     <script type="text/javascript" src="../beforeTable/js/jquery1.42.min.js"></script>
     <script type="text/javascript" src="../beforeTable/js/jquery.SuperSlide.2.1.3.js"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
+
 </head>
 
 <body>
@@ -32,91 +33,22 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5">
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <input class="layui-input" placeholder="开始日" name="start" id="start"></div>
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <input class="layui-input" placeholder="截止日" name="end" id="end"></div>
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <input type="text" name="username" placeholder="请输入标题" autocomplete="off" class="layui-input"></div>
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <button class="layui-btn" lay-submit="" lay-filter="sreach">
-                                <i class="layui-icon">&#xe615;</i></button>
-                        </div>
-                    </form>
-                </div>
-                <div class="layui-card-header">
-                    <button class="layui-btn layui-btn-danger" onclick="delAll()">
-                        <i class="layui-icon"></i>批量删除</button>
-                    <button class="layui-btn" onclick="xadmin.open('添加内容','./gaige_add.html',800,600)">
-                        <i class="layui-icon"></i>添加</button></div>
-                <script>
-                    $(function () {
-                        doGo(1);
-                    });
-                    function doGo(page) {
-                        $.ajax({
-                            type: "POST",
-                            url: "/allcuoshi",
-                            // data: {"name":"yd","pwd":"123456"},
-                            async:false,
-                            dataType: "json",
-                            success: function (data) {
-                                if (data != null) {
-                                    var contextHtml = '';
-                                    contextHtml+='<table class="layui-table layui-form">\n' +
-                                        '                        <thead>\n' +
-                                        '                        <tr>\n' +
-                                        '                            <th>\n' +
-                                        '                                <input type="checkbox" name="" lay-skin="primary">\n' +
-                                        '                            </th>\n' +
-                                        '                            <th>发表人</th>\n' +
-                                        '                            <th>标题</th>\n' +
-                                        '                            <th>发表时间</th>\n' +
-                                        '                            <th>内容</th>\n' +
-                                        '                            <th>操作</th></tr>\n' +
-                                        '                        </thead>\n' +
-                                        '                        <tbody>\n' +
-                                        '                        <tr>';
-                                    var list = data['data'];
-                                    for (var i in list) {
-                                        contextHtml+='                            <td>\n' +
-                                            '                                <input type="checkbox" name="" lay-skin="primary"></td>\n' +
-                                            '                            <td>'+ list[i].measureContent.content_author +'</td>\n' +
-                                            '                            <td>'+list[i].measure_title+'</td>\n' +
-                                            '                            <td>'+list[i].measure_time+'</td>\n' +
-                                            '                            <td>'+list[i].measureContent.content+'</td>\n' +
-                                            '\n' +
-                                            '                            <td class="td-manage">\n' +
-                                            '                                <a title="查看" onclick="xadmin.open(\'编辑\',\'gaige_edit.html\')" href="javascript:;">\n' +
-                                            '                                    <i class="layui-icon">&#xe63c;</i></a>\n' +
-                                            '                                <a title="删除" onclick="member_del(this,'+list[i].content_id+')" href="javascript:;">\n' +
-                                            '                                    <i class="layui-icon">&#xe640;</i></a>\n' +
-                                            '                            </td>\n' +
-                                            '                        </tr>\n' +
-                                            '                        </tbody>\n'
-                                    }
-                                    contextHtml+= '</table>';
-                                    $("#abc").html(contextHtml);
-                                }
-                            }
-                        });
-                    }
-
-                </script>
-                <div class="layui-card-body" id="abc">
-
-                </div>
-                <div class="layui-card-body ">
-                    <div class="page">
-                        <div>
-                            <a class="prev" href="">&lt;&lt;</a>
-                            <a class="num" href="">1</a>
-                            <span class="current">2</span>
-                            <a class="num" href="">3</a>
-                            <a class="num" href="">489</a>
-                            <a class="next" href="">&gt;&gt;</a></div>
+                    <div class="layui-card-header">
+                        <button class="layui-btn" onclick="xadmin.open('添加内容','./gaige_cuoshi_add.html',800,600)">
+                            <i class="layui-icon"></i>添加
+                        </button>
+                    </div>
+                    <div class="layui-card-body ">
+                        <table class="layui-table" lay-data="{url:'/allcuoshi', page:true, id:'idTest'}" lay-filter="demo">
+                            <thead>
+                            <tr>
+                                <th lay-data="{field:'measure_title'}">标题</th>
+                                <th lay-data="{field:'content_author'}">作者</th>
+                                <th lay-data="{field:'content'}">内容</th>
+                                <th lay-data="{fixed: 'right', align:'center', toolbar: '#barDemo'}"></th>
+                            </tr>
+                            </thead>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -124,87 +56,79 @@
     </div>
 </div>
 </body>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
 
-<script>layui.use(['laydate', 'form'],
-    function() {
-        var laydate = layui.laydate;
+<script>
+    layui.use('table', function(){
+        var table = layui.table;
 
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#start' //指定元素
-        });
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#end' //指定元素
-        });
-    });
-
-/*用户-停用*/
-function member_stop(obj, id) {
-    layer.confirm('确认要停用吗？',
-        function(index) {
-
-            if ($(obj).attr('title') == '启用') {
-
-                //发异步把用户状态进行更改
-                $(obj).attr('title', '停用');
-                $(obj).find('i').html('&#xe62f;');
-
-                $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已停用');
-                layer.msg('已停用!', {
-                    icon: 5,
-                    time: 1000
+        //监听工具条
+        table.on('tool(demo)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'del'){
+                layer.confirm('确定要删除吗', function(index){
+                    $.ajax({
+                        type: "POST",
+                        url: "/dele-cuoshi/"+data.measure_id,
+                        // data: data.content_id,
+                        contentType: "application/json;charset=UTF-8",
+                        dataType: "json",
+                        success: function (data) {
+                            if (data != null) {
+                                console.log(data);
+                                if (data.data === 1) {
+                                    layer.alert("删除成功", {
+                                            icon: 6
+                                        },
+                                        function (index) {
+                                            obj.del();
+                                            layer.close(index);
+                                        });
+                                } else {
+                                    layer.alert("删除失败", {
+                                            icon: 6
+                                        },
+                                        function (index) {
+                                            layer.close(index);
+                                        });
+                                }
+                            }
+                        }
+                    });
                 });
+            } else if(obj.event === 'edit'){
+                //xadmin.open('编辑','jiaoxuedagang-edit.html');
+                //console.log(obj);
+                layer.open({
+                    type: 2
+                    ,title: '编辑'
+                    ,content: 'gaige_cuoshi_edit.html'
+                    ,maxmin: true
+                    ,area: ['500px', '550px']
+                    ,success: function(layero, index){
 
-            } else {
-                $(obj).attr('title', '启用');
-                $(obj).find('i').html('&#xe601;');
+                        var div = layero.find('iframe').contents().find('#pa');
 
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!', {
-                    icon: 5,
-                    time: 1000
+                        // 测试 ：
+                        div.find("#cuoshi_id").val(obj.data.measure_id);
+                        div.find("#cuoshi_author").val(obj.data.content_author);
+                        div.find("#cuoshi_title").val(obj.data.measure_title);
+                        div.find("#cuoshi_content").val(obj.data.content);
+                        div.find("#cuoshi_content_id").val(obj.data.content_id);
+                    }
                 });
             }
-
         });
-}
 
-/*用户-删除*/
-function member_del(obj, id) {
-    $.ajax({
-        type: "POST",
-        url: "/dele-cuoshi/"+id,
-        // data: {"name":"yd","pwd":"123456"},
-        async:false,
-        dataType: "json",
-        success: function (data) {
-        }
+        $('.demoTable .layui-btn').on('click', function(){
+            var type = $(this).data('type');
+            active[type] ? active[type].call(this) : '';
+        });
     });
-    layer.confirm('确认要删除吗？',
-        function(index) {
-            $(obj).parents("tr").remove();
-            console.log(id)
-            layer.msg('已删除!', {
-                icon: 1,
-                time: 1000
-            });
-        });
-}
+</script>
 
-function delAll(argument) {
-
-    var data = tableCheck.getData();
-
-    layer.confirm('确认要删除吗？' + data,
-        function(index) {
-            //捉到所有被选中的，发异步进行删除
-            layer.msg('删除成功', {
-                icon: 1
-            });
-            $(".layui-form-checked").not('.header').parents('tr').remove();
-        });
-}</script>
 
 </html>
