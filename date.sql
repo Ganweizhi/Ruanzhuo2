@@ -6,9 +6,19 @@
 # #  values('李老师','1','1998-08-27','男','教授','123456','9866@qq.com','一级','domain','job','东莞松山湖','resdire','resume','photo');
 # # insert into successCourse(course_id, teacher_id, time, success_wechat, success_QQ, success_port) values('1','2','2019-10-11','/QQ/images/1.jpg','/wechat/images/1.jpg','1port');
 # # insert into successCourse(course_id, teacher_id, time) values('1','2','2019-10-11');
-insert into successCourse(course_id, teacher_id, time) values('2','1','2019-10-11');
-insert into successCourse(course_id, teacher_id, time) values('5','1','2019-10-11');
-insert into successCourse(course_id, teacher_id, time) values('7','1','2019-10-11');
-insert into successCourse(course_id, teacher_id, time) values('2','2','2019-10-11');
-insert into successCourse(course_id, teacher_id, time) values('5','2','2019-10-11');
-insert into successCourse(course_id, teacher_id, time) values('7','2','2019-10-11');
+# insert into successCourse(course_id, teacher_id, time) values('2','1','2019-10-11');
+# # insert into successCourse(course_id, teacher_id, time) values('5','1','2019-10-11');
+# # insert into successCourse(course_id, teacher_id, time) values('7','1','2019-10-11');
+# # insert into successCourse(course_id, teacher_id, time) values('2','2','2019-10-11');
+# # insert into successCourse(course_id, teacher_id, time) values('5','2','2019-10-11');
+# # insert into successCourse(course_id, teacher_id, time) values('7','2','2019-10-11');
+# drop table if exists question;
+# # # # create table question(
+# # # #                          question_id int primary key NOT NULL auto_increment,
+# # # #                          name varchar(20) not null ,
+# # # #                          title varchar(255) not null,
+# # # #                          times date default null,
+# # # #                          content varchar(5000) default null,
+# # # #                          answer varchar(5000) default null
+# # # # )
+update question set answer = null where answer is  not null

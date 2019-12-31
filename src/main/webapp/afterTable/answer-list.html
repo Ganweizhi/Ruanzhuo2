@@ -43,11 +43,11 @@
                         </div>
                     </form>
                 </div>
-                <div class="layui-card-header">
-                    <button class="layui-btn layui-btn-danger" onclick="delAll()">
-                        <i class="layui-icon"></i>批量删除</button>
-                    <button class="layui-btn" onclick="xadmin.open('添加内容','QQ_group-add.html',800,600)">
-                        <i class="layui-icon"></i>添加</button></div>
+                <!--<div class="layui-card-header">-->
+                    <!--<button class="layui-btn layui-btn-danger" onclick="delAll()">-->
+                        <!--<i class="layui-icon"></i>批量删除</button>-->
+                    <!--<button class="layui-btn" onclick="xadmin.open('添加内容','returnsign-add.html',800,600)">-->
+                        <!--<i class="layui-icon"></i>添加</button></div>-->
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>
@@ -56,9 +56,9 @@
                                 <input type="checkbox" name="" lay-skin="primary">
                             </th>
                             <th style="min-width:180px;">ID</th>
-                            <th style="min-width:180px;">教师名称</th>
-                            <th style="min-width:180px;">课程名称</th>
-                            <th>发表时间</th>
+                            <th style="min-width:180px;">发表人</th>
+                            <th style="min-width:180px;">问题</th>
+                            <th style="min-width:180px;">发表时间</th>
                             <th>操作</th></tr>
                         </thead>
                         <tbody id="kechengfuzerenxianshi">
@@ -66,14 +66,14 @@
                             <td>
                                 <input type="checkbox" name="" lay-skin="primary"></td>
                             <td>1</td>
+                            <td>1</td>
                             <td>2</td>
                             <td>3</td>
-                            <td>4</td>
                             <td class="td-manage">
-                                <a title="查看" onclick="xadmin.open('编辑','QQ_group-add.html')" href="javascript:;">
+                                <a title="回答" onclick="xadmin.open('问题回答','answer-add.html?id=2')" href="javascript:;">
                                     <i class="layui-icon">&#xe63c;</i></a>
-                                <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                    <i class="layui-icon">&#xe640;</i></a>
+                                <!--<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">-->
+                                    <!--<i class="layui-icon">&#xe640;</i></a>-->
                             </td>
                         </tr>
                         </tbody>
@@ -174,7 +174,7 @@ function delAll(argument) {
         console.log("ajax开始");
         $.ajax({
                 type: "POST",
-                url: "/Wechat_find/"+Page,
+                url: "/answer_find/"+Page,
                 async:false,
                 dataType: "json",
                 success:function (msg) {
@@ -185,20 +185,20 @@ function delAll(argument) {
                     var totalPate = msg.totalPage;
                     var tpage="";
                     var size = msg.size;
-                    console.log("size:"+size);
+                    console.log(msg);
                     for( i=0;i<size;i++){
-                        str += '<tr>\n' +
+                        str += ' <tr>\n' +
                             '                            <td>\n' +
                             '                                <input type="checkbox" name="" lay-skin="primary"></td>\n' +
-                            '                            <td>'+ msg[i+''].success_id+'</td>\n' +
-                            '                            <td>'+ msg[i+''].teacher_name+'</td>\n' +
-                            '                            <td>'+ msg[i+''].course_name+'</td>\n' +
-                            '                            <td>'+ msg[i+''].time+'</td>\n' +
+                            '                            <td>'+ msg[''+i].question_id+'</td>\n' +
+                            '                            <td>'+msg[''+i].name+'</td>\n' +
+                            '                            <td>'+msg[''+i].title+'</td>\n' +
+                            '                            <td>'+msg[''+i].times+'</td>\n' +
                             '                            <td class="td-manage">\n' +
-                            '                                <a title="查看" onclick="xadmin.open(\'编辑\',\'QQ_group-edit.html\')" href=" ">\n' +
-                            '                                    <i class="layui-icon">&#xe63c;</i></ a>\n' +
-                            '                                <a title="删除" onclick="delRow('+msg[i+''].success_id+')" href="javascript:;">\n' +
-                            '                                    <i class="layui-icon">&#xe640;</i></ a>\n' +
+                            '                                <a title="回答" onclick="xadmin.open(\'问题回答\',\'answer-add.html?id='+msg[''+i].question_id+'\')" href="javascript:;">\n' +
+                            '                                    <i class="layui-icon">&#xe63c;</i></a>\n' +
+                            '                                <!--<a title="删除" onclick="member_del(this,\'要删除的id\')" href="javascript:;">-->\n' +
+                            '                                    <!--<i class="layui-icon">&#xe640;</i></a>-->\n' +
                             '                            </td>\n' +
                             '                        </tr>'
                     }
@@ -250,7 +250,7 @@ function delAll(argument) {
     function delRow(id) {
         $.ajax({
             method: 'post',
-            url: '/Wechat_Delete/'+id,
+            url: '/QQ_Delete/'+id,
             dataType:'json',
             success:function (response) {
                 location.reload()
