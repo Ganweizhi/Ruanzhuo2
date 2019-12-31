@@ -70,9 +70,6 @@ public class TeacherController {
         }
         JSONObject jsonObject = new JSONObject();
         int r = allYoungTeacher.size()%5==0?0:1;
-
-
-
         jsonObject.put("page",allYoungTeacher.size()/5+r);
         jsonObject.put("curPage",anInt);
         jsonObject.put("data",youngTeacher);
