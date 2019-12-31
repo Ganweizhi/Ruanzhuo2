@@ -126,6 +126,7 @@ public class FuZeRenController {
         if(flag=="1")
             jsonObject.put("data","成功");
         else jsonObject.put("data","失败");
+
         return jsonObject.toJSONString();
     }
 }

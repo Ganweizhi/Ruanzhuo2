@@ -124,6 +124,7 @@ public class TeacherController {
     @RequestMapping(value = "/addYoungTeacherAfter",method = {RequestMethod.POST})
     public String addYoungTeacherAfter(Young young){
         String flag="0";
+        System.out.println("---------------------------!!!!!!!!!!!!!!!!1------------------------------------------");
         JSONObject jsonObject = new JSONObject();
         try {
             flag = youngService.addYoung(young);

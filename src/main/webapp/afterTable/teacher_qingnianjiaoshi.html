@@ -43,12 +43,11 @@
                         </div>
                     </form>
                 </div>
-                <!--<div class="layui-card-header">-->
-                    <!--&lt;!&ndash;<button class="layui-btn layui-btn-danger" onclick="delAll()">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<i class="layui-icon"></i>批量删除</button>&ndash;&gt;-->
-                    <!--<button class="layui-btn" onclick="xadmin.open('添加内容','./teacher_zhuyaofuzeren_add.html',800,600)">-->
-                        <!--<i class="layui-icon"></i>添加</button>-->
-                <!--</div>-->
+                <div class="layui-card-header">
+                    <!--<button class="layui-btn layui-btn-danger" onclick="delAll()">-->
+                    <!--<i class="layui-icon"></i>批量删除</button>-->
+                    <button class="layui-btn" onclick="xadmin.open('添加内容','./teacher_qingnianjiaoshi_add.html',800,600)">
+                        <i class="layui-icon"></i>添加</button></div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>
@@ -56,12 +55,10 @@
                             <th>
                                 <input type="checkbox" name="" lay-skin="primary">
                             </th>
-                            <th style="min-width:100px;">课程负责人</th>
-                            <th style="min-width:100px;">负责课程</th>
-                            <th style="min-width:100px;">课程编号</th>
-                            <th style="min-width:100px;">学院</th>
-                            <th style="min-width:100px;">老师编号</th>
-                            <th style="min-width:100px;">操作</th></tr>
+                            <th >老师名字</th>
+                            <th >老师编号</th>
+                            <th >培养内容</th>
+                            <th >操作</th>
                         </thead>
                         <tbody id="kechengfuzerenxianshi">
                         <tr>
@@ -70,10 +67,9 @@
                             <td>黄老师1</td>
                             <td>论语1</td>
                             <td>2019.1.1</td>
-                            <td>儒家经典之一，是孔子弟子及其再传弟子关于孔子及其弟子言行的记录。这个语录集至战国前期成书。全书共20篇492章，以语录体为主，叙事体为辅，主要记录孔子及其弟子的言行，较为集中地体现了孔子的政治主张、伦理思想、道德观念及教育原则等。此书是儒家学派的经典著作之一</td>
 
                             <td class="td-manage">
-                                <a title="查看" onclick="xadmin.open('编辑','teacher_zhuyaofuzeren_edit.html')" href="javascript:;">
+                                <a title="编辑" onclick="xadmin.open('编辑','teacher_qingnianjiaoshi_edit.html')" href="javascript:;">
                                     <i class="layui-icon">&#xe63c;</i></a>
                                 <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
                                     <i class="layui-icon">&#xe640;</i></a>
@@ -85,7 +81,6 @@
                             <td>黄老师</td>
                             <td>论语</td>
                             <td>2019.1.1</td>
-                            <td>以语录体为主，叙事体为辅，主要记录孔子及其弟子的言行，较为集中地体现了孔子的政治主张、伦理思想、道德观念及教育原则等。此书是儒家学派的经典著作之一</td>
                             <td class="td-manage">
                                 <a title="查看" onclick="xadmin.open('编辑','teacher_zhuyaofuzeren_edit.html')" href="javascript:;">
                                     <i class="layui-icon">&#xe63c;</i></a>
@@ -99,7 +94,6 @@
                             <td>黄老师</td>
                             <td>论语</td>
                             <td>2019.1.1</td>
-                            <td>儒家经典之一，是孔子弟子及其再传弟子关于孔子及其弟子言行的记录。这个语录集至战国前期成书。全书共20篇492章，以语录体为主，叙事体为辅，主要记录孔子及其弟子的言行，较为集中地体现了孔子的政治主张、伦理思想、道德观念及教育原则等。此书是儒家学派的经典著作之一</td>
                             <td class="td-manage">
                                 <a title="查看" onclick="xadmin.open('编辑','teacher_zhuyaofuzeren_edit.html')" href="javascript:;">
                                     <i class="layui-icon">&#xe63c;</i></a>
@@ -171,9 +165,10 @@ function member_del(obj, id) {
     layer.confirm('确认要删除吗？',
         function(index) {
             //发异步删除数据
+            console.log(id);
             $.ajax({
                     type: "POST",
-                    url: "/FuZeRen/deleteFuZeRen/"+id,
+                    url: "/Teacher/deleteYoungTeacherAfter/"+id,
                     async:false,
                     dataType: "json",
                     success:function (msg) {
@@ -219,7 +214,7 @@ function delAll(argument) {
         console.log("ajax开始");
         $.ajax({
                 type: "POST",
-                url: "/FuZeRen/findAllFuZeRenAfter/"+Page,
+                url: "/Teacher/findAllYoungTeacherAfter/"+Page,
                 async:false,
                 dataType: "json",
                 success:function (msg) {
@@ -235,32 +230,19 @@ function delAll(argument) {
                     var laoshibianhao;
                     for(i in data){
 
-                        if( data[i].course.hasOwnProperty("course_principal") ){
-                            teach_name = data[i].teacher_name;
-                            xueyuan = data[i].academy.academy_name;
-                            laoshibianhao = data[i].teacher_id;
-                        }
-                        else{
-                            teach_name = "待定";
-                            xueyuan ="待定";
-                            laoshibianhao = '待定'
-                        }
-
                         str += '<tr>\n' +
                             '                            <td>\n' +
                             '                                <input type="checkbox" name="" lay-skin="primary">' +
                             '<div class="layui-unselect layui-form-checkbox" lay-skin="primary"><i class="layui-icon layui-icon-ok"></i></div></td>\n'+
-                            '                            <td>'+ teach_name +'</td>\n' +
-                            '                            <td>'+ data[i].course.course_name +'</td>\n' +
-                            '                            <td>'+ data[i].course.course_id+'</td>\n' +
-                            '                            <td>'+ xueyuan+'</td>\n' +
-                            '                            <td>'+ laoshibianhao+'</td>\n' +
+                            '                            <td>'+ data[i].teacher_name +'</td>\n' +
+                            '                            <td>'+ data[i].teacher_id+'</td>\n' +
+                            '                            <td>'+ data[i].young.content+'</td>\n' +
                             '\n' +
                             '                            <td class="td-manage">\n' +
                             // '                                <a title="编辑" onclick="xadmin.open(\'编辑\',\'teacher_zhuyaofuzeren_edit.html?'+ data[i].course.course_id+'\')" href="javascript:;">\n' +
-                            '                                <a title="编辑"  href="teacher_zhuyaofuzeren_edit.html?'+ data[i].course.course_id+'">\n' +
+                            '                                <a title="编辑"  href="teacher_qingnianjiaoshi_edit.html?'+ data[i].teacher_id+'">\n' +
                             '                                    <i class="layui-icon">&#xe63c;</i></a>\n' +
-                            '<a title="删除" onclick="member_del(this,'+data[i].course.course_id + ')" href="javascript:;">\n' +
+                            '<a title="删除" onclick="member_del(this,'+data[i].teacher_id + ')" href="javascript:;">\n' +
                             '                                    <i class="layui-icon">&#xe640;</i></a>'+
                             '                            </td>\n' +
                             '                        </tr>'

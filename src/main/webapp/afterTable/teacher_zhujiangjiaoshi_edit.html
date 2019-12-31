@@ -25,7 +25,8 @@
 
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label" style="width: 100px;">
-                    <span class="x-red">*</span>负责人编号</label>
+                    <span class="x-red">*</span>主讲教师编号</label>
+
                 <div class="layui-input-inline">
                     <input type="text" id="teacherid" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
             </div>
@@ -37,44 +38,44 @@
     </div>
 </div>
 <!--<script>layui.use(['form', 'layer'],-->
-    <!--function() {-->
-        <!--$ = layui.jquery;-->
-        <!--var form = layui.form,-->
-            <!--layer = layui.layer;-->
+<!--function() {-->
+<!--$ = layui.jquery;-->
+<!--var form = layui.form,-->
+<!--layer = layui.layer;-->
 
-        <!--//自定义验证规则-->
-        <!--form.verify({-->
-            <!--nikename: function(value) {-->
-                <!--if (value.length < 5) {-->
-                    <!--return '昵称至少得5个字符啊';-->
-                <!--}-->
-            <!--},-->
-            <!--pass: [/(.+){6,12}$/, '密码必须6到12位'],-->
-            <!--repass: function(value) {-->
-                <!--if ($('#L_pass').val() != $('#L_repass').val()) {-->
-                    <!--return '两次密码不一致';-->
-                <!--}-->
-            <!--}-->
-        <!--});-->
+<!--//自定义验证规则-->
+<!--form.verify({-->
+<!--nikename: function(value) {-->
+<!--if (value.length < 5) {-->
+<!--return '昵称至少得5个字符啊';-->
+<!--}-->
+<!--},-->
+<!--pass: [/(.+){6,12}$/, '密码必须6到12位'],-->
+<!--repass: function(value) {-->
+<!--if ($('#L_pass').val() != $('#L_repass').val()) {-->
+<!--return '两次密码不一致';-->
+<!--}-->
+<!--}-->
+<!--});-->
 
-        <!--//监听提交-->
-        <!--form.on('submit(add)',-->
-            <!--function(data) {-->
-                <!--console.log(data);-->
-                <!--//发异步，把数据提交给php-->
-                <!--layer.alert("增加成功", {-->
-                        <!--icon: 6-->
-                    <!--},-->
-                    <!--function() {-->
-                        <!--// 获得frame索引-->
-                        <!--var index = parent.layer.getFrameIndex(window.name);-->
-                        <!--//关闭当前frame-->
-                        <!--parent.layer.close(index);-->
-                    <!--});-->
-                <!--return false;-->
-            <!--});-->
+<!--//监听提交-->
+<!--form.on('submit(add)',-->
+<!--function(data) {-->
+<!--console.log(data);-->
+<!--//发异步，把数据提交给php-->
+<!--layer.alert("增加成功", {-->
+<!--icon: 6-->
+<!--},-->
+<!--function() {-->
+<!--// 获得frame索引-->
+<!--var index = parent.layer.getFrameIndex(window.name);-->
+<!--//关闭当前frame-->
+<!--parent.layer.close(index);-->
+<!--});-->
+<!--return false;-->
+<!--});-->
 
-    <!--});</script>-->
+<!--});</script>-->
 <script>
     var _hmt = _hmt || []; (function() {
         var hm = document.createElement("script");
@@ -280,7 +281,7 @@
 </html>
 
 <script>
-     function  ccc() {
+    function  ccc() {
         var url=window.location.search; //获取url中"?"符后的字串  
         if(url.indexOf("?")!=-1){
             var id = url.substr(url.indexOf("?")+1);
@@ -289,26 +290,26 @@
 
         var iid = document.getElementById("teacherid").value;
         console.log("ajax开始了呀")
-         $.ajax({
-                 type: "POST",
-                 url: "/FuZeRen/updateFuZeRen/"+iid+"&"+id,
-                 async:false,
-                 dataType: "json",
-                 success:function (msg) {
-                     if( msg.data == "成功"){
-                         alert("更改成功");
-                         window.location.href= 'teacher_zhuyaofuzeren.html'
-                     }
+        $.ajax({
+                type: "POST",
+                url: "/FuZeRen/updateFuZeRen/"+iid+"&"+id,
+                async:false,
+                dataType: "json",
+                success:function (msg) {
+                    if( msg.data == "成功"){
+                        alert("更改成功");
+                        window.location.href= 'teacher_zhuyaofuzeren.html'
+                    }
 
-                     else{
-                         alert("更改失败");
-                     }
+                    else{
+                        alert("更改失败");
+                    }
 
-                 },
-                 error:function () {
-                     console.log("添加失败")
-                 }
-             }
-         )
+                },
+                error:function () {
+                    console.log("添加失败")
+                }
+            }
+        )
     }
 </script>
