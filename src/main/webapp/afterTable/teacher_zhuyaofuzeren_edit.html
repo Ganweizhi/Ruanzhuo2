@@ -24,14 +24,14 @@
 
 
             <div class="layui-form-item">
-                <label for="username" class="layui-form-label" style="width: 100px;">
+                <label class="layui-form-label" style="width: 100px;">
                     <span class="x-red">*</span>负责人编号</label>
                 <div class="layui-input-inline">
                     <input type="text" id="teacherid" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
             </div>
 
             <div class="layui-form-item">
-                <label for="L_repass" class="layui-form-label"></label>
+                <label class="layui-form-label"></label>
                 <button class="layui-btn" lay-filter="add" lay-submit="" onclick="ccc()">发布</button></div>
         </form>
     </div>
@@ -296,8 +296,9 @@
                  dataType: "json",
                  success:function (msg) {
                      if( msg.data == "成功"){
-                         alert("更改成功");
-                         window.location.href= 'teacher_zhuyaofuzeren.html'
+                         parent.location.reload();
+                         var index = parent.layer.getFrameIndex(window.name);
+                         parent.layer.close(index);
                      }
 
                      else{
