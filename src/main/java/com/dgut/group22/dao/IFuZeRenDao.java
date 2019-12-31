@@ -74,4 +74,5 @@ public interface IFuZeRenDao {
     @Update("update course set course_principal=null where course_id=#{course_id}")
     void deleteFuZeRen(String course_id);
 
+
 }

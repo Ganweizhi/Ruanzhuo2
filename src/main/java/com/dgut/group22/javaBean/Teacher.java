@@ -22,6 +22,15 @@ public class Teacher {
     String course_name;
     String course_id;
     Course course;
+    Young young;
+
+    public Young getYoung() {
+        return young;
+    }
+
+    public void setYoung(Young young) {
+        this.young = young;
+    }
 
     public Course getCourse() {
         return course;
