@@ -1,7 +1,9 @@
 package com.dgut.group22.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dgut.group22.javaBean.SuccessCourse;
 import com.dgut.group22.javaBean.Teacher;
 import com.dgut.group22.javaBean.Young;
@@ -81,7 +83,7 @@ public class TeacherController {
         jsonObject.put("page",allYoungTeacher.size()/5+r);
         jsonObject.put("curPage",anInt);
         jsonObject.put("data",youngTeacher);
-        return jsonObject.toJSONString();
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     @RequestMapping(value = "/findYoungByIdAfter/{teacher_id}",method = {RequestMethod.POST})
@@ -123,7 +125,7 @@ public class TeacherController {
             jsonObject.put("data","成功");
         else
             jsonObject.put("data","失败");
-        return jsonObject.toJSONString();
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     @RequestMapping(value = "/addYoungTeacherAfter",method = {RequestMethod.POST})
@@ -156,7 +158,7 @@ public class TeacherController {
         jsonObject.put("page",allSuccessCourse.size()/5+r);
         jsonObject.put("curPage",anInt);
         jsonObject.put("data",successCourses);
-        return jsonObject.toJSONString();
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     @RequestMapping(value = "/deleteSuccessCourse/{success_id}",method = {RequestMethod.POST})
@@ -175,4 +177,5 @@ public class TeacherController {
             jsonObject.put("data","失败");
         return jsonObject.toJSONString();
     }
+
 }
