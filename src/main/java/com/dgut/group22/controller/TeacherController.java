@@ -197,7 +197,7 @@ public class TeacherController {
             fileName = teacher_id+suffixName;
             upload.transferTo(new File(downloadFilePath,fileName));
             Teacher teacher = teacherService.findById(teacher_id);
-            teacher.setTeacher_photo("image/"+fileName);
+            teacher.setTeacher_photo("images/"+fileName);
             teacherService.updateTeacher(teacher);
             flag="1";
         }
