@@ -5,7 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.dgut.group22.javaBean.Teacher;
 import com.dgut.group22.javaBean.Young;
 import com.dgut.group22.service.TeacherService;
-import org.junit.jupiter.api.Test;
+import com.dgut.group22.service.YoungService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +23,8 @@ import java.util.List;
 public class TeacherController {
     @Autowired
     TeacherService teacherService;
+    @Autowired
+    YoungService youngService;
 
     @RequestMapping(value = "/findById/{teacher_id}",method = {RequestMethod.POST})
     public String findById(@PathVariable("teacher_id")String teacher_id){
@@ -60,7 +62,7 @@ public class TeacherController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value = "/findAllYoungTeacherAfter/{page}",method = {RequestMethod.GET})
+    @RequestMapping(value = "/findAllYoungTeacherAfter/{page}",method = {RequestMethod.POST})
     public String findAllYoungTeacherAfter(@PathVariable("page") String page){
         int anInt = Integer.parseInt(page);
         List<Teacher> youngTeacher = new ArrayList<>();
@@ -79,5 +81,37 @@ public class TeacherController {
         return jsonObject.toJSONString();
     }
 
+    @RequestMapping(value = "/updateYoungTeacherAfter",method = {RequestMethod.POST})
+    public String updateYoungTeacherAfter(Young young){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            flag = youngService.updateYoung(young);
+        }
+        catch (Exception e){
+            flag="0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else
+            jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
 
+    @RequestMapping(value = "/deleteYoungTeacherAfter/{teacher_id}",method = {RequestMethod.POST})
+    public String deleteYoungTeacherAfter(@PathVariable("teacher_id") String teacher_id){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            flag = youngService.deleteYoung(teacher_id);
+        }
+        catch (Exception e){
+            flag="0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else
+            jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
 }

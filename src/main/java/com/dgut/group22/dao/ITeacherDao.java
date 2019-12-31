@@ -49,6 +49,9 @@ public interface ITeacherDao {
     @Select("update teacher set teacher_name=#{teacher_name},academy_id=#{academy_id},teacher_birth=#{teacher_birth},teacher_sex=#{teacher_sex},teacher_rank=#{teacher_rank},teacher_phone=#{teacher_phone},teacher_email=#{teacher_email},teacher_qualification=#{teacher_qualification},teacher_domain=#{teacher_domain},teacher_job=#{teacher_job},teacher_address=#{teacher_address},teacher_resdire=#{teacher_resdire},teacher_resume=#{teacher_resume},teacher_photo=#{teacher_photo} where teacher_id=#{teacher_id}")
     void update(Teacher teacher);
 
-    @Select("delete teacher from teacher where teacher_id=#{teacher_id}")
+    @Select("delete from young where teacher_id=#{teacher_id}")
     void delete(String teacher_id);
+
+    @Update("update young set content=#{content} where teacher_id=#{teacher_id}")
+    void updateYoung(String teacher_id);
 }
