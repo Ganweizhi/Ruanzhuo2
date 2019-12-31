@@ -77,7 +77,7 @@ public class VideoController {
     @RequestMapping("/upload")
     public void Upload(MultipartFile upload) throws IOException {
         String downloadFilePath =System.getProperty("user.dir");
-        downloadFilePath =downloadFilePath+"\\src\\main\\resources\\video\\";
+        downloadFilePath =downloadFilePath+"\\src\\main\\webapp\\afterTable\\images";
         File file = new File(downloadFilePath);
         if(!file.exists()){
             file.mkdirs();

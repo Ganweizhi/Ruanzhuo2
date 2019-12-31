@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -178,4 +180,50 @@ public class TeacherController {
         return jsonObject.toJSONString();
     }
 
+    //修改教师头像
+    @RequestMapping(value = "/changeTeacherPhoto/{teacher_id}",method = {RequestMethod.POST})
+    public String changeTeacherPhoto(MultipartFile upload, @PathVariable("teacher_id") String teacher_id){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try{
+            String downloadFilePath =System.getProperty("user.dir");
+            downloadFilePath =downloadFilePath+"\\src\\main\\webapp\\beforeTable\\images";
+            File file = new File(downloadFilePath);
+            if(!file.exists()){
+                file.mkdirs();
+            }
+            String fileName = upload.getOriginalFilename();
+            String suffixName = fileName.substring(fileName.lastIndexOf("."));
+            fileName = teacher_id+suffixName;
+            upload.transferTo(new File(downloadFilePath,fileName));
+            Teacher teacher = teacherService.findById(teacher_id);
+            teacher.setTeacher_photo("image/"+fileName);
+            teacherService.updateTeacher(teacher);
+            flag="1";
+        }
+        catch (Exception e){
+            flag="0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
+
+    //修改教师信息
+    @RequestMapping(value = "/editTeacher",method = {RequestMethod.POST})
+    public String editTeacher(Teacher teacher){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try{
+            teacherService.updateTeacher(teacher);
+        }
+        catch (Exception e){
+            flag="0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
 }
