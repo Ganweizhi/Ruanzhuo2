@@ -293,7 +293,7 @@
         console.log("ajax开始了呀")
         $.ajax({
                 type: "POST",
-                url: " /Teacher/editSuccessCourse"+id+"&"+iid,
+                url: "/Teacher/editSuccessCourse/"+id+"&"+iid,
                 async:false,
                 dataType: "json",
                 success:function (msg) {

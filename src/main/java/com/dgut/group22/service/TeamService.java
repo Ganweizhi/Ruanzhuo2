@@ -14,11 +14,21 @@ public class TeamService {
     @Autowired
     ITeamDao teamDao;
 
+    public String deleteTeacher(String teacher_id,String team_id) {
+        teamDao.deleteTeacher(teacher_id,team_id);
+        return "1";
+    }
+
     public List<Team> findAll(){
         return teamDao.findAllTeam();
     }
 
     public List<Teacher> findTeacherByTeamId(String TeamId){
         return teamDao.findTeacherByTeamId(TeamId);
+    }
+
+    public String addTeacher(String teacher_id, String team_id) {
+        teamDao.addTeacher(teacher_id,team_id);
+        return "1";
     }
 }

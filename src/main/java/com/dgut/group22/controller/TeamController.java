@@ -71,11 +71,47 @@ public class TeamController {
     }
 
     //按id查出教师信息
-    @RequestMapping(value = "findTeacherById/{teacher_id}",method = {RequestMethod.POST})
+    @RequestMapping(value = "/findTeacherById/{teacher_id}",method = {RequestMethod.POST})
     public String findTeacherById(@PathVariable("teacher_id") String teacher_id){
         Teacher teacher=teacherService.findById(teacher_id);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("teacher",teacher);
+        return jsonObject.toJSONString();
+    }
+
+    //在团队删除教师
+    @RequestMapping(value = "/deleteTeacherFromTeam/{team_id}&{teacher_id}",method = {RequestMethod.POST})
+    public String deleteTeacherFromTeam(@PathVariable("team_id") String team_id,@PathVariable("teacher_id") String teacher_id){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            flag=teamService.deleteTeacher(teacher_id,team_id);
+        }
+        catch (Exception e){
+            flag="0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else
+            jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
+
+    //添加教师到团队
+    @RequestMapping(value = "/addTeacherToTeam/{team_id}&{teacher_id}",method = {RequestMethod.POST})
+    public String addTeacherToTeam(@PathVariable("team_id") String team_id,@PathVariable("teacher_id") String teacher_id){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            flag=teamService.addTeacher(teacher_id,team_id);
+        }
+        catch (Exception e){
+            flag="0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else
+            jsonObject.put("data","失败");
         return jsonObject.toJSONString();
     }
 

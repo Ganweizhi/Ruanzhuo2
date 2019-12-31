@@ -123,6 +123,8 @@ public class FuZeRenController {
         Teacher teacher=fuZeRenService.findFuZeRenById(teacher_id);
         if(teacher!=null)
             flag = fuZeRenService.updateFuZeRen(teacher_id,course_id);
+        Course course = courseService.findById(course_id);
+        System.out.println(course);
         if(flag=="1")
             jsonObject.put("data","成功");
         else jsonObject.put("data","失败");

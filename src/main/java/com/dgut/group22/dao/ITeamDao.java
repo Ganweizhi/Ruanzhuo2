@@ -26,4 +26,10 @@ public interface ITeamDao {
     //按teamId查询教师团队
     @Select("select * from teacher where teacher_id in (select teacher_id from tbelongt where team_id =#{team_id})")
     List<Teacher> findTeacherByTeamId(String team_id);
+
+    @Delete("delete from tbelongt where teacher_id=#{teacher_id} and team_id=#{team_id}")
+    void deleteTeacher(String teacher_id,String team_id);
+
+    @Insert("insert into tbelongt values(null,#{teacher_id},#{team_id})")
+    void addTeacher(String teacher_id, String team_id);
 }
