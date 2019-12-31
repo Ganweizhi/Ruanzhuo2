@@ -39,7 +39,7 @@ public interface ITeacherDao {
     })
     List<Teacher> findAllYoungTeacher();
 
-    //按teacherId查询青年教师
+    //按teacherId查询青年培养信息
     @Select("select * from young where teacher_id=#{teacher_id}")
     Young findYoungById(String teacher_id);
 
