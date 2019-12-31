@@ -68,8 +68,6 @@ public class TeacherController {
         List<Teacher> youngTeacher = new ArrayList<>();
         List<Teacher> allYoungTeacher = teacherService.findAllYoungTeacher();
 
-        System.out.println(allYoungTeacher);
-
         for(int i=(anInt-1)*5; i<(anInt-1)*5+5 && i<allYoungTeacher.size(); i++){
             youngTeacher.add(allYoungTeacher.get(i));
         }
@@ -112,6 +110,23 @@ public class TeacherController {
         JSONObject jsonObject = new JSONObject();
         try {
             flag = youngService.deleteYoung(teacher_id);
+        }
+        catch (Exception e){
+            flag="0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else
+            jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
+
+    @RequestMapping(value = "/addYoungTeacherAfter",method = {RequestMethod.POST})
+    public String addYoungTeacherAfter(Young young){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            flag = youngService.addYoung(young);
         }
         catch (Exception e){
             flag="0";

@@ -23,4 +23,15 @@ public class YoungService {
     public Young findYoungById(String teacher_id){
         return youngDao.findYoungById(teacher_id);
     }
+
+    public String addYoung(Young young) {
+
+        try {
+            youngDao.addYoung(young);
+        }
+        catch (Exception e){
+
+        }
+        return "1";
+    }
 }
