@@ -1,9 +1,6 @@
 package com.dgut.group22.dao;
 
-import com.dgut.group22.javaBean.Academy;
-import com.dgut.group22.javaBean.Course;
-import com.dgut.group22.javaBean.Teacher;
-import com.dgut.group22.javaBean.Young;
+import com.dgut.group22.javaBean.*;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -51,5 +48,4 @@ public interface ITeacherDao {
 
     @Select("delete from young where teacher_id=#{teacher_id}")
     void deleteTeacher(String teacher_id);
-
 }

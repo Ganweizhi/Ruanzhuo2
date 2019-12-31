@@ -25,13 +25,7 @@ public class YoungService {
     }
 
     public String addYoung(Young young) {
-
-        try {
-            youngDao.addYoung(young);
-        }
-        catch (Exception e){
-
-        }
+        youngDao.addYoung(young);
         return "1";
     }
 }

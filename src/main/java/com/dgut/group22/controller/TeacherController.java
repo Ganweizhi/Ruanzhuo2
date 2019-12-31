@@ -2,8 +2,10 @@ package com.dgut.group22.controller;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.dgut.group22.javaBean.SuccessCourse;
 import com.dgut.group22.javaBean.Teacher;
 import com.dgut.group22.javaBean.Young;
+import com.dgut.group22.service.SuccessCourseService;
 import com.dgut.group22.service.TeacherService;
 import com.dgut.group22.service.YoungService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class TeacherController {
     TeacherService teacherService;
     @Autowired
     YoungService youngService;
+
+    @Autowired
+    SuccessCourseService successCourseService;
 
     @RequestMapping(value = "/findById/{teacher_id}",method = {RequestMethod.POST})
     public String findById(@PathVariable("teacher_id")String teacher_id){
@@ -124,10 +129,42 @@ public class TeacherController {
     @RequestMapping(value = "/addYoungTeacherAfter",method = {RequestMethod.POST})
     public String addYoungTeacherAfter(Young young){
         String flag="0";
-        System.out.println("---------------------------!!!!!!!!!!!!!!!!1------------------------------------------");
         JSONObject jsonObject = new JSONObject();
         try {
             flag = youngService.addYoung(young);
+        }
+        catch (Exception e){
+            flag="0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else
+            jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
+
+    @RequestMapping(value = "/findAllSuccessCourse/{page}",method = {RequestMethod.POST})
+    public String findAllSuccessCourse(@PathVariable("page") String page){
+        int anInt = Integer.parseInt(page);
+        List<SuccessCourse> successCourses=new ArrayList<>();
+        List<SuccessCourse> allSuccessCourse= successCourseService.findAllSuccessCourse();
+        for(int i=(anInt-1)*5; i<(anInt-1)*5+5 && i<allSuccessCourse.size(); i++){
+            successCourses.add(allSuccessCourse.get(i));
+        }
+        JSONObject jsonObject = new JSONObject();
+        int r = allSuccessCourse.size()%5==0?0:1;
+        jsonObject.put("page",allSuccessCourse.size()/5+r);
+        jsonObject.put("curPage",anInt);
+        jsonObject.put("data",successCourses);
+        return jsonObject.toJSONString();
+    }
+
+    @RequestMapping(value = "/deleteSuccessCourse/{success_id}",method = {RequestMethod.POST})
+    public String deleteSuccessCourse(@PathVariable("success_id") String success_id){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            flag=successCourseService.deleteSuccessCourse(success_id);
         }
         catch (Exception e){
             flag="0";

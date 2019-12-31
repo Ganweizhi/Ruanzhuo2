@@ -29,4 +29,8 @@ public interface ISuccessCourseDao {
             @Result(property = "success_port",column = "success_port"),
     })
     List<SuccessCourse> findAllSuccessCourse();
+
+    @Delete("delete from SuccessCourse where success_id=#{success_id}")
+    void deleteSuccessCourse(String success_id);
+
 }

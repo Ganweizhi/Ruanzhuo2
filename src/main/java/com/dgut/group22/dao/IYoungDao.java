@@ -17,6 +17,6 @@ public interface IYoungDao {
     @Select("select * from young where teacher_id=#{teacher_id}")
     Young findYoungById(String teacher_id);
 
-    @Insert("insert into young values(null,#{teacher_id},#{content})")
+    @Insert("insert into young(young_id,teacher_id,content) values(null,#{teacher_id},#{content})")
     void addYoung(Young young);
 }
