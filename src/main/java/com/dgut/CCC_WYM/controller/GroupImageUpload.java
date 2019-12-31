@@ -32,7 +32,7 @@ public class GroupImageUpload {
     {
         return Upload.getAllSuccessCourse().toString();
     }
-   @RequestMapping("/QQ_upload")
+    @RequestMapping("/QQ_upload")
     public String QQupload(MultipartFile pic,@Param("success_id")String success_id, HttpServletRequest request) throws IOException {
 
        System.out.println(pic+success_id);
@@ -100,21 +100,6 @@ public class GroupImageUpload {
         jsonObject.put("size",i);
         return  JSON.toJSONString(jsonObject,SerializerFeature.DisableCircularReferenceDetect);
     }
-    @RequestMapping("/WechatgetSuccess_id")
-    @ResponseBody
-    public String getWechatSuccess_id()
-    {
-        List<success_id> success_ids= Upload.getALLsucessIdForQQ();
-        JSONObject jsonObject = new JSONObject();
-        int i = 0;
-        for(success_id t:success_ids)
-        {
-            jsonObject.put(i+"",t);
-            i++;
-        }
-        jsonObject.put("size",i);
-        return  JSON.toJSONString(jsonObject,SerializerFeature.DisableCircularReferenceDetect);
-    }
     @RequestMapping("/QQ_find/{page}")
     @ResponseBody
     public String getQQPages(@PathVariable("page")String page)
@@ -148,39 +133,7 @@ public class GroupImageUpload {
               jsonObject.put("totalPage",totalPage);
         return JSON.toJSONString(jsonObject,SerializerFeature.DisableCircularReferenceDetect);
     }
-    @RequestMapping("/Wechat_find/{Page}")
-    @ResponseBody
-    public String getWechatPages(@PathVariable("Page")String page)
-    {
-        List<image_wechat> AllWechat = Upload.getAllWechatImage();
-        int total = AllWechat.size();
-        int totalPage;
-        if(total%3==0) totalPage = total/3;
-        else totalPage = total/3+1;
-        JSONObject jsonObject = new JSONObject();
-        int i = 0;
-        int pages = Integer.valueOf(page);
-        if(pages<=0) pages=1;
-        if(pages>=totalPage) pages=totalPage;
-        if(total<=3){
-            for(image_wechat s:AllWechat)
-            {
-                jsonObject.put(i+"",s);
-                i++;
-            }
-        }else {
-            for (int m = (pages - 1) * 3; m < total; m++) {
-                if (i >= 3) break;
-                jsonObject.put(i + "", AllWechat.get(m));
-                i++;
-            }
-        }
-        if(i==3)jsonObject.put("size",3);
-        else jsonObject.put("size",i);
-        jsonObject.put("curPage",pages);
-        jsonObject.put("totalPage",totalPage);
-        return JSON.toJSONString(jsonObject,SerializerFeature.DisableCircularReferenceDetect);
-    }
+
     @RequestMapping("/jiaoxuehudong_QQ/{page}")
     @ResponseBody
     public String getBeforeQQ(@PathVariable("page")String page)

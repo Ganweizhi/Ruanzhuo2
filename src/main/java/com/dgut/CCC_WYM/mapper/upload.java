@@ -28,21 +28,32 @@ public interface upload {
     List<image_wechat> getAllWechatImage();
     @Update("update  successCourse set success_QQ = #{qq} where success_id = #{success_id}")
     void setQQimage(@Param("qq")String qq,@Param("success_id")String success_id);
-    @Update("update  successCourse set success_wechat = #{wechat} where course_id = #{course_id} and teacher_id = #{teacher_id}")
-    void setWechatimage(@Param("wechat")String wechat,@Param("course_id")String course_id,@Param("teacher_id")String teacher_id);
+    @Update("update  successCourse set success_wechat = #{wechat} where success_id = #{success_id}")
+    void setWechatimage(@Param("wechat")String wechat,@Param("success_id")String success_id);
     @Select("select success_id,course_name from successCourse,course where course.course_id = successCourse.course_id and success_qq is null ")
     List<success_id> getAllSuccess_idForQQ();
     @Select("select success_id,course_name from successCourse,course where course.course_id = successCourse.course_id and success_wechat is null ")
     List<success_id> getAllSuccess_idForWechat();
     @Update("update successCourse set success_QQ=null where success_id = #{success_id}")
     void deleteQQ(String success_id);
+    @Update("update successCourse set success_wechat =null where success_id = #{success_id}")
+    void deleteWechat(String success_id);
+    //前台展示QQ和微信图片
     @Select("select success_QQ,course.course_name,successCourse.course_id from successCourse,course where successCourse.course_id = course.course_id and success_QQ is not null")
     List<beforeQQ> getBeforQQ();
+    @Select("select success_wechat,course.course_name,successCourse.course_id from successCourse,course where successCourse.course_id = course.course_id and success_wechat is not null")
+    List<beforeWechat> getBeforWechat();
+
     @Insert("insert into question(name,title,times,content) values(#{name},#{title},#{times},#{content})")
     void insertIntoQuestion(@Param("name")String name,@Param("title")String title,@Param("times")String times,@Param("content")String content);
     @Select("select * from question")
     List<webTitle> getAllTitle();
     @Select("select * from question where question_id = #{question_id}")
     Webquestion getWebQuestionByQid(String qid);
+    @Select("select * from question where answer is null")
+    List<webTitle> getAllNotslovedQuestion();
+    @Update("update question  set answer = #{answer} where question_id = #{question_id}")
+    void responesQuestion(@Param("question_id")String question_id,@Param("answer")String answer);
+
 
 }

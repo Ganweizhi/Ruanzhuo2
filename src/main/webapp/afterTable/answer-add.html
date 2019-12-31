@@ -18,45 +18,26 @@
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]--></head>
 
-<body>
+<body onload="GetRequest">
 <div class="layui-fluid">
     <div class="layui-row">
-        <form class="layui-form" action="/Wechat_upload" accept-charset="utf-8" enctype="multipart/form-data" method="post">
+        <form class="layui-form" action="/answer_upload" accept-charset="utf-8" enctype="multipart/form-data" method="post">
             <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>选择文件</label>
-                <div class="layui-input-inline">
-                    <br>
-                    <input id="file" type="file" name="pic">
+                <input type="hidden" id="question" name="question_id" value=""/>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label for="desc" class="layui-form-label">回答内容</label>
+                <div class="layui-input-block">
+                    <textarea placeholder="请输入回答内容" id="desc" name="desc" class="layui-textarea"></textarea>
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>开课成功课程</label>
-                <div class="layui-input-inline">
-                    <br>
-                    <select name="success_id" id="success_id" lay-ignore>
-                        <option value="0">请选择编号</option>
-                    </select>
-                </div>
-            </div>
-            <!--            <div class="layui-form-item">-->
-            <!--                <label for="username" class="layui-form-label">-->
-            <!--                    <span class="x-red">*</span>负责教师</label>-->
-            <!--                <div class="layui-input-inline">-->
-            <!--                    <br>-->
-            <!--                    <select name="teacher_id" id="teacher_id" lay-ignore >-->
-            <!--                        <option value="0">请选择教师</option>-->
-            <!--                    </select>-->
-            <!--                </div>-->
             <br>
             <div class="layui-form-item">
                 <label for="L_repass" class="layui-form-label"></label>
                 <button class="layui-btn" lay-filter="add" lay-submit="" onclick="submit()">提交</button>
             </div>
-    </div>
     </form>
-    </div>
+</div>
 </div>
 </body>
 <script>layui.use(['form', 'layer'],
@@ -299,121 +280,25 @@
 
     });
 
-    // function submit() {
-    //     var username = $("#username").val();
-    //     var big_title = $("#big_title").val();
-    //     var little_title = $("#little_title").val();
-    //     var course_id = $("#course_id").children('option:selected').val()
-    //     var teacher_id = $("#teacher_id").children('option:selected').val()
-    //     var time = $("#time").val();
-    //
-    //     var data = {
-    //         "username": username,
-    //         "big_title": big_title,
-    //         "little_title": little_title,
-    //         "course_id": course_id,
-    //         "teacher_id": teacher_id,
-    //         "time": time
-    //     }
-    //
-    //
-    //     $.ajax({
-    //         type: "post",
-    //         url: "./QQ_upload",
-    //         data: data,
-    //         cache: true,
-    //         async: true,
-    //         success: function (data, textStatus, jqXHR) {
-    //             if (data.code == 200) {
-    //                 alert("插入成功了");
-    //             } else {
-    //                 alert(data.message);
-    //             }
-    //         },
-    //         error: function (XMLHttpRequest, textStatus, errorThrown) {
-    //
-    //             alert(typeof (errorThrown));
-    //         }
-    //
-    //     });
-    // }
 </script>
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
-<!--<script>-->
-<!--    $(document).ready(function () {-->
-
-<!--        var url="/getCourse_id"; //访问后台去数据库查询select的选项,此处需填写后台接口路径-->
-<!--        $.ajax({-->
-<!--            type:"post",-->
-<!--            url:url,-->
-<!--            dataType:"json",-->
-<!--            success : function(data) {-->
-<!--                var unitObj=document.getElementById("course_id");-->
-<!--                console.log(data);-->
-<!--                // console.log(data["size"]);-->
-<!--                // console.log(data.length);-->
-<!--                for (var i = 0; i < data["size"]; i++) {-->
-<!--                    var s = i+"";-->
-<!--                    console.log("第一行:"+data[s].course_id);-->
-<!--                    unitObj.options.add(new Option(data[s].course_name,data[s].course_id))-->
-<!--                }-->
-<!--            },-->
-<!--            error:function(){-->
-<!--                J.alert('Error');-->
-<!--            }-->
-<!--        })-->
-<!--    })-->
-<!--</script>-->
-<!--<script>-->
-<!--    $(document).ready(function () {-->
-
-<!--        var url="/getTeacher_id"; //访问后台去数据库查询select的选项,此处需填写后台接口路径-->
-<!--        $.ajax({-->
-<!--            type:"post",-->
-<!--            url:url,-->
-<!--            dataType:"json",-->
-<!--            success : function(data) {-->
-<!--                var unitObj=document.getElementById("teacher_id");-->
-<!--                console.log(data);-->
-<!--                // console.log(data["size"]);-->
-<!--                // console.log(data.length);-->
-<!--                for (var i = 0; i < data["size"]; i++) {-->
-<!--                    var s = i+"";-->
-<!--                    console.log("第一行:"+data[s].teacher_id);-->
-<!--                    unitObj.options.add(new Option(data[s].teacher_name,data[s].teacher_id))-->
-<!--                }-->
-<!--            },-->
-<!--            error:function(){-->
-<!--                J.alert('Error');-->
-<!--            }-->
-<!--        })-->
-<!--    })-->
-<!--</script>-->
 <script>
-    $(document).ready(function () {
-
-        var url="/getSuccess_idForWechat"; //访问后台去数据库查询select的选项,此处需填写后台接口路径
-        $.ajax({
-            type:"post",
-            url:url,
-            dataType:"json",
-            success : function(data) {
-                var unitObj=document.getElementById("success_id");
-                console.log(data);
-                // console.log(data["size"]);
-                // console.log(data.length);
-                for (var i = 0; i < data["size"]; i++) {
-                    var s = i+"";
-                    console.log("第一行:"+data[s].success_id);
-                    unitObj.options.add(new Option(data[s].success_id+":"+data[s].course_name,data[s].success_id))
-                }
-            },
-            error:function(){
-                J.alert('Error');
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
             }
-        })
-    })
-</script>
-</body>
+        }
+        return theRequest;
+    }
+    console.dir(GetRequest())
+    window.id = GetRequest().id||'-1'
+    console.log(window.id)
 
+    document.getElementById('question').value = window.id;
+
+</script>
 </html>
