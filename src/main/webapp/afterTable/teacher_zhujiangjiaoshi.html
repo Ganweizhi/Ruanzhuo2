@@ -58,7 +58,6 @@
                             <th style="min-width:100px;">主讲教师名字</th>
                             <th style="min-width:100px;">讲授课程</th>
                             <th style="min-width:100px;">课程编号</th>
-                            <th style="min-width:100px;">学院</th>
                             <th style="min-width:100px;">老师编号</th>
                             <th style="min-width:100px;">职称</th>
                             <th style="min-width:100px;">研究方向</th>
@@ -221,7 +220,7 @@ function delAll(argument) {
         console.log("ajax开始");
         $.ajax({
                 type: "POST",
-                url: "/FuZeRen/findAllFuZeRenAfter/"+Page,
+                url: "/Teacher/findAllSuccessCourse/"+Page,
                 async:false,
                 dataType: "json",
                 success:function (msg) {
@@ -235,18 +234,25 @@ function delAll(argument) {
                     var teach_name;
                     var xueyuan;
                     var laoshibianhao;
+                    var teacher_domain;
+                    var teacher_rank;
                     for(i in data){
 
-                        if( data[i].course.hasOwnProperty("course_principal") ){
-                            teach_name = data[i].teacher_name;
-                            xueyuan = data[i].academy.academy_name;
-                            laoshibianhao = data[i].teacher_id;
+                        if( data[i].teacher.hasOwnProperty("teacher_name") ){
+                            teach_name = data[i].teacher.teacher_name;
+                            // xueyuan = data[i].academy.academy_name;
+                            laoshibianhao = data[i].teacher.teacher_id;
+                            teacher_domain = data[i].teacher.teacher_domain;
+                            teacher_rank = data[i].teacher.teacher_rank;
                         }
                         else{
                             teach_name = "待定";
-                            xueyuan ="待定";
-                            laoshibianhao = '待定'
+                            // xueyuan ="待定";
+                            laoshibianhao = '待定';
+                            teacher_domain = '待定';
+                            teacher_rank = '待定';
                         }
+                        
                         // teacher_domain           研究方向
                         str += '<tr>\n' +
                             '                            <td>\n' +
@@ -255,12 +261,16 @@ function delAll(argument) {
                             '                            <td>'+ teach_name +'</td>\n' +
                             '                            <td>'+ data[i].course.course_name +'</td>\n' +
                             '                            <td>'+ data[i].course.course_id+'</td>\n' +
-                            '                            <td>'+ teacher_domain+'</td>\n' +
+
                             '                            <td>'+ laoshibianhao+'</td>\n' +
+                            '                            <td>'+ teacher_rank+'</td>\n' +
+                            '                            <td>'+ teacher_domain+'</td>\n' +
                             '\n' +
                             '                            <td class="td-manage">\n' +
                             // '                                <a title="编辑" onclick="xadmin.open(\'编辑\',\'teacher_zhuyaofuzeren_edit.html?'+ data[i].course.course_id+'\')" href="javascript:;">\n' +
                             '                                <a title="编辑"  href="teacher_zhujiangjiaoshi_edit.html?'+ data[i].course.course_id+'">\n' +
+                            '                                    <i class="layui-icon">&#xe63c;</i></a>\n' +
+                            '                                <a title="修改头像"  href="teacher_zhujiangjiaoshi_edit1.html?'+ data[i].course.course_id+'">\n' +
                             '                                    <i class="layui-icon">&#xe63c;</i></a>\n' +
                             '<a title="删除" onclick="member_del(this,'+data[i].course.course_id + ')" href="javascript:;">\n' +
                             '                                    <i class="layui-icon">&#xe640;</i></a>'+
