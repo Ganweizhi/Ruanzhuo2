@@ -289,22 +289,21 @@
         console.log(id + "    id");
 
         var iid = document.getElementById("teacherid").value;
+
         console.log("ajax开始了呀")
         $.ajax({
                 type: "POST",
-                url: "/FuZeRen/updateFuZeRen/"+iid+"&"+id,
+                url: " /Teacher/editSuccessCourse"+id+"&"+iid,
                 async:false,
                 dataType: "json",
                 success:function (msg) {
                     if( msg.data == "成功"){
                         alert("更改成功");
-                        window.location.href= 'teacher_zhuyaofuzeren.html'
+                        window.location.href= 'teacher_zhujiangjiaoshi.html'
                     }
-
                     else{
                         alert("更改失败");
                     }
-
                 },
                 error:function () {
                     console.log("添加失败")

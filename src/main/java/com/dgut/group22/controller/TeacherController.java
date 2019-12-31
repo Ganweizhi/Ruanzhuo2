@@ -226,4 +226,22 @@ public class TeacherController {
         else jsonObject.put("data","失败");
         return jsonObject.toJSONString();
     }
+
+    @RequestMapping(value = "/editSuccessCourse/{course_id}&{teacher_id}",method = {RequestMethod.POST})
+    public String editSuccessCourse(@PathVariable("course_id") String course_id,@PathVariable("teacher_id") String teacher_id){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try{
+            successCourseService.updateSuccessCourse(course_id,teacher_id);
+            flag="1";
+        }
+        catch (Exception e){
+            flag="0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
+
 }
