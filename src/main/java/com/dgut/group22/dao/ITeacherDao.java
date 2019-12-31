@@ -50,8 +50,6 @@ public interface ITeacherDao {
     void update(Teacher teacher);
 
     @Select("delete from young where teacher_id=#{teacher_id}")
-    void delete(String teacher_id);
+    void deleteTeacher(String teacher_id);
 
-    @Update("update young set content=#{content} where teacher_id=#{teacher_id}")
-    void updateYoung(String teacher_id);
 }

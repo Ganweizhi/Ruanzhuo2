@@ -19,4 +19,8 @@ public class YoungService {
         youngDao.deleteYoung(teacher_id);
         return "1";
     }
+
+    public Young findYoungById(String teacher_id){
+        return youngDao.findYoungById(teacher_id);
+    }
 }

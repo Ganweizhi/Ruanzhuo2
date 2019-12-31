@@ -81,6 +81,14 @@ public class TeacherController {
         return jsonObject.toJSONString();
     }
 
+    @RequestMapping(value = "/findYoungByIdAfter/{teacher_id}",method = {RequestMethod.POST})
+    public String findYoungByIdAfter(@PathVariable("teacher_id") String teacher_id){
+        Young young=youngService.findYoungById(teacher_id);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("young",young);
+        return jsonObject.toJSONString();
+    }
+
     @RequestMapping(value = "/updateYoungTeacherAfter",method = {RequestMethod.POST})
     public String updateYoungTeacherAfter(Young young){
         String flag="0";
