@@ -148,9 +148,9 @@ create table selectcourse
 DROP table if exists young;
 create table young
 (
-    young_id int auto_increment not null,
+    young_id   varchar(200) not null,
     teacher_id int,
-    content varchar(255) DEFAULT NULL,
+    content    varchar(255) DEFAULT NULL,
     foreign key (teacher_id) references teacher (teacher_id),
     primary key (young_id)
 );

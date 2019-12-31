@@ -129,7 +129,7 @@ create table selectcourse
 -- 9.青年教师培养
 DROP table if exists young;
 create table young(
- young_id varchar(200) not null primary key,
+ young_id int auto_increment not null primary key,
  teacher_id int,
  content varchar(255) DEFAULT NULL,
  foreign key (teacher_id) references teacher(teacher_id)
