@@ -1,5 +1,6 @@
 package com.dgut.group33.service;
 
+import com.dgut.group33.javaBean.AddEditContent;
 import com.dgut.group33.javaBean.Measure;
 import com.dgut.group33.dao.MeasureMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class MeasureService {
 
     public void delete(int achievement_id){measureMapper.delete(achievement_id);}
 
-    public void insert(Measure measure){measureMapper.insert(measure);}
+    public void insert(AddEditContent measure){measureMapper.insert(measure);}
 
-    public void update(Measure measure){measureMapper.update(measure);}
+    public void update(AddEditContent measure){measureMapper.update(measure);}
 }

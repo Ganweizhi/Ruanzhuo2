@@ -45,7 +45,6 @@ public class CoursePlanController {
         JSONObject result = new JSONObject();
         result.put("title", title);
         result.put("CourseList", courses);
-        System.out.println(result.toJSONString());
         return result.toJSONString();
     }
     @RequestMapping(value = "/ChungLife_dt/addCoursePlan", method = RequestMethod.POST)

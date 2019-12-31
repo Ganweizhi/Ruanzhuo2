@@ -1,8 +1,6 @@
 package com.dgut.group22.controller;
 
-import com.dgut.group22.javaBean.SuccessCourse;
-import com.dgut.group22.javaBean.experiment_house;
-import com.dgut.group22.javaBean.resource;
+import com.dgut.group22.javaBean.*;
 import com.dgut.group22.service.resourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,9 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 @RequestMapping("/resource")
@@ -186,6 +182,195 @@ public class resourceController {
         return code;
 
     }
+    @RequestMapping(value = "/GetAlltextbook",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String, Object> GetAlltextbook(HttpServletRequest request) throws FileNotFoundException {
+        List<resource> resourceList = new ArrayList<>();
+        List<SuccessCourse> successCourseList = new ArrayList<>();
+        List<Course> courseList = new ArrayList<>();
+        List<Teacher> teacherList = new ArrayList<>();
+        List<resource> resources=resourceService.GetAllResource();
+        Map<String, Object> map = new HashMap<>();
+        for(resource resource: resources ){
+            if(resource.getResource_textbook()!=null){
+                resourceList.add(resource);
+                SuccessCourse successCourse = resourceService.selectSuccessCourseById(resource.getSuccess_id());
+                successCourseList.add(successCourse);
+                Course course = resourceService.selectCourseById(successCourse.getCourse_id());
+                courseList.add(course);
+                Teacher teacher = resourceService.selectTeacherById(successCourse.getTeacher_id());
+                teacherList.add(teacher);
+            }
+        }
+        map.put("resourceList",resourceList);
+//        map.put("successCourseList",successCourseList);
+        map.put("courseList",courseList);
+        map.put("teacherList",teacherList);
+        return map;
+    }
 
+    @RequestMapping(value = "/GetAllvideo",method = RequestMethod.GET)     //教学视频
+    @ResponseBody
+    public Map<String, Object> GetAllvideo(HttpServletRequest request) throws FileNotFoundException {
+        List<resource> resourceList = new ArrayList<>();
+        List<SuccessCourse> successCourseList = new ArrayList<>();
+        List<Course> courseList = new ArrayList<>();
+        List<Teacher> teacherList = new ArrayList<>();
+        List<resource> resources=resourceService.GetAllResource();
+        Map<String, Object> map = new HashMap<>();
+        for(resource resource: resources ){
+            if(resource.getResource_video()!=null){
+                resourceList.add(resource);
+                SuccessCourse successCourse = resourceService.selectSuccessCourseById(resource.getSuccess_id());
+                successCourseList.add(successCourse);
+                Course course = resourceService.selectCourseById(successCourse.getCourse_id());
+                courseList.add(course);
+                Teacher teacher = resourceService.selectTeacherById(successCourse.getTeacher_id());
+                teacherList.add(teacher);
+            }
+        }
+        map.put("resourceList",resourceList);
+//        map.put("successCourseList",successCourseList);
+        map.put("courseList",courseList);
+        map.put("teacherList",teacherList);
+        return map;
+    }
+
+    @RequestMapping(value = "/GetAllbase",method = RequestMethod.GET)     //习题库
+    @ResponseBody
+    public Map<String, Object> GetAllbase(HttpServletRequest request) throws FileNotFoundException {
+        List<resource> resourceList = new ArrayList<>();
+        List<SuccessCourse> successCourseList = new ArrayList<>();
+        List<Course> courseList = new ArrayList<>();
+        List<Teacher> teacherList = new ArrayList<>();
+        List<resource> resources=resourceService.GetAllResource();
+        Map<String, Object> map = new HashMap<>();
+        for(resource resource: resources ){
+            if(resource.getResource_base()!=null){
+                resourceList.add(resource);
+                SuccessCourse successCourse = resourceService.selectSuccessCourseById(resource.getSuccess_id());
+                successCourseList.add(successCourse);
+                Course course = resourceService.selectCourseById(successCourse.getCourse_id());
+                courseList.add(course);
+                Teacher teacher = resourceService.selectTeacherById(successCourse.getTeacher_id());
+                teacherList.add(teacher);
+            }
+        }
+        map.put("resourceList",resourceList);
+//        map.put("successCourseList",successCourseList);
+        map.put("courseList",courseList);
+        map.put("teacherList",teacherList);
+        return map;
+    }
+
+    @RequestMapping(value = "/GetAllexperiment",method = RequestMethod.GET)     //案例库
+    @ResponseBody
+    public Map<String, Object> GetAllexperiment(HttpServletRequest request) throws FileNotFoundException {
+        List<resource> resourceList = new ArrayList<>();
+        List<SuccessCourse> successCourseList = new ArrayList<>();
+        List<Course> courseList = new ArrayList<>();
+        List<Teacher> teacherList = new ArrayList<>();
+        List<resource> resources=resourceService.GetAllResource();
+        Map<String, Object> map = new HashMap<>();
+        for(resource resource: resources ){
+            if(resource.getResource_experiment()!=null){
+                resourceList.add(resource);
+                SuccessCourse successCourse = resourceService.selectSuccessCourseById(resource.getSuccess_id());
+                successCourseList.add(successCourse);
+                Course course = resourceService.selectCourseById(successCourse.getCourse_id());
+                courseList.add(course);
+                Teacher teacher = resourceService.selectTeacherById(successCourse.getTeacher_id());
+                teacherList.add(teacher);
+            }
+        }
+        map.put("resourceList",resourceList);
+//        map.put("successCourseList",successCourseList);
+        map.put("courseList",courseList);
+        map.put("teacherList",teacherList);
+        return map;
+    }
+
+    @RequestMapping(value = "/GetAlldocument",method = RequestMethod.GET)     //文档
+    @ResponseBody
+    public Map<String, Object> GetAlldocument(HttpServletRequest request) throws FileNotFoundException {
+        List<resource> resourceList = new ArrayList<>();
+        List<SuccessCourse> successCourseList = new ArrayList<>();
+        List<Course> courseList = new ArrayList<>();
+        List<Teacher> teacherList = new ArrayList<>();
+        List<resource> resources=resourceService.GetAllResource();
+        Map<String, Object> map = new HashMap<>();
+        for(resource resource: resources ){
+            if(resource.getResource_document()!=null){
+                resourceList.add(resource);
+                SuccessCourse successCourse = resourceService.selectSuccessCourseById(resource.getSuccess_id());
+                successCourseList.add(successCourse);
+                Course course = resourceService.selectCourseById(successCourse.getCourse_id());
+                courseList.add(course);
+                Teacher teacher = resourceService.selectTeacherById(successCourse.getTeacher_id());
+                teacherList.add(teacher);
+            }
+        }
+        map.put("resourceList",resourceList);
+//        map.put("successCourseList",successCourseList);
+        map.put("courseList",courseList);
+        map.put("teacherList",teacherList);
+        return map;
+    }
+
+    @RequestMapping(value = "/GetAllexperiment_house",method = RequestMethod.GET)     //
+    @ResponseBody
+    public Map<String, Object> GetAllexperiment_house(HttpServletRequest request) throws FileNotFoundException {
+        List<experiment_house> experimentHouseList = new ArrayList<>();
+        List<SuccessCourse> successCourseList = new ArrayList<>();
+        List<Course> courseList = new ArrayList<>();
+        List<Teacher> teacherList = new ArrayList<>();
+        List<experiment_house> experiment_houses=resourceService.GetAllExperiment_house();
+        Map<String, Object> map = new HashMap<>();
+        for(experiment_house experiment_house: experiment_houses ){
+                experimentHouseList.add(experiment_house);
+                resource resource = resourceService.selectResourceById(experiment_house.getResource_id());
+                SuccessCourse successCourse = resourceService.selectSuccessCourseById(resource.getSuccess_id());
+                successCourseList.add(successCourse);
+                Course course = resourceService.selectCourseById(successCourse.getCourse_id());
+                courseList.add(course);
+                Teacher teacher = resourceService.selectTeacherById(successCourse.getTeacher_id());
+                teacherList.add(teacher);
+        }
+        map.put("experimentHouseList",experimentHouseList);
+//        map.put("successCourseList",successCourseList);
+        map.put("courseList",courseList);
+        map.put("teacherList",teacherList);
+        return map;
+    }
+
+    @RequestMapping(value = "/DeleteTextbook",method = RequestMethod.GET)
+    @ResponseBody
+    public String DeleteTextbook(Integer resource_id){
+        String code="0";
+        resource resource = resourceService.selectResourceById(resource_id);
+        resource.setResource_textbook(null);
+        resource.setResource_video(null);
+        resource.setResource_base(null);
+        resource.setResource_experiment(null);
+        resource.setResource_document(null);
+        int state=1;
+        state= resourceService.DeleteTextbook(resource);
+        System.out.println(state);
+        if(state==0)
+            code="400";
+        return code;
+    }
+
+    @RequestMapping(value = "/DeleteExperiment_house",method = RequestMethod.GET)
+    @ResponseBody
+    public String DeleteExperiment_house(Integer experiment_id){
+        String code="0";
+        int state=1;
+        state= resourceService.DeleteExperiment_house(experiment_id);
+        System.out.println(state);
+        if(state==0)
+            code="400";
+        return code;
+    }
 
 }

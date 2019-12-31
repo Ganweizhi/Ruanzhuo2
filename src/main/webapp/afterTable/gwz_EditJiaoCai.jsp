@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<%@ page import="com.dgut.group11.gwz.service.gwz_KeChengGaiKuangService" %>
+<%@ page import="com.dgut.group11.gwz.javabean.gwz_Course" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html class="x-admin-sm">
     
     <head>
@@ -18,20 +21,34 @@
         <![endif]--></head>
     
     <body>
+    <%
+        gwz_Course course=(gwz_Course) request.getSession().getAttribute("EditJiaoCai_course");
+    %>
         <div class="layui-fluid">
             <div class="layui-row">
                 <form class="layui-form" action="/course/accept_EditJiaoCai">
 
+                    <div class="layui-form-item">
+                        <label for="course_id" class="layui-form-label">
+                            <span class="x-red">*</span>课程ID</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="course_id" name="course_id" value="<%=course.getCourse_id()%>" required="" autocomplete="off" class="layui-input" readonly="readonly"></div>
+                    </div>
 
 
 
-
+                    <div class="layui-form-item">
+                        <label for="course_name" class="layui-form-label">
+                            <span class="x-red">*</span>课程名字</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="course_name" name="course_name" value="<%=course.getCourse_name()%>" required="" autocomplete="off" class="layui-input" readonly="readonly"></div>
+                    </div>
 
 
         <div class="layui-form-item layui-form-text">
             <label for="course_material" class="layui-form-label">教材资料</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" id="course_material" name="course_material" class="layui-textarea"></textarea>
+                <textarea placeholder="请输入内容" value="<%=course.getCourse_material()%>" id="course_material" name="course_material" class="layui-textarea"></textarea>
             </div>
         </div>
 

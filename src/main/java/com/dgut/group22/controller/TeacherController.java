@@ -58,4 +58,26 @@ public class TeacherController {
         jsonObject.put("teacher",teacher);
         return jsonObject.toJSONString();
     }
+
+    @RequestMapping(value = "/findAllYoungTeacherAfter/{page}",method = {RequestMethod.POST})
+    public String findAllYoungTeacherAfter(@PathVariable("page") String page){
+        int anInt = Integer.parseInt(page);
+        List<Teacher> youngTeacher = new ArrayList<>();
+        List<Teacher> allYoungTeacher = teacherService.findAllYoungTeacher();
+
+        for(int i=(anInt-1)*5; i<(anInt-1)*5+5 && i<allYoungTeacher.size(); i++){
+            youngTeacher.add(allYoungTeacher.get(i));
+        }
+        JSONObject jsonObject = new JSONObject();
+        int r = allYoungTeacher.size()%5==0?0:1;
+
+
+
+        jsonObject.put("page",allYoungTeacher.size()/5+r);
+        jsonObject.put("curPage",anInt);
+        jsonObject.put("data",youngTeacher);
+        return jsonObject.toJSONString();
+    }
+
+
 }

@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+<%@ page import="com.dgut.group11.gwz.service.gwz_KeChengGaiKuangService" %>
+<%@ page import="com.dgut.group11.gwz.javabean.gwz_Course" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html class="x-admin-sm">
     
     <head>
         <meta charset="UTF-8">
-        <title>编辑简介</title>
+        <title>编辑课程特色</title>
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -18,37 +21,33 @@
         <![endif]--></head>
     
     <body>
+    <%
+        gwz_Course course=(gwz_Course) request.getSession().getAttribute("EditTeSe_course");
+    %>
         <div class="layui-fluid">
             <div class="layui-row">
-                <form class="layui-form" action="/course/accept_EditJianJie">
+                <form class="layui-form" action="/course/accept_EditTeSe">
+
+                    <div class="layui-form-item">
+                        <label for="course_id" class="layui-form-label">
+                            <span class="x-red">*</span>课程ID</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="course_id" name="course_id" value="<%=course.getCourse_id()%>" required="" autocomplete="off" class="layui-input" readonly="readonly"></div>
+                    </div>
+
+
 
                     <div class="layui-form-item">
                         <label for="course_name" class="layui-form-label">
                             <span class="x-red">*</span>课程名字</label>
                         <div class="layui-input-inline">
-                            <input type="text" id="course_name" name="course_name" required="" autocomplete="off" class="layui-input"></div>
+                            <input type="text" id="course_name" name="course_name" value="<%=course.getCourse_name()%>" required="" autocomplete="off" class="layui-input" readonly="readonly"></div>
                     </div>
-
-                    <div class="layui-form-item">
-                        <label for="course_credit" class="layui-form-label">
-                            <span class="x-red">*</span>课程学分</label>
-                        <div class="layui-input-inline">
-                            <input type="text" id="course_credit" name="course_credit" required="" autocomplete="off" class="layui-input"></div>
-                    </div>
-
-                    <div class="layui-form-item">
-                        <label for="course_period" class="layui-form-label">
-                            <span class="x-red">*</span>课程时长</label>
-                        <div class="layui-input-inline">
-                            <input type="text" id="course_period" name="course_period" required="" autocomplete="off" class="layui-input"></div>
-                    </div>
-
-
 
         <div class="layui-form-item layui-form-text">
-            <label for="course_introduction" class="layui-form-label">课程简介</label>
+            <label for="course_feature" class="layui-form-label">课程特色</label>
             <div class="layui-input-block">
-                <textarea placeholder="请输入内容" id="course_introduction" name="course_introduction" class="layui-textarea"></textarea>
+                <textarea placeholder="请输入内容" value="<%=course.getCourse_feature()%>" id="course_feature" name="course_feature" class="layui-textarea"></textarea>
             </div>
         </div>
 

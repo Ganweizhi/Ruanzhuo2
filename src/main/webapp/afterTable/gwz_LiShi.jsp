@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+<%@ page import="com.dgut.group11.gwz.javabean.gwz_Course" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html class="x-admin-sm">
     
     <head>
         <meta charset="UTF-8">
-        <title>课程特色</title>
+        <title>历史沿革</title>
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -30,26 +33,46 @@
                                     <tr>
                                         <th>课程ID</th>
                                         <th>课程名字</th>
-                                        <th>课程特色内容</th>
+                                        <th>历史沿革</th>
                                         <th>操作</th></tr>
                                 </thead>
+                                <%
+                                    HashMap<String,Object> hashMap=(HashMap<String, Object>) request.getSession().getAttribute("LiShi_hashmap");
+                                    int next=(int)hashMap.get("next");
+                                    int pre=(int)hashMap.get("pre");
+                                    int last=(int)hashMap.get("last");
+                                    List<gwz_Course> courseList=(List<gwz_Course>)request.getSession().getAttribute("LiShi_courseList");
+                                    System.out.println(courseList);
+                                    for (gwz_Course course:courseList){
+                                %>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        <td>论语</td>
-                                        <td>儒家经典之一，是孔子弟子及其再传弟子关于孔子及其弟子言行的记录。这个语录集至战国前期成书。全书共20篇492章，以语录体为主，叙事体为辅，主要记录孔子及其弟子的言行，较为集中地体现了孔子的政治主张、伦理思想、道德观念及教育原则等。此书是儒家学派的经典著作之一</td>
+                                        <td><%=course.getCourse_id()%></td>
+                                        <td><%=course.getCourse_name()%></td>
+                                        <td><%=course.getCourse_history()%></td>
                                         <td class="td-manage">
-                                            <a title="查看" onclick="xadmin.open('编辑','front_context-edit.html')" href="javascript:;">
+                                            <a title="查看" onclick="xadmin.open('编辑','/course/EditLiShi?course_id=<%=course.getCourse_id()%>')" href="javascript:;">
                                                 <i class="layui-icon">&#xe63c;</i></a>
-                                            <a title="删除" href="javascript:;">
+                                            <a title="删除" href="/course/delete_LiShi?course_id=<%=course.getCourse_id()%>">
                                                 <i class="layui-icon">&#xe640;</i></a>
                                         </td>
                                     </tr>
-
                                 </tbody>
+                                <%
+                                    }
+                                %>
                             </table>
                         </div>
-
+                        <div class="layui-card-body ">
+                            <div class="page">
+                                <div>
+                                    <a href="/course/LiShi?start=0">[首  页]</a>
+                                    <a href="/course/LiShi?start=<%=pre%>">[上一页]</a>
+                                    <a href="/course/LiShi?start=<%=next%>">[下一页]</a>
+                                    <a href="/course/LiShi?start=<%=last%>">[末  页]</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -5,8 +5,17 @@
 package com.dgut.group33.javaBean;
 
 public class ExpertComment {
+    private int id;
     private String expert;
     private String content;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getExpert() {
         return expert;

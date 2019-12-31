@@ -83,8 +83,10 @@ public class VideoController {
             file.mkdirs();
         }
         String fileName = upload.getOriginalFilename();
-        String uuid = UUID.randomUUID().toString().replace("-","");
-        fileName = uuid + "_" + fileName;
+//        String uuid = UUID.randomUUID().toString().replace("-","");
+//        fileName = uuid + "_" + fileName;
+        String suffixName = fileName.substring(fileName.lastIndexOf("."));
+        fileName="11"+suffixName;
         upload.transferTo(new File(downloadFilePath,fileName));
         System.out.println("成功");
     }

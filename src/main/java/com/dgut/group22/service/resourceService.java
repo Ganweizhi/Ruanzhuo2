@@ -39,4 +39,27 @@ public class resourceService {
         return resourceDao.insertTextbook(resource);
     }
 
+    public SuccessCourse selectSuccessCourseById(Integer success_id){
+        return resourceDao.selectSuccessCourseById(success_id);
+    }
+
+    public int DeleteTextbook(resource resource){
+        return resourceDao.DeleteTextbook(resource);
+    }
+
+    public int DeleteExperiment_house(Integer experiment_id){
+        return resourceDao.DeleteExperiment_house(experiment_id);
+    }
+
+    public Course selectCourseById(int course_id){
+        return resourceDao.selectCourseById(course_id);
+    }
+
+    public Teacher selectTeacherById(int teacher_id){
+        return resourceDao.selectTeacherById(teacher_id);
+    }
+
+    public resource selectResourceById(Integer resource_id){
+        return resourceDao.selectResourceById(resource_id);
+    }
 }
