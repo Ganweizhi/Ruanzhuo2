@@ -5,6 +5,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.dgut.group22.javaBean.Teacher;
 import com.dgut.group22.javaBean.Young;
 import com.dgut.group22.service.TeacherService;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,11 +60,13 @@ public class TeacherController {
         return jsonObject.toJSONString();
     }
 
-    @RequestMapping(value = "/findAllYoungTeacherAfter/{page}",method = {RequestMethod.POST})
+    @RequestMapping(value = "/findAllYoungTeacherAfter/{page}",method = {RequestMethod.GET})
     public String findAllYoungTeacherAfter(@PathVariable("page") String page){
         int anInt = Integer.parseInt(page);
         List<Teacher> youngTeacher = new ArrayList<>();
         List<Teacher> allYoungTeacher = teacherService.findAllYoungTeacher();
+
+        System.out.println(allYoungTeacher);
 
         for(int i=(anInt-1)*5; i<(anInt-1)*5+5 && i<allYoungTeacher.size(); i++){
             youngTeacher.add(allYoungTeacher.get(i));
