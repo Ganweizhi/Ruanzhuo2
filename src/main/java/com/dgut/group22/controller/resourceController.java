@@ -141,21 +141,51 @@ public class resourceController {
         return strings;
     }
 
+    @RequestMapping(value = "/UploadVideo",method = RequestMethod.POST)
+    @ResponseBody
+    public String UploadVideo(MultipartFile[] file, HttpServletRequest request, String course_name, String teacher_name){
+        String code="0";
+        System.out.println(course_name+teacher_name);
+        SuccessCourse successCourse = resourceService.selectSuccessCourse(course_name,teacher_name);
+        if(successCourse==null){
+            code="400";
+            return code;
+        }
+        try {
+            //创建文件在服务器端存放路径
+            String downloadFilePath = System.getProperty("user.dir");
+            downloadFilePath =downloadFilePath+"\\src\\main\\resources\\video\\";
+            File fileDir = new File(downloadFilePath);
+            //生成文件在服务器端存放的名字
+            for(int i=0; i<file.length; i++) {
+                String fileName=file[i].getOriginalFilename();
+                File files = new File(fileDir+"/"+fileName);
+                //上传
+                file[i].transferTo(files);
+                resource resource = new resource();
+                resource.setSuccess_id(successCourse.getSuccess_id());
+                resource.setResource_video(fileName);
+                resourceService.insertTextbook(resource);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "上传失败";
+        }
+        return code;
+
+    }
+
     @RequestMapping(value = "/UploadPPT",method = RequestMethod.POST)
     @ResponseBody
     public String UploadPPT(MultipartFile[] file, HttpServletRequest request, String course_name, String teacher_name){
         String code="0";
         System.out.println(course_name+teacher_name);
         SuccessCourse successCourse = resourceService.selectSuccessCourse(course_name,teacher_name);
-//        System.out.println(successCourse.toString());
         if(successCourse==null){
             code="400";
             return code;
         }
-//        resource resource = new resource();
-//        resource.setSuccess_id(successCourse.getSuccess_id());
-//        resourceService.insertTextbook(resource);
-//        return "操作成功！";
         try {
             //创建文件在服务器端存放路径
             String downloadFilePath = System.getProperty("user.dir");
@@ -163,8 +193,6 @@ public class resourceController {
             File fileDir = new File(downloadFilePath);
             //生成文件在服务器端存放的名字
             for(int i=0; i<file.length; i++) {
-//                String fileSuffix = file[i].getOriginalFilename().substring(file[i].getOriginalFilename().lastIndexOf("."));
-//                String fileName= UUID.randomUUID().toString()+fileSuffix;
                 String fileName=file[i].getOriginalFilename();
                 File files = new File(fileDir+"/"+fileName);
                 //上传
@@ -182,6 +210,149 @@ public class resourceController {
         return code;
 
     }
+
+    @RequestMapping(value = "/UploadBase",method = RequestMethod.POST)
+    @ResponseBody
+    public String UploadBase(MultipartFile[] file, HttpServletRequest request, String course_name, String teacher_name){
+        String code="0";
+        System.out.println(course_name+teacher_name);
+        SuccessCourse successCourse = resourceService.selectSuccessCourse(course_name,teacher_name);
+        if(successCourse==null){
+            code="400";
+            return code;
+        }
+        try {
+            //创建文件在服务器端存放路径
+            String downloadFilePath = System.getProperty("user.dir");
+            downloadFilePath =downloadFilePath+"\\src\\main\\resources\\ppt\\";
+            File fileDir = new File(downloadFilePath);
+            //生成文件在服务器端存放的名字
+            for(int i=0; i<file.length; i++) {
+                String fileName=file[i].getOriginalFilename();
+                File files = new File(fileDir+"/"+fileName);
+                //上传
+                file[i].transferTo(files);
+                resource resource = new resource();
+                resource.setSuccess_id(successCourse.getSuccess_id());
+                resource.setResource_base(fileName);
+                resourceService.insertTextbook(resource);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "上传失败";
+        }
+        return code;
+
+    }
+
+    @RequestMapping(value = "/UploadExperiment",method = RequestMethod.POST)
+    @ResponseBody
+    public String UploadExperiment(MultipartFile[] file, HttpServletRequest request, String course_name, String teacher_name){
+        String code="0";
+        System.out.println(course_name+teacher_name);
+        SuccessCourse successCourse = resourceService.selectSuccessCourse(course_name,teacher_name);
+        if(successCourse==null){
+            code="400";
+            return code;
+        }
+        try {
+            //创建文件在服务器端存放路径
+            String downloadFilePath = System.getProperty("user.dir");
+            downloadFilePath =downloadFilePath+"\\src\\main\\resources\\ppt\\";
+            File fileDir = new File(downloadFilePath);
+            //生成文件在服务器端存放的名字
+            for(int i=0; i<file.length; i++) {
+                String fileName=file[i].getOriginalFilename();
+                File files = new File(fileDir+"/"+fileName);
+                //上传
+                file[i].transferTo(files);
+                resource resource = new resource();
+                resource.setSuccess_id(successCourse.getSuccess_id());
+                resource.setResource_experiment(fileName);
+                resourceService.insertTextbook(resource);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "上传失败";
+        }
+        return code;
+
+    }
+
+    @RequestMapping(value = "/UploadDocument",method = RequestMethod.POST)
+    @ResponseBody
+    public String UploadDocument(MultipartFile[] file, HttpServletRequest request, String course_name, String teacher_name){
+        String code="0";
+        System.out.println(course_name+teacher_name);
+        SuccessCourse successCourse = resourceService.selectSuccessCourse(course_name,teacher_name);
+        if(successCourse==null){
+            code="400";
+            return code;
+        }
+        try {
+            //创建文件在服务器端存放路径
+            String downloadFilePath = System.getProperty("user.dir");
+            downloadFilePath =downloadFilePath+"\\src\\main\\resources\\ppt\\";
+            File fileDir = new File(downloadFilePath);
+            //生成文件在服务器端存放的名字
+            for(int i=0; i<file.length; i++) {
+                String fileName=file[i].getOriginalFilename();
+                File files = new File(fileDir+"/"+fileName);
+                //上传
+                file[i].transferTo(files);
+                resource resource = new resource();
+                resource.setSuccess_id(successCourse.getSuccess_id());
+                resource.setResource_document(fileName);
+                resourceService.insertTextbook(resource);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "上传失败";
+        }
+        return code;
+
+    }
+
+    @RequestMapping(value = "/UploadExperiment_house",method = RequestMethod.POST)
+    @ResponseBody
+    public String UploadExperiment_house(MultipartFile[] file, HttpServletRequest request, String course_name, String teacher_name){
+        String code="0";
+        System.out.println(course_name+teacher_name);
+        SuccessCourse successCourse = resourceService.selectSuccessCourse(course_name,teacher_name);
+        if(successCourse==null){
+            code="400";
+            return code;
+        }
+        List<resource> resources = new ArrayList<>();
+        resources= resourceService.selectResourceBySuccess_id(successCourse.getSuccess_id());
+        try {
+            //创建文件在服务器端存放路径
+            String downloadFilePath = System.getProperty("user.dir");
+            downloadFilePath =downloadFilePath+"\\src\\main\\resources\\ppt\\";
+            File fileDir = new File(downloadFilePath);
+            //生成文件在服务器端存放的名字
+            for(int i=0; i<file.length; i++) {
+                String fileName=file[i].getOriginalFilename();
+                File files = new File(fileDir+"/"+fileName);
+                //上传
+                file[i].transferTo(files);
+                experiment_house experiment_house = new experiment_house();
+                experiment_house.setResource_id(resources.get(0).getResource_id());
+                experiment_house.setExperiment_huanj(fileName);
+                resourceService.insertExperiment_house(experiment_house);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "上传失败";
+        }
+        return code;
+
+    }
+
     @RequestMapping(value = "/GetAlltextbook",method = RequestMethod.GET)
     @ResponseBody
     public Map<String, Object> GetAlltextbook(HttpServletRequest request) throws FileNotFoundException {
@@ -348,6 +519,36 @@ public class resourceController {
     public String DeleteTextbook(Integer resource_id){
         String code="0";
         resource resource = resourceService.selectResourceById(resource_id);
+        String downloadFilePath = System.getProperty("user.dir");
+        String downloadFilePath1 =downloadFilePath+"\\src\\main\\resources\\ppt\\";
+        String downloadFilePath2 = downloadFilePath+"\\src\\main\\resources\\video\\";
+        File fileDir = new File(downloadFilePath1);
+        File fileDir2 = new File(downloadFilePath2);
+        if(resource.getResource_textbook()!=null){
+            String fileName= resource.getResource_textbook();
+            File file = new File(fileDir+"/"+fileName);
+            file.delete();
+        }
+        else if(resource.getResource_video()!=null){
+            String fileName= resource.getResource_video();
+            File file = new File(fileDir2+"/"+fileName);
+            file.delete();
+        }
+        else if(resource.getResource_base()!=null){
+            String fileName= resource.getResource_base();
+            File file = new File(fileDir+"/"+fileName);
+            file.delete();
+        }
+        else if(resource.getResource_experiment()!=null){
+            String fileName= resource.getResource_experiment();
+            File file = new File(fileDir+"/"+fileName);
+            file.delete();
+        }
+        else if(resource.getResource_document()!=null){
+            String fileName= resource.getResource_document();
+            File file = new File(fileDir+"/"+fileName);
+            file.delete();
+        }
         resource.setResource_textbook(null);
         resource.setResource_video(null);
         resource.setResource_base(null);

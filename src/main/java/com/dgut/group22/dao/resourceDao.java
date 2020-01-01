@@ -15,6 +15,9 @@ public interface resourceDao {
     @Select("select * from resource where resource_id=#{resource_id}")
     resource selectResourceById(Integer resource_id);
 
+    @Select("select * from resource where success_id=#{success_id}")
+    List<resource> selectResourceBySuccess_id(Integer success_id);
+
     @Select("select * from experiment_house")
     List<experiment_house> selectAllExperiment_house();
 
@@ -29,6 +32,9 @@ public interface resourceDao {
 
     @Insert("insert into resource values (#{resource_id},#{success_id},#{resource_textbook},#{resource_video},#{resource_base},#{resource_experiment},#{resource_document})")
     int insertTextbook(resource resource);
+
+    @Insert("insert into experiment_house values (#{experiment_id},#{experiment_huanj},#{experiment_operation},#{experiment_xit},#{resource_id})")
+    int insertExperiment_house(experiment_house experiment_house);
 
     @Select("select * from successCourse where success_id= #{success_id}")
     SuccessCourse selectSuccessCourseById(Integer success_id);
