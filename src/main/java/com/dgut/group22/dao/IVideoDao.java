@@ -17,6 +17,6 @@ public interface IVideoDao {
 //    @Select("select resource_video from resource r,(select success_id from successCourse where course_id=#{course_id}) as s where s.success_id=r.success_id;")
 //    public String FindCourseVideoPath(String course_id);
 
-    @Select("select resource_video from resource where success_id=#{course_id};")
+    @Select("select resource_video from resource where resource_id=#{arg0};")
     public String FindCourseVideoPath(String course_id);
 }
