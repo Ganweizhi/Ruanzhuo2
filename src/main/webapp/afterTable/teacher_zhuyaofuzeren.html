@@ -59,7 +59,7 @@
                             <th style="min-width:100px;">课程负责人</th>
                             <th style="min-width:100px;">负责课程</th>
                             <th style="min-width:100px;">课程编号</th>
-                            <th style="min-width:100px;">学院</th>
+<!--                            <th style="min-width:100px;">学院</th>-->
                             <th style="min-width:100px;">老师编号</th>
                             <th style="min-width:100px;">操作</th></tr>
                         </thead>
@@ -237,8 +237,8 @@ function delAll(argument) {
 
                         if( data[i].course.hasOwnProperty("course_principal") ){
                             teach_name = data[i].teacher_name;
-                            xueyuan = data[i].academy.academy_name;
                             laoshibianhao = data[i].teacher_id;
+                            xueyuan = data[i].academy.academy_name;
                         }
                         else{
                             teach_name = "待定";
@@ -253,7 +253,7 @@ function delAll(argument) {
                             '                            <td>'+ teach_name +'</td>\n' +
                             '                            <td>'+ data[i].course.course_name +'</td>\n' +
                             '                            <td>'+ data[i].course.course_id+'</td>\n' +
-                            '                            <td>'+ xueyuan+'</td>\n' +
+                            // '                            <td>'+ xueyuan+'</td>\n' +
                             '                            <td>'+ laoshibianhao+'</td>\n' +
                             '\n' +
                             '                            <td class="td-manage">\n' +

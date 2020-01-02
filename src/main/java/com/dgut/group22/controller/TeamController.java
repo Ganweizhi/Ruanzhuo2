@@ -1,6 +1,8 @@
 package com.dgut.group22.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dgut.group22.javaBean.Teacher;
 import com.dgut.group22.javaBean.Team;
 import com.dgut.group22.service.TeacherService;
@@ -27,6 +29,7 @@ public class TeamController {
     @Autowired
     TeacherService teacherService;
 
+
     @RequestMapping(value = "/findAllTeam/{page}",method = {RequestMethod.POST})
     public String findAllTeam(@PathVariable("page") String page){
         int anInt = Integer.parseInt(page);
@@ -49,7 +52,7 @@ public class TeamController {
         List<Teacher> allTeachers=teamService.findTeacherByTeamId(team_id);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("teachers",allTeachers);
-        return jsonObject.toJSONString();
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     //找出所有教师团队
@@ -102,11 +105,12 @@ public class TeamController {
     public String addTeacherToTeam(@PathVariable("team_id") String team_id,@PathVariable("teacher_id") String teacher_id){
         String flag="0";
         JSONObject jsonObject = new JSONObject();
-        try {
-            flag=teamService.addTeacher(teacher_id,team_id);
-        }
-        catch (Exception e){
-            flag="0";
+        if(teamService.findTBelongT(team_id,teacher_id)==null) {
+            try {
+                flag = teamService.addTeacher(teacher_id, team_id);
+            } catch (Exception e) {
+                flag = "0";
+            }
         }
         if(flag=="1")
             jsonObject.put("data","成功");
@@ -115,4 +119,19 @@ public class TeamController {
         return jsonObject.toJSONString();
     }
 
+    @RequestMapping(value = "/addTeam",method = {RequestMethod.POST})
+    public String addTeam(Team team){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            flag = teamService.addTeam(team);
+        } catch (Exception e) {
+            flag = "0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else
+            jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
 }

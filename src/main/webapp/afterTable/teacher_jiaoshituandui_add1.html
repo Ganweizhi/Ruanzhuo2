@@ -31,15 +31,15 @@
 
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label" style="width: 100px">
-                    <span class="x-red">*</span>团队编号</label>
+                    <span class="x-red">*</span>团队名称</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="teamid" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                    <input type="text" id="teamname" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
             </div>
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label" style="width: 100px">
-                    <span class="x-red">*</span>老师编号</label>
+                    <span class="x-red">*</span>课程编号</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="teacherid" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+                    <input type="text" id="courseid" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
             </div>
             <div class="layui-form-item">
                 <label for="L_repass" class="layui-form-label"></label>
@@ -59,15 +59,14 @@
 
 <script>
     function fff() {
-        var teamii = document.getElementById("teamid").value;
-        var teacherii = document.getElementById("teacherid").value;
-        console.log(teamii + " cc");
-        console.log(teacherii + " tt ");
+        var teamname = document.getElementById("teamname").value;
+        var courseid = document.getElementById("courseid").value;
         $.ajax({
                 type: "POST",
-                url: "/Team/addTeacherToTeam/" + teamii + "&" + teacherii,
+                url: "/Team/addTeam",
                 async: false,
                 dataType: "json",
+                data:{"team_name":teamname,"course_id":courseid},
                 success: function (msg) {
                     console.log(msg);
                     if (msg.data == "成功") {
@@ -85,4 +84,3 @@
     }
 
 </script>
-
