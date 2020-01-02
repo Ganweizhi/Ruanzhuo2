@@ -1,6 +1,7 @@
 package com.dgut.group22.service;
 
 import com.dgut.group22.dao.ITeamDao;
+import com.dgut.group22.javaBean.TBelongT;
 import com.dgut.group22.javaBean.Teacher;
 import com.dgut.group22.javaBean.Team;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,15 @@ public class TeamService {
 
     public String addTeacher(String teacher_id, String team_id) {
         teamDao.addTeacher(teacher_id,team_id);
+        return "1";
+    }
+
+    public TBelongT findTBelongT(String team_id,String teacher_id){
+        return teamDao.findTBelongT(team_id,teacher_id);
+    }
+
+    public String addTeam(Team team){
+        teamDao.addTeam(team);
         return "1";
     }
 }
