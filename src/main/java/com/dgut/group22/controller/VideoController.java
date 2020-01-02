@@ -39,13 +39,14 @@ public class VideoController {
         return videoService.FindAllCourseName();
     }
 
-    @RequestMapping(value = "/FindCourseVideoPath/{course_id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/FindCourseVideoPath/{course_id}",method = RequestMethod.POST)
     @ResponseBody
-    public String FindCourseVideoPath( @PathVariable String course_id,HttpServletRequest request, HttpServletResponse response)
+    public String FindCourseVideoPath(@PathVariable("course_id") String course_id,HttpServletRequest request, HttpServletResponse response)
     {
         int course_id2=Integer.parseInt(course_id);
+        System.out.println(course_id+"11111111111111111");
        String path=videoService.FindCourseVideoPath(course_id);
-
+        System.out.println(path+"11111111111111");
         String downloadFilePath =System.getProperty("user.dir");
 //        downloadFilePath = "G:\\复习";
         downloadFilePath =downloadFilePath+"\\src\\main\\resources\\video\\";
