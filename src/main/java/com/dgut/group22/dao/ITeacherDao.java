@@ -49,7 +49,7 @@ public interface ITeacherDao {
     @Select("delete from young where teacher_id=#{teacher_id}")
     void deleteTeacher(String teacher_id);
 
-    @Insert("insert into teacher values(null,#{teacher_name},#{academy_id},#{teacher_birth},#{teacher_sex},#{teacher_rank},#{teacher_phone},#{teacher_email},#{teacher_qualification},#{teacher_domain},#{teacher_job},#{teacher_address},#{teacher_resdire},#{teacher_resume},#{teacher_photo})")
+    @Insert("insert into teacher values(null,#{teacher_name},#{academy_id},#{teacher_birth},#{teacher_sex},#{teacher_rank},#{teacher_phone},#{teacher_email},#{teacher_qualification},#{teacher_domain},#{teacher_job},#{teacher_address},#{teacher_resdire},#{teacher_resume},'http://a4.att.hudong.com/50/32/01300000836651126875327576537.jpg')")
     void addTeacher(Teacher teacher);
 
     @Delete("delete from teacher where teacher_id=#{teacher_id}")
