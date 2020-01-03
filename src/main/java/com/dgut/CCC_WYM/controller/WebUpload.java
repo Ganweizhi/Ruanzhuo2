@@ -28,11 +28,19 @@ public class WebUpload {
     private uploadServices Upload;
 
     @RequestMapping("/Webquestion")
+    @ ResponseBody
    public String webQuestion(@Param("name")String name,@Param("title")String title,@Param("times")String times,@Param("content")String content)
     {
-        System.out.println(name+title);
-        Upload.webUpload(name,title,times,content);
-        return "redirect:afterTable/student.html";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            System.out.println(name+title);
+            Upload.webUpload(name,title,times,content);
+            jsonObject.put("abc",1);
+        }catch (Exception e){
+            jsonObject.put("abc",0);
+        }
+        System.out.println(jsonObject.toJSONString());
+        return jsonObject.toJSONString();
     }
    @RequestMapping("/returnsign_find/{Page}")
    @ ResponseBody
