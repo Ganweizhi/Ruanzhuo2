@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -25,6 +26,8 @@ public class WechatUpload {
     @Autowired
     private uploadServices Upload;
     @RequestMapping("/Wechat_upload")
+
+
     public String QQupload(MultipartFile pic, @Param("success_id")String success_id, HttpServletRequest request) throws IOException {
 
         System.out.println(pic+success_id);
@@ -40,7 +43,7 @@ public class WechatUpload {
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/beforeTable/group_image/wechat_image/" + newName;
         System.out.println(url);
         Upload.setWechatimage(newName,success_id);
-        return "redirect:afterTable/super_admin.html";
+        return "redirect:afterTable/teacher.html";
     }
     @RequestMapping("/getSuccess_idForWechat")
     @ResponseBody

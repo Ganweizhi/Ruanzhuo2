@@ -55,10 +55,11 @@
                             <th>
                                 <input type="checkbox" name="" lay-skin="primary">
                             </th>
+
                             <th style="min-width:180px;">发表人</th>
                             <th style="min-width:180px;">问题</th>
                             <th style="min-width:180px;">发表时间</th>
-                            <th>操作</th></tr>
+<!--                            <th>操作</th></tr>-->
                         </thead>
                         <tbody id="kechengfuzerenxianshi">
                         <tr>
@@ -182,21 +183,20 @@ function delAll(argument) {
                     var currentPage = msg.curPage;
                     var totalPate = msg.totalPage;
                     var tpage="";
-                    var size = msg.size;
-                    console.log(msg);
+                    var size = msg.size
                     for( i=0;i<size;i++){
                         str += ' <tr>\n' +
                             '                            <td>\n' +
                             '                                <input type="checkbox" name="" lay-skin="primary"></td>\n' +
-                            '                            <td>'+msg[i+""].question_name+'</td>\n' +
+                            '                            <td>'+msg[i+""].name+'</td>\n' +
                             '                            <td>'+msg[i+""].title+'</td>\n' +
                             '                            <td>'+msg[i+""].times+'</td>\n' +
-                            '                            <td class="td-manage">\n' +
-                            '                                <a title="查看" onclick="xadmin.open(\'编辑\',\'returnsign-edit.html\')" href="javascript:;">\n' +
-                            '                                    <i class="layui-icon">&#xe63c;</i></a>\n' +
-                            '                                <a title="删除" onclick="delRow()" href="javascript:;">\n' +
-                            '                                    <i class="layui-icon">&#xe640;</i></a>\n' +
-                            '                            </td>\n' +
+                            // '                            <td class="td-manage">\n' +
+                            // '                                <a title="查看" onclick="xadmin.open(\'编辑\',\'returnsign-edit.html\')" href="javascript:;">\n' +
+                            // '                                    <i class="layui-icon">&#xe63c;</i></a>\n' +
+                            // '                                <a title="删除" onclick="delRow()" href="javascript:;">\n' +
+                            // '                                    <i class="layui-icon">&#xe640;</i></a>\n' +
+                            // '                            </td>\n' +
                             '                        </tr>'
                     }
                     tbody.innerHTML = str;
