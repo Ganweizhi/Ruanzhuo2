@@ -75,6 +75,6 @@ public interface AddEditDeleteDao {
     @Select("select success_id,course_id from successCourse")
     List<jiaban> jiabanList();
 
-    @Select("select course_name from Course where course_id=#{course_id}")
+    @Select("select course_name from course where course_id=#{course_id}")
     String getCourName(int course_id);
 }

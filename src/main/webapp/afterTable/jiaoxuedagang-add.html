@@ -34,10 +34,10 @@
 
             <div class="layui-form-item">
                 <label for="success_id" class="layui-form-label">
-                    <span class="x-red">*</span>课程id</label>
+                    <span class="x-red">*</span>课程</label>
                 <div class="layui-input-inline">
-                    <input type="text" id="success_id" name="success_id" required="" lay-verify="required"
-                           autocomplete="off" class="layui-input"></div>
+                    <select id="success_id" name="success_id" required="" lay-verify="required"></select>
+                </div>
             </div>
             <div class="layui-form-item">
                 <label for="teaching_program_title" class="layui-form-label">
@@ -61,6 +61,26 @@
     </div>
 </div>
 <script>
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: "/jiabanList",
+            contentType: "application/json;charset=UTF-8",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data != null) {
+                    console.log(data);
+                    var contextHtml = "<option value=\"\" selected=\"\"></option>";
+                    var list = data['data'];
+                    for (var i in list) {
+                        contextHtml += '<option value="'+ list[i].success_id + '">'+ list[i].str +'</option>'
+                    }
+                    $("#success_id").html(contextHtml);
+                }
+            }
+        });
+    });
     layui.use(['form', 'layer'],
     function () {
         $ = layui.jquery;
