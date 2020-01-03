@@ -203,11 +203,19 @@ public class WebUpload {
        return "redirect:afterTable/teacher.html";
    }
    @RequestMapping("/answer_upload")
+   @ResponseBody
    public String answerRespones(@Param("question_id")String question_id,@Param("desc")String desc)
    {
        System.out.println(question_id+":"+desc);
-       Upload.responseQuestion(question_id,desc);
-       return "redirect:afterTable/teacher.html";
+       JSONObject jsonObject = new JSONObject();
+       try {
+           Upload.responseQuestion(question_id, desc);
+           jsonObject.put("code", 1);
+       }catch (Exception ex)
+       {
+           jsonObject.put("code",0);
+       }
+       return JSON.toJSONString(jsonObject);
    }
 
 
