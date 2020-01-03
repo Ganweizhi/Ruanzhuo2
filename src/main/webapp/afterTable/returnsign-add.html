@@ -69,7 +69,7 @@
             success: function (result) {
                 console.log(result);//打印服务端返回的数据(调试用)
                 if (result.abc === 1) {
-                    alert("提交成功");
+                   alert("提交成功");
                     parent.location.reload();
                     var index = parent.layer.getFrameIndex(window.name);
                     parent.layer.close(index);
