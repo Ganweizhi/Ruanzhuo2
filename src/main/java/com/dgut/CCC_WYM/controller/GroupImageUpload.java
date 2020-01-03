@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -32,7 +33,7 @@ public class GroupImageUpload {
     {
         return Upload.getAllSuccessCourse().toString();
     }
-    @RequestMapping("/QQ_upload")
+    @RequestMapping(value = "/QQ_upload",method = {RequestMethod.POST})
     @ResponseBody
     public String QQupload(MultipartFile pic,@Param("success_id")String success_id, HttpServletRequest request) throws IOException {
 
@@ -46,7 +47,7 @@ public class GroupImageUpload {
        String oldname = pic.getOriginalFilename();
        String newName = success_id+"_"+"QQ"+"_"+oldname.substring(oldname.lastIndexOf("."));
        pic.transferTo(new File(folder,newName));
-       String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/group_image/qq_image/" + newName;
+       String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/beforeTable/group_image/qq_image/" + newName;
        System.out.println(url);
         JSONObject jsonObject = new JSONObject();
        try {
@@ -184,10 +185,18 @@ public class GroupImageUpload {
     public String deletQQ(@PathVariable("id") String id)
     {
         System.out.println(id);
-        Upload.delete(id);
-        return null;
+        JSONObject jsonObject = new JSONObject();
+        try{
+            Upload.delete(id);
+            jsonObject.put("code",1);
+        }catch (Exception ex)
+        {
+            jsonObject.put("code",0);
+        }
+        return JSON.toJSONString(jsonObject);
     }
     @RequestMapping("/QQ_edit")
+    @ResponseBody
     public String changeQQImage(@Param("question_id")String question_id,@Param("pic")MultipartFile pic,HttpServletRequest request ) throws IOException {
         String realPath = request.getServletContext().getRealPath("/beforeTable/group_image/qq_image");
         System.out.println(question_id);
@@ -203,7 +212,7 @@ public class GroupImageUpload {
         System.out.println(url);
         Upload.changeQQ(question_id,newName);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("success",1);
+        jsonObject.put("code",1);
         return JSON.toJSONString(jsonObject);
     }
 }

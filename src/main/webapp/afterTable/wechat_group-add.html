@@ -21,7 +21,7 @@
 <body>
 <div class="layui-fluid">
     <div class="layui-row">
-        <form class="layui-form" action="#" accept-charset="utf-8" enctype="multipart/form-data" method="post">
+        <form class="layui-form" action="#" accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form">
             <div class="layui-form-item">
                 <label for="username" class="layui-form-label">
                     <span class="x-red">*</span>选择文件</label>
@@ -87,16 +87,20 @@
 
 <script>
     function login() {
+        var formData = new FormData(document.getElementById("form"))
         $.ajax({
             //几个参数需要注意一下
             type: "POST",//方法类型
             dataType: "json",//预期服务器返回的数据类型
             url: "/Wechat_upload",//url
-            data: $('#form').serialize(),
+            data: formData,
             async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
             success: function (result) {
                 console.log(result);//打印服务端返回的数据(调试用)
-                if (result.code === 1) {
+                if (result.code == 1) {
                     alert("提交成功");
                     parent.location.reload();
                     var index = parent.layer.getFrameIndex(window.name);

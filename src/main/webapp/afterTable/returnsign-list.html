@@ -55,7 +55,7 @@
                             <th>
                                 <input type="checkbox" name="" lay-skin="primary">
                             </th>
-
+                            <th style="min-width:180px;">编号</th>
                             <th style="min-width:180px;">发表人</th>
                             <th style="min-width:180px;">问题</th>
                             <th style="min-width:180px;">发表时间</th>
@@ -188,6 +188,7 @@ function delAll(argument) {
                         str += ' <tr>\n' +
                             '                            <td>\n' +
                             '                                <input type="checkbox" name="" lay-skin="primary"></td>\n' +
+                            '                            <td>'+msg[i+""].question_id+'</td>\n' +
                             '                            <td>'+msg[i+""].name+'</td>\n' +
                             '                            <td>'+msg[i+""].title+'</td>\n' +
                             '                            <td>'+msg[i+""].times+'</td>\n' +
