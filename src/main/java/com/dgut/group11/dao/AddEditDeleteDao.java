@@ -71,4 +71,10 @@ public interface AddEditDeleteDao {
     void edit6(Teaching_program teaching_program);
     @Delete("delete from teaching_program where teaching_program_id=#{teaching_program_id}")
     void delete6(Teaching_program teaching_program);
+
+    @Select("select success_id,course_id from successCourse")
+    List<jiaban> jiabanList();
+
+    @Select("select course_name from Course where course_id=#{course_id}")
+    String getCourName(int course_id);
 }

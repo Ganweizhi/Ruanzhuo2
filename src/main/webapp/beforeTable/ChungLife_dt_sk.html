@@ -240,7 +240,7 @@
                     }
                     $(document).ready(function() {
                         $.ajax({
-                            url: "http://localhost:8080/ChungLife_dt/1",
+                            url: "/ChungLife_dt/1",
                             type: "post",
                             dataType: "json",
                             async: false,
@@ -250,7 +250,7 @@
                                     var itemshtml = "";
                                     for (var i in data.data) {
                                         itemshtml += "<li>";
-                                        itemshtml += "<a href=" + "ChungLife_dt_detail.html?url=http://localhost:8080/ChungLife_dt_show/" + data.data[i].content_id + ">" + data.data[i].title + "</a></li>";
+                                        itemshtml += "<a href=" + "ChungLife_dt_detail.html?url=http://ChungLife_dt_show/" + data.data[i].content_id + ">" + data.data[i].title + "</a></li>";
                                     }
                                     console.log(itemshtml)
                                     $(".ChungLife_dt").html(itemshtml);
@@ -260,7 +260,7 @@
                         $(".getPageData").click(function() {
 
                             $.ajax({
-                                url: "http://localhost:8080/ChungLife_dt/" + pagenum,
+                                url: "http:///ChungLife_dt/" + pagenum,
                                 type: "post",
                                 dataType: "json",
                                 async: false,
@@ -270,7 +270,7 @@
                                         var itemshtml = "";
                                         for (var i in data.data) {
                                             itemshtml += "<li>";
-                                            itemshtml += "<a href=" + "ChungLife_dt_detail.html?url=http://localhost:8080/ChungLife_dt_show/" + data.data[i].content_id + ">" + data.data[i].title + "</a></li>";
+                                            itemshtml += "<a href=" + "ChungLife_dt_detail.html?url=http:///ChungLife_dt_show/" + data.data[i].content_id + ">" + data.data[i].title + "</a></li>";
                                         }
                                         console.log(itemshtml)
                                         $(".ChungLife_dt").html(itemshtml);
@@ -283,7 +283,7 @@
                                 pagenum--;
                             }
                             $.ajax({
-                                url: "http://localhost:8080/ChungLife_dt/" + pagenum,
+                                url: "http:///ChungLife_dt/" + pagenum,
                                 type: "post",
                                 dataType: "json",
                                 async: false,
@@ -293,7 +293,7 @@
                                         var itemshtml = "";
                                         for (var i in data.data) {
                                             itemshtml += "<li>";
-                                            itemshtml += "<a href=" + "ChungLife_dt_detail.html?url=http://localhost:8080/ChungLife_dt_show/" + data.data[i].content_id + ">" + data.data[i].title + "</a></li>";
+                                            itemshtml += "<a href=" + "ChungLife_dt_detail.html?url=http:///ChungLife_dt_show/" + data.data[i].content_id + ">" + data.data[i].title + "</a></li>";
                                         }
                                         console.log(itemshtml)
                                         $(".ChungLife_dt").html(itemshtml);
@@ -304,7 +304,7 @@
                         $(".nextPage").click(function() {
                             pagenum++;
                             $.ajax({
-                                url: "http://localhost:8080/ChungLife_dt/" + pagenum,
+                                url: "http:///ChungLife_dt/" + pagenum,
                                 type: "post",
                                 dataType: "json",
                                 async: false,
@@ -314,7 +314,7 @@
                                         var itemshtml = "";
                                         for (var i in data.data) {
                                             itemshtml += "<li>";
-                                            itemshtml += "<a href=" + "ChungLife_dt_detail.html?url=http://localhost:8080/ChungLife_dt_show/" + data.data[i].content_id + ">" + data.data[i].title + "</a></li>";
+                                            itemshtml += "<a href=" + "ChungLife_dt_detail.html?url=http:///ChungLife_dt_show/" + data.data[i].content_id + ">" + data.data[i].title + "</a></li>";
                                         }
                                         console.log(itemshtml)
                                         $(".ChungLife_dt").html(itemshtml);

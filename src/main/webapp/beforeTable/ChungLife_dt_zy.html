@@ -240,7 +240,7 @@
                     }
                     $(document).ready(function() {
                         $.ajax({
-                            url: "http://localhost:8080/ChungLife_dt_zy/1",
+                            url: "/ChungLife_dt_zy/1",
                             type: "post",
                             dataType: "json",
                             async: false,
@@ -250,7 +250,7 @@
                                     var itemshtml = "";
                                     for (var i in data.data) {
                                         itemshtml += "<li>";
-                                        itemshtml += "<a href=" + "ChungLife_dt_zy_detail.html?url=http://localhost:8080/ChungLife_dt_zy_show/" + data.data[i].homework_case_id + ">" + data.data[i].course_name + "</a></li>";
+                                        itemshtml += "<a href=" + "ChungLife_dt_zy_detail.html?url=/ChungLife_dt_zy_show/" + data.data[i].homework_case_id + ">" + data.data[i].course_name + "</a></li>";
                                     }
                                     console.log(itemshtml)
                                     $(".ChungLife_dt_zy").html(itemshtml);

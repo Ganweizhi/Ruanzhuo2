@@ -238,7 +238,7 @@
                     }
                     $(document).ready(function() {
                         $.ajax({
-                            url: "http://localhost:8080/ChungLife_dt_cjd/1",
+                            url: "/ChungLife_dt_cjd/1",
                             type: "post",
                             dataType: "json",
                             async: false,
@@ -258,7 +258,7 @@
                         $(".getPageData").click(function() {
 
                             $.ajax({
-                                url: "http://localhost:8080/ChungLife_dt_cjd/" + pagenum,
+                                url: "http://ChungLife_dt_cjd/" + pagenum,
                                 type: "post",
                                 dataType: "json",
                                 async: false,
