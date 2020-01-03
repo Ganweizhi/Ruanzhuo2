@@ -79,4 +79,11 @@ public class uploadServices {
     {
         Upload.deleteWechat(success_id);
     }
+    public void changeQQ(String success_id,String success_QQ){
+        Upload.updateQQ(success_id, success_QQ);
+    }
+    public void changeWechat(String success_id,String success_wechat)
+    {
+        Upload.updateWechat(success_id, success_wechat);
+    }
 }

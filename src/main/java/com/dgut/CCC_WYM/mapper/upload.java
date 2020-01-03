@@ -55,5 +55,10 @@ public interface upload {
     @Update("update question  set answer = #{answer} where question_id = #{question_id}")
     void responesQuestion(@Param("question_id")String question_id,@Param("answer")String answer);
 
+    @Update("update successCourse set success_QQ = #{success_QQ} where success_id = #{success_id}")
+    void updateQQ(@Param("success_id")String success_id,@Param("success_QQ")String success_QQ);
+
+    @Update("update successCourse set success_wechat = #{suceess_wechat} where success_id = #{success_id}")
+    void updateWechat(@Param("success_id")String success_id,@Param("success_wechat")String success_wechat);
 
 }

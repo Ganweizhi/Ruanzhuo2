@@ -209,9 +209,9 @@
                 if (data != null) {
                     console.log(data);
                     var contextHtml = "";
-                    var obj = data.data.successCourse;
+                    var obj = data.data.course;
                     $("#courseName").text(obj.course.course_name);
-                    var list = data.data.jiHuaList;
+                    var list = data.data.jiaoHuaList;
                     for (var i in list) {
                         contextHtml += '<tr><td>'+ list[i].planb_title +'</td><td>'+ list[i].planb_content +'</td></tr>';
                     }

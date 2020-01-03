@@ -168,9 +168,10 @@ public class TeacherController {
         String flag="0";
         JSONObject jsonObject = new JSONObject();
         try {
-            flag=successCourseService.deleteSuccessCourse(success_id);
+            flag=successCourseService.deleteTeacherOfSuccess(success_id);
         }
         catch (Exception e){
+            System.out.println(e);
             flag="0";
         }
         if(flag=="1")
