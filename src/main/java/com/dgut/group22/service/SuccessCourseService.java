@@ -15,4 +15,13 @@ public class SuccessCourseService {
     public List<SuccessCourse>findAllSuccessCourse(){
         return successCourseDao.findAllSuccessCourse();
     }
+
+    public String deleteSuccessCourse(String success_id){
+        successCourseDao.deleteSuccessCourse(success_id);
+        return "1";
+    }
+
+    public void updateSuccessCourse(String course_id, String teacher_id) {
+        successCourseDao.updateSuccessCourse(course_id, teacher_id);
+    }
 }

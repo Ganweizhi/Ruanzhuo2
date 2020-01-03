@@ -46,7 +46,7 @@
                 <div class="layui-card-header">
                     <!--<button class="layui-btn layui-btn-danger" onclick="delAll()">-->
                     <!--<i class="layui-icon"></i>批量删除</button>-->
-                    <button class="layui-btn" onclick="xadmin.open('添加内容','./teaching_resource_upload.html',800,600)">
+                    <button class="layui-btn" onclick="xadmin.open('添加内容','./teaching_resource_upload3.html',800,600)">
                         <i class="layui-icon"></i>添加</button></div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
@@ -172,7 +172,7 @@ function member_del(obj, id) {
             //发异步删除数据
             $.ajax({
                 type:"GET",
-                url:"/resource/DeleteTextbook",
+                url:"/resource/DeleteExperiment_house",
                 data:{resource_id:id},
                 success:function (data) {
                     if(data==0)
@@ -211,7 +211,7 @@ function delAll(argument) {
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
     $.ajax({
-        url: "/resource/GetAlldocument",
+        url: "/resource/GetAllexperiment_house",
         type: "GET",
         dataType: "json",
         async: false, //设置ajax的同步
@@ -219,16 +219,16 @@ function delAll(argument) {
             if (data != null) {
                 console.log(data);
                 var tableHtml = "";
-                for (var i in data.resourceList) {
+                for (var i in data.experimentHouseList) {
                     tableHtml += "<tr>";
                     tableHtml +="<td>\n" +
                         "                                <input type=\"checkbox\" name=\"\" lay-skin=\"primary\"></td>"
                     tableHtml += "<td>" + data.courseList[i].course_name + "</td>";
                     tableHtml += "<td>" + data.teacherList[i].teacher_name + "</td>";
                     tableHtml += "<td>2019-11-" + i + "</td>";
-                    tableHtml += "<td>" + data.resourceList[i].resource_experiment + "</td>";
+                    tableHtml += "<td>" + data.experimentHouseList[i].experiment_huanj + "</td>";
                     tableHtml +="<td class=\"td-manage\">\n" +
-                        "<a title=\"删除\" onclick=\"member_del(this,"+data.resourceList[i].resource_id+")\" id='dele' href=\"javascript:;\">\n" +
+                        "<a title=\"删除\" onclick=\"member_del(this,"+data.experimentHouseList[i].resource_id+")\" id='dele' href=\"javascript:;\">\n" +
                         "<i class=\"layui-icon\">&#xe640;</i></a>\n" +
                         "</td>"
                     tableHtml += "</tr>";
@@ -239,5 +239,4 @@ function delAll(argument) {
     });
 
 </script>
-
 </html>

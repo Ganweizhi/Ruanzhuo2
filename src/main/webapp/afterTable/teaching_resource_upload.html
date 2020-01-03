@@ -146,9 +146,9 @@
             ,done: function(res){
                 console.log(res);
                 if(res==0){
-                    alert("添加成功");
+                    window.parent.location.reload();
                     var index = parent.layer.getFrameIndex(window.name);
-                    parent.layer.close(index)
+                    parent.layer.close(index);
                 }
                 else if(res==400){
                     alert("找不到该课程,请重新填写");

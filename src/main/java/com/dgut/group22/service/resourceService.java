@@ -31,6 +31,8 @@ public class resourceService {
             return null;
         }
         SuccessCourse successCourse = resourceDao.selectSuccessCourse(course.getCourse_id(),teacher.getTeacher_id());
+        if (successCourse==null)
+            return null;
         System.out.println(successCourse.toString());
         return successCourse;
     }
@@ -39,8 +41,16 @@ public class resourceService {
         return resourceDao.insertTextbook(resource);
     }
 
+    public int insertExperiment_house(experiment_house experiment_house){
+        return resourceDao.insertExperiment_house(experiment_house);
+    }
+
     public SuccessCourse selectSuccessCourseById(Integer success_id){
         return resourceDao.selectSuccessCourseById(success_id);
+    }
+
+    public List<resource> selectResourceBySuccess_id(Integer success_id){
+        return resourceDao.selectResourceBySuccess_id(success_id);
     }
 
     public int DeleteTextbook(resource resource){

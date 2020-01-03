@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./css/xadmin.css">
     <script src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
-    <script type="text/javascript" src="js/jquery1.42.min.js"></script>
+    <script type="application/javascript" src="./js/jquery.min.js"></script>
 
 </head>
 
@@ -131,7 +131,7 @@
             table.render({
                 elem: '#demo',
                 height: 400,
-                url: "http://localhost:8080/ChungLife_dt_cjd/1",
+                url: "/ChungLife_dt_cjd/1",
                 method: 'post',
                 page: true, //开启分页
 
@@ -172,7 +172,7 @@
                 console.log(data.field)
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8080/ChungLife_dt_cjd/addSelectCourse",
+                    url: "/ChungLife_dt_cjd/addSelectCourse",
                     data: data.field,
                     dataType: "json",
                     success: function(d) {
@@ -191,7 +191,7 @@
                 console.log(data.field)
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8080/ChungLife_dt_hmc/addStudent",
+                    url: "/ChungLife_dt_hmc/addStudent",
                     data: data.field,
                     dataType: "json",
                     success: function(d) {

@@ -41,11 +41,12 @@ public class VideoController {
 
     @RequestMapping(value = "/FindCourseVideoPath/{course_id}",method = RequestMethod.GET)
     @ResponseBody
-    public String FindCourseVideoPath( @PathVariable String course_id,HttpServletRequest request, HttpServletResponse response)
+    public String FindCourseVideoPath(@PathVariable("course_id") String course_id,HttpServletRequest request, HttpServletResponse response)
     {
         int course_id2=Integer.parseInt(course_id);
+        System.out.println(course_id+"11111111111111111");
        String path=videoService.FindCourseVideoPath(course_id);
-
+        System.out.println(path+"11111111111111");
         String downloadFilePath =System.getProperty("user.dir");
 //        downloadFilePath = "G:\\复习";
         downloadFilePath =downloadFilePath+"\\src\\main\\resources\\video\\";
@@ -72,12 +73,43 @@ public class VideoController {
 
     }
 
+    @RequestMapping(value = "/test/{course_id}",method = {RequestMethod.GET})
+    public String findById(@PathVariable("course_id")String course_id,HttpServletRequest request, HttpServletResponse response){
+        System.out.println(course_id+"11111111111111111");
+        String path=videoService.FindCourseVideoPath(course_id);
+        System.out.println(path+"11111111111111");
+        String downloadFilePath =System.getProperty("user.dir");
+//        downloadFilePath = "G:\\复习";
+        downloadFilePath =downloadFilePath+"\\src\\main\\resources\\video\\";
+
+        try {
+            FileInputStream fis = null;
+            OutputStream os = null ;
+            fis = new FileInputStream(downloadFilePath+path);
+            int size = fis.available(); // 得到文件大小
+            byte data[] = new byte[size];
+            fis.read(data); // 读数据
+            fis.close();
+            fis = null;
+            response.setContentType("video/mp4"); // 设置返回的文件类型
+            os = response.getOutputStream();
+            os.write(data);
+            os.flush();
+            os.close();
+            os = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
     //Ning
     //上传文件
     @RequestMapping("/upload")
     public void Upload(MultipartFile upload) throws IOException {
         String downloadFilePath =System.getProperty("user.dir");
-        downloadFilePath =downloadFilePath+"\\src\\main\\resources\\video\\";
+        downloadFilePath =downloadFilePath+"\\src\\main\\webapp\\afterTable\\images";
         File file = new File(downloadFilePath);
         if(!file.exists()){
             file.mkdirs();
