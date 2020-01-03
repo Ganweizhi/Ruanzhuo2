@@ -244,5 +244,70 @@ public class TeacherController {
         else jsonObject.put("data","失败");
         return jsonObject.toJSONString();
     }
-    
+
+    @RequestMapping(value = "/findAllTeacher/{page}",method = {RequestMethod.POST})
+    public String findAllTeacher(@PathVariable("page") String page){
+        int anInt = Integer.parseInt(page);
+        List<Teacher> teachers=new ArrayList<>();
+        List<Teacher> allTeacher= teacherService.findAllTeacher();
+        for(int i=(anInt-1)*5; i<(anInt-1)*5+5 && i<allTeacher.size(); i++){
+            teachers.add(allTeacher.get(i));
+        }
+        JSONObject jsonObject = new JSONObject();
+        int r = allTeacher.size()%5==0?0:1;
+        jsonObject.put("page",allTeacher.size()/5+r);
+        jsonObject.put("curPage",anInt);
+        jsonObject.put("data",teachers);
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
+    }
+
+    @RequestMapping(value = "/addTeacher",method = {RequestMethod.POST})
+    public String addTeacher(Teacher teacher){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try{
+            teacherService.addTeacher(teacher);
+            flag="1";
+        }
+        catch (Exception e){
+            flag="0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
+
+    @RequestMapping(value = "/deleteTeacher/{teacher_id}",method = {RequestMethod.POST})
+    public String deleteTeacher(@PathVariable("teacher_id") String teacher_id){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try{
+            flag=teacherService.deleteTeacher(teacher_id);
+        }
+        catch (Exception e){
+            flag="0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
+
+    @RequestMapping(value = "/editTeacher1",method = {RequestMethod.POST})
+    public String editTeacher1(Teacher teacher){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try{
+            teacherService.editTeacher(teacher);
+            flag="1";
+        }
+        catch (Exception e){
+            flag="0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
 }
