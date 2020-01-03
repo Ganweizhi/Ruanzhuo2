@@ -46,7 +46,7 @@
                 <div class="layui-card-header">
                     <button class="layui-btn layui-btn-danger" onclick="delAll()">
                         <i class="layui-icon"></i>批量删除</button>
-                    <button class="layui-btn" onclick="xadmin.open('添加内容','QQ_group-add.html',800,600)">
+                    <button class="layui-btn" onclick="xadmin.open('添加内容','wechat_group-add.html',800,600)">
                         <i class="layui-icon"></i>添加</button></div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
@@ -239,8 +239,15 @@ function delAll(argument) {
             url: '/Wechat_Delete/'+id,
             dataType:'json',
             success:function (response) {
-                location.reload()
-                alert('post code done')
+                if(response.code === 1){
+                    alert("删除成功！")
+                    parent.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                }
+                else{
+                    alert("failed")
+                }
             },
             error:function (err) {
                 console.log(err)

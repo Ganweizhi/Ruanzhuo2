@@ -29,7 +29,7 @@ public class WebUpload {
     private uploadServices Upload;
 
     @RequestMapping("/Webquestion")
-    @ ResponseBody
+    @ResponseBody
    public String webQuestion(@Param("name")String name,@Param("title")String title,@Param("times")String times,@Param("content")String content)
     {
         JSONObject jsonObject = new JSONObject();

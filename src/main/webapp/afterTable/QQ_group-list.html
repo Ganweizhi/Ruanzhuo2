@@ -237,10 +237,15 @@ function delAll(argument) {
             url: '/QQ_Delete/'+id,
             dataType:'json',
             success:function (response) {
-                alert("删除成功！")
-                parent.location.reload();
-                var index = parent.layer.getFrameIndex(window.name);
-                parent.layer.close(index);
+                if(response.code === 1){
+                    alert("删除成功！")
+                    parent.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                }
+                else{
+                    alert("failed")
+                }
             },
             error:function (err) {
                 console.log(err)
