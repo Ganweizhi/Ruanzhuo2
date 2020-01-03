@@ -153,7 +153,7 @@
             table.render({
                 elem: '#demo',
                 height: 400,
-                url: "http://localhost:8080/ChungLife_dt_hmc/1",
+                url: "/ChungLife_dt_hmc/1",
                 method: 'post',
                 page: true, //开启分页
 
@@ -194,7 +194,7 @@
                 console.log(data.field)
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8080/ChungLife_dt_hmc/addClass",
+                    url: "/ChungLife_dt_hmc/addClass",
                     data: data.field,
                     dataType: "json",
                     success: function(d) {
