@@ -30,25 +30,25 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5">
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <input class="layui-input" placeholder="开始日" name="start" id="start"></div>
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <input class="layui-input" placeholder="截止日" name="end" id="end"></div>
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <input type="text" name="username" placeholder="请输入标题" autocomplete="off" class="layui-input"></div>
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <button class="layui-btn" lay-submit="" lay-filter="sreach">
-                                <i class="layui-icon">&#xe615;</i></button>
-                        </div>
-                    </form>
+<!--                    <form class="layui-form layui-col-space5">-->
+<!--                        <div class="layui-input-inline layui-show-xs-block">-->
+<!--                            <input class="layui-input" placeholder="开始日" name="start" id="start"></div>-->
+<!--                        <div class="layui-input-inline layui-show-xs-block">-->
+<!--                            <input class="layui-input" placeholder="截止日" name="end" id="end"></div>-->
+<!--                        <div class="layui-input-inline layui-show-xs-block">-->
+<!--                            <input type="text" name="username" placeholder="请输入标题" autocomplete="off" class="layui-input"></div>-->
+<!--                        <div class="layui-input-inline layui-show-xs-block">-->
+<!--                            <button class="layui-btn" lay-submit="" lay-filter="sreach">-->
+<!--                                <i class="layui-icon">&#xe615;</i></button>-->
+<!--                        </div>-->
+<!--                    </form>-->
                 </div>
-                <!--<div class="layui-card-header">-->
-                    <!--&lt;!&ndash;<button class="layui-btn layui-btn-danger" onclick="delAll()">&ndash;&gt;-->
-                        <!--&lt;!&ndash;<i class="layui-icon"></i>批量删除</button>&ndash;&gt;-->
-                    <!--<button class="layui-btn" onclick="xadmin.open('添加内容','./teacher_zhuyaofuzeren_add.html',800,600)">-->
-                        <!--<i class="layui-icon"></i>添加</button>-->
-                <!--</div>-->
+                <div class="layui-card-header">
+                    <!--<button class="layui-btn layui-btn-danger" onclick="delAll()">-->
+                        <!--<i class="layui-icon"></i>批量删除</button>-->
+                    <button class="layui-btn" onclick="xadmin.open('添加内容','./teacher_zhuyaofuzeren_add.html',800,600)">
+                        <i class="layui-icon"></i>修改</button>
+                </div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>
@@ -59,7 +59,7 @@
                             <th style="min-width:100px;">课程负责人</th>
                             <th style="min-width:100px;">负责课程</th>
                             <th style="min-width:100px;">课程编号</th>
-                            <th style="min-width:100px;">学院</th>
+<!--                            <th style="min-width:100px;">学院</th>-->
                             <th style="min-width:100px;">老师编号</th>
                             <th style="min-width:100px;">操作</th></tr>
                         </thead>
@@ -189,7 +189,7 @@ function member_del(obj, id) {
                 time: 1000,
             });
             var ii = document.getElementById("current_id");
-            doGo(ii.innerText);
+            // doGo(ii.innerText);
         });
 }
 
@@ -253,7 +253,7 @@ function delAll(argument) {
                             '                            <td>'+ teach_name +'</td>\n' +
                             '                            <td>'+ data[i].course.course_name +'</td>\n' +
                             '                            <td>'+ data[i].course.course_id+'</td>\n' +
-                            '                            <td>'+ xueyuan+'</td>\n' +
+                            // '                            <td>'+ xueyuan+'</td>\n' +
                             '                            <td>'+ laoshibianhao+'</td>\n' +
                             '\n' +
                             '                            <td class="td-manage">\n' +

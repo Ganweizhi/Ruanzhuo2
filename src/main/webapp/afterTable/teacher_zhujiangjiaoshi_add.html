@@ -313,6 +313,9 @@
                     console.log(msg);
                     if( msg.data == "成功"){
                         alert("增加成功");
+                        parent.location.reload();
+                        var index = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(index);
 
                     }
                     else{

@@ -109,6 +109,7 @@ public class TeamController {
             try {
                 flag = teamService.addTeacher(teacher_id, team_id);
             } catch (Exception e) {
+                System.out.println(e);
                 flag = "0";
             }
         }
@@ -126,6 +127,7 @@ public class TeamController {
         try {
             flag = teamService.addTeam(team);
         } catch (Exception e) {
+            System.out.println(e);
             flag = "0";
         }
         if(flag=="1")

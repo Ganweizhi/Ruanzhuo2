@@ -20,25 +20,25 @@
 <body>
 <div class="layui-fluid">
     <div class="layui-row">
-        <form class="layui-form">
+        <div class="layui-form-item">
+            <span class="x-red">*</span>课程名字</label>
+            <div class="layui-input-inline">
+                <input type="text" id="course_name"  name="course_name" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+        </div>
+        <div class="layui-form-item">
+            <span class="x-red">*</span>课程讲师</label>
+            <div class="layui-input-inline">
+                <input type="text" id="teacher_name" name="teacher_name" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+        </div>
 
-
-            <!--<div class="layui-form-item">-->
-                <!--<label for="username" class="layui-form-label" style="width: 100px;">-->
-                    <!--<span class="x-red">*</span>培养内容</label>-->
-                <!--<div class="layui-input-inline">-->
-                    <!--<input type="text" id="teacherid" name="username" required="" lay-verify="required" autocomplete="off" class="layui-textarea" style="width: 100%;"></div>-->
-            <!--</div>-->
-            <div class="layui-form-item layui-form-text">
-                <label for="desc" class="layui-form-label">培养内容</label>
-                <div class="layui-input-block">
-                    <textarea placeholder="请输入内容" id="desc" name="desc" class="layui-textarea"></textarea>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_repass" class="layui-form-label"></label>
-                <button class="layui-btn" lay-filter="add" lay-submit="" onclick="ccc()">发布</button></div>
-        </form>
+        <div class="layui-upload">
+            <button type="button" class="layui-btn" id="test3">文件上传</button>
+            <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                预览图：
+                <div class="layui-upload-list" id="demo2"></div>
+            </blockquote>
+        </div>
+        <button class="layui-btn" id="send">发布</button>
     </div>
 </div>
 <!--<script>layui.use(['form', 'layer'],-->
@@ -46,39 +46,23 @@
 <!--$ = layui.jquery;-->
 <!--var form = layui.form,-->
 <!--layer = layui.layer;-->
-
-<!--//自定义验证规则-->
-<!--form.verify({-->
-<!--nikename: function(value) {-->
-<!--if (value.length < 5) {-->
-<!--return '昵称至少得5个字符啊';-->
-<!--}-->
-<!--},-->
-<!--pass: [/(.+){6,12}$/, '密码必须6到12位'],-->
-<!--repass: function(value) {-->
-<!--if ($('#L_pass').val() != $('#L_repass').val()) {-->
-<!--return '两次密码不一致';-->
-<!--}-->
-<!--}-->
-<!--});-->
-
-<!--//监听提交-->
-<!--form.on('submit(add)',-->
-<!--function(data) {-->
-<!--console.log(data);-->
-<!--//发异步，把数据提交给php-->
-<!--layer.alert("增加成功", {-->
-<!--icon: 6-->
-<!--},-->
-<!--function() {-->
-<!--// 获得frame索引-->
-<!--var index = parent.layer.getFrameIndex(window.name);-->
-<!--//关闭当前frame-->
-<!--parent.layer.close(index);-->
-<!--});-->
-<!--return false;-->
-<!--});-->
-
+<!--//监听提交
+// form.on('submit(add)',
+//     function(data) {
+//         console.log(data);
+//         //发异步，把数据提交给php
+//         layer.alert("增加成功", {
+//                 icon: 6
+//             },
+//             function() {
+//                 // 获得frame索引
+//                 var index = parent.layer.getFrameIndex(window.name);
+//                 //关闭当前frame
+//                 parent.layer.close(index);
+//             });
+//         return false;
+//     });
+-->
 <!--});</script>-->
 <script>
     var _hmt = _hmt || []; (function() {
@@ -87,6 +71,7 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();
+
 
     layui.use('upload', function(){
         var $ = layui.jquery
@@ -127,7 +112,7 @@
             ,before: function(obj){
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
-                    $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+                    $('#demo2').append('<img src="images/wenjian.png" alt="'+ file.name +'" class="layui-upload-img">'+file.name)
                 });
             }
             ,done: function(res){
@@ -138,10 +123,39 @@
         //指定允许上传的文件类型
         upload.render({
             elem: '#test3'
-            ,url: '/upload/'
+            ,url: '/resource/UploadExperiment_house'
+            ,data:{
+                course_name:function(){
+                    return $("#course_name").val();
+                },
+                teacher_name:function(){
+                    return $("#teacher_name").val();
+                }
+            }
+            ,auto:false
+            ,size: 6000
             ,accept: 'file' //普通文件
+            ,exts: 'pptx|ppt|docx|doc'
+            ,bindAction:'#send'
+            ,choose:function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result) {
+                    $('#demo2').append('<img src="images/wenjian.png" alt="' + file.name + '" class="layui-upload-img">' + file.name);
+                })
+            }
             ,done: function(res){
-                console.log(res)
+                console.log(res);
+                if(res==0){
+                    window.parent.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                }
+                else if(res==400){
+                    alert("找不到该课程,请重新填写");
+                }
+            }
+            ,error:function (res) {
+
             }
         });
         upload.render({ //允许上传的文件后缀
@@ -283,70 +297,3 @@
 </body>
 
 </html>
-
-
-<script>
-    window.onload = function(){
-        var url=window.location.search; //获取url中"?"符后的字串  
-        if(url.indexOf("?")!=-1){
-            var id = url.substr(url.indexOf("?")+1);
-        }
-        console.log(id + "    id");
-        console.log("ajax开始了呀")
-
-        $.ajax({
-                type: "POST",
-                url: "/Teacher/findYoungByIdAfter/"+id,
-                async:false,
-                dataType: "json",
-                success:function (msg) {
-                    console.log(msg);
-                    document.getElementById("desc").value = msg.young.content;
-
-
-
-                },
-                error:function () {
-                    console.log("添加失败")
-                }
-            }
-        )
-    }
-</script>
-
-
-<script>
-    function  ccc() {
-        var url=window.location.search; //获取url中"?"符后的字串  
-        if(url.indexOf("?")!=-1){
-            var id = url.substr(url.indexOf("?")+1);
-        }
-        console.log(id + "    id");
-
-        var iid = document.getElementById("desc").value;
-        console.log("ajax开始了呀")
-        $.ajax({
-                type: "POST",
-                url: "/Teacher/updateYoungTeacherAfter",
-                async:false,
-                data:{"teacher_id":id,"content":iid},
-                dataType: "json",
-                success:function (msg) {
-                    if( msg.data == "成功"){
-                        alert("更改成功");
-                        parent.location.reload();
-                        var index = parent.layer.getFrameIndex(window.name);
-                        parent.layer.close(index);
-                    }
-                    else{
-                        alert("更改失败");
-                    }
-
-                },
-                error:function () {
-                    console.log("添加失败")
-                }
-            }
-        )
-    }
-</script>
