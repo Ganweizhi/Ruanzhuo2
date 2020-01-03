@@ -7,7 +7,7 @@ public class Teacher {
     String teacher_name;
     int academy_id;
     Academy academy;
-    Date teacher_birth;
+    String teacher_birth;
     String teacher_sex;
     String teacher_rank;
     String teacher_phone;
@@ -88,11 +88,13 @@ public class Teacher {
         this.academy_id = academy_id;
     }
 
-    public Date getTeacher_birth() {
+
+
+    public String getTeacher_birth() {
         return teacher_birth;
     }
 
-    public void setTeacher_birth(Date teacher_birth) {
+    public void setTeacher_birth(String teacher_birth) {
         this.teacher_birth = teacher_birth;
     }
 

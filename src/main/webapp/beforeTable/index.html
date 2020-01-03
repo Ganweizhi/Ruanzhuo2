@@ -289,7 +289,7 @@ jQuery(".slideBox_banner").slide({mainCell:".bd ul",autoPlay:true});
 	<div class="newsTop">
 		<div class="left" aos="fade-right">
 			<div><h2>改革成果</h2><a href="Jiaoxuegaige-chengguo.html">更多>></a></div>
-			<ul>
+			<ul id="gaigechengguoid">
 				<li>
 					<a href="#"><p>总学校开展系列“国家宪法日”主题学习宣传教育活动</p><span>18-10-27</span></a>
 				</li>
@@ -312,7 +312,7 @@ jQuery(".slideBox_banner").slide({mainCell:".bd ul",autoPlay:true});
 		</div>
 		<div class="left" style="float: right;border:0; padding-right: 0;" aos="fade-left">
 			<div><h2>表彰奖励</h2><a href="Jiaoxuegaige-jiangli.html">更多>></a></div>
-			<ul>
+			<ul id="jiaoxuebiaozhangjiaoliid">
 				<li>
 					<a href="#"><p>国家重点研发计划“珠江三角洲城市群生态安全保...</p><span>18-10-27</span></a>
 				</li>
@@ -492,6 +492,8 @@ $(".footerZd .yq").hover(function(){
 <script>
 	window.onload = function () {
 		doGo(1);
+		fff(1);
+		fff5(1)
 	}
 	function doGo(Page) {
 		console.log("ajax开始");
@@ -507,10 +509,78 @@ $(".footerZd .yq").hover(function(){
                         	var data = msg.data;
 							console.log(msg);
 							for(i in data){
-								str += '<li><span class="date">'+ data[i].measure_time+'</span><a href="Jiaoxuegaige-cuoshi-neirong.html?content_id='+ data[i].content_id+'" target="_blank">'+ data[i].measure_title+'</a></li>'
+								str += '<li><span class="date">'+ data[i].measure_time+'</span><a href="Jiaoxuegaige-cuoshi-neirong.html?content_id='+ data[i].content_id+'" target="_blank"><span style="width: 220px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;float:left">'+ data[i].measure_title+'</span></a></li>'
 							}
 							str += '<div class="more"><a href="Jiaoxuegaige-cuoshi.html">更多资讯>></a></div>';
                         }
+						tbody.innerHTML = str
+
+					},
+					error:function () {
+						console.log("失败")
+
+					}
+				}
+		)
+
+	}
+
+
+	function fff(Page) {
+
+
+		console.log("ajax1开始");
+		var tbody = window.document.getElementById("gaigechengguoid");
+		var str ="";
+		$.ajax({
+					type: "POST",
+					url: "/chengguo/"+Page,
+					async:false,
+					dataType: "json",
+					success:function (msg) {
+						if( msg != null){
+							var data = msg.data;
+							console.log(msg);
+							var list = msg['data'];
+							for(i in data){
+								str += '<li ><a  href="Jiaoxuegaige-chengguo-neirong.html?content_id=' + list[i].content_id + '"'+'</a><span style="width: 400px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;float:left">'+list[i].measure_title+'</span><span style="float: right">' + list[i].measure_time + '</span></li >'
+							}
+						}
+						tbody.innerHTML = str
+
+					},
+					error:function () {
+						console.log("失败")
+
+					}
+				}
+		)
+
+	}
+
+
+
+
+
+	function fff5(Page) {
+
+
+		console.log("ajax1开始");
+		var tbody = window.document.getElementById("jiaoxuebiaozhangjiaoliid");
+		var str ="";
+		$.ajax({
+					type: "POST",
+					url: "/jiangli/"+Page,
+					async:false,
+					dataType: "json",
+					success:function (msg) {
+						if( msg != null){
+							console.log(msg);
+							var list = msg['data'];
+							for (var i in list) {
+								str += '<li><a style="width: 800px;" href="Jiaoxuegaige-jiangli-neirong.html?content_id=' + list[i].content_id + '"'+'</a><span style="width: 400px;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;float:left"> '+list[i].measure_title+'</span><span style="float: right">' + list[i].measure_time + '</span></li >'
+							}
+						}
 						tbody.innerHTML = str
 
 					},
