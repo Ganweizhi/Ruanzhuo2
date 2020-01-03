@@ -174,7 +174,7 @@ function member_del(obj, id) {
             //发异步删除数据
             $.ajax({
                     type: "POST",
-                    url: "/FuZeRen/deleteFuZeRen/"+id,
+                    url: "/Teacher/deleteSuccessCourse/"+id,
                     async:false,
                     dataType: "json",
                     success:function (msg) {
@@ -321,6 +321,7 @@ function delAll(argument) {
                 dataType: "json",
                 success:function (msg) {
                     console.log(msg);
+
                 },
                 error:function () {
                     console.log("失败")
