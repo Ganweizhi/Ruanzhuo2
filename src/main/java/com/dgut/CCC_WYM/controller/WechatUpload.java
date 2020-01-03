@@ -134,4 +134,22 @@ public class WechatUpload {
         Upload.deleteWechat(id);
         return null;
     }
+    @RequestMapping("/c")
+    public String changeWechatImage(@Param("success_id")String success_id,@Param("pic")MultipartFile pic,HttpServletRequest request ) throws IOException {
+        String realPath = request.getServletContext().getRealPath("/beforeTable/group_image/wechat_image");
+        File folder = new File(realPath);
+        if(!folder.exists())
+        {
+            folder.mkdirs();
+        }
+        String oldname = pic.getOriginalFilename();
+        String newName = success_id+"_"+"wechat"+"_"+oldname.substring(oldname.lastIndexOf("."));
+        pic.transferTo(new File(folder,newName));
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/beforeTable/group_image/wechat_image/" + newName;
+        System.out.println(url);
+        Upload.changeWechat(success_id,newName);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("success",1);
+        return JSON.toJSONString(jsonObject);
+    }
 }

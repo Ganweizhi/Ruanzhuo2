@@ -179,4 +179,22 @@ public class GroupImageUpload {
         Upload.delete(id);
         return null;
     }
+    @RequestMapping("/QQ_edit")
+    public String changeQQImage(@Param("pic")MultipartFile pic,@Param("success_id")String success_id,HttpServletRequest request ) throws IOException {
+        String realPath = request.getServletContext().getRealPath("/beforeTable/group_image/wechat_image");
+        File folder = new File(realPath);
+        if(!folder.exists())
+        {
+            folder.mkdirs();
+        }
+        String oldname = pic.getOriginalFilename();
+        String newName = success_id+"_"+"wechat"+"_"+oldname.substring(oldname.lastIndexOf("."));
+        pic.transferTo(new File(folder,newName));
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/beforeTable/group_image/qq_image/" + newName;
+        System.out.println(url);
+        Upload.changeQQ(success_id,newName);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("success",1);
+        return JSON.toJSONString(jsonObject);
+    }
 }
