@@ -44,7 +44,7 @@ public class TeamController {
         jsonObject.put("page",allTeams.size()/9+r);
         jsonObject.put("curPage",anInt);
         jsonObject.put("data",teams);
-        return jsonObject.toJSONString();
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     @RequestMapping(value = "/findTeacherByTeamId/{team_id}",method = {RequestMethod.POST})
@@ -70,7 +70,7 @@ public class TeamController {
         jsonObject.put("page",allTeams.size()/5+r);
         jsonObject.put("curPage",anInt);
         jsonObject.put("data",teams);
-        return jsonObject.toJSONString();
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     //按id查出教师信息

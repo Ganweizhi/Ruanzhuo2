@@ -121,6 +121,8 @@
     </div>
 </div>
 </body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <script>layui.use(['laydate', 'form'],
     function() {
         var laydate = layui.laydate;
@@ -238,7 +240,7 @@ function delAll(argument) {
                     var teacher_rank;
                     for(i in data){
 
-                        if( data[i].teacher.hasOwnProperty("teacher_name") ){
+                        if( data[i].teacher_id != parseInt("0") ){
                             teach_name = data[i].teacher.teacher_name;
                             // xueyuan = data[i].academy.academy_name;
                             laoshibianhao = data[i].teacher.teacher_id;
@@ -272,7 +274,7 @@ function delAll(argument) {
                             '                                    <i class="layui-icon">&#xe63c;</i></a>\n' +
                             // '                                <a title="修改头像"  href="teacher_zhujiangjiaoshi_edit1.html?'+ data[i].course.course_id+'">\n' +
                             // '                                    <i class="layui-icon">&#xe63c;</i></a>\n' +
-                            '<a title="删除" onclick="member_del(this,'+data[i].course.course_id + ')" href="javascript:;">\n' +
+                            '<a title="删除" onclick="member_del(this,'+data[i].success_id + ')" href="javascript:;">\n' +
                             '                                    <i class="layui-icon">&#xe640;</i></a>'+
                             '                            </td>\n' +
                             '                        </tr>'
