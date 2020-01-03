@@ -44,13 +44,10 @@ public class VideoController {
     public String FindCourseVideoPath(@PathVariable("course_id") String course_id,HttpServletRequest request, HttpServletResponse response)
     {
         int course_id2=Integer.parseInt(course_id);
-        System.out.println(course_id+"11111111111111111");
        String path=videoService.FindCourseVideoPath(course_id);
-        System.out.println(path+"11111111111111");
         String downloadFilePath =System.getProperty("user.dir");
 //        downloadFilePath = "G:\\复习";
         downloadFilePath =downloadFilePath+"\\src\\main\\resources\\video\\";
-
         try {
             FileInputStream fis = null;
             OutputStream os = null ;

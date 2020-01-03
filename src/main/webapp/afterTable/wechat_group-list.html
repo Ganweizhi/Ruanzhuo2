@@ -46,7 +46,7 @@
                 <div class="layui-card-header">
                     <button class="layui-btn layui-btn-danger" onclick="delAll()">
                         <i class="layui-icon"></i>批量删除</button>
-                    <button class="layui-btn" onclick="xadmin.open('添加内容','QQ_group-add.html',800,600)">
+                    <button class="layui-btn" onclick="xadmin.open('添加内容','wechat_group-add.html',800,600)">
                         <i class="layui-icon"></i>添加</button></div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
@@ -62,20 +62,6 @@
                             <th>操作</th></tr>
                         </thead>
                         <tbody id="kechengfuzerenxianshi">
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="" lay-skin="primary"></td>
-                            <td>1</td>
-                            <td>2</td>
-                            <td>3</td>
-                            <td>4</td>
-                            <td class="td-manage">
-                                <a title="查看" onclick="xadmin.open('编辑','QQ_group-add.html')" href="javascript:;">
-                                    <i class="layui-icon">&#xe63c;</i></a>
-                                <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                    <i class="layui-icon">&#xe640;</i></a>
-                            </td>
-                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -195,8 +181,8 @@ function delAll(argument) {
                             '                            <td>'+ msg[i+''].course_name+'</td>\n' +
                             '                            <td>'+ msg[i+''].time+'</td>\n' +
                             '                            <td class="td-manage">\n' +
-                            '                                <a title="查看" onclick="xadmin.open(\'编辑\',\'QQ_group-edit.html\')" href=" ">\n' +
-                            '                                    <i class="layui-icon">&#xe63c;</i></ a>\n' +
+                            // '                                <a title="修改" onclick="xadmin.open(\'修改\',\'wechat_group-edit.html?id='+msg[''+i].success_id+'\')" href="javascript:;">\n' +
+                            // '                                    <i class="layui-icon">&#xe63c;</i></ a>\n' +
                             '                                <a title="删除" onclick="delRow('+msg[i+''].success_id+')" href="javascript:;">\n' +
                             '                                    <i class="layui-icon">&#xe640;</i></ a>\n' +
                             '                            </td>\n' +
@@ -253,8 +239,15 @@ function delAll(argument) {
             url: '/Wechat_Delete/'+id,
             dataType:'json',
             success:function (response) {
-                location.reload()
-                alert('post code done')
+                if(response.code == 1){
+                    alert("删除成功！")
+                    parent.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                }
+                else{
+                    alert("failed")
+                }
             },
             error:function (err) {
                 console.log(err)

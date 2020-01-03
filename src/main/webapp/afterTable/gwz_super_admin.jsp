@@ -94,10 +94,6 @@
                                 </ul>
                             </li>
 
-
-
-
-
                             <li>
                                 <a href="javascript:;">
                                     <i class="iconfont">&#xe70b;</i>
@@ -114,7 +110,6 @@
                                             <i class="iconfont">&#xe6a7;</i>
                                             <cite>上课班级</cite></a>
                                     </li>
-
                                     <li>
                                         <a onclick="xadmin.add_tab('课程特色','front_context-list.html')">
                                             <i class="iconfont">&#xe6a7;</i>

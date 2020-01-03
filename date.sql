@@ -21,4 +21,5 @@
 # # # #                          content varchar(5000) default null,
 # # # #                          answer varchar(5000) default null
 # # # # )
-update question set answer = null where answer is  not null
+# update question set answer = null where answer is  not null
+update successCourse set success_QQ = null

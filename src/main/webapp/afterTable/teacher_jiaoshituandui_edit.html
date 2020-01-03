@@ -120,6 +120,8 @@
     </div>
 </div>
 </body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <script>layui.use(['laydate', 'form'],
     function() {
         var laydate = layui.laydate;
@@ -178,6 +180,7 @@ function member_del(obj, team_id,teacher_id) {
                     dataType: "json",
                     success:function (msg) {
                         console.log(msg);
+
                     },
                     error:function () {
                         console.log("失败")
@@ -189,7 +192,7 @@ function member_del(obj, team_id,teacher_id) {
                 time: 1000,
             });
             var ii = document.getElementById("current_id");
-            doGo(ii.innerText);
+            doGo();
         });
 }
 
@@ -306,6 +309,9 @@ function delAll(argument) {
                 dataType: "json",
                 success:function (msg) {
                     console.log(msg);
+                    parent.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
                 },
                 error:function () {
                     console.log("失败")
