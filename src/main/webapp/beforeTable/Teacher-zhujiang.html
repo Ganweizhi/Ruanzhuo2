@@ -234,7 +234,7 @@
     });
 </script>
 
-
+<script src="http://code.jquery.com/jquery-latest.js"></script>
 </body>
 </html>
 
@@ -284,27 +284,50 @@
                         var course ;
                         var teacher;
 
+
                         console.log(data);
                         console.log(currentPage);
                         for( i in data){
+
+
                             course = data[i].course;
-                            teacher = data[i].teacher;
-                            console.log(course);
-                            console.log(teacher);
-                            str += '<li style="width: 290px;\n' +
-                                '    height: 345px;\n' +
-                                '    float: left;\n' +
-                                '    margin-right: 12px;\n' +
-                                '    margin-bottom: 15px;\n' +
-                                '    box-shadow: 1px 1px 8px #ccc;\n' +
-                                '    -webkit-box-shadow: 1px 1px 8px #ccc;\n' +
-                                '    -moz-box-shadow: 1px 1px 8px #ccc;\n' +
-                                '    border-radius: 4px;\n' +
-                                '    text-align: center;"><a href="Teacher-zhujiang_teacher.html?teacher_id='+teacher.teacher_id+'&course_id='+ course.course_id+'"><img src="'+teacher.teacher_photo+'"><p style="line-height: 35px;\n' +
-                                '    font-size: 22px;\n' +
-                                '    color: #313131;">'+teacher.teacher_name+'</p><span style="color: #797979;\n' +
-                                '    font-size: 16px;\n' +
-                                '    line-height: 30px;">'+course.course_name+'</span></a></li>';
+                            if( data[i].teacher_id != parseInt("0")) {
+
+                                teacher = data[i].teacher;
+
+                                console.log(course);
+                                console.log(teacher);
+                                str += '<li style="width: 290px;\n' +
+                                    '    height: 345px;\n' +
+                                    '    float: left;\n' +
+                                    '    margin-right: 12px;\n' +
+                                    '    margin-bottom: 15px;\n' +
+                                    '    box-shadow: 1px 1px 8px #ccc;\n' +
+                                    '    -webkit-box-shadow: 1px 1px 8px #ccc;\n' +
+                                    '    -moz-box-shadow: 1px 1px 8px #ccc;\n' +
+                                    '    border-radius: 4px;\n' +
+                                    '    text-align: center;"><a href="Teacher-zhujiang_teacher.html?teacher_id=' + teacher.teacher_id + '&course_id=' + course.course_id + '"><img src="' + teacher.teacher_photo + '"><p style="line-height: 35px;\n' +
+                                    '    font-size: 22px;\n' +
+                                    '    color: #313131;">' + teacher.teacher_name + '</p><span style="color: #797979;\n' +
+                                    '    font-size: 16px;\n' +
+                                    '    line-height: 30px;">' + course.course_name + '</span></a></li>';
+                            }
+                            else{
+                                str += '<li style="width: 290px;\n' +
+                                    '    height: 345px;\n' +
+                                    '    float: left;\n' +
+                                    '    margin-right: 12px;\n' +
+                                    '    margin-bottom: 15px;\n' +
+                                    '    box-shadow: 1px 1px 8px #ccc;\n' +
+                                    '    -webkit-box-shadow: 1px 1px 8px #ccc;\n' +
+                                    '    -moz-box-shadow: 1px 1px 8px #ccc;\n' +
+                                    '    border-radius: 4px;\n' +
+                                    '    text-align: center;"><a href="javascript:;"><img src="' + "images/teacher_img2.jpg" + '"><p style="line-height: 35px;\n' +
+                                    '    font-size: 22px;\n' +
+                                    '    color: #313131;">' + "待定" + '</p><span style="color: #797979;\n' +
+                                    '    font-size: 16px;\n' +
+                                    '    line-height: 30px;">' + course.course_name + '</span></a></li>';
+                            }
                         }
                     }
                     tbody.innerHTML = str;

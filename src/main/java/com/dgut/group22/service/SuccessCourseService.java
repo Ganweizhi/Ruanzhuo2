@@ -21,6 +21,11 @@ public class SuccessCourseService {
         return "1";
     }
 
+    public String deleteTeacherOfSuccess(String success_id){
+        successCourseDao.deleteTeacherOfSuccess(success_id);
+        return "1";
+    }
+
     public void updateSuccessCourse(String course_id, String teacher_id) {
         successCourseDao.updateSuccessCourse(course_id, teacher_id);
     }

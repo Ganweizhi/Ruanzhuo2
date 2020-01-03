@@ -12,6 +12,8 @@
 <link rel="stylesheet" type="text/css" href="css/index.css">
 <link rel="stylesheet" type="text/css" href="css/aos.css">
 <link rel="stylesheet" type="text/css" href="css/style.css">
+
+	<link rel="stylesheet" href="pagination/style/pagination.css">
 <!-- js -->
 <script type="text/javascript" src="js/jquery1.42.min.js"></script>
 <script type="text/javascript" src="js/jquery.SuperSlide.2.1.3.js"></script>
@@ -243,7 +245,10 @@ $(".head .dh ul li").hover(function(){
 			  		<span>到第<input name="" type="text" id="ymz">页 <a href="#" onclick="goto_ymz()">确定</a></span>
 			  	</div>
 			  </div>
-			 <!-- 详情内容介绍 -->
+			<!-- 详情内容介绍 -->
+			<div class="M-box"></div>
+			<script src="pagination/script/lib/jquery.min.js"></script>
+			<script src="pagination/script/jquery.pagination.js"></script>
 		</div>
 	</div>
 </div>
@@ -276,32 +281,7 @@ $(".head .dh ul li").hover(function(){
 		</div>
 	</div>
 </div>
-<!-- <div class="footerBeiJ" style="height: 200px; overflow: inherit;">
-	<div class="footerZd">
-		<div class="px1200">
-			<div class="footerLogo"><img src="images/logoFooter.png"></div>
-			<div class="lianxDiz">
-				<p>0851-84791910</p>
-				<p class="p1">puange@outlook.com</p>
-				<p class="p2">贵阳市南明区花果园金融街五号27楼</p>
-			</div>
-			<div class="yq">
-				<p>--友情链接--</p>
-				<div class="xl">
-					<a href="#">百度一下</a>
-					<a href="#">WangID一下</a>
-					<a href="#">百度一下</a>
-					<a href="#">WangID一下</a>
-				</div>
-			</div>
-		</div>
-		<div class="beian">
-			<div class="px1200">
-				<p>东莞理工学院教务处  Copyright © 2016-2020 All Rights Reserved    　黔ICP备05012247号        技术支持:驰通科技      总数：439767 </p>
-			</div>
-		</div>
-	</div>
-</div> -->
+
 <script type="text/javascript">
 $(document).ready(function(){
 
@@ -318,20 +298,66 @@ $(".footerZd .yq").hover(function(){
 
 <script type="text/javascript" src="js/highlight.min.js"></script>
 <script type="text/javascript" src="js/aos.js"></script>
+<script>
+	AOS.init({
+		easing: 'ease-out-back',
+		duration: 1000
+	});
+</script>
+<script>
+	hljs.initHighlightingOnLoad();
 
-	<script>
-		AOS.init({
-			easing: 'ease-out-back',
-			duration: 1000
-		});
-	</script>
+	$('.hero__scroll').on('click', function(e) {
+		$('html, body').animate({
+			scrollTop: $(window).height()
+		}, 1200);
+	});
+</script>
+<script>
+	$.ajax({
+		url:"/resource/GetAllBase",
+		type:"GET",
+		dataTypr:"json",
+		async:false,
+		success:function(data){
+			if(data!=null){
+				console.log(data);
+				console.log(data.length);//数据数量
+				var totalPages=data.length/15+1;//总页数
+				//添加一页数据
+				var divhtml = "";
+				divhtml +="<ul>";
+				for(var i in data){
+					divhtml +="<li><a href='/resource/downLoadFile?fileName=" + data[i] + "'>"+ "教学材料"+(i+1)+"</a></li>";
+					if(i==14)break;
+				}
+				console.log("运行");
+				$(".but_list").html(divhtml);
 
-	<script>
-		hljs.initHighlightingOnLoad();
+				$('.M-box').pagination({
+					pageCount:totalPages,   //总页码
+					coping:true,                 //是否开启首页和末页
+					homePage:'首页',
+					endPage:'末页',
+					prevContent:'上页',
+					nextContent:'下页',
+					current:1,                    //当前页码
+					callback:function (api) {     //这是一个回调函数
+						var num=(api.getCurrent()-1)*15;
+						divhtml="";
+						console.log(num);
+						console.log("在回调函数中");
+						for(var i=num;i<(num+15)&&i<data.length;i++){
+							divhtml += "<ul>";
+							divhtml +="<li><a href='/resource/downLoadFile?fileName=" + data[i] + "'>"+ "教学材料"+i+"</a></li>";
+							divhtml += "</ul>";
+						}
+						console.log("daozheli");
 
-		$('.hero__scroll').on('click', function(e) {
-			$('html, body').animate({
-				scrollTop: $(window).height()
-			}, 1200);
-		});
-	</script>
+						$(".but_list").html(divhtml);
+					}
+				});
+			}
+		}
+	});
+</script>

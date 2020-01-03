@@ -35,6 +35,21 @@ public class AddEditDelete {
     @Autowired
     private JiaoXueRiLiService jiaoXueRiLiService;
 
+    @RequestMapping(value="/jiabanList",method = {RequestMethod.GET})
+    public String jiabanList(){
+
+        List<jiaban> list = addEditDeleteDao.jiabanList();
+
+        for(jiaban jia : list){
+            jia.setStr(""+jia.getCourse_id()+addEditDeleteDao.getCourName(jia.getCourse_id()));
+        }
+
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("data",list);
+        return jsonObject.toJSONString();
+    }
+
     @RequestMapping(value="/listContentb",method = {RequestMethod.GET})
     public String listContentb(@Param("page") int page, @Param("limit") int limit){
 
