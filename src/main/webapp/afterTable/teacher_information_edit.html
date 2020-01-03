@@ -29,15 +29,96 @@
             <!--<div class="layui-input-inline">-->
             <!--<input type="text" id="teacherid" name="username" required="" lay-verify="required" autocomplete="off" class="layui-textarea" style="width: 100%;"></div>-->
             <!--</div>-->
-            <div class="layui-form-item layui-form-text">
-                <label for="desc" class="layui-form-label">培养内容</label>
-                <div class="layui-input-block">
-                    <textarea placeholder="请输入内容" id="desc" name="desc" class="layui-textarea"></textarea>
+
+
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label" style="width: 100px">
+                    <span class="x-red">*</span>老师编号</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="teacherid" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label" style="width: 100px">
+                    <span class="x-red">*</span>老师姓名</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="teachername" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label" style="width: 100px">
+                    <span class="x-red">*</span>学院编号</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="academyid" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label" style="width: 100px">
+                    <span class="x-red">*</span>生日</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="teacherbirth" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label" style="width: 100px">
+                    <span class="x-red">*</span>性别</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="teachersex" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label" style="width: 100px">
+                    <span class="x-red">*</span>职称</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="teacherrank" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label" style="width: 100px">
+                    <span class="x-red">*</span>手机</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="teacherphone" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label" style="width: 100px">
+                    <span class="x-red">*</span>邮箱</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="teacheremail" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label" style="width: 100px">
+                    <span class="x-red">*</span>学位</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="teacherqualification" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label" style="width: 100px">
+                    <span class="x-red">*</span>专业</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="teacherdomain" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label" style="width: 100px">
+                    <span class="x-red">*</span>职务</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="teacherjob" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label" style="width: 100px">
+                    <span class="x-red">*</span>地址</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="teacheraddress" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label" style="width: 100px">
+                    <span class="x-red">*</span>研究方向</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="teacherresdire" name="username" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
+            </div>
+            <div class="layui-form-item">
+                <label for="username" class="layui-form-label" style="width: 100px">
+                    <span class="x-red">*</span>简历</label>
+                <div class="layui-input-inline">
+                    <textarea placeholder="请输入内容" id="teacherresume" name="desc" class="layui-textarea"></textarea>
                 </div>
             </div>
             <div class="layui-form-item">
                 <label for="L_repass" class="layui-form-label"></label>
-                <button class="layui-btn" lay-filter="add" lay-submit="" onclick="ccc()">发布</button></div>
+                <button class="layui-btn" lay-filter="add" lay-submit="" onclick="ccc()">修改</button></div>
         </form>
     </div>
 </div>
@@ -299,18 +380,28 @@
 
         $.ajax({
                 type: "POST",
-                url: "/Teacher/findYoungByIdAfter/"+id,
+                url: "/Teacher/findById/"+id,
                 async:false,
                 dataType: "json",
                 success:function (msg) {
                     console.log(msg);
-                    document.getElementById("desc").value = msg.young.content;
-
-
-
+                    document.getElementById("teachername").value = msg.teacher.teacher_name;
+                    document.getElementById("teacherid").value = msg.teacher.teacher_id;
+                    document.getElementById("academyid").value = msg.teacher.academy_id;
+                    document.getElementById("teacherbirth").value = msg.teacher.teacher_birth;
+                    document.getElementById("teachersex").value = msg.teacher.teacher_sex;
+                    document.getElementById("teacherrank").value = msg.teacher.teacher_rank;
+                    document.getElementById("teacherphone").value = msg.teacher.teacher_phone;
+                    document.getElementById("teacheremail").value = msg.teacher.teacher_email;
+                    document.getElementById("teacherqualification").value = msg.teacher.teacher_qualification;
+                    document.getElementById("teacherdomain").value = msg.teacher.teacher_domain;
+                    document.getElementById("teacherjob").value = msg.teacher.teacher_job;
+                    document.getElementById("teacheraddress").value = msg.teacher.teacher_address;
+                    document.getElementById("teacherresdire").value = msg.teacher.teacher_resdire;
+                    document.getElementById("teacherresume").value = msg.teacher.teacher_resume;
                 },
                 error:function () {
-                    console.log("添加失败")
+                    // console.log("添加失败")
                 }
             }
         )
@@ -319,37 +410,57 @@
 
 
 <script>
-    function  ccc() {
-        var url=window.location.search; //获取url中"?"符后的字串  
-        if(url.indexOf("?")!=-1){
-            var id = url.substr(url.indexOf("?")+1);
-        }
-        console.log(id + "    id");
-
-        var iid = document.getElementById("desc").value;
-        console.log("ajax开始了呀")
+    function ccc() {
+        var teachernn = document.getElementById("teachername").value;
+        var academyii = document.getElementById("academyid").value;
+        var teachid = document.getElementById("teacherid").value;
+        var birthh = document.getElementById("teacherbirth").value;
+        var birthh1 = document.getElementById("teachersex").value;
+        var birthh2 = document.getElementById("teacherrank").value;
+        var birthh3 = document.getElementById("teacherphone").value;
+        var birthh4 = document.getElementById("teacheremail").value;
+        var birthh5 = document.getElementById("teacherqualification").value;
+        var birthh6= document.getElementById("teacherdomain").value;
+        var birthh7= document.getElementById("teacherjob").value;
+        var birthh8 = document.getElementById("teacheraddress").value;
+        var birthh9 = document.getElementById("teacherresdire").value;
+        var birthh10 = document.getElementById("teacherresume").value;
+        console.log(teachernn + " cc");
+        console.log(academyii + " cc");
+        console.log(birthh + " cc");
+        console.log(birthh1 + " cc");
+        console.log(birthh2 + " cc");
+        console.log(birthh3 + " cc");
+        console.log(birthh4 + " cc");
+        console.log(birthh5 + " cc");
+        console.log(birthh6 + " cc");
+        console.log(birthh7 + " cc");
+        console.log(birthh8 + " cc");
+        console.log(birthh9 + " cc");
+        console.log(birthh10 + " cc");
         $.ajax({
                 type: "POST",
-                url: "/Teacher/updateYoungTeacherAfter",
+                url: "/Teacher/editTeacher1",
                 async:false,
-                data:{"teacher_id":id,"content":iid},
+                data:{"teacher_id":teachid,"teacher_name":teachernn,"academy_id":academyii,"teacher_birth":birthh,"teacher_sex":birthh1,"teacher_rank":birthh2,"teacher_phone":birthh3,"teacher_email":birthh4,"teacher_qualification":birthh5,"teacher_domain":birthh6,"teacher_job":birthh7,"teacher_address":birthh8,"teacher_resdire":birthh9,"teacher_resume":birthh10},
                 dataType: "json",
                 success:function (msg) {
+                    console.log(msg);
                     if( msg.data == "成功"){
-                        alert("更改成功");
+                        alert("修改成功");
                         parent.location.reload();
                         var index = parent.layer.getFrameIndex(window.name);
                         parent.layer.close(index);
                     }
                     else{
-                        alert("更改失败");
+                        alert("修改失败")
                     }
-
                 },
                 error:function () {
-                    console.log("添加失败")
+                    console.log("修改失败")
                 }
             }
         )
+
     }
 </script>

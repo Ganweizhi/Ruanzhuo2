@@ -19,7 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 //Ning
@@ -261,8 +264,15 @@ public class TeacherController {
         return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 
+    public static Date string2Date(String str, String patt) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat(patt);
+        Date parse = sdf.parse(str);
+        return parse;
+    }
+
     @RequestMapping(value = "/addTeacher",method = {RequestMethod.POST})
     public String addTeacher(Teacher teacher){
+        System.out.println(teacher);
         String flag="0";
         JSONObject jsonObject = new JSONObject();
         try{
@@ -270,6 +280,7 @@ public class TeacherController {
             flag="1";
         }
         catch (Exception e){
+            System.out.println(e);
             flag="0";
         }
         if(flag=="1")
@@ -310,4 +321,6 @@ public class TeacherController {
         else jsonObject.put("data","失败");
         return jsonObject.toJSONString();
     }
+
+
 }

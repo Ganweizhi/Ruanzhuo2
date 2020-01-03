@@ -220,18 +220,20 @@ function delAll(argument) {
                 console.log(data);
                 var tableHtml = "";
                 for (var i in data.experimentHouseList) {
-                    tableHtml += "<tr>";
-                    tableHtml +="<td>\n" +
-                        "                                <input type=\"checkbox\" name=\"\" lay-skin=\"primary\"></td>"
-                    tableHtml += "<td>" + data.courseList[i].course_name + "</td>";
-                    tableHtml += "<td>" + data.teacherList[i].teacher_name + "</td>";
-                    tableHtml += "<td>2019-11-" + i + "</td>";
-                    tableHtml += "<td>" + data.experimentHouseList[i].experiment_huanj + "</td>";
-                    tableHtml +="<td class=\"td-manage\">\n" +
-                        "<a title=\"删除\" onclick=\"member_del(this,"+data.experimentHouseList[i].resource_id+")\" id='dele' href=\"javascript:;\">\n" +
-                        "<i class=\"layui-icon\">&#xe640;</i></a>\n" +
-                        "</td>"
-                    tableHtml += "</tr>";
+                    if( data.teacherList[i] != null) {
+                        tableHtml += "<tr>";
+                        tableHtml += "<td>\n" +
+                            "                                <input type=\"checkbox\" name=\"\" lay-skin=\"primary\"></td>"
+                        tableHtml += "<td>" + data.courseList[i].course_name + "</td>";
+                        tableHtml += "<td>" + data.teacherList[i].teacher_name + "</td>";
+                        tableHtml += "<td>2019-11-" + i + "</td>";
+                        tableHtml += "<td>" + data.experimentHouseList[i].experiment_huanj + "</td>";
+                        tableHtml += "<td class=\"td-manage\">\n" +
+                            "<a title=\"删除\" onclick=\"member_del(this," + data.experimentHouseList[i].resource_id + ")\" id='dele' href=\"javascript:;\">\n" +
+                            "<i class=\"layui-icon\">&#xe640;</i></a>\n" +
+                            "</td>"
+                        tableHtml += "</tr>";
+                    }
                 }
                 $(".body").html(tableHtml);
             }
