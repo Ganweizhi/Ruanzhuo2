@@ -366,7 +366,7 @@
                 for (var i in data) {
                     divhtml += "<li class='tout_sp'><h1>" +
                         "<video width=\"900\" height=\"500\" controls=\"controls\" id=\"video\" preload=\"auto\">" +
-                        "<source src=\"/resource/FindCourseVideoPath/"+data[i].course_id+"\" type=\"video/mp4\"></video></h1><h2>" +
+                        "<source src=\"/resource/test/"+data[i].course_id+"\" type=\"video/mp4\"></video></h1><h2>" +
                         "<p>"+data[i].course_name+"</p>" +
                         "<i><img src=\"images/fe01.png\"></i>" +
                         "</h2></li>";
@@ -389,14 +389,17 @@
                         divhtml="";
                         console.log(num);
                         console.log("在回调函数中");
+                        divhtml += "<ul>";
                         for(var i=num;i<(num+3)&&i<data.length;i++){
                             divhtml += "<li class='tout_sp'><h1>" +
                                 "<video width=\"900\" height=\"500\" controls=\"controls\" id=\"video\" preload=\"auto\">" +
-                                "<source src=\"images/movie1.ogg\" type=\"video/mp4\"></video></h1><h2>" +
-                                "<p>"+data[i]+"</p>" +
+                                "<source src=\"/resource/test/"+data[i].course_id+"\" type=\"video/mp4\"></video></h1><h2>" +
+                                "<p>"+data[i].course_name+"</p>" +
                                 "<i><img src=\"images/fe01.png\"></i>" +
                                 "</h2></li>";
+                            console.log(data[i])
                         }
+                        divhtml+="</ul>";
                         $(".chunglife_sp_k").html(divhtml);
                     }
                 });

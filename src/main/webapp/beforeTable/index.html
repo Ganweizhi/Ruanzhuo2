@@ -506,11 +506,12 @@ $(".footerZd .yq").hover(function(){
                         if( msg != null){
                         	var data = msg.data;
 							console.log(msg);
-							for(i=1;i<=6;i++){
+							for(i in data){
 								str += '<li><span class="date">'+ data[i].measure_time+'</span><a href="Jiaoxuegaige-cuoshi-neirong.html?content_id='+ data[i].content_id+'" target="_blank">'+ data[i].measure_title+'</a></li>'
 							}
 							str += '<div class="more"><a href="Jiaoxuegaige-cuoshi.html">更多资讯>></a></div>';
                         }
+						tbody.innerHTML = str
 
 					},
 					error:function () {
