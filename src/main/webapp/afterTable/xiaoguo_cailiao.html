@@ -19,7 +19,7 @@
                 <a href="">首页</a>
                 <a href="">演示</a>
                 <a>
-                    <cite>教学录像</cite></a>
+                    <cite>习题库</cite></a>
             </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
         <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
@@ -46,7 +46,7 @@
                 <div class="layui-card-header">
                     <!--<button class="layui-btn layui-btn-danger" onclick="delAll()">-->
                     <!--<i class="layui-icon"></i>批量删除</button>-->
-                    <button class="layui-btn" onclick="xadmin.open('添加内容','./teaching_resource_upload4.html',800,600)">
+                    <button class="layui-btn" onclick="xadmin.open('添加内容','./xiaoguo_upload.html',800,600)">
                         <i class="layui-icon"></i>添加</button></div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
@@ -55,10 +55,8 @@
                             <th>
                                 <input type="checkbox" name="" lay-skin="primary">
                             </th>
-                            <th>课程名字</th>
-                            <th>教学老师</th>
                             <th>发表时间</th>
-                            <th>视频名称</th>
+                            <th>改革材料名称</th>
                             <th>操作</th></tr>
                         </thead>
                         <tbody class="body">
@@ -68,7 +66,7 @@
                             <td>数据结构</td>
                             <td>张老师</td>
                             <td>2019.1.1</td>
-                            <td>1.mp4</td>
+                            <td>图论.pptx</td>
                             <td class="td-manage">
                                 <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
                                     <i class="layui-icon">&#xe640;</i></a>
@@ -102,8 +100,8 @@
                         </tr>
                         </tbody>
                     </table>
-                </div><!--
-                <div class="layui-card-body ">
+                </div>
+                <!--<div class="layui-card-body ">
                     <div class="page">
                         <div>
                             <a class="prev" href="">&lt;&lt;</a>
@@ -138,29 +136,23 @@
 function member_stop(obj, id) {
     layer.confirm('确认要停用吗？',
         function(index) {
-
             $.ajax({
-                type:"GET",
-                url:"/resource/DeleteTextbook",
-                data:{resource_id:id},
-                success:function (data) {
-                    if(data==0)
+                type: "GET",
+                // url:"/resource/DeleteTextbook",
+                data: {resource_id: id},
+                success: function (data) {
+                    if (data == 0)
                         console.log("发送到服务器成功");
                 },
-                error:function () {
+                error: function () {
                     console.log("发送失败");
                 }
             });
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!', {
-                icon: 1,
+            $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
+            layer.msg('已启用!', {
+                icon: 5,
                 time: 1000
             });
-                $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已启用');
-                layer.msg('已启用!', {
-                    icon: 5,
-                    time: 1000
-                });
         });
 }
 
@@ -186,6 +178,11 @@ function member_del(obj, id) {
                 icon: 1,
                 time: 1000
             });
+            $(obj).parents("tr").remove();
+            layer.msg('已删除!', {
+                icon: 1,
+                time: 1000
+            });
         });
 }
 
@@ -202,10 +199,11 @@ function delAll(argument) {
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });
 }</script>
+
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script>
     $.ajax({
-        url: "/resource/GetAllvideo",
+        url: "/resource/GetAllbase",
         type: "GET",
         dataType: "json",
         async: false, //设置ajax的同步
@@ -214,23 +212,16 @@ function delAll(argument) {
                 console.log(data);
                 var tableHtml = "";
                 for (var i in data.resourceList) {
-                    if( data.teacherList[i] != null) {
-                        tableHtml += "<tr>";
-                        tableHtml += "<td>\n" +
-                            "                                <input type=\"checkbox\" name=\"\" lay-skin=\"primary\"></td>"
-                        tableHtml += "<td>" + data.courseList[i].course_name + "</td>";
-                        tableHtml += "<td>" + data.teacherList[i].teacher_name + "</td>";
-                        tableHtml += "<td>2019-11-" + i + "</td>";
-                        tableHtml += "<td>" + data.resourceList[i].resource_video + "</td>";
-                        tableHtml += "<td class=\"td-manage\">\n" +
-                            "<a title=\"删除\" onclick=\"member_del(this," + data.resourceList[i].resource_id + ")\" id='dele' href=\"javascript:;\">\n" +
-                            "<i class=\"layui-icon\">&#xe640;</i></a>\n" +
-                            "</td>"
-                        tableHtml += "</tr>";
-                    }
-                    else{
-
-                    }
+                    tableHtml += "<tr>";
+                    tableHtml +="<td>\n" +
+                        "                                <input type=\"checkbox\" name=\"\" lay-skin=\"primary\"></td>"
+                    tableHtml += "<td>2019-11-" + i + "</td>";
+                    tableHtml += "<td>"  + "教学材料" + i +"</td>";
+                    tableHtml +="<td class=\"td-manage\">\n" +
+                        "<a title=\"删除\" onclick=\"member_del(this,"+data.resourceList[i].resource_id+")\" id='dele' href=\"javascript:;\">\n" +
+                        "<i class=\"layui-icon\">&#xe640;</i></a>\n" +
+                        "</td>"
+                    tableHtml += "</tr>";
                 }
                 $(".body").html(tableHtml);
             }

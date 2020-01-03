@@ -43,7 +43,7 @@
 <!--                    </form>-->
 <!--                </div>-->
                 <div class="layui-card-header">
-                    <button class="layui-btn" onclick="xadmin.open('添加内容','./jiaoxuedagang-add.html',800,600)">
+                    <button class="layui-btn" onclick="xadmin.open('添加内容','./jiaoxuedagang-add.html',800,600);table.reload('table');">
                         <i class="layui-icon"></i>添加
                     </button>
                 </div>
@@ -128,6 +128,7 @@
 
                     }
                 });
+
             }
         });
 
