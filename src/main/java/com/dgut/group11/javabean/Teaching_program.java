@@ -6,6 +6,23 @@ public class Teaching_program {
     private String teaching_program_title;
     private String teaching_program_content;
     private int success_id;
+    private String course_name;
+
+    public String getCourse_name() {
+        return course_name;
+    }
+
+    public void setCourse_name(String course_name) {
+        this.course_name = course_name;
+    }
+
+    public Teaching_program(int teaching_program_id, String teaching_program_title, String teaching_program_content, int success_id, String course_name) {
+        this.teaching_program_id = teaching_program_id;
+        this.teaching_program_title = teaching_program_title;
+        this.teaching_program_content = teaching_program_content;
+        this.success_id = success_id;
+        this.course_name = course_name;
+    }
 
     public Teaching_program() {
     }

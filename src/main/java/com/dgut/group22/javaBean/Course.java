@@ -12,6 +12,21 @@ public class Course {
     private String course_credit;
     private String course_period;
 
+    @Override
+    public String toString() {
+        return "Course{" +
+                "course_id=" + course_id +
+                ", course_name='" + course_name + '\'' +
+                ", course_introduction='" + course_introduction + '\'' +
+                ", course_feature='" + course_feature + '\'' +
+                ", course_material='" + course_material + '\'' +
+                ", course_history='" + course_history + '\'' +
+                ", course_principal='" + course_principal + '\'' +
+                ", course_credit='" + course_credit + '\'' +
+                ", course_period='" + course_period + '\'' +
+                '}';
+    }
+
     public Course(){}
 
     public int getCourse_id() {

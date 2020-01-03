@@ -5,6 +5,15 @@ public class Young {
     private String teacher_id;
     private String content;
 
+    @Override
+    public String toString() {
+        return "Young{" +
+                "young_id='" + young_id + '\'' +
+                ", teacher_id='" + teacher_id + '\'' +
+                ", content='" + content + '\'' +
+                '}';
+    }
+
     public String getYoung_id() {
         return young_id;
     }

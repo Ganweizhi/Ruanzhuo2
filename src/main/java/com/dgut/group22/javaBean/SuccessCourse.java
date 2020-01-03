@@ -134,4 +134,23 @@ public class SuccessCourse {
         this.success_QQ = success_QQ;
         this.success_port = success_port;
     }
+
+    @Override
+    public String toString() {
+        return "SuccessCourse{" +
+                "success_id=" + success_id +
+                ", course_id=" + course_id +
+                ", course=" + course +
+                ", teacher_id=" + teacher_id +
+                ", teacher=" + teacher +
+                ", time='" + time + '\'' +
+                ", success_myself='" + success_myself + '\'' +
+                ", success_student='" + success_student + '\'' +
+                ", success_society='" + success_society + '\'' +
+                ", success_evaluation='" + success_evaluation + '\'' +
+                ", success_wechat='" + success_wechat + '\'' +
+                ", success_QQ='" + success_QQ + '\'' +
+                ", success_port='" + success_port + '\'' +
+                '}';
+    }
 }

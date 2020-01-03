@@ -1,6 +1,7 @@
 package com.dgut.group22.service;
 
 import com.dgut.group22.dao.ITeacherDao;
+import com.dgut.group22.javaBean.SuccessCourse;
 import com.dgut.group22.javaBean.Teacher;
 import com.dgut.group22.javaBean.Young;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,4 +25,9 @@ public class TeacherService {
     public Young findYoungById(String teacher_id){
         return teacherDao.findYoungById(teacher_id);
     }
+
+    public void updateTeacher(Teacher teacher){
+        teacherDao.update(teacher);
+    }
+
 }

@@ -210,7 +210,7 @@
                     console.log(data);
                     var contextHtml = "";
                     var obj = data.data.successCourse;
-                    $("#courseName").text(obj.course_id);
+                    $("#courseName").text(obj.course.course_name);
                     var list = data.data.riLiList;
                     for (var i in list) {
                         contextHtml += '<tr><td>'+ list[i].calendar_title +'</td><td>'+ list[i].calendar_content +'</td></tr>';

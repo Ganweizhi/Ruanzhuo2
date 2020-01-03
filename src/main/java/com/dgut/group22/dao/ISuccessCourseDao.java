@@ -11,6 +11,7 @@ import java.util.List;
 @Repository
 @Mapper
 public interface ISuccessCourseDao {
+    //查询所有成功开课课程
     @Select("select * from successCourse")
     @Results({
             @Result(id = true,property = "success_id",column = "success_id"),
@@ -28,4 +29,10 @@ public interface ISuccessCourseDao {
             @Result(property = "success_port",column = "success_port"),
     })
     List<SuccessCourse> findAllSuccessCourse();
+
+    @Delete("delete from SuccessCourse where success_id=#{success_id}")
+    void deleteSuccessCourse(String success_id);
+
+    @Update("update SuccessCourse set teacher_id=#{teacher_id} where course_id=#{course_id}")
+    void updateSuccessCourse(String course_id, String teacher_id);
 }

@@ -20,4 +20,22 @@ public class FuZeRenService {
     public Teacher findFuZeRenById(String teacher_id){
         return fuZeRenDao.findFuZeRenById(teacher_id);
     }
+
+    public List<Teacher> findAllTeacher(){
+        return fuZeRenDao.findAllTeacher();
+    }
+
+    public void updateTeacher(Teacher teacher){
+        fuZeRenDao.update(teacher);
+    }
+
+    public String deleteFuZeRen(String course_id){
+        fuZeRenDao.deleteFuZeRen(course_id);
+        return "1";
+    }
+
+    public String updateFuZeRen(String course_principal,String course_id){
+        fuZeRenDao.updateFuZeRen(course_principal,course_id);
+        return "1";
+    }
 }

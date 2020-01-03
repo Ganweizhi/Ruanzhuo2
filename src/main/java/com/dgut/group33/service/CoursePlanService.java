@@ -2,9 +2,11 @@ package com.dgut.group33.service;
 
 import com.dgut.group33.dao.CourseMapper;
 import com.dgut.group33.dao.CoursePlanMapper;
+import com.dgut.group33.dao.SuccessCourseMapper;
 import com.dgut.group33.javaBean.Course;
 import com.dgut.group33.javaBean.CoursePlan;
 import com.dgut.group33.javaBean.SelectCourse;
+import com.dgut.group33.javaBean.SuccessCourse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ public class CoursePlanService {
     CoursePlanMapper coursePlanMapper;
     @Autowired
     CourseMapper courseMapper;
+    @Autowired
+    SuccessCourseMapper successCourseMapper;
 
     public List<CoursePlan> findAllCoursePlan() {
         return coursePlanMapper.findAllCoursePlan();
@@ -41,5 +45,9 @@ public class CoursePlanService {
     }
     public int  addSelectScore(SelectCourse selectCourse){
         return courseMapper.addSelectScore(selectCourse);
+    }
+
+    public int addSuccessCourse(SuccessCourse successCourse){
+        return successCourseMapper.insertSuccessCourse(successCourse);
     }
 }

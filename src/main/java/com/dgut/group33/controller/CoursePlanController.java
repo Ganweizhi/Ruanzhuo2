@@ -1,18 +1,23 @@
 package com.dgut.group33.controller;
 import com.alibaba.fastjson.JSONObject;
+import com.dgut.CCC_WYM.javabeans.successCourse;
 import com.dgut.group33.javaBean.Course;
 import com.dgut.group33.javaBean.CoursePlan;
+import com.dgut.group33.javaBean.SuccessCourse;
 import com.dgut.group33.javaBean.Title;
 import com.dgut.group33.service.CoursePlanService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @ResponseBody
@@ -45,7 +50,6 @@ public class CoursePlanController {
         JSONObject result = new JSONObject();
         result.put("title", title);
         result.put("CourseList", courses);
-        System.out.println(result.toJSONString());
         return result.toJSONString();
     }
     @RequestMapping(value = "/ChungLife_dt/addCoursePlan", method = RequestMethod.POST)
@@ -75,5 +79,58 @@ public class CoursePlanController {
             result.put("msg", "添加失败");
             return result.toJSONString();
         }
+    }
+    @RequestMapping(value = "/ChungLife_dt/QQ_upload", method = RequestMethod.POST)
+    public String QQupload(@RequestParam("file")MultipartFile pic,  HttpServletRequest request) throws IOException {
+        JSONObject result = new JSONObject();
+        String realPath = request.getServletContext().getRealPath("/beforeTable/group_image/qq_image");
+        File folder = new File(realPath);
+        if(!folder.exists())
+        {
+            folder.mkdirs();
+        }
+        String oldname = pic.getOriginalFilename();
+        String newName = UUID.randomUUID().toString()+"_"+"QQ"+"_"+oldname.substring(oldname.lastIndexOf("."));
+        pic.transferTo(new File(folder,newName));
+       // String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/group_image/qq_image/" + newName;
+
+        result.put("msg","上传成功");
+        result.put("url",newName);
+
+        return result.toJSONString();
+    }
+
+    @RequestMapping(value = "/ChungLife_dt/weixin_upload", method = RequestMethod.POST)
+    public String WXupload(@RequestParam("file")MultipartFile pic,  HttpServletRequest request) throws IOException {
+        JSONObject result = new JSONObject();
+        String realPath = request.getServletContext().getRealPath("/beforeTable/group_image/wechat_image");
+        File folder = new File(realPath);
+        if(!folder.exists())
+        {
+            folder.mkdirs();
+        }
+        String oldname = pic.getOriginalFilename();
+        String newName = UUID.randomUUID().toString()+"_"+"wechat"+"_"+oldname.substring(oldname.lastIndexOf("."));
+        pic.transferTo(new File(folder,newName));
+       // String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/group_image/wechat_image/" + newName;
+
+        result.put("msg","上传成功");
+        result.put("url",newName);
+
+        return result.toJSONString();
+    }
+
+    //添加信息到开课计划中
+    @RequestMapping(value = "/ChungLife_dt/addSuccessCourse", method = RequestMethod.POST)
+    public String addSuccessCourse(SuccessCourse successCourse){
+        System.out.println(successCourse);
+        JSONObject result = new JSONObject();
+         int res =coursePlanService.addSuccessCourse(successCourse);
+         if(res>0){
+             result.put("msg","上传成功");
+         }else {
+             result.put("msg","上传失败！");
+         }
+        return result.toJSONString();
     }
 }

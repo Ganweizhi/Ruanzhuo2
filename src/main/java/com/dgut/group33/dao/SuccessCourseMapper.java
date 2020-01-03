@@ -1,7 +1,7 @@
 package com.dgut.group33.dao;
 
 import com.dgut.group22.javaBean.Course;
-import com.dgut.group22.javaBean.SuccessCourse;
+import com.dgut.group33.javaBean.SuccessCourse;
 import com.dgut.group22.javaBean.Teacher;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -27,4 +27,6 @@ public interface SuccessCourseMapper {
             @Result(property = "success_port",column = "success_port"),
     })
     List<SuccessCourse> findAllSuccessCourse();
+    @Insert("insert into successCourse (course_id, teacher_id, time, success_myself, success_student, success_society, success_evaluation, success_wechat, success_QQ, success_port) VALUES (#{course_id}, #{teacher_id}, #{time}, #{success_myself}, #{success_student}, #{success_society}, #{success_evaluation}, #{success_wechat}, #{success_QQ}, #{success_port})")
+    int insertSuccessCourse(SuccessCourse successCourse);
 }

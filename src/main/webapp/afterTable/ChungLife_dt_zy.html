@@ -48,9 +48,16 @@
                     <div class="layui-card-header">
 
                         <button class="layui-btn" onclick="addClassBtn()">
-                                <i class="layui-icon"></i>添加</button></div>
+                                <i class="layui-icon"></i>添加</button>
+
+                    </div>
                     <div class="layui-card-body ">
                         <table id="demo" lay-filter="test">
+                            <script type="text/html" id="toolbarDemo">
+                                <div class="layui-btn-container">
+                                    <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
+                                </div>
+                            </script>
                         </table>
                     </div>
                     <div class="layui-card-body ">
@@ -108,6 +115,7 @@
             //第一个实例
             table.render({
                 elem: '#demo',
+                toolbar: '#toolbarDemo',
                 height: 400,
                 url: "http://localhost:8080/ChungLife_dt_zy/1",
                 method: 'post',

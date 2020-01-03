@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./css/xadmin.css">
     <script src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
-    <script type="text/javascript" src="js/jquery1.42.min.js"></script>
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
 
 </head>
 
@@ -41,18 +41,23 @@
                                 <input type="text" name="username" placeholder="请输入标题" autocomplete="off" class="layui-input"></div>
                             <div class="layui-input-inline layui-show-xs-block">
                                 <button class="layui-btn" lay-submit="" lay-filter="sreach">
-                                        <i class="layui-icon">&#xe615;</i></button>
+                                <i class="layui-icon">&#xe615;</i></button>
                             </div>
                         </form>
                     </div>
                     <div class="layui-card-header">
 
-                        <button class="layui-btn" onclick="addClassBtn()">
-                                <i class="layui-icon"></i>添加</button></div>
+                        <button class="layui-btn" onclick="addClassBtn()" style="float: left;">
+                        <i class="layui-icon" ></i>添加班级开课计划</button>
+                        <button class="layui-btn" onclick="btnObtain()" style="float: left;"> <i class="layui-icon"></i>添加详情课程</button>
+                    </div>
                     <div class="layui-card-body ">
-                        <table id="demo" lay-filter="test">
-                            <div style="text-align: center;"> <button onclick="btnObtain()">添加开课计划</button></div>
-                        </table>
+                        <table id="demo" lay-filter="test"></table>
+                        <script type="text/html" id="toolbarDemo">
+                            <div class="layui-btn-container">
+                                <button class="layui-btn layui-btn-sm" lay-event="delete">删除</button>
+                            </div>
+                        </script>
                     </div>
                     <div class="layui-card-body ">
 
@@ -61,62 +66,77 @@
             </div>
         </div>
     </div>
+
     <div id="formdata" style="display: none;">
         <form class="layui-form">
-            <div class="layui-form-item">
+            <div class="layui-form-item" style="margin: 10px;">
                 <label for="class_id" class="layui-form-label">
-                        <span class="x-red">*</span>开课计划编号</label>
+                <span class="x-red">*</span>开课计划编号</label>
                 <div class="layui-input-inline">
                     <input type="text" id="class_id" name="course_plan_id" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
             </div>
 
 
-            <div class="layui-form-item">
+            <div class="layui-form-item" style="margin: 10px;">
                 <label for="class_name" class="layui-form-label">
-                        <span class="x-red">*</span>开课计划年级</label>
+                <span class="x-red">*</span>开课计划年级</label>
                 <div class="layui-input-inline">
                     <input type="text" id="class_name" name="grade" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
             </div>
+
+
             <div class="layui-form-item">
                 <label for="L_repass" class="layui-form-label"></label>
                 <button class="layui-btn" lay-filter="formDemo" lay-submit="">发布</button></div>
         </form>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="float: left">微信群二维码</label>
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="upload2"><i class="layui-icon">&#xe67c;</i>上传图片</button>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="float: left">QQ群二维码</label>
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="upload1"><i class="layui-icon">&#xe67c;</i>上传图片</button>
+            </div>
+        </div>
     </div>
     <div id="formdata2" style="display: none;">
         <form class="layui-form">
             <div class="layui-form-item">
                 <label for="class_id" class="layui-form-label">
-                        <span class="x-red">*</span>开课计划编号</label>
+                <span class="x-red">*</span>开课计划编号</label>
                 <div class="layui-input-inline">
                     <input type="text" id="class_id" name="course_plan_id" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
             </div>
             <div class="layui-form-item">
                 <label for="class_name" class="layui-form-label">
-                        <span class="x-red">*</span>课程编号</label>
+                <span class="x-red">*</span>课程编号</label>
                 <div class="layui-input-inline">
                     <input type="text" id="class_name" name="course_id" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
             </div>
             <div class="layui-form-item">
                 <label for="class_name" class="layui-form-label">
-                        <span class="x-red">*</span>课程名称</label>
+                <span class="x-red">*</span>课程名称</label>
                 <div class="layui-input-inline">
                     <input type="text" id="class_name" name="course_name" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
             </div>
             <div class="layui-form-item">
                 <label for="class_id" class="layui-form-label">
-                        <span class="x-red">*</span>开课时间</label>
+                <span class="x-red">*</span>开课时间</label>
                 <div class="layui-input-inline">
                     <input type="text" id="class_id" name="course_period" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
             </div>
             <div class="layui-form-item">
                 <label for="class_name" class="layui-form-label">
-                        <span class="x-red">*</span>课程类型</label>
+                <span class="x-red">*</span>课程类型</label>
                 <div class="layui-input-inline">
                     <input type="text" id="class_name" name="course_type" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
             </div>
             <div class="layui-form-item">
                 <label for="class_id" class="layui-form-label">
-                        <span class="x-red">*</span>考核类型</label>
+                <span class="x-red">*</span>考核类型</label>
                 <div class="layui-input-inline">
                     <input type="text" id="class_id" name="course_method" required="" lay-verify="required" autocomplete="off" class="layui-input"></div>
             </div>
@@ -128,10 +148,40 @@
     </div>
 </body>
 <script>
-    layui.use(['laydate', 'table', 'form'],
+    layui.use(['laydate', 'table', 'form', 'upload'],
         function() {
+            var upload = layui.upload;
             var laydate = layui.laydate;
-
+            var img1, img2;
+            //执行实例
+            var uploadInst = upload.render({
+                elem: '#upload2' //绑定元素
+                    ,
+                url: '/ChungLife_dt/QQ_upload' //上传接口
+                    ,
+                done: function(res) {
+                    //上传完毕回调
+                    console.log(res);
+                    img2 = res.url;
+                },
+                error: function() {
+                    //请求异常回调
+                }
+            });
+            //执行实例
+            var uploadInst2 = upload.render({
+                elem: '#upload1' //绑定元素
+                    ,
+                url: '/ChungLife_dt/weixin_upload' //上传接口
+                    ,
+                done: function(res) {
+                    //上传完毕回调
+                    img1 = res.url
+                },
+                error: function() {
+                    //请求异常回调
+                }
+            });
             //执行一个laydate实例
             laydate.render({
                 elem: '#start' //指定元素
@@ -147,6 +197,7 @@
             //第一个实例
             table.render({
                 elem: '#demo',
+                toolbar: '#toolbarDemo',
                 height: 400,
                 url: "http://localhost:8080/ChungLife_dt/1",
                 method: 'post',
@@ -182,6 +233,11 @@
                 obj.tr.addClass("layui-table-click").siblings().removeClass("layui-table-click")
                 obj.tr.find("div.layui-unselect.layui-form-radio")[1].click();
             });
+            table.on('checkbox(test)', function(obj) {
+                console.log(obj.checked); //当前是否选中状态
+                console.log(obj.data); //选中行的相关数据
+                console.log(obj.type); //如果触发的是全选，则为：all，如果触发的是单选，则为：one
+            });
             var form = layui.form;
 
             //监听提交
@@ -192,15 +248,24 @@
                     url: "http://localhost:8080/ChungLife_dt/addCoursePlan",
                     data: data.field,
                     dataType: "json",
-                    success: function(d) {
-                        // if (d.code == 200) {
-                        //     layer.msg("请求成功");
-                        // } else {
-                        //     layer.msg("错误码为200");
-                        // }
-                    }
+                    success: function(d) {}
                 });
+                var parma = {
+                    course_id: 1,
+                    teacher_id: 2,
+                    success_wechat: img2,
+                    success_QQ: img1
+                }
+                console.log(parma)
+                $.ajax({
+                    type: "post",
+                    url: "http://localhost:8080/ChungLife_dt/addSuccessCourse",
+                    data: parma,
+                    dataType: "json",
+                    success: function(dd) {
 
+                    }
+                })
             })
 
             //监听提交
