@@ -30,4 +30,20 @@ public class TeacherService {
         teacherDao.update(teacher);
     }
 
+    public void addTeacher(Teacher teacher) {
+        teacherDao.addTeacher(teacher);
+    }
+
+    public String deleteTeacher(String teacher_id) {
+        teacherDao.deleteTeacher1(teacher_id);
+        return "1";
+    }
+
+    public void editTeacher(Teacher teacher) {
+        teacherDao.editTeacher(teacher);
+    }
+
+    public List<Teacher> findAllTeacher() {
+        return teacherDao.findAllTeacher();
+    }
 }

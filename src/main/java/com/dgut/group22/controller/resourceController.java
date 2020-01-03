@@ -443,6 +443,7 @@ public class resourceController {
         List<Teacher> teacherList = new ArrayList<>();
         List<resource> resources=resourceService.GetAllResource();
         Map<String, Object> map = new HashMap<>();
+        System.out.println("11111111111"+resources);
         for(resource resource: resources ){
             if(resource.getResource_experiment()!=null){
                 resourceList.add(resource);
