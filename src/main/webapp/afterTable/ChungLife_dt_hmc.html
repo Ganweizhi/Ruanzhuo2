@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="./css/xadmin.css">
     <script src="./lib/layui/layui.js" charset="utf-8"></script>
     <script type="text/javascript" src="./js/xadmin.js"></script>
-    <script type="text/javascript" src="js/jquery1.42.min.js"></script>
+    <script type="application/javascript" src="./js/jquery.min.js"></script>
 
 </head>
 
@@ -22,7 +22,7 @@
                 <a href="">内容维护</a>
                 <a>
                     <cite>导航元素</cite></a>
-            </span>
+         </span>
         <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
             <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
         </a>
@@ -153,7 +153,7 @@
             table.render({
                 elem: '#demo',
                 height: 400,
-                url: "http://localhost:8080/ChungLife_dt_hmc/1",
+                url: "/ChungLife_dt_hmc/1",
                 method: 'post',
                 page: true, //开启分页
 
@@ -194,7 +194,7 @@
                 console.log(data.field)
                 $.ajax({
                     type: "post",
-                    url: "http://localhost:8080/ChungLife_dt_hmc/addClass",
+                    url: "/ChungLife_dt_hmc/addClass",
                     data: data.field,
                     dataType: "json",
                     success: function(d) {
