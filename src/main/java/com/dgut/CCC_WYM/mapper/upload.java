@@ -58,7 +58,7 @@ public interface upload {
     @Update("update successCourse set success_QQ = #{success_QQ} where success_id = #{success_id}")
     void updateQQ(@Param("success_id")String success_id,@Param("success_QQ")String success_QQ);
 
-    @Update("update successCourse set success_wechat = #{suceess_wechat} where success_id = #{success_id}")
+    @Update("update successCourse set success_wechat = #{success_wechat} where success_id = #{success_id}")
     void updateWechat(@Param("success_id")String success_id,@Param("success_wechat")String success_wechat);
 
 }

@@ -149,6 +149,7 @@ public class WechatUpload {
         return JSON.toJSONString(jsonObject);
     }
     @RequestMapping("/Wechat_edit")
+    @ResponseBody
     public String changeWechatImage(@Param("success_id")String success_id,@Param("pic")MultipartFile pic,HttpServletRequest request ) throws IOException {
         String realPath = request.getServletContext().getRealPath("/beforeTable/group_image/wechat_image");
         File folder = new File(realPath);

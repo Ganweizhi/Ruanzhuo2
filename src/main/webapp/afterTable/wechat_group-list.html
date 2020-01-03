@@ -181,8 +181,8 @@ function delAll(argument) {
                             '                            <td>'+ msg[i+''].course_name+'</td>\n' +
                             '                            <td>'+ msg[i+''].time+'</td>\n' +
                             '                            <td class="td-manage">\n' +
-                            '                                <a title="修改" onclick="xadmin.open(\'修改\',\'wechat_group-edit.html?id='+msg[''+i].success_id+'\')" href="javascript:;">\n' +
-                            '                                    <i class="layui-icon">&#xe63c;</i></ a>\n' +
+                            // '                                <a title="修改" onclick="xadmin.open(\'修改\',\'wechat_group-edit.html?id='+msg[''+i].success_id+'\')" href="javascript:;">\n' +
+                            // '                                    <i class="layui-icon">&#xe63c;</i></ a>\n' +
                             '                                <a title="删除" onclick="delRow('+msg[i+''].success_id+')" href="javascript:;">\n' +
                             '                                    <i class="layui-icon">&#xe640;</i></ a>\n' +
                             '                            </td>\n' +
@@ -239,7 +239,7 @@ function delAll(argument) {
             url: '/Wechat_Delete/'+id,
             dataType:'json',
             success:function (response) {
-                if(response.code === 1){
+                if(response.code == 1){
                     alert("删除成功！")
                     parent.location.reload();
                     var index = parent.layer.getFrameIndex(window.name);

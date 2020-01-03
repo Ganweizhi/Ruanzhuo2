@@ -21,7 +21,7 @@
 <body onload="GetRequest()">
 <div class="layui-fluid">
     <div class="layui-row">
-        <form class="layui-form" action="#" accept-charset="utf-8" enctype="multipart/form-data" method="post" id="form">
+        <form class="layui-form" action="#" accept-charset="utf-8" enctype="multipart/form-data"  id="form">
             <div class="layui-form-item">
                 <div class="layui-form-item">
                     <input type="hidden" id="question" name="question_id" value=""/>
@@ -47,37 +47,12 @@
                 <label for="L_repass" class="layui-form-label"></label>
                 <button class="layui-btn" lay-filter="add" lay-submit="" onclick="login()">提交</button>
             </div>
+        </form>
     </div>
-    </form>
 </div>
 </div>
 </body>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
-<script>
-    $(document).ready(function () {
-
-        var url="/getSuccess_id"; //访问后台去数据库查询select的选项,此处需填写后台接口路径
-        $.ajax({
-            type:"post",
-            url:url,
-            dataType:"json",
-            success : function(data) {
-                var unitObj=document.getElementById("success_id");
-                console.log(data);
-                // console.log(data["size"]);
-                // console.log(data.length);
-                for (var i = 0; i < data["size"]; i++) {
-                    var s = i+"";
-                    console.log("第一行:"+data[s].success_id);
-                    unitObj.options.add(new Option(data[s].success_id+":"+data[s].course_name,data[s].success_id))
-                }
-            },
-            error:function(){
-                J.alert('Error');
-            }
-        })
-    })
-</script>
 <script>
     function GetRequest() {
         var url = location.search; //获取url中"?"符后的字串
@@ -113,7 +88,7 @@
             processData: false,
             success: function (result) {
                 console.log(result);//打印服务端返回的数据(调试用)
-                if (result.code == 1) {
+                if (result.code === 1) {
                     alert("修改成功");
                     parent.location.reload();
                     var index = parent.layer.getFrameIndex(window.name);
