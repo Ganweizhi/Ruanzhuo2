@@ -30,7 +30,7 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5">
+                    <!--<form class="layui-form layui-col-space5">
                         <div class="layui-input-inline layui-show-xs-block">
                             <input class="layui-input" placeholder="开始日" name="start" id="start"></div>
                         <div class="layui-input-inline layui-show-xs-block">
@@ -41,12 +41,12 @@
                             <button class="layui-btn" lay-submit="" lay-filter="sreach">
                                 <i class="layui-icon">&#xe615;</i></button>
                         </div>
-                    </form>
+                    </form>-->
                 </div>
                 <div class="layui-card-header">
                     <!--<button class="layui-btn layui-btn-danger" onclick="delAll()">-->
                     <!--<i class="layui-icon"></i>批量删除</button>-->
-                    <button class="layui-btn" onclick="xadmin.open('添加内容','./teaching_resource_upload.html',800,600)">
+                    <button class="layui-btn" onclick="xadmin.open('添加内容','./teaching_resource_upload3.html',800,600)">
                         <i class="layui-icon"></i>添加</button></div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
@@ -61,7 +61,7 @@
                             <th>实验名称</th>
                             <th>操作</th></tr>
                         </thead>
-                        <tbody>
+                        <tbody class="body">
                         <tr>
                             <td>
                                 <input type="checkbox" name="" lay-skin="primary"></td>
@@ -103,7 +103,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="layui-card-body ">
+               <!-- <div class="layui-card-body ">
                     <div class="page">
                         <div>
                             <a class="prev" href="">&lt;&lt;</a>
@@ -114,7 +114,7 @@
                             <a class="next" href="">&gt;&gt;</a></div>
                     </div>
                 </div>
-            </div>
+            --></div>
         </div>
     </div>
 </div>
@@ -170,6 +170,23 @@ function member_del(obj, id) {
     layer.confirm('确认要删除吗？',
         function(index) {
             //发异步删除数据
+            $.ajax({
+                type:"GET",
+                url:"/resource/DeleteExperiment_house",
+                data:{resource_id:id},
+                success:function (data) {
+                    if(data==0)
+                        console.log("发送到服务器成功");
+                },
+                error:function () {
+                    console.log("发送失败");
+                }
+            });
+            $(obj).parents("tr").remove();
+            layer.msg('已删除!', {
+                icon: 1,
+                time: 1000
+            });
             $(obj).parents("tr").remove();
             layer.msg('已删除!', {
                 icon: 1,
@@ -191,5 +208,35 @@ function delAll(argument) {
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });
 }</script>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script>
+    $.ajax({
+        url: "/resource/GetAllexperiment_house",
+        type: "GET",
+        dataType: "json",
+        async: false, //设置ajax的同步
+        success: function (data) {
+            if (data != null) {
+                console.log(data);
+                var tableHtml = "";
+                for (var i in data.experimentHouseList) {
+                    tableHtml += "<tr>";
+                    tableHtml +="<td>\n" +
+                        "                                <input type=\"checkbox\" name=\"\" lay-skin=\"primary\"></td>"
+                    tableHtml += "<td>" + data.courseList[i].course_name + "</td>";
+                    tableHtml += "<td>" + data.teacherList[i].teacher_name + "</td>";
+                    tableHtml += "<td>2019-11-" + i + "</td>";
+                    tableHtml += "<td>" + data.experimentHouseList[i].experiment_huanj + "</td>";
+                    tableHtml +="<td class=\"td-manage\">\n" +
+                        "<a title=\"删除\" onclick=\"member_del(this,"+data.experimentHouseList[i].resource_id+")\" id='dele' href=\"javascript:;\">\n" +
+                        "<i class=\"layui-icon\">&#xe640;</i></a>\n" +
+                        "</td>"
+                    tableHtml += "</tr>";
+                }
+                $(".body").html(tableHtml);
+            }
+        }
+    });
 
+</script>
 </html>

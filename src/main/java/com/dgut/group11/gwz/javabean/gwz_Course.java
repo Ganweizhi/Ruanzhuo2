@@ -10,20 +10,9 @@ public class gwz_Course {
     private String course_principal;
     private String course_credit;
     private String course_period;
+    private gwz_teacher gwzTeacher;
 
     public gwz_Course(){}
-
-    public gwz_Course(int course_id, String course_name, String course_introduction, String course_feature, String course_material, String course_history, String course_principal, String course_credit, String course_period) {
-        this.course_id = course_id;
-        this.course_name = course_name;
-        this.course_introduction = course_introduction;
-        this.course_feature = course_feature;
-        this.course_material = course_material;
-        this.course_history = course_history;
-        this.course_principal = course_principal;
-        this.course_credit = course_credit;
-        this.course_period = course_period;
-    }
 
     public int getCourse_id() {
         return course_id;
@@ -97,6 +86,27 @@ public class gwz_Course {
         this.course_period = course_period;
     }
 
+    public gwz_teacher getGwzTeacher() {
+        return gwzTeacher;
+    }
+
+    public void setGwzTeacher(gwz_teacher gwzTeacher) {
+        this.gwzTeacher = gwzTeacher;
+    }
+
+    public gwz_Course(int course_id, String course_name, String course_introduction, String course_feature, String course_material, String course_history, String course_principal, String course_credit, String course_period, gwz_teacher gwzTeacher) {
+        this.course_id = course_id;
+        this.course_name = course_name;
+        this.course_introduction = course_introduction;
+        this.course_feature = course_feature;
+        this.course_material = course_material;
+        this.course_history = course_history;
+        this.course_principal = course_principal;
+        this.course_credit = course_credit;
+        this.course_period = course_period;
+        this.gwzTeacher = gwzTeacher;
+    }
+
     @Override
     public String toString() {
         return "gwz_Course{" +
@@ -109,6 +119,7 @@ public class gwz_Course {
                 ", course_principal='" + course_principal + '\'' +
                 ", course_credit='" + course_credit + '\'' +
                 ", course_period='" + course_period + '\'' +
+                ", gwzTeacher=" + gwzTeacher +
                 '}';
     }
 }

@@ -15,6 +15,49 @@ public class Measure {
     private String measure_time;
     private int content_id;
     private MeasureContent measureContent;
+    private String Content;
+    private String Content_author;
+
+    public String getContent() {
+        if (measureContent!=null)
+            return measureContent.getContent();
+        else
+            return null;
+    }
+
+    @Override
+    public String toString() {
+        return "Measure{" +
+                "measure_id=" + measure_id +
+                ", measure_title='" + measure_title + '\'' +
+                ", measure_time='" + measure_time + '\'' +
+                ", content_id=" + content_id +
+                ", measureContent=" + measureContent +
+                ", Content='" + Content + '\'' +
+                ", Content_author='" + Content_author + '\'' +
+                '}';
+    }
+
+    public String getContent2() {
+            return Content;
+    }
+    public String getContent_author2() {
+            return Content_author;
+    }
+    public void setContent(String content) {
+        Content = content;
+    }
+
+    public String getContent_author() {
+        if (measureContent!=null)
+            return measureContent.getContent_author();
+        else
+            return null;
+    }
+
+    public void setContent_author(String content_author) {
+        Content_author = content_author;
+    }
 
     public int getMeasure_id() {
         return measure_id;

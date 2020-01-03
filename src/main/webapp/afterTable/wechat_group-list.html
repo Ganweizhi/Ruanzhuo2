@@ -1,13 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-<!DOCTYPE html>
 <html class="x-admin-sm">
 
 <head>
@@ -15,8 +6,7 @@
     <title>欢迎页面-X-admin2.2</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport"
-          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <link rel="stylesheet" href="./css/font.css">
     <link rel="stylesheet" href="./css/xadmin.css">
     <script src="./lib/layui/layui.js" charset="utf-8"></script>
@@ -31,8 +21,7 @@
                 <a>
                     <cite>导航元素</cite></a>
             </span>
-    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
-       onclick="location.reload()" title="刷新">
+    <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" onclick="location.reload()" title="刷新">
         <i class="layui-icon layui-icon-refresh" style="line-height:30px"></i>
     </a>
 </div>
@@ -47,8 +36,7 @@
                         <div class="layui-input-inline layui-show-xs-block">
                             <input class="layui-input" placeholder="截止日" name="end" id="end"></div>
                         <div class="layui-input-inline layui-show-xs-block">
-                            <input type="text" name="username" placeholder="请输入标题" autocomplete="off"
-                                   class="layui-input"></div>
+                            <input type="text" name="username" placeholder="请输入标题" autocomplete="off" class="layui-input"></div>
                         <div class="layui-input-inline layui-show-xs-block">
                             <button class="layui-btn" lay-submit="" lay-filter="sreach">
                                 <i class="layui-icon">&#xe615;</i></button>
@@ -57,64 +45,32 @@
                 </div>
                 <div class="layui-card-header">
                     <button class="layui-btn layui-btn-danger" onclick="delAll()">
-                        <i class="layui-icon"></i>批量删除
-                    </button>
-                    <button class="layui-btn" onclick="xadmin.open('添加内容','wechat_group-add.html',800,600)">
-                        <i class="layui-icon"></i>添加
-                    </button>
-                </div>
-                <div class="layui-card-body">
+                        <i class="layui-icon"></i>批量删除</button>
+                    <button class="layui-btn" onclick="xadmin.open('添加内容','QQ_group-add.html',800,600)">
+                        <i class="layui-icon"></i>添加</button></div>
+                <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>
                         <tr>
                             <th>
                                 <input type="checkbox" name="" lay-skin="primary">
                             </th>
-                            <th>发表人</th>
-                            <th>大标题</th>
-                            <th>小标题</th>
+                            <th style="min-width:180px;">ID</th>
+                            <th style="min-width:180px;">教师名称</th>
+                            <th style="min-width:180px;">课程名称</th>
                             <th>发表时间</th>
-                            <th>操作</th>
-                        </tr>
+                            <th>操作</th></tr>
                         </thead>
-                        <tbody id="layui-table layui-form">
+                        <tbody id="kechengfuzerenxianshi">
                         <tr>
                             <td>
                                 <input type="checkbox" name="" lay-skin="primary"></td>
-                            <td>黄老师</td>
-                            <td>微信群1</td>
-                            <td>东莞理工学院物理教学群</td>
-                            <td>2019.1.1</td>
+                            <td>1</td>
+                            <td>2</td>
+                            <td>3</td>
+                            <td>4</td>
                             <td class="td-manage">
-                                <a title="查看" onclick="xadmin.open('编辑','wechat_group-edit.html')" href="javascript:;">
-                                    <i class="layui-icon">&#xe63c;</i></a>
-                                <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                    <i class="layui-icon">&#xe640;</i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="" lay-skin="primary"></td>
-                            <td>黄老师</td>
-                            <td>微信群1</td>
-                            <td>东莞理工学院物理教学群</td>
-                            <td>2019.1.1</td>
-                            <td class="td-manage">
-                                <a title="查看" onclick="xadmin.open('编辑','wechat_group-edit.html')" href="javascript:;">
-                                    <i class="layui-icon">&#xe63c;</i></a>
-                                <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                    <i class="layui-icon">&#xe640;</i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <input type="checkbox" name="" lay-skin="primary"></td>
-                            <td>黄老师</td>
-                            <td>微信群1</td>
-                            <td>东莞理工学院物理教学群</td>
-                            <td>2019.1.1</td>
-                            <td class="td-manage">
-                                <a title="查看" onclick="xadmin.open('编辑','wechat_group-edit.html')" href="javascript:;">
+                                <a title="查看" onclick="xadmin.open('编辑','QQ_group-add.html')" href="javascript:;">
                                     <i class="layui-icon">&#xe63c;</i></a>
                                 <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
                                     <i class="layui-icon">&#xe640;</i></a>
@@ -124,14 +80,8 @@
                     </table>
                 </div>
                 <div class="layui-card-body ">
-                    <div class="page">
-                        <div>
-                            <a class="prev" href="">&lt;&lt;</a>
-                            <a class="num" href="">1</a>
-                            <span class="current">2</span>
-                            <a class="num" href="">3</a>
-                            <a class="num" href="">489</a>
-                            <a class="next" href="">&gt;&gt;</a></div>
+                    <div class="page" id="_page">
+
                     </div>
                 </div>
             </div>
@@ -140,7 +90,7 @@
 </div>
 </body>
 <script>layui.use(['laydate', 'form'],
-    function () {
+    function() {
         var laydate = layui.laydate;
 
         //执行一个laydate实例
@@ -157,7 +107,7 @@
 /*用户-停用*/
 function member_stop(obj, id) {
     layer.confirm('确认要停用吗？',
-        function (index) {
+        function(index) {
 
             if ($(obj).attr('title') == '启用') {
 
@@ -188,7 +138,7 @@ function member_stop(obj, id) {
 /*用户-删除*/
 function member_del(obj, id) {
     layer.confirm('确认要删除吗？',
-        function (index) {
+        function(index) {
             //发异步删除数据
             $(obj).parents("tr").remove();
             layer.msg('已删除!', {
@@ -203,45 +153,112 @@ function delAll(argument) {
     var data = tableCheck.getData();
 
     layer.confirm('确认要删除吗？' + data,
-        function (index) {
+        function(index) {
             //捉到所有被选中的，发异步进行删除
             layer.msg('删除成功', {
                 icon: 1
             });
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });
-    $(document).ready(function () {
-        $.ajax({
-            url: "./wechat_upload",//请求地址
-            dataType: "json",//数据格式
-            type: "post",//请求方式
-            async: false,//是否异步请求
-            success: function (data) {   //如何发送成功
-                var html = "";
-                for (var i = 0; i < data.length; i++) {    //遍历data数组
-                    var ls = data[i];
-                    html += "                        <tr>\n" +
-                        "                            <td>\n" +
-                        "                                <input type=\"checkbox\" name=\"\" lay-skin=\"primary\"></td>\n" +
-                        "                            <td>" + ls.teacher_name + "</td>\n" +
-                        "                            <td>" + ls.big_title + "</td>\n" +
-                        "                            <td>" + ls.little_title + "</td>\n" +
-                        "                            <td>" + ls.time + "</td>\n" +
-                        "                            <td class=\"td-manage\">\n" +
-                        "                                <a title=\"查看\" onclick=\"xadmin.open('编辑','QQ_group-edit.html')\" href=\"javascript:;\">\n" +
-                        "                                    <i class=\"layui-icon\">&#xe63c;</i></a>\n" +
-                        "                                <a title=\"删除\" onclick=\"member_del(this,'要删除的id')\" href=\"javascript:;\">\n" +
-                        "                                    <i class=\"layui-icon\">&#xe640;</i></a>\n" +
-                        "                            </td>\n" +
-                        "                        </tr>"
-                    // html +="<li><a href='second page text.html?newsid="+ls.news_id+"'class='infNews_wrod_a'><span>"+ls.news_name+"</span></a><span class='date'>"+ls.news_time+"</span></li>";
-                }
-                $("#layui-table layui-form").html(html); //在html页面id=ulul的标签里显示html内容
-            },
-        })
-    })
 }</script>
 
+</html>
 
-</html>
-</html>
+
+
+<script>
+    window.onload = function () {
+        doGo(1);
+    }
+    function doGo(Page) {
+        console.log("ajax开始");
+        $.ajax({
+                type: "POST",
+                url: "/Wechat_find/"+Page,
+                async:false,
+                dataType: "json",
+                success:function (msg) {
+                    var tbody = document.getElementById("kechengfuzerenxianshi");
+                    var str ="";
+                    var data ="";
+                    var currentPage = msg.curPage;
+                    var totalPate = msg.totalPage;
+                    var tpage="";
+                    var size = msg.size;
+                    console.log("size:"+size);
+                    for( i=0;i<size;i++){
+                        str += '<tr>\n' +
+                            '                            <td>\n' +
+                            '                                <input type="checkbox" name="" lay-skin="primary"></td>\n' +
+                            '                            <td>'+ msg[i+''].success_id+'</td>\n' +
+                            '                            <td>'+ msg[i+''].teacher_name+'</td>\n' +
+                            '                            <td>'+ msg[i+''].course_name+'</td>\n' +
+                            '                            <td>'+ msg[i+''].time+'</td>\n' +
+                            '                            <td class="td-manage">\n' +
+                            '                                <a title="查看" onclick="xadmin.open(\'编辑\',\'QQ_group-edit.html\')" href=" ">\n' +
+                            '                                    <i class="layui-icon">&#xe63c;</i></ a>\n' +
+                            '                                <a title="删除" onclick="delRow('+msg[i+''].success_id+')" href="javascript:;">\n' +
+                            '                                    <i class="layui-icon">&#xe640;</i></ a>\n' +
+                            '                            </td>\n' +
+                            '                        </tr>'
+                    }
+                    tbody.innerHTML = str;
+
+                    //写出页数
+                    console.log(Page);
+                    var tpagebody =document.getElementById("_page");
+                    //写出分页跳转功能
+                    if( parseInt(currentPage) != parseInt("1")){
+                        tpage += '<a href="javascript:;" class="prev" title="前一页" onclick="doGo('+ parseInt(Page-1) +');">&lt;&lt;</a>';
+                    }
+
+                    for(i = parseInt("1");i<=totalPate;i++){
+                        if( i == parseInt(currentPage)){
+                            tpage += '<a href="javascript:;" class="current" onclick="doGo('+ parseInt(i)+')">'+ parseInt(i)+'</a>'
+                        }
+                        else{
+                            tpage += '<a href="javascript:;"  class="num" onclick="doGo('+ parseInt(i)+')">'+ parseInt(i)+'</a>'
+                        }
+                    }
+
+                    if(  parseInt(currentPage) != parseInt(totalPate) ){
+                        tpage += '<a href="javascript:;"  class="next" onclick="doGo('+ parseInt(Page+1) +')" class="p" title="后一页">&gt;&gt;</a>'
+                    }
+                    tpagebody.innerHTML = tpage;
+                    console.log(tpage);
+
+                    // <div class="page" id="_page">
+                    // <div>
+                    // <a class="prev" href="">&lt;&lt;</a>
+                    // <a class="num" href="">1</a>
+                    // <span class="current">2</span>
+                    // <a class="num" href="">3</a>
+                    // <a class="num" href="">489</a>
+                    // <a class="next" href="">&gt;&gt;</a>
+                    // </div>
+                    // </div>
+                },
+                error:function () {
+                    console.log("失败")
+                }
+            }
+        )
+
+    }
+</script>
+<script>
+    function delRow(id) {
+        $.ajax({
+            method: 'post',
+            url: '/Wechat_Delete/'+id,
+            dataType:'json',
+            success:function (response) {
+                location.reload()
+                alert('post code done')
+            },
+            error:function (err) {
+                console.log(err)
+            }
+        })
+    }
+</script>

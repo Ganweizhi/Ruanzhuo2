@@ -1,15 +1,21 @@
 package com.dgut.group33.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.dgut.group33.dao.AchievementMapper;
+import com.dgut.group33.dao.ContentMapper;
+import com.dgut.group33.javaBean.AddEditContent;
 import com.dgut.group33.javaBean.Measure;
 import com.dgut.group33.javaBean.MeasureContent;
 import com.dgut.group33.service.AchievementService;
 import com.dgut.group33.service.ContentService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +26,10 @@ public class AchievementController {
     private AchievementService achievementService;
     @Autowired
     private ContentService contentService;
+    @Autowired
+    private AchievementMapper achievementMapper;
+    @Autowired
+    private ContentMapper contentMapper;
 
     //前台教学成果界面
     @RequestMapping(value = "/chengguo/{page}",method = {RequestMethod.POST})
@@ -56,91 +66,60 @@ public class AchievementController {
 
     //后台管理教学成果--删除
     @RequestMapping(value="/dele-chengguo/{content_id}",method = {RequestMethod.POST})
-    public String deleteA(@PathVariable("content_id") String contentid){
+    public String deleteA(@PathVariable("content_id") String contentid) {
         int content_id = Integer.parseInt(contentid);
-
-        achievementService.delete(content_id);
-        contentService.delete(content_id);
-
-        List<Measure> measure=new ArrayList<>();
-        List<Measure> measures=achievementService.selectAllAchievement();
-        for(int i=0;i<measures.size();i++){
-            MeasureContent measureContent=contentService.selectA((measures.get(i)).getContent_id());
-            Measure measure1=measures.get(i);
-            measure1.setMeasureContent(measureContent);
-            measure.add(measure1);
-        }
-
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",measure);
-
+        try {
+            Measure measure=achievementMapper.selectM(content_id);
+            achievementMapper.delete(content_id);
+            contentMapper.delete(measure.getContent_id());
+            jsonObject.put("data", 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+            jsonObject.put("data", 0);
+        }
         return jsonObject.toJSONString();
     }
-
 
     //后台管理教学成果--添加
     @RequestMapping(value="/add-chengguo",method = {RequestMethod.POST})
-    public String insertA(@RequestParam Map<String,String> map){
-
-        MeasureContent measureContent=new MeasureContent();
-        measureContent.setContent_author(map.get("author"));
-        measureContent.setContent(map.get("content"));
-        contentService.insert(measureContent);
-
-        Measure measure=new Measure();
-        measure.setMeasure_title(map.get("title"));
-        measure.setMeasure_time(map.get("date"));
-        measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
-        achievementService.insert(measure);
-
-        List<Measure> measure1=new ArrayList<>();
-        List<Measure> measures=achievementService.selectAllAchievement();
-        for(int i=0;i<measures.size();i++){
-            MeasureContent measureContent1=contentService.selectA((measures.get(i)).getContent_id());
-            Measure measure2=measures.get(i);
-            measure2.setMeasureContent(measureContent1);
-            measure1.add(measure2);
-        }
-
+    public String insertA(@RequestBody AddEditContent measure2){
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",measure1);
-
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        measure2.setMeasure_time(df.format(new Date()));
+        try {
+            contentMapper.insert(measure2);
+            MeasureContent content=contentMapper.selectByAuthor(measure2.getContent_author());
+            measure2.setContent_id(content.getId());
+            achievementMapper.insert(measure2);
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
         return jsonObject.toJSONString();
     }
-
 
     //后台管理教学成果--修改
     @RequestMapping(value="/edit-chengguo",method = {RequestMethod.POST})
-    public String alterA(@RequestParam Map<String,String> map){
-        MeasureContent measureContent=new MeasureContent();
-        measureContent.setContent_author(map.get("author"));
-        measureContent.setContent(map.get("content"));
-        contentService.update(measureContent);
-
-        Measure measure=new Measure();
-        measure.setMeasure_title(map.get("title"));
-        measure.setMeasure_time(map.get("date"));
-        measure.setMeasureContent(contentService.selectA(Integer.parseInt(map.get("contentid"))));
-        achievementService.update(measure);
-
-        List<Measure> measure1=new ArrayList<>();
-        List<Measure> measures=achievementService.selectAllAchievement();
-        for(int i=0;i<measures.size();i++){
-            MeasureContent measureContent1=contentService.selectA((measures.get(i)).getContent_id());
-            Measure measure2=measures.get(i);
-            measure2.setMeasureContent(measureContent1);
-            measure1.add(measure2);
-        }
+    public String alterA(@RequestBody AddEditContent measure2){
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",measure1);
+        try {
+            System.out.println(measure2);
+            achievementMapper.update(measure2);
+            contentMapper.update(measure2);
+            jsonObject.put("data",1);
+        }catch (Exception e){
+            e.printStackTrace();
+            jsonObject.put("data",0);
+        }
 
         return jsonObject.toJSONString();
     }
 
-
     //后台管理教学成果--展示所有
-    @RequestMapping(value="/allAchievement",method = {RequestMethod.POST})
-    public String select(){
+    @RequestMapping(value="/allchengguo",method = {RequestMethod.GET})
+    public String select(@Param("page") int page, @Param("limit") int limit){
         List<Measure> measure1=new ArrayList<>();
         List<Measure> measures=achievementService.selectAllAchievement();
         for(int i=0;i<measures.size();i++){
@@ -150,9 +129,16 @@ public class AchievementController {
             measure1.add(measure2);
         }
 
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("data",measure1);
+        List<Measure> measure3=new ArrayList<>();
+        for(int i=(page-1)*limit,j=i; i<j+limit && i< measure1.size(); i++){
+            measure3.add(measure1.get(i));
+        }
 
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("code",0);
+        jsonObject.put("msg","");
+        jsonObject.put("count",measure3.size());
+        jsonObject.put("data",measure3);
         return jsonObject.toJSONString();
     }
 }

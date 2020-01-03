@@ -174,7 +174,7 @@ function delAll(argument) {
         console.log("ajax开始");
         $.ajax({
                 type: "POST",
-                url: "/question_find/"+Page,
+                url: "/answer_find/"+Page,
                 async:false,
                 dataType: "json",
                 success:function (msg) {
@@ -190,7 +190,7 @@ function delAll(argument) {
                         str += ' <tr>\n' +
                             '                            <td>\n' +
                             '                                <input type="checkbox" name="" lay-skin="primary"></td>\n' +
-                            '                            <td>'+ msg[''+i].question_Id+'</td>\n' +
+                            '                            <td>'+ msg[''+i].question_id+'</td>\n' +
                             '                            <td>'+msg[''+i].name+'</td>\n' +
                             '                            <td>'+msg[''+i].title+'</td>\n' +
                             '                            <td>'+msg[''+i].times+'</td>\n' +

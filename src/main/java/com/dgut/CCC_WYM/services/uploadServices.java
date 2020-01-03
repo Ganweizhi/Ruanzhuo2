@@ -31,9 +31,9 @@ public class uploadServices {
     {
         Upload.setQQimage(qq,success_id);
     }
-    public void setWechatimage(String wechat,String course_id,String teacher_id)
+    public void setWechatimage(String wechat,String success_id)
     {
-        Upload.setWechatimage(wechat, course_id, teacher_id);
+        Upload.setWechatimage(wechat,success_id);
     }
     public List<success_id> getALLsucessIdForQQ()
     {
@@ -58,5 +58,25 @@ public class uploadServices {
     public Webquestion getWebQuestionById(String qid)
     {
         return Upload.getWebQuestionByQid(qid);
+    }
+    public List<webTitle> getAllNotSovledQuestion()
+    {
+        return Upload.getAllNotslovedQuestion();
+    }
+    public void responseQuestion(String question_id,String answer)
+    {
+        Upload.responesQuestion(question_id, answer);
+    }
+    public List<beforeWechat> getAllWechatUrl()
+    {
+        return Upload.getBeforWechat();
+    }
+    public List<success_id> getAllWechatNotUpload()
+    {
+        return Upload.getAllSuccess_idForWechat();
+    }
+    public void deleteWechat(String success_id)
+    {
+        Upload.deleteWechat(success_id);
     }
 }
