@@ -33,6 +33,7 @@ public class GroupImageUpload {
         return Upload.getAllSuccessCourse().toString();
     }
     @RequestMapping("/QQ_upload")
+    @ResponseBody
     public String QQupload(MultipartFile pic,@Param("success_id")String success_id, HttpServletRequest request) throws IOException {
 
        System.out.println(pic+success_id);
@@ -47,8 +48,15 @@ public class GroupImageUpload {
        pic.transferTo(new File(folder,newName));
        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/group_image/qq_image/" + newName;
        System.out.println(url);
-       Upload.setQQimage(newName,success_id);
-       return "redirect:afterTable/super_admin.html";
+        JSONObject jsonObject = new JSONObject();
+       try {
+           Upload.setQQimage(newName, success_id);
+           jsonObject.put("code", 1);
+       }catch (Exception ex)
+       {
+           jsonObject.put("code", 0);
+       }
+       return JSON.toJSONString(jsonObject);
    }
    @RequestMapping("/getCourse_id")
    @ResponseBody
@@ -180,19 +188,20 @@ public class GroupImageUpload {
         return null;
     }
     @RequestMapping("/QQ_edit")
-    public String changeQQImage(@Param("pic")MultipartFile pic,@Param("success_id")String success_id,HttpServletRequest request ) throws IOException {
-        String realPath = request.getServletContext().getRealPath("/beforeTable/group_image/wechat_image");
+    public String changeQQImage(@Param("question_id")String question_id,@Param("pic")MultipartFile pic,HttpServletRequest request ) throws IOException {
+        String realPath = request.getServletContext().getRealPath("/beforeTable/group_image/qq_image");
+        System.out.println(question_id);
         File folder = new File(realPath);
         if(!folder.exists())
         {
             folder.mkdirs();
         }
         String oldname = pic.getOriginalFilename();
-        String newName = success_id+"_"+"wechat"+"_"+oldname.substring(oldname.lastIndexOf("."));
+        String newName = question_id+"_"+"QQ"+"_"+oldname.substring(oldname.lastIndexOf("."));
         pic.transferTo(new File(folder,newName));
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/beforeTable/group_image/qq_image/" + newName;
         System.out.println(url);
-        Upload.changeQQ(success_id,newName);
+        Upload.changeQQ(question_id,newName);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("success",1);
         return JSON.toJSONString(jsonObject);

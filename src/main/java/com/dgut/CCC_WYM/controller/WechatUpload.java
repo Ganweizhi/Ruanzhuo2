@@ -26,8 +26,7 @@ public class WechatUpload {
     @Autowired
     private uploadServices Upload;
     @RequestMapping("/Wechat_upload")
-
-
+    @ResponseBody
     public String QQupload(MultipartFile pic, @Param("success_id")String success_id, HttpServletRequest request) throws IOException {
 
         System.out.println(pic+success_id);
@@ -42,8 +41,16 @@ public class WechatUpload {
         pic.transferTo(new File(folder,newName));
         String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + "/beforeTable/group_image/wechat_image/" + newName;
         System.out.println(url);
-        Upload.setWechatimage(newName,success_id);
-        return "redirect:afterTable/teacher.html";
+
+        JSONObject jsonObject = new JSONObject();
+        try{
+            Upload.setWechatimage(newName,success_id);
+            jsonObject.put("code",1);
+        }catch (Exception ex)
+        {
+            jsonObject.put("code",0);
+        }
+        return JSON.toJSONString(jsonObject);
     }
     @RequestMapping("/getSuccess_idForWechat")
     @ResponseBody
