@@ -46,7 +46,7 @@
                 <div class="layui-card-header">
                     <!--<button class="layui-btn layui-btn-danger" onclick="delAll()">-->
                     <!--<i class="layui-icon"></i>批量删除</button>-->
-                    <button class="layui-btn" onclick="xadmin.open('添加内容','./teaching_resource_upload1.html',800,600)">
+                    <button class="layui-btn" onclick="xadmin.open('添加内容','./teaching_resource_upload.html',800,600)">
                         <i class="layui-icon"></i>添加</button></div>
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
@@ -170,6 +170,7 @@ function member_del(obj, id) {
     layer.confirm('确认要删除吗？',
         function(index) {
             //发异步删除数据
+            console.log(id);
             $.ajax({
                 type:"GET",
                 url:"/resource/DeleteTextbook",
@@ -220,20 +221,18 @@ function delAll(argument) {
                 console.log(data);
                 var tableHtml = "";
                 for (var i in data.resourceList) {
-                    if( data.teacherList[i] != null) {
-                        tableHtml += "<tr>";
-                        tableHtml += "<td>\n" +
-                            "                                <input type=\"checkbox\" name=\"\" lay-skin=\"primary\"></td>"
-                        tableHtml += "<td>" + data.courseList[i].course_name + "</td>";
-                        tableHtml += "<td>" + data.teacherList[i].teacher_name + "</td>";
-                        tableHtml += "<td>2019-11-" + i + "</td>";
-                        tableHtml += "<td>" + data.resourceList[i].resource_experiment + "</td>";
-                        tableHtml += "<td class=\"td-manage\">\n" +
-                            "<a title=\"删除\" onclick=\"member_del(this," + data.resourceList[i].resource_id + ")\" id='dele' href=\"javascript:;\">\n" +
-                            "<i class=\"layui-icon\">&#xe640;</i></a>\n" +
-                            "</td>"
-                        tableHtml += "</tr>";
-                    }
+                    tableHtml += "<tr>";
+                    tableHtml +="<td>\n" +
+                        "                                <input type=\"checkbox\" name=\"\" lay-skin=\"primary\"></td>"
+                    tableHtml += "<td>" + data.courseList[i].course_name + "</td>";
+                    tableHtml += "<td>" + data.teacherList[i].teacher_name + "</td>";
+                    tableHtml += "<td>2019-11-" + i + "</td>";
+                    tableHtml += "<td>" + data.resourceList[i].resource_experiment + "</td>";
+                    tableHtml +="<td class=\"td-manage\">\n" +
+                        "<a title=\"删除\" onclick=\"member_del(this,"+data.resourceList[i].resource_id+")\" id='dele' href=\"javascript:;\">\n" +
+                        "<i class=\"layui-icon\">&#xe640;</i></a>\n" +
+                        "</td>"
+                    tableHtml += "</tr>";
                 }
                 $(".body").html(tableHtml);
             }
