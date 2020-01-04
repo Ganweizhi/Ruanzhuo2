@@ -14,6 +14,10 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +38,44 @@ public class AddEditDelete {
     private AddEditDeleteDao addEditDeleteDao;
     @Autowired
     private JiaoXueRiLiService jiaoXueRiLiService;
+
+    @Autowired
+    private HttpServletRequest request;
+
+
+
+    @RequestMapping(value="/login",method = {RequestMethod.POST})
+    public void login(@Param("username") String username, @Param("password") String password,HttpServletResponse response) throws ServletException, IOException {
+
+        System.out.println(response);
+        System.out.println(request);
+        if(username.equals("admin") && password.equals("1111")){
+            response.sendRedirect("http://localhost:8080/afterTable/super_admin.html");
+        }else if(username.equals("secondadmin")&& password.equals("1111")){
+            response.sendRedirect("http://localhost:8080/afterTable/second_admin.html");
+        }else if(username.equals("teacher")&& password.equals("1111")){
+            response.sendRedirect("http://localhost:8080/afterTable/teacher.html");
+        }else if(username.equals("student")&& password.equals("1111")){
+            response.sendRedirect("http://localhost:8080/afterTable/student.html");
+        } else {
+            response.sendRedirect("http://localhost:8080/afterTable/login.html");
+        }
+    }
+
+    @RequestMapping(value="/jiabanList",method = {RequestMethod.GET})
+    public String jiabanList(){
+
+        List<jiaban> list = addEditDeleteDao.jiabanList();
+
+        for(jiaban jia : list){
+            jia.setStr(""+jia.getCourse_id()+addEditDeleteDao.getCourName(jia.getCourse_id()));
+        }
+
+
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("data",list);
+        return jsonObject.toJSONString();
+    }
 
     @RequestMapping(value="/listContentb",method = {RequestMethod.GET})
     public String listContentb(@Param("page") int page, @Param("limit") int limit){

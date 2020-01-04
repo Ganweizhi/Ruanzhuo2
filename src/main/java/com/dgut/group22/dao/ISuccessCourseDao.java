@@ -30,9 +30,12 @@ public interface ISuccessCourseDao {
     })
     List<SuccessCourse> findAllSuccessCourse();
 
-    @Delete("delete from SuccessCourse where success_id=#{success_id}")
+    @Delete("delete from successCourse where success_id=#{success_id}")
     void deleteSuccessCourse(String success_id);
 
-    @Update("update SuccessCourse set teacher_id=#{teacher_id} where course_id=#{course_id}")
+    @Update("update successCourse set teacher_id=null where course_id=#{course_id}")
+    void deleteTeacherOfSuccess(String success_id);
+
+    @Update("update successCourse set teacher_id=#{teacher_id} where course_id=#{course_id}")
     void updateSuccessCourse(String course_id, String teacher_id);
 }

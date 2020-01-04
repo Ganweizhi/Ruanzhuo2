@@ -76,6 +76,9 @@
 <!--});-->
 
 <!--});</script>-->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
+
 <script>
     var _hmt = _hmt || []; (function() {
         var hm = document.createElement("script");
@@ -299,7 +302,9 @@
                 success:function (msg) {
                     if( msg.data == "成功"){
                         alert("更改成功");
-                        window.location.href= 'teacher_zhujiangjiaoshi.html'
+                        parent.location.reload();
+                        var index = parent.layer.getFrameIndex(window.name);
+                        parent.layer.close(index);
                     }
                     else{
                         alert("更改失败");

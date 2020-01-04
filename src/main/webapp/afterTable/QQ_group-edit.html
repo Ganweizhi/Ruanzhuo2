@@ -18,11 +18,14 @@
     <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]--></head>
 
-<body>
+<body onload="GetRequest()">
 <div class="layui-fluid">
     <div class="layui-row">
-        <form class="layui-form" action="/QQ_upload" accept-charset="utf-8" enctype="multipart/form-data" method="post">
+        <form class="layui-form" action="#" accept-charset="utf-8" enctype="multipart/form-data"  id="form">
             <div class="layui-form-item">
+                <div class="layui-form-item">
+                    <input type="hidden" id="question" name="question_id" value=""/>
+                </div>
                 <label for="username" class="layui-form-label">
                     <span class="x-red">*</span>选择文件</label>
                 <div class="layui-input-inline">
@@ -30,365 +33,75 @@
                     <input id="file" type="file" name="pic">
                 </div>
             </div>
+            <!--            <div class="layui-form-item">-->
+            <!--                <label for="username" class="layui-form-label">-->
+            <!--                    <span class="x-red">*</span>负责教师</label>-->
+            <!--                <div class="layui-input-inline">-->
+            <!--                    <br>-->
+            <!--                    <select name="teacher_id" id="teacher_id" lay-ignore >-->
+            <!--                        <option value="0">请选择教师</option>-->
+            <!--                    </select>-->
+            <!--                </div>-->
+            <br>
             <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>课程</label>
-                <div class="layui-input-inline">
-                    <br>
-                    <select name="course_id" id="course_id" lay-ignore>
-                        <option value="0">请选择课程</option>
-                    </select>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="username" class="layui-form-label">
-                    <span class="x-red">*</span>负责教师</label>
-                <div class="layui-input-inline">
-                    <br>
-                    <select name="teacher_id" lay-ignore>
-                        <option value="0">请选择教师</option>
-                    </select>
-                </div>
-                <br>
-                <div class="layui-form-item">
-                    <label for="L_repass" class="layui-form-label"></label>
-                    <button class="layui-btn" lay-filter="add" lay-submit="" onclick="submit()">修改</button>
-                </div>
+                <label for="L_repass" class="layui-form-label"></label>
+                <button class="layui-btn" lay-filter="add" lay-submit="" onclick="login()">提交</button>
             </div>
         </form>
     </div>
 </div>
+</div>
 </body>
-<script>layui.use(['form', 'layer'],
-    function () {
-        $ = layui.jquery;
-        var form = layui.form,
-            layer = layui.layer;
-
-        //自定义验证规则
-        form.verify({
-            nikename: function (value) {
-                if (value.length < 5) {
-                    return '昵称至少得5个字符啊';
-                }
-            },
-            pass: [/(.+){6,12}$/, '密码必须6到12位'],
-            repass: function (value) {
-                if ($('#L_pass').val() != $('#L_repass').val()) {
-                    return '两次密码不一致';
-                }
-            }
-        });
-
-        //监听提交
-        form.on('submit(add)',
-            function (data) {
-                console.log(data);
-                //发异步，把数据提交给php
-                layer.alert("增加成功", {
-                        icon: 6
-                    },
-                    function () {
-                        // 获得frame索引
-                        var index = parent.layer.getFrameIndex(window.name);
-                        //关闭当前frame
-                        parent.layer.close(index);
-                    });
-                return false;
-            });
-
-    });</script>
-<script>
-    var _hmt = _hmt || [];
-    (function () {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?b393d153aeb26b46e9431fabaf0f6190";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-
-    layui.use('upload', function () {
-        var $ = layui.jquery
-            , upload = layui.upload;
-
-        //普通图片上传
-        var uploadInst = upload.render({
-            elem: '#test1'
-            , url: '/QQ_upload/'
-            , before: function (obj) {
-                //预读本地文件示例，不支持ie8
-                obj.preview(function (index, file, result) {
-                    $('#demo1').attr('src', result); //图片链接（base64）
-                });
-            }
-            , done: function (res) {
-                //如果上传失败
-                if (res.code > 0) {
-                    return layer.msg('上传失败');
-                }
-                //上传成功
-            }
-            , error: function () {
-                //演示失败状态，并实现重传
-                var demoText = $('#demoText');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                demoText.find('.demo-reload').on('click', function () {
-                    uploadInst.upload();
-                });
-            }
-        });
-
-        //多图片上传
-        upload.render({
-            elem: '#test2'
-            , url: '/upload/'
-            , multiple: true
-            , before: function (obj) {
-                //预读本地文件示例，不支持ie8
-                obj.preview(function (index, file, result) {
-                    $('#demo2').append('<img src="' + result + '" alt="' + file.name + '" class="layui-upload-img">')
-                });
-            }
-            , done: function (res) {
-                //上传完毕
-            }
-        });
-
-        //指定允许上传的文件类型
-        upload.render({
-            elem: '#test3'
-            , url: '/upload/'
-            , accept: 'file' //普通文件
-            , done: function (res) {
-                console.log(res)
-            }
-        });
-        upload.render({ //允许上传的文件后缀
-            elem: '#test4'
-            , url: '/upload/'
-            , accept: 'file' //普通文件
-            , exts: 'zip|rar|7z' //只允许上传压缩文件
-            , done: function (res) {
-                console.log(res)
-            }
-        });
-        upload.render({
-            elem: '#test5'
-            , url: '/upload/'
-            , accept: 'video' //视频
-            , done: function (res) {
-                console.log(res)
-            }
-        });
-        upload.render({
-            elem: '#test6'
-            , url: '/upload/'
-            , accept: 'audio' //音频
-            , done: function (res) {
-                console.log(res)
-            }
-        });
-
-        //设定文件大小限制
-        upload.render({
-            elem: '#test7'
-            , url: '/upload/'
-            , size: 60 //限制文件大小，单位 KB
-            , done: function (res) {
-                console.log(res)
-            }
-        });
-
-        //同时绑定多个元素，并将属性设定在元素上
-        upload.render({
-            elem: '.demoMore'
-            , before: function () {
-                layer.tips('接口地址：' + this.url, this.item, {tips: 1});
-            }
-            , done: function (res, index, upload) {
-                var item = this.item;
-                console.log(item); //获取当前触发上传的元素，layui 2.1.0 新增
-            }
-        })
-
-        //选完文件后不自动上传
-        upload.render({
-            elem: '#test8'
-            , url: '/upload/'
-            , auto: false
-            //,multiple: true
-            , bindAction: '#test9'
-            , done: function (res) {
-                console.log(res)
-            }
-        });
-
-        //拖拽上传
-        upload.render({
-            elem: '#test10'
-            , url: '/upload/'
-            , done: function (res) {
-                console.log(res)
-            }
-        });
-
-        //多文件列表示例
-        var demoListView = $('#demoList')
-            , uploadListIns = upload.render({
-            elem: '#testList'
-            , url: '/upload/'
-            , accept: 'file'
-            , multiple: true
-            , auto: false
-            , bindAction: '#testListAction'
-            , choose: function (obj) {
-                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
-                //读取本地文件
-                obj.preview(function (index, file, result) {
-                    var tr = $(['<tr id="upload-' + index + '">'
-                        , '<td>' + file.name + '</td>'
-                        , '<td>' + (file.size / 1014).toFixed(1) + 'kb</td>'
-                        , '<td>等待上传</td>'
-                        , '<td>'
-                        , '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
-                        , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
-                        , '</td>'
-                        , '</tr>'].join(''));
-
-                    //单个重传
-                    tr.find('.demo-reload').on('click', function () {
-                        obj.upload(index, file);
-                    });
-
-                    //删除
-                    tr.find('.demo-delete').on('click', function () {
-                        delete files[index]; //删除对应的文件
-                        tr.remove();
-                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
-                    });
-
-                    demoListView.append(tr);
-                });
-            }
-            , done: function (res, index, upload) {
-                if (res.code == 0) { //上传成功
-                    var tr = demoListView.find('tr#upload-' + index)
-                        , tds = tr.children();
-                    tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
-                    tds.eq(3).html(''); //清空操作
-                    return delete this.files[index]; //删除文件队列已经上传成功的文件
-                }
-                this.error(index, upload);
-            }
-            , error: function (index, upload) {
-                var tr = demoListView.find('tr#upload-' + index)
-                    , tds = tr.children();
-                tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
-                tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
-            }
-        });
-
-        //绑定原始文件域
-        upload.render({
-            elem: '#test20'
-            , url: '/upload/'
-            , done: function (res) {
-                console.log(res)
-            }
-        });
-
-    });
-
-    // function submit() {
-    //     var username = $("#username").val();
-    //     var big_title = $("#big_title").val();
-    //     var little_title = $("#little_title").val();
-    //     var course_id = $("#course_id").children('option:selected').val()
-    //     var teacher_id = $("#teacher_id").children('option:selected').val()
-    //     var time = $("#time").val();
-    //
-    //     var data = {
-    //         "username": username,
-    //         "big_title": big_title,
-    //         "little_title": little_title,
-    //         "course_id": course_id,
-    //         "teacher_id": teacher_id,
-    //         "time": time
-    //     }
-    //
-    //
-    //     $.ajax({
-    //         type: "post",
-    //         url: "./QQ_upload",
-    //         data: data,
-    //         cache: true,
-    //         async: true,
-    //         success: function (data, textStatus, jqXHR) {
-    //             if (data.code == 200) {
-    //                 alert("插入成功了");
-    //             } else {
-    //                 alert(data.message);
-    //             }
-    //         },
-    //         error: function (XMLHttpRequest, textStatus, errorThrown) {
-    //
-    //             alert(typeof (errorThrown));
-    //         }
-    //
-    //     });
-    // }
-</script>
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
 <script>
-    $(document).ready(function () {
-
-        var url="/getCourse_id"; //访问后台去数据库查询select的选项,此处需填写后台接口路径
-        $.ajax({
-            type:"post",
-            url:url,
-            dataType:"json",
-            success : function(data) {
-                var unitObj=document.getElementById("course_id");
-                console.log(data);
-                // console.log(data["size"]);
-                // console.log(data.length);
-                for (var i = 0; i < data["size"]; i++) {
-                    var s = i+"";
-                    console.log("第一行:"+data[s].course_id);
-                    unitObj.options.add(new Option(data[s].course_name,data[s].course_id))
-                }
-            },
-            error:function(){
-                J.alert('Error');
+    function GetRequest() {
+        var url = location.search; //获取url中"?"符后的字串
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1);
+            strs = str.split("&");
+            for(var i = 0; i < strs.length; i ++) {
+                theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
             }
-        })
-    })
+        }
+        return theRequest;
+    }
+    console.dir(GetRequest())
+    window.id = GetRequest().id||'-1'
+    console.log(window.id)
+
+    document.getElementById('question').value = window.id;
+
 </script>
 <script>
-    $(document).ready(function () {
-
-        var url="/getTeacher_id"; //访问后台去数据库查询select的选项,此处需填写后台接口路径
+    function login() {
+        var formData = new FormData(document.getElementById("form"))
         $.ajax({
-            type:"post",
-            url:url,
-            dataType:"json",
-            success : function(data) {
-                var unitObj=document.getElementById("teacher_id");
-                console.log(data);
-                // console.log(data["size"]);
-                // console.log(data.length);
-                for (var i = 0; i < data["size"]; i++) {
-                    var s = i+"";
-                    console.log("第一行:"+data[s].teacher_id);
-                    unitObj.options.add(new Option(data[s].teacher_name,data[s].teacher_id))
+            //几个参数需要注意一下
+            type: "POST",//方法类型
+            dataType: "json",//预期服务器返回的数据类型
+            url: "/QQ_edit",//url
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                console.log(result);//打印服务端返回的数据(调试用)
+                if (result.code === 1) {
+                    alert("修改成功");
+                    parent.location.reload();
+                    var index = parent.layer.getFrameIndex(window.name);
+                    parent.layer.close(index);
+                }
+                else {
+                    alert("failed");
                 }
             },
-            error:function(){
-                J.alert('Error');
+            error: function () {
+                alert("修改失败！");
             }
-        })
-    })
+        });
+    }
 </script>
-</body>
-
 </html>

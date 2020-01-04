@@ -43,9 +43,21 @@ public interface ITeacherDao {
     @Select("select * from young where teacher_id=#{teacher_id}")
     Young findYoungById(String teacher_id);
 
-    @Select("update teacher set teacher_name=#{teacher_name},academy_id=#{academy_id},teacher_birth=#{teacher_birth},teacher_sex=#{teacher_sex},teacher_rank=#{teacher_rank},teacher_phone=#{teacher_phone},teacher_email=#{teacher_email},teacher_qualification=#{teacher_qualification},teacher_domain=#{teacher_domain},teacher_job=#{teacher_job},teacher_address=#{teacher_address},teacher_resdire=#{teacher_resdire},teacher_resume=#{teacher_resume},teacher_photo=#{teacher_photo} where teacher_id=#{teacher_id}")
+    @Select("update teacher set teacher_name=#{teacher_name},academy_id=#{academy_id},teacher_birth=#{teacher_birth},teacher_sex=#{teacher_sex},teacher_rank=#{teacher_rank},teacher_phone=#{teacher_phone},teacher_email=#{teacher_email},teacher_qualification=#{teacher_qualification},teacher_domain=#{teacher_domain},teacher_job=#{teacher_job},teacher_address=#{teacher_address},teacher_resdire=#{teacher_resdire},teacher_resume=#{teacher_resume},teacher_photo='http://a4.att.hudong.com/50/32/01300000836651126875327576537.jpg' where teacher_id=#{teacher_id}")
     void update(Teacher teacher);
 
     @Select("delete from young where teacher_id=#{teacher_id}")
     void deleteTeacher(String teacher_id);
+
+    @Insert("insert into teacher values(null,#{teacher_name},#{academy_id},#{teacher_birth},#{teacher_sex},#{teacher_rank},#{teacher_phone},#{teacher_email},#{teacher_qualification},#{teacher_domain},#{teacher_job},#{teacher_address},#{teacher_resdire},#{teacher_resume},'http://a4.att.hudong.com/50/32/01300000836651126875327576537.jpg')")
+    void addTeacher(Teacher teacher);
+
+    @Delete("delete from teacher where teacher_id=#{teacher_id}")
+    void deleteTeacher1(String teacher_id);
+
+    @Update("update teacher set teacher_name=#{teacher_name},academy_id=#{academy_id},teacher_birth=#{teacher_birth},teacher_sex=#{teacher_sex},teacher_rank=#{teacher_rank},teacher_phone=#{teacher_phone},teacher_email=#{teacher_email},teacher_qualification=#{teacher_qualification},teacher_domain=#{teacher_domain},teacher_job=#{teacher_job},teacher_address=#{teacher_address},teacher_resdire=#{teacher_resdire},teacher_resume=#{teacher_resume},teacher_photo='http://a4.att.hudong.com/50/32/01300000836651126875327576537.jpg' where teacher_id=#{teacher_id}")
+    void editTeacher(Teacher teacher);
+
+    @Select("select * from teacher")
+    List<Teacher> findAllTeacher();
 }

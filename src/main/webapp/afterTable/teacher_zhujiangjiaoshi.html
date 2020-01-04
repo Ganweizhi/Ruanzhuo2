@@ -30,24 +30,24 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5">
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <input class="layui-input" placeholder="开始日" name="start" id="start"></div>
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <input class="layui-input" placeholder="截止日" name="end" id="end"></div>
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <input type="text" name="username" placeholder="请输入标题" autocomplete="off" class="layui-input"></div>
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <button class="layui-btn" lay-submit="" lay-filter="sreach">
-                                <i class="layui-icon">&#xe615;</i></button>
-                        </div>
-                    </form>
+<!--                    <form class="layui-form layui-col-space5">-->
+<!--                        <div class="layui-input-inline layui-show-xs-block">-->
+<!--                            <input class="layui-input" placeholder="开始日" name="start" id="start"></div>-->
+<!--                        <div class="layui-input-inline layui-show-xs-block">-->
+<!--                            <input class="layui-input" placeholder="截止日" name="end" id="end"></div>-->
+<!--                        <div class="layui-input-inline layui-show-xs-block">-->
+<!--                            <input type="text" name="username" placeholder="请输入标题" autocomplete="off" class="layui-input"></div>-->
+<!--                        <div class="layui-input-inline layui-show-xs-block">-->
+<!--                            <button class="layui-btn" lay-submit="" lay-filter="sreach">-->
+<!--                                <i class="layui-icon">&#xe615;</i></button>-->
+<!--                        </div>-->
+<!--                    </form>-->
                 </div>
-                <div class="layui-card-header">
-                    <!--<button class="layui-btn layui-btn-danger" onclick="delAll()">-->
-                    <!--<i class="layui-icon"></i>批量删除</button>-->
-                    <button class="layui-btn" onclick="xadmin.open('添加内容','./teacher_zhuyaofuzeren_add.html',800,600)">
-                        <i class="layui-icon"></i>添加</button></div>
+<!--                <div class="layui-card-header">-->
+<!--                    &lt;!&ndash;<button class="layui-btn layui-btn-danger" onclick="delAll()">&ndash;&gt;-->
+<!--                    &lt;!&ndash;<i class="layui-icon"></i>批量删除</button>&ndash;&gt;-->
+<!--                    <button class="layui-btn" onclick="xadmin.open('添加内容','./teacher_zhuyaofuzeren_add.html',800,600)">-->
+<!--                        <i class="layui-icon"></i>添加</button></div>-->
                 <div class="layui-card-body ">
                     <table class="layui-table layui-form">
                         <thead>
@@ -121,6 +121,8 @@
     </div>
 </div>
 </body>
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <script>layui.use(['laydate', 'form'],
     function() {
         var laydate = layui.laydate;
@@ -174,7 +176,7 @@ function member_del(obj, id) {
             //发异步删除数据
             $.ajax({
                     type: "POST",
-                    url: "/FuZeRen/deleteFuZeRen/"+id,
+                    url: "/Teacher/deleteSuccessCourse/"+id,
                     async:false,
                     dataType: "json",
                     success:function (msg) {
@@ -238,7 +240,7 @@ function delAll(argument) {
                     var teacher_rank;
                     for(i in data){
 
-                        if( data[i].teacher.hasOwnProperty("teacher_name") ){
+                        if( data[i].teacher_id != parseInt("0") ){
                             teach_name = data[i].teacher.teacher_name;
                             // xueyuan = data[i].academy.academy_name;
                             laoshibianhao = data[i].teacher.teacher_id;
@@ -272,7 +274,7 @@ function delAll(argument) {
                             '                                    <i class="layui-icon">&#xe63c;</i></a>\n' +
                             // '                                <a title="修改头像"  href="teacher_zhujiangjiaoshi_edit1.html?'+ data[i].course.course_id+'">\n' +
                             // '                                    <i class="layui-icon">&#xe63c;</i></a>\n' +
-                            '<a title="删除" onclick="member_del(this,'+data[i].course.course_id + ')" href="javascript:;">\n' +
+                            '<a title="删除" onclick="member_del(this,'+data[i].success_id + ')" href="javascript:;">\n' +
                             '                                    <i class="layui-icon">&#xe640;</i></a>'+
                             '                            </td>\n' +
                             '                        </tr>'
@@ -321,6 +323,7 @@ function delAll(argument) {
                 dataType: "json",
                 success:function (msg) {
                     console.log(msg);
+
                 },
                 error:function () {
                     console.log("失败")

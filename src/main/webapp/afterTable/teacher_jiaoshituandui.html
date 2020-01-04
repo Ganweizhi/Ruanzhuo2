@@ -30,18 +30,18 @@
         <div class="layui-col-md12">
             <div class="layui-card">
                 <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5">
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <input class="layui-input" placeholder="开始日" name="start" id="start"></div>
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <input class="layui-input" placeholder="截止日" name="end" id="end"></div>
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <input type="text" name="username" placeholder="请输入标题" autocomplete="off" class="layui-input"></div>
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <button class="layui-btn" lay-submit="" lay-filter="sreach">
-                                <i class="layui-icon">&#xe615;</i></button>
-                        </div>
-                    </form>
+<!--                    <form class="layui-form layui-col-space5">-->
+<!--                        <div class="layui-input-inline layui-show-xs-block">-->
+<!--                            <input class="layui-input" placeholder="开始日" name="start" id="start"></div>-->
+<!--                        <div class="layui-input-inline layui-show-xs-block">-->
+<!--                            <input class="layui-input" placeholder="截止日" name="end" id="end"></div>-->
+<!--                        <div class="layui-input-inline layui-show-xs-block">-->
+<!--                            <input type="text" name="username" placeholder="请输入标题" autocomplete="off" class="layui-input"></div>-->
+<!--                        <div class="layui-input-inline layui-show-xs-block">-->
+<!--                            <button class="layui-btn" lay-submit="" lay-filter="sreach">-->
+<!--                                <i class="layui-icon">&#xe615;</i></button>-->
+<!--                        </div>-->
+<!--                    </form>-->
                 </div>
                 <div class="layui-card-header">
                     <!--<button class="layui-btn layui-btn-danger" onclick="delAll()">-->
@@ -55,6 +55,7 @@
                             <th>
                                 <input type="checkbox" name="" lay-skin="primary">
                             </th>
+                            <th >团队编号</th>
                             <th >团队名称</th>
                             <th >课程名称</th>
                             <th >操作</th>
@@ -113,6 +114,9 @@
     </div>
 </div>
 </body>
+
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+
 <script>layui.use(['laydate', 'form'],
     function() {
         var laydate = layui.laydate;
@@ -167,7 +171,7 @@ function member_del(obj, id) {
             console.log(id);
             $.ajax({
                     type: "POST",
-                    url: "/Teacher/deleteYoungTeacherAfter/"+id,
+                    url: "/Team/deleteTeam/"+id,
                     async:false,
                     dataType: "json",
                     success:function (msg) {
@@ -230,6 +234,7 @@ function delAll(argument) {
                             '                            <td>\n' +
                             '                                <input type="checkbox" name="" lay-skin="primary">' +
                             '<div class="layui-unselect layui-form-checkbox" lay-skin="primary"><i class="layui-icon layui-icon-ok"></i></div></td>\n'+
+                            '                            <td>'+ data[i].team_id +'</td>\n' +
                             '                            <td>'+ data[i].team_name +'</td>\n' +
                             '                            <td>'+ data[i].course.course_name+'</td>\n' +
                             '\n' +
@@ -237,8 +242,8 @@ function delAll(argument) {
                             // '                                <a title="编辑" onclick="xadmin.open(\'编辑\',\'teacher_zhuyaofuzeren_edit.html?'+ data[i].course.course_id+'\')" href="javascript:;">\n' +
                             '                                <a title="编辑"  href="teacher_jiaoshituandui_edit.html?'+ data[i].team_id+'">\n' +
                             '                                    <i class="layui-icon">&#xe63c;</i></a>\n' +
-                            '<a title="删除" onclick="member_del(this,'+data[i].teacher_id + ')" href="javascript:;">\n' +
-                            // '                                    <i class="layui-icon">&#xe640;</i></a>'+
+                            '<a title="删除" onclick="member_del(this,'+data[i].team_id + ')" href="javascript:;">\n' +
+                            '                                    <i class="layui-icon">&#xe640;</i></a>'+
                             '                            </td>\n' +
                             '                        </tr>'
                     }

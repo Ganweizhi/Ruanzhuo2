@@ -55,6 +55,12 @@ public interface ITeamDao {
     @Select("select * from tbelongt where team_id=#{team_id} and teacher_id=#{teacher_id}")
     TBelongT findTBelongT(String team_id,String teacher_id);
 
-    @Insert("insert into team values(null,#{team_name},#{course_id})")
+    @Insert("insert into team values(null,#{team_name},#{course_id},'http://file02.16sucai.com/d/file/2014/0419/d9f4710e211cd8bce6b8ef361b805fd3.jpg')")
     void addTeam(Team team);
+
+    @Delete("delete from tbelongt where team_id=#{team_id}")
+    void deleteTBelongT(String team_id);
+
+    @Delete("delete from team where team_id=#{team_id}")
+    void deleteTeam(String team_id);
 }

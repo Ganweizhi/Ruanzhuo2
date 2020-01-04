@@ -308,21 +308,38 @@
 							imma = "images/img_left_top.jpg";
 						}
 
-
-						str += '<li style="width: 290px;\n' +
-								'    height: 345px;\n' +
-								'    float: left;\n' +
-								'    margin-right: 12px;\n' +
-								'    margin-bottom: 15px;\n' +
-								'    box-shadow: 1px 1px 8px #ccc;\n' +
-								'    -webkit-box-shadow: 1px 1px 8px #ccc;\n' +
-								'    -moz-box-shadow: 1px 1px 8px #ccc;\n' +
-								'    border-radius: 4px;\n' +
-								'    text-align: center;"><a href="Teacher-fuzeren_teacher.html?teacher_id='+data[i].teacher_id+'&course_id='+ data[i].course_id+'"><img src="'+imma+'"><p style="line-height: 35px;\n' +
-								'    font-size: 22px;\n' +
-								'    color: #313131;">'+ggg+'</p><span style="color: #797979;\n' +
-								'    font-size: 16px;\n' +
-								'    line-height: 30px;">'+data[i].course_name+'</span></a></li>';
+						if( data[i].hasOwnProperty("teacher_name")) {
+							str += '<li style="width: 290px;\n' +
+									'    height: 345px;\n' +
+									'    float: left;\n' +
+									'    margin-right: 12px;\n' +
+									'    margin-bottom: 15px;\n' +
+									'    box-shadow: 1px 1px 8px #ccc;\n' +
+									'    -webkit-box-shadow: 1px 1px 8px #ccc;\n' +
+									'    -moz-box-shadow: 1px 1px 8px #ccc;\n' +
+									'    border-radius: 4px;\n' +
+									'    text-align: center;"><a href="Teacher-fuzeren_teacher.html?teacher_id=' + data[i].teacher_id + '&course_id=' + data[i].course_id + '"><img src="' + imma + '"><p style="line-height: 35px;\n' +
+									'    font-size: 22px;\n' +
+									'    color: #313131;">' + ggg + '</p><span style="color: #797979;\n' +
+									'    font-size: 16px;\n' +
+									'    line-height: 30px;">' + data[i].course_name + '</span></a></li>';
+						}
+						else{
+							str += '<li style="width: 290px;\n' +
+									'    height: 345px;\n' +
+									'    float: left;\n' +
+									'    margin-right: 12px;\n' +
+									'    margin-bottom: 15px;\n' +
+									'    box-shadow: 1px 1px 8px #ccc;\n' +
+									'    -webkit-box-shadow: 1px 1px 8px #ccc;\n' +
+									'    -moz-box-shadow: 1px 1px 8px #ccc;\n' +
+									'    border-radius: 4px;\n' +
+									'    text-align: center;"><a href="javascript:;"><img src="' + imma + '"><p style="line-height: 35px;\n' +
+									'    font-size: 22px;\n' +
+									'    color: #313131;">' + ggg + '</p><span style="color: #797979;\n' +
+									'    font-size: 16px;\n' +
+									'    line-height: 30px;">' + data[i].course_name + '</span></a></li>';
+						}
 					}
 				}
 				tbody.innerHTML = str;

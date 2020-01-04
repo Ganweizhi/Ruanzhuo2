@@ -290,14 +290,68 @@
 
                 var img_fuzeren = window.document.getElementById("fuzeren_photo");
                 if( data !=null){
-                    course_in += data['course'].course_introduction;
-                    course_na += data['course'].course_name;
-                    rrank_teacher += data['teacher'].teacher_rank;
-                    nname_teacher += data['teacher'].teacher_name;
-                    xuewei += data['teacher'].teacher_qualification;
-                    emain += data['teacher'].teacher_email;
+                    if( data['course'].course_introduction != null){
+                        course_in += data['course'].course_introduction;
+                    }
+                    else{
+                        course_in += '还未有任何简介';
+                    }
+
+                    if( data['course'].course_name != null){
+                        course_na += data['course'].course_name;
+                    }
+                    else{
+                        course_na += '还未有任何介绍';
+                    }
+
+                    if( data['teacher'].teacher_rank != null){
+                        rrank_teacher += data['teacher'].teacher_rank;
+                    }
+                    else{
+                        course_na += '还未有任何简介';
+                    }
+                    if( data['teacher'].teacher_name != null){
+                        nname_teacher += data['teacher'].teacher_name;
+                    }
+                    else{
+                        nname_teacher += '还未有任何简介';
+                    }
+
+                    if( data['teacher'].teacher_qualification != null){
+                        xuewei += data['teacher'].teacher_qualification;
+                    }
+                    else{
+                        xuewei += '还未有任何简介';
+                    }
+                    if( data['teacher'].teacher_email != null){
+                        emain += data['teacher'].teacher_email;
+                    }
+                    else{
+                        emain += '还未有任何简介';
+                    }
+
+
+
+
+
+                    if( data['teacher'].teacher_domain != null){
+                        domin += data['teacher'].teacher_domain;
+                    }
+                    else{
+                        domin += '还未有任何简介';
+                    }
+                    if( data['teacher'].teacher_resume != null){
+                        intro_t += data['teacher'].teacher_resume;
+                    }
+                    else{
+                        intro_t += '还未有任何简介';
+                    }
+                    // rrank_teacher += data['teacher'].teacher_rank;
+                    // nname_teacher += data['teacher'].teacher_name;
+                    // xuewei += data['teacher'].teacher_qualification;
+                    // emain += data['teacher'].teacher_email;
                     domin += data['teacher'].teacher_domain;
-                    intro_t += data['teacher'].teacher_resume
+                    // intro_t += data['teacher'].teacher_resume
                     phone += data['teacher'].teacher_phone;
                     img_fuzeren.src = data['teacher'].teacher_photo
                 }

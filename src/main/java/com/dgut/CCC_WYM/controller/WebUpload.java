@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,11 +29,19 @@ public class WebUpload {
     private uploadServices Upload;
 
     @RequestMapping("/Webquestion")
+    @ResponseBody
    public String webQuestion(@Param("name")String name,@Param("title")String title,@Param("times")String times,@Param("content")String content)
     {
-        System.out.println(name+title);
-        Upload.webUpload(name,title,times,content);
-        return "redirect:afterTable/student.html";
+        JSONObject jsonObject = new JSONObject();
+        try {
+            System.out.println(name+title);
+            Upload.webUpload(name,title,times,content);
+            jsonObject.put("abc",1);
+        }catch (Exception e){
+            jsonObject.put("abc",0);
+        }
+        System.out.println(jsonObject.toJSONString());
+        return jsonObject.toJSONString();
     }
    @RequestMapping("/returnsign_find/{Page}")
    @ ResponseBody
@@ -194,11 +203,20 @@ public class WebUpload {
        return "redirect:afterTable/teacher.html";
    }
    @RequestMapping("/answer_upload")
+   @ResponseBody
    public String answerRespones(@Param("question_id")String question_id,@Param("desc")String desc)
    {
        System.out.println(question_id+":"+desc);
-       Upload.responseQuestion(question_id,desc);
-       return "redirect:afterTable/teacher.html";
+       JSONObject jsonObject = new JSONObject();
+       try {
+           Upload.responseQuestion(question_id, desc);
+           jsonObject.put("code", 1);
+       }catch (Exception ex)
+       {
+           jsonObject.put("code",0);
+       }
+       return JSON.toJSONString(jsonObject);
    }
+
 
 }

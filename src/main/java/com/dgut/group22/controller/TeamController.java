@@ -44,7 +44,7 @@ public class TeamController {
         jsonObject.put("page",allTeams.size()/9+r);
         jsonObject.put("curPage",anInt);
         jsonObject.put("data",teams);
-        return jsonObject.toJSONString();
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     @RequestMapping(value = "/findTeacherByTeamId/{team_id}",method = {RequestMethod.POST})
@@ -70,7 +70,7 @@ public class TeamController {
         jsonObject.put("page",allTeams.size()/5+r);
         jsonObject.put("curPage",anInt);
         jsonObject.put("data",teams);
-        return jsonObject.toJSONString();
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
     }
 
     //按id查出教师信息
@@ -109,6 +109,7 @@ public class TeamController {
             try {
                 flag = teamService.addTeacher(teacher_id, team_id);
             } catch (Exception e) {
+                System.out.println(e);
                 flag = "0";
             }
         }
@@ -126,12 +127,30 @@ public class TeamController {
         try {
             flag = teamService.addTeam(team);
         } catch (Exception e) {
+            System.out.println(e);
             flag = "0";
         }
         if(flag=="1")
             jsonObject.put("data","成功");
         else
             jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
+
+    @RequestMapping(value = "/deleteTeam/{team_id}",method = {RequestMethod.POST})
+    public String deleteTeam(@PathVariable("team_id") String team_id){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try{
+            teamService.deleteTeam(team_id);
+            flag="1";
+        }
+        catch (Exception e){
+            flag="0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else jsonObject.put("data","失败");
         return jsonObject.toJSONString();
     }
 }

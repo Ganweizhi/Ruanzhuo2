@@ -41,4 +41,10 @@ public class TeamService {
         teamDao.addTeam(team);
         return "1";
     }
+
+    public String deleteTeam(String team_id){
+        teamDao.deleteTBelongT(team_id);
+        teamDao.deleteTeam(team_id);
+        return "1";
+    }
 }
