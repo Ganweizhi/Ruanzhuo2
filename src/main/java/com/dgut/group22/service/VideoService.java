@@ -15,7 +15,7 @@ public class VideoService {
 
     public List<Video> FindAllCourseName()
     {
-        return videoDao.FindAllCourseName();
+        return videoDao.findAllVideo();
     }
 
     public String FindCourseVideoPath(String course_id)

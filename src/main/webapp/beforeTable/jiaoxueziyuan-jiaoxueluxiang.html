@@ -367,7 +367,7 @@
                     divhtml += "<li class='tout_sp'><h1>" +
                         "<video width=\"900\" height=\"500\" controls=\"controls\" id=\"video\" preload=\"auto\">" +
                         "<source src=\"/resource/test/"+data[i].course_id+"\" type=\"video/mp4\"></video></h1><h2>" +
-                        "<p>"+data[i].course_name+"</p>" +
+                        "<p>"+data[i].course.course_name+"</p>" +
                         "<i><img src=\"images/fe01.png\"></i>" +
                         "</h2></li>";
                     if(i==3)break;
@@ -394,7 +394,7 @@
                             divhtml += "<li class='tout_sp'><h1>" +
                                 "<video width=\"900\" height=\"500\" controls=\"controls\" id=\"video\" preload=\"auto\">" +
                                 "<source src=\"/resource/test/"+data[i].course_id+"\" type=\"video/mp4\"></video></h1><h2>" +
-                                "<p>"+data[i].course_name+"</p>" +
+                                "<p>"+data[i].course.course_name+"</p>" +
                                 "<i><img src=\"images/fe01.png\"></i>" +
                                 "</h2></li>";
                             console.log(data[i])
