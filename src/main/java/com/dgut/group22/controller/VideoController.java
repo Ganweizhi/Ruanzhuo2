@@ -78,7 +78,6 @@ public class VideoController {
         String downloadFilePath =System.getProperty("user.dir");
 //        downloadFilePath = "G:\\复习";
         downloadFilePath =downloadFilePath+"\\src\\main\\resources\\video\\";
-
         try {
             FileInputStream fis = null;
             OutputStream os = null ;

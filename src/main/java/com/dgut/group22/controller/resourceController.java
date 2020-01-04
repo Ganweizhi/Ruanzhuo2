@@ -1,9 +1,14 @@
 package com.dgut.group22.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.dgut.group22.javaBean.*;
+import com.dgut.group22.service.VideoService;
 import com.dgut.group22.service.resourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,6 +25,8 @@ public class resourceController {
 
     @Autowired
     private resourceService resourceService;
+    @Autowired
+    private VideoService videoService;
 
     @RequestMapping(value = "/GetAllTextbook",method = RequestMethod.GET)
     @ResponseBody
@@ -569,10 +576,28 @@ public class resourceController {
         String code="0";
         int state=1;
         state= resourceService.DeleteExperiment_house(experiment_id);
-        System.out.println(state);
+        System.out.println(state+"!!!!!!!!!!!!!!!!!!!!!");
         if(state==0)
             code="400";
         return code;
     }
 
+    @RequestMapping(value = "/findAllVideo",method = {RequestMethod.POST})
+    @ResponseBody
+    public String findAllVideo(){
+        List<Video> videos=new ArrayList<>();
+        List<Video> allVideo= videoService.findAllVideo();
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!11");
+        System.out.println(allVideo);
+
+//        for(int i=(anInt-1)*5; i<(anInt-1)*5+5 && i<allVideo.size(); i++){
+//            videos.add(allVideo.get(i));
+//        }
+        JSONObject jsonObject = new JSONObject();
+//        int r = allVideo.size()%5==0?0:1;
+//        jsonObject.put("page",allVideo.size()/5+r);
+//        jsonObject.put("curPage",anInt);
+        jsonObject.put("data",videos);
+        return JSON.toJSONString(jsonObject, SerializerFeature.DisableCircularReferenceDetect);
+    }
 }

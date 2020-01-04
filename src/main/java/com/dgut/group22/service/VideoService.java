@@ -23,4 +23,7 @@ public class VideoService {
         return videoDao.FindCourseVideoPath(course_id);
     }
 
+    public List<Video> findAllVideo(){
+        return videoDao.findAllVideo();
+    }
 }
