@@ -136,4 +136,21 @@ public class TeamController {
             jsonObject.put("data","失败");
         return jsonObject.toJSONString();
     }
+
+    @RequestMapping(value = "/deleteTeam/{team_id}",method = {RequestMethod.POST})
+    public String deleteTeam(@PathVariable("team_id") String team_id){
+        String flag="0";
+        JSONObject jsonObject = new JSONObject();
+        try{
+            teamService.deleteTeam(team_id);
+            flag="1";
+        }
+        catch (Exception e){
+            flag="0";
+        }
+        if(flag=="1")
+            jsonObject.put("data","成功");
+        else jsonObject.put("data","失败");
+        return jsonObject.toJSONString();
+    }
 }
