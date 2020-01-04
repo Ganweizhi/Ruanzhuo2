@@ -171,7 +171,7 @@ function member_del(obj, id) {
             console.log(id);
             $.ajax({
                     type: "POST",
-                    url: "/Teacher/deleteYoungTeacherAfter/"+id,
+                    url: "/Team/deleteTeam/"+id,
                     async:false,
                     dataType: "json",
                     success:function (msg) {
@@ -242,8 +242,8 @@ function delAll(argument) {
                             // '                                <a title="编辑" onclick="xadmin.open(\'编辑\',\'teacher_zhuyaofuzeren_edit.html?'+ data[i].course.course_id+'\')" href="javascript:;">\n' +
                             '                                <a title="编辑"  href="teacher_jiaoshituandui_edit.html?'+ data[i].team_id+'">\n' +
                             '                                    <i class="layui-icon">&#xe63c;</i></a>\n' +
-                            '<a title="删除" onclick="member_del(this,'+data[i].teacher_id + ')" href="javascript:;">\n' +
-                            // '                                    <i class="layui-icon">&#xe640;</i></a>'+
+                            '<a title="删除" onclick="member_del(this,'+data[i].team_id + ')" href="javascript:;">\n' +
+                            '                                    <i class="layui-icon">&#xe640;</i></a>'+
                             '                            </td>\n' +
                             '                        </tr>'
                     }
