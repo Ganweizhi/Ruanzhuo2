@@ -162,6 +162,7 @@
                             fixed: 'left'
                         }, {
                             field: 'title',
+                            width: 280,
                             title: '标题',
                         }
                     ]
@@ -176,7 +177,7 @@
             var form = layui.form;
 
             //监听提交
-            form.on('submit(formDemo)', function(data) {
+            form.on('submit(formDemo2)', function(data) {
                 console.log(data.field)
                 $.ajax({
                     type: "post",
@@ -195,7 +196,7 @@
             })
 
             //监听提交
-            form.on('submit(formDemo2)', function(data) {
+            form.on('submit(formDemo1)', function(data) {
                 console.log(data.field)
                 $.ajax({
                     type: "post",

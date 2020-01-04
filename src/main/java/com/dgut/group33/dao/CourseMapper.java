@@ -20,6 +20,6 @@ public interface CourseMapper {
 
     @Select("select * from selectcourse where student_id =#{student_id}")
     SelectCourse findScoreById(int student_id);
-    @Insert("insert into  selectcouse (select_id,score,student_id)values(#{select_id},#{score},#{student_id})")
+    @Insert("insert into  selectcourse (select_id,score,student_id)values(#{select_id},#{score},#{student_id})")
     int  addSelectScore(SelectCourse selectCourse);
 }

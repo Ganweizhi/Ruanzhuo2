@@ -213,8 +213,8 @@
                 cols: [
                     [ //表头
                         {
-                            type: 'radio',
-                            fixed: 'left'
+                            type: 'checkbox',
+                            field: 'id'
                         }, {
                             field: 'content_id',
                             title: 'ID号',
@@ -223,6 +223,12 @@
                         }, {
                             field: 'title',
                             title: '标题',
+                        }, {
+                            fixed: 'right',
+                            title: '操作',
+                            width: '10%',
+                            align: 'center',
+                            toolbar: '#toolbarDemo'
                         }
                     ]
                 ]
